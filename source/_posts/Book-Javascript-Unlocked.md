@@ -12,7 +12,7 @@ categories:
 
 ## 새롭게 알게된 사실들
 
-**조건부 호출**
+### **조건부 호출**
 
 > 조건문 간략하게 작성
 >
@@ -39,7 +39,7 @@ categories:
 > }
 > ```
 
-**나머지 연산자**
+### **나머지 연산자**
 
 > ES5는 작성하지 않음(`[].slice.call(arguments)` 찾아보아요)
 >
@@ -59,7 +59,7 @@ categories:
 > console.log([bar, others]) // [`bar`, [`foo`, `baz`, `qux`]]
 > ```
 
-**펼침 연산자**
+### **펼침 연산자**
 
 > 배열 요소를 인수로 확산
 >
@@ -69,7 +69,7 @@ categories:
 > console.log(relDate.toString()) // Fri Jul 17 2015 00:00:00 GMT+0900 (한국 표준시)
 > ```
 
-**ES6 컬렉션**
+### **ES6 컬렉션**
 
 > 객체 중복없이 넣기
 >
@@ -81,7 +81,7 @@ categories:
 > console.log(Array.from(foo)) // [1, 2]
 > ```
 
-**Map vs Set**
+### **Map vs Set**
 
 > 비교
 > `Objects`의 키는 `Strings`이며, `Map`은 모든 값을 가질 수 있음
@@ -96,7 +96,7 @@ categories:
 > [MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Keyed_collections)
 > [Javascript Info](http://javascript.info/map-set)
 
-**getter/setter (알려진 속성에 대한 접근제어)**
+### **getter/setter (알려진 속성에 대한 접근제어)**
 
 > SyntaxError 객체가 흥미롭네
 >
@@ -116,7 +116,7 @@ categories:
 > }
 > ```
 
-**proxy (임의 속성에 대한 접근 제어)**
+### **proxy (임의 속성에 대한 접근 제어)**
 
 > 오오... proxy, IE11 적용법 찾긴 해야되는데...
 > 아직 이해도가 낮은 것 같다.(★★★)
@@ -150,7 +150,7 @@ categories:
 > console.log(storage.bar)
 > ```
 
-**NodeList에 관하여**
+### **NodeList에 관하여**
 
 > 라이브 콜렉션으로 상당한 비싼 자원(DOM이 `reflow`될때마다 갱신)
 > 그러므로, 라이브일 필요가 없을 경우는 배열로 변환
@@ -161,7 +161,7 @@ categories:
 > console.log([...li]) // ES6 방식
 > ```
 
-**DOM 이벤트 핸들링**
+### **DOM 이벤트 핸들링**
 
 > Event 객체 상세사항
 >
@@ -187,7 +187,7 @@ categories:
 >
 > `event.preventDefault()`: 디폴트 동작 방지 (ex. submit)
 
-**XHR vs Axios**
+### **XHR vs Axios**
 
 > fetch는 취소 불가, 다른 브라우저 호환성, 인코딩 문제(★)로 별로 쓰고싶지 않다.
 >
@@ -200,7 +200,7 @@ categories:
 > 5. JSON 데이터 자동변환
 > 6. Node.js에서의 사용
 
-**웹 스토리지 API**
+### **웹 스토리지 API**
 
 > 쿠키의 단점으로 생겨남.
 >

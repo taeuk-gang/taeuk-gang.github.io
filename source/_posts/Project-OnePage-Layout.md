@@ -13,6 +13,8 @@ categories:
 
 ## 레이아웃 엔진 짜기
 
+현재 [Github](https://github.com/naver-d2-one-page/One-Page)에서 진행 중
+
 결국에는 비율 문제 아닌가?
 화면이 작고 크고는 폰트와 이미지의 크기를 늘리고 줄이면 되는 문제
 
@@ -73,7 +75,6 @@ categories:
 - `media query`에 대해서도 극한으로 학습 (반응형)
 - `foundation`, `bootstrap`, `ant design` 등 에서 영감 받을 수 있는 것 확인
 - `codepen`에서 영감받을 수 있는 것 확인 (빡고수들이 많기 때문에 분명히 존재할 것임)
-
 
 ------
 

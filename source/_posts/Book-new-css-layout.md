@@ -23,6 +23,7 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 ### ~~플롯 문제 해결~~
 
 ----------
@@ -43,7 +44,21 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+### `shape-outside`
+
+신기한 방식
+
+<p class="codepen" data-height="596" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="7381756662a5e307bddb2471d62265ac" data-editable="true" style="height: 596px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="shape-outside">
+  <span>See the Pen <a href="https://codepen.io/taeuk_kang/pen/7381756662a5e307bddb2471d62265ac/">
+  shape-outside</a> by taeuk_kang (<a href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
 ### `flex-wrap`
+
 
 마지막 엘리먼트를 지워보고, 어떻게 영향을 끼치는지 확인하자
 
@@ -51,12 +66,17 @@ categories:
 
 `flex: 0 0 auto;` = `flex-grow`, `flex-shrink`, `flex-basis` 순서로 배치됨
 
+이게 `grid`와 `flex`에 가장 큰 차이라고 생각된다.
+
+`grid`에서는 아무리 찾아봐도, 각 행의 길이를 다르게 하는 방법을 모르겠다... (아직 공부가 부족한가...)
+
 <p class="codepen" data-height="700" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="0d15ea20e694774bcaf4b176c9300133" data-editable="true" style="height: 700px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-wrap">
   <span>See the Pen <a href="https://codepen.io/taeuk_kang/pen/0d15ea20e694774bcaf4b176c9300133/">
   flex-wrap</a> by taeuk_kang (<a href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 ### 그리드 레이아웃
 
 #### * 내가 몰랐던 사실
@@ -82,6 +102,8 @@ categories:
 
 -------------
 
+
+
 ## 배치와 정렬
 
 `grid-align-slef`
@@ -92,7 +114,9 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 ### `align-content: space-between;` 
+
 ### `justify-content: space-between;`
 
 <p class="codepen" data-height="471" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="24c1872bf9b4ef548373fd2dc1994332" data-editable="true" style="height: 471px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-align-content">
@@ -102,6 +126,7 @@ categories:
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 
+
 ### `justify-items` ,`justify-self`
 
 <p class="codepen" data-height="492" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="94fb288a635c102666cafcd40368d806" data-editable="true" style="height: 492px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-justify">
@@ -110,26 +135,89 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
-
 ----------------
+
+
 
 ## ★반응형 디자인
 
-글 작성중
+### `flex` `-grow`, `-shrink`, `-basis`
 
+커지는 비율, 작아지는 비율, 플렉스 아이템의 기본값(넓이·높이)
+
+<p class="codepen" data-height="782" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="9f4d8672334918a755927b52cc9bc0d4" data-editable="true" style="height: 782px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-basis">
+  <span>See the Pen <a href="https://codepen.io/taeuk_kang/pen/9f4d8672334918a755927b52cc9bc0d4/">
+  flex-basis</a> by taeuk_kang (<a href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 -----------
+
+
 
 ## ★소스 순서와 표현 순서
 
+### `grid-auto-flow`
+
+`grid-auto-flow: dense`를 해제시켜보고 차이를 이해
+
+<p class="codepen" data-height="711" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="4b70682cc564083bdcfa305c0877fc09" data-editable="true" style="height: 711px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-auto-flow">
+  <span>See the Pen <a href="https://codepen.io/taeuk_kang/pen/4b70682cc564083bdcfa305c0877fc09/">
+  grid-auto-flow</a> by taeuk_kang (<a href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+### `order`
+
+그리드에서는 사용 용도가 불분명한 편, 애초에 `grid-area`로 숫자·이름 둘다 지정할 수 있기 때문에
+
+<p class="codepen" data-height="297" data-theme-id="0" data-default-tab="css,result" data-user="taeuk_kang" data-slug-hash="73e9e390af327275d1b8982d323bcf08" data-editable="true" style="height: 297px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="layout-order">
+  <span>See the Pen <a href="https://codepen.io/taeuk_kang/pen/73e9e390af327275d1b8982d323bcf08/">
+  layout-order</a> by taeuk_kang (<a href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+### `display: contents`
+
+인정하지 않은 자식 요소도 플렉스 또는 그리드 레이아웃의 구성요소가 될 수 있게 만듦
+
+<p class="codepen" data-height="388" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="f176dabbeb633a1c5cd7734b4d67bfe8" data-editable="true" style="height: 388px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="display: contents">
+  <span>See the Pen <a href="https://codepen.io/taeuk_kang/pen/f176dabbeb633a1c5cd7734b4d67bfe8/">
+  display: contents</a> by taeuk_kang (<a href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
 -------------
+
+
 
 ## 준비하는 미래
 
 ------------
 
-## 앞으로의 여정
+support 문법 발견
+
+```css
+supports (display: grid) {
+    /* grid 지원 브라우저에만 적용됨 */
+    .container {
+        display: grid;
+    }
+}
+```
+
+
+
+## ~~앞으로의 여정~~
+
+
 
 ## 참고파일
+
 {% raw %}
 <a href ='/assets/new-css-layout-code-master.zip' download>예제 코드 Download</a>
 <br />

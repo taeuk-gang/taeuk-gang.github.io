@@ -3,9 +3,9 @@ title: 그리드 레이아웃
 toc: true
 date: 2019-07-29 22:24:55
 tags:
-    - Css
+    - CSS
 categories:
-    - Css
+    - CSS
 ---
 
 그리드 레이아웃 적용

@@ -3,9 +3,9 @@ title: Shadow DOM 만들기
 toc: true
 date: 2019-07-27 22:33:18
 tags:
-    - Js
+    - Javascript
 categories:
-    - Js
+    - Javascript
 ---
 
 ## Shadow_DOM

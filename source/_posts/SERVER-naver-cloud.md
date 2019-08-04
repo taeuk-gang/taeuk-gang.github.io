@@ -11,8 +11,6 @@ categories:
     - Cloud
 ---
 
-# 처음 써보는 네이버 클라우드 이용기
-
 ## 서버생성
 
 1. 네이버 클라우드 플랫폼 `console`페이지 로 이동 - [사이트](https://www.ncloud.com/)

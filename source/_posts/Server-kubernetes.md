@@ -1,5 +1,5 @@
 ---
-title: Kubernetes 학습 기록
+title: Kubernetes 학습 기록 (1) - Docker
 toc: true
 date: 2019-08-03 19:51:32
 tags:
@@ -14,7 +14,7 @@ categories:
 
 - ## Hello World 컨테이너 실행　
 > ```bash
-> docker run busybox ehco "Hello world
+> docker run busybox echo "Hello world"
 > ```
  > |                          결과 화면                           |
  > | :----------------------------------------------------------: |
@@ -93,7 +93,7 @@ categories:
 
 - ### 도커 이미지 실행
     > ```bash
-    > docker run --name taeuk-container -p 8080:8080 -d taeuk
+    > docker run --name taeuk-container -p 9381:8080 -d taeuk-test
     > ```
     >
     > 컨테이너는 콘솔에서 분리된다. (백그라운드에서 실행)
@@ -127,7 +127,8 @@ categories:
 >
 > `hit`가 뜬다면 정상
 >
->
+> 만약 `curl: (56) Recv failure: Connection reset by peer`가 뜬다면,
+> 포트(외부포트:컨테이너내부포트 둘중 하나가 맞지 않다는 뜻이다)
 
 - 또는 `docker inspect taeuk-container` 를 쳐서 확인
 >

@@ -171,3 +171,21 @@ categories:
 > 바로 생성했다면, 아직 외부 IP주소가 없는 것을 확인.
 > 클라우드 인프라에서 로드 밸런서를 생성하는데 시간이 걸리기 때문. 외부 IP가 생길 때까지 대기
 
+
+
+- ### (이슈해결) 쿠버네티스에서 삭제해도, 계속 실행중일시
+> `k delete pods name`을 해도 뒤의 다른 이름을 달고 계속 생성될 때가 있다.
+>
+> |                          결과 화면                           |
+> | :----------------------------------------------------------: |
+> | <img src="https://user-images.githubusercontent.com/26294469/62463561-4d9bb080-b7c5-11e9-991b-6e208cd86d73.png"> |
+>
+> 이것은 지워도 `deployment`와 `rc`(레플리카컨트롤러) 에서 계속 생성하기 때문이다.
+>
+> 그러므로, `k get deployment` 또는 `k get rc`를 하여 목록을 확인하고,
+>
+> |                          결과 화면                           |
+> | :----------------------------------------------------------: |
+> | <img src="https://user-images.githubusercontent.com/26294469/62463694-9fdcd180-b7c5-11e9-970d-c7ec41afac77.png"> |
+>
+> `k delete deployment taeuk-test` 또는 `k delete rc taeuk-test`를 하여 계속 실행되는 것을 방지

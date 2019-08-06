@@ -12,6 +12,14 @@ categories:
 
 "Kubernetes in Action" 책으로 학습한 내용입니다.
 
+
+
+- ## Docker 설치
+> [CentOs 7에서 도커 설치](https://niceman.tistory.com/36)
+
+
+
+
 - ## Hello World 컨테이너 실행　
 > ```bash
 > docker run busybox echo "Hello world"

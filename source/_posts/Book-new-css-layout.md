@@ -81,27 +81,19 @@ categories:
 
 #### * 내가 몰랐던 사실
 
-> `grid-gap`, `grid-column-gap`, `grid-row-gap`을 `grid`를 빼고 사용이 가능하게 바뀌었다.
->
-> 이제는 `gap`, `column-gap`, `row-gap`으로 사용 가능하다.
->
-> 하지만, 아직 브라우저 지원률은 `grid`를 붙인 것이 높은 듯 하다.
->
-> IE는 확인해봐야 알 듯... (내가 알기로 폴리필을 해도 `grid-gap` 지원 안했던 것 같은데...)
+`grid-gap`, `grid-column-gap`, `grid-row-gap`을 `grid`를 빼고 사용이 가능하게 바뀌었다.
+이제는 `gap`, `column-gap`, `row-gap`으로 사용 가능하다.
+하지만, 아직 브라우저 지원률은 `grid`를 붙인 것이 높은 듯 하다.
+IE는 확인해봐야 알 듯... (내가 알기로 폴리필을 해도 `grid-gap` 지원 안했던 것 같은데...)
 
-> 그리드 레이아웃 빈칸은 `.`으로 표시
->
-> ```css
-> grid-template-areas:
-> 	"a a b"
-> 	". d d"
-> 	"c e e";
-> ```
+그리드 레이아웃 빈칸은 `.`으로 표시
 
-
-
--------------
-
+```css
+grid-template-areas:
+	"a a b"
+	". d d"
+ 	"c e e";
+```
 
 
 ## 배치와 정렬
@@ -135,6 +127,7 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 ----------------
 
 
@@ -151,6 +144,7 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 -----------
 
 
@@ -191,6 +185,7 @@ categories:
   on <a href="https://codepen.io">CodePen</a>.</span>
 </p>
 <script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
 -------------
 
 

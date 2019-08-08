@@ -14,246 +14,245 @@ categories:
 
 ### **조건부 호출**
 
-> 조건문 간략하게 작성
->
-> ```js
-> const age = 20
-> age >= 18 && console.log(`나이가 18세 이상이구나!`)
-> age >= 18 || console.log(`나이가 18세 미만이구나...`)
-> ```
->
-> 함수 호출 단축 조건
->
-> ```js
-> function fn(cb) {
->     cb && cb()
-> }
-> 
-> // 또는
-> 
-> class AbstractFoo {
->     constructor() {
->        // init 메서드가 있을경우에만 호출 
->         this.init && this.init()
->     }
-> }
-> ```
+조건문 간략하게 작성
+```js
+const age = 20
+age >= 18 && console.log(`나이가 18세 이상이구나!`)
+age >= 18 || console.log(`나이가 18세 미만이구나...`)
+```
+
+함수 호출 단축 조건
+
+```js
+function fn(cb) {
+    cb && cb()
+}
+
+// 또는
+
+class AbstractFoo {
+    constructor() {
+       // init 메서드가 있을경우에만 호출 
+        this.init && this.init()
+    }
+}
+```
 
 ### **나머지 연산자**
 
-> ES5는 작성하지 않음(`[].slice.call(arguments)` 찾아보아요)
->
-> ES6
->
-> ```js
-> let cb = (foo, bar, ...args) => {
->     console.log(foo, bar, args)
-> }
-> cb(`foo`, `bar`, 1, 2, 3) // foo bar [1,2,3]
-> ```
->
-> 변수 나머지 연산(선언이 특이하네)
->
-> ```js
-> let [bar, ...others] = [`bar`, `foo`, `baz`, `qux`]
-> console.log([bar, others]) // [`bar`, [`foo`, `baz`, `qux`]]
-> ```
+ES5는 작성하지 않음(`[].slice.call(arguments)` 찾아보아요)
+
+ES6
+
+```js
+let cb = (foo, bar, ...args) ={
+    console.log(foo, bar, args)
+}
+cb(`foo`, `bar`, 1, 2, 3) // foo bar [1,2,3]
+```
+
+변수 나머지 연산(선언이 특이하네)
+
+```js
+let [bar, ...others] = [`bar`, `foo`, `baz`, `qux`]
+console.log([bar, others]) // [`bar`, [`foo`, `baz`, `qux`]]
+```
 
 ### **펼침 연산자**
 
-> 배열 요소를 인수로 확산
->
-> ```js
-> let args = [2015, 6, 17]
-> let relDate = new Date(...args)
-> console.log(relDate.toString()) // Fri Jul 17 2015 00:00:00 GMT+0900 (한국 표준시)
-> ```
+배열 요소를 인수로 확산
+
+```js
+let args = [2015, 6, 17]
+let relDate = new Date(...args)
+console.log(relDate.toString()) // Fri Jul 17 2015 00:00:00 GMT+0900 (한국 표준시)
+```
 
 ### **ES6 컬렉션**
 
-> 객체 중복없이 넣기
->
-> ```js
-> let foo = new Set()
-> foo.add(1)
-> foo.add(1)
-> foo.add(2)
-> console.log(Array.from(foo)) // [1, 2]
-> ```
+객체 중복없이 넣기
+
+```js
+let foo = new Set()
+foo.add(1)
+foo.add(1)
+foo.add(2)
+console.log(Array.from(foo)) // [1, 2]
+```
 
 ### **Map vs Set**
 
-> 비교
-> `Objects`의 키는 `Strings`이며, `Map`은 모든 값을 가질 수 있음
-> `Objects`의 사이즈는 수동으로 체크해야하지만, `Map`은 쉽게 얻을 수 있음
-> `Map`은 삽입된 순서대로 반복됨
->
-> 사용팁
-> 실행시까지, 키를 알 수 없고 모든 키·값이 동일한 타입이면 `Map`을 사용
-> 각 개별 요소에 대한 적용이 있을 경우는 `Object`를 사용
->
-> 참고자료
-> [MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Keyed_collections)
-> [Javascript Info](http://javascript.info/map-set)
+비교
+`Objects`의 키는 `Strings`이며, `Map`은 모든 값을 가질 수 있음
+`Objects`의 사이즈는 수동으로 체크해야하지만, `Map`은 쉽게 얻을 수 있음
+`Map`은 삽입된 순서대로 반복됨
+
+사용팁
+실행시까지, 키를 알 수 없고 모든 키·값이 동일한 타입이면 `Map`을 사용
+각 개별 요소에 대한 적용이 있을 경우는 `Object`를 사용
+
+참고자료
+[MDN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Keyed_collections)
+[Javascript Info](http://javascript.info/map-set)
 
 ### **getter/setter (알려진 속성에 대한 접근제어)**
 
-> SyntaxError 객체가 흥미롭네
->
-> ```js
-> class Bar {
->     constructor() {
->         this.arr = [1, 2]
->     }
->     
->     get length() {
->         return this.arr.length
->     }
->     
->     set length(val) {
->         throw new SyntaxError(`Cannot assign to read only property 'length'`)
->     }
-> }
-> ```
+SyntaxError 객체가 흥미롭네
+
+```js
+class Bar {
+    constructor() {
+        this.arr = [1, 2]
+    }
+    
+    get length() {
+        return this.arr.length
+    }
+    
+    set length(val) {
+        throw new SyntaxError(`Cannot assign to read only property 'length'`)
+    }
+}
+```
 
 ### **proxy (임의 속성에 대한 접근 제어)**
 
-> 오오... proxy, IE11 적용법 찾긴 해야되는데...
-> 아직 이해도가 낮은 것 같다.(★★★)
->
-> ```js
-> const myStorage = {
->     data: {},
->     
->     getItem(key) {
->         return this.data[key]
->     },
->     
->     setItem(key, val) {
->         this.data[key] = val
->     }
-> }
-> 
-> let storage = new Proxy(myStorage, {
->     get(storage, key) {
->         return storage.getItem(key)
->     },
->     
->     set(storage, key, val) {
->     	return storage.setItem(key, val)
-> 	}
-> })
-> 
-> storage.bar = `bar`
-> console.log(myStorage.getItem(`bar`))
-> myStorage.setItem(`bar`, `baz`)
-> console.log(storage.bar)
-> ```
+오오... proxy, IE11 적용법 찾긴 해야되는데...
+아직 이해도가 낮은 것 같다.(★★★)
+
+```js
+const myStorage = {
+    data: {},
+    
+    getItem(key) {
+        return this.data[key]
+    },
+    
+    setItem(key, val) {
+        this.data[key] = val
+    }
+}
+
+let storage = new Proxy(myStorage, {
+    get(storage, key) {
+        return storage.getItem(key)
+    },
+    
+    set(storage, key, val) {
+    	return storage.setItem(key, val)
+	}
+})
+
+storage.bar = `bar`
+console.log(myStorage.getItem(`bar`))
+myStorage.setItem(`bar`, `baz`)
+console.log(storage.bar)
+```
 
 ### **NodeList에 관하여**
 
-> 라이브 콜렉션으로 상당한 비싼 자원(DOM이 `reflow`될때마다 갱신)
-> 그러므로, 라이브일 필요가 없을 경우는 배열로 변환
->
-> ```js
-> const li = document.querySelectorAll(`li`)
-> console.log(li.slice.call(li)) // ES5 방식
-> console.log([...li]) // ES6 방식
-> ```
+라이브 콜렉션으로 상당한 비싼 자원(DOM이 `reflow`될때마다 갱신)
+그러므로, 라이브일 필요가 없을 경우는 배열로 변환
+
+```js
+const li = document.querySelectorAll(`li`)
+console.log(li.slice.call(li)) // ES5 방식
+console.log([...li]) // ES6 방식
+```
 
 ### **DOM 이벤트 핸들링**
 
-> Event 객체 상세사항
->
-> `event.type`: 이벤트 이름
->
-> `event.target`: 발생한 이벤트 타겟
->
-> `event.currentTarget`: 리스너가 부착된 타겟
->
-> `event.eventPhase` : 이벤트 단계 (`none`, `capturing`, `at target`, `bublling`)
->
-> `event.bublles`: 이벤트 버블 여부
->
-> `event.cancelable`: 이벤트 디폴트 동작 방지 여부
->
-> `event.timeStamp`: 이벤트 시간 지정
->
-> **메서드**
->
-> `event.stopPropagation()`: 추가전파 중지
->
-> `event.stopImmediatePropagation()`: 다른 이벤트 호출X
->
-> `event.preventDefault()`: 디폴트 동작 방지 (ex. submit)
+Event 객체 상세사항
+
+`event.type`: 이벤트 이름
+
+`event.target`: 발생한 이벤트 타겟
+
+`event.currentTarget`: 리스너가 부착된 타겟
+
+`event.eventPhase` : 이벤트 단계 (`none`, `capturing`, `at target`, `bublling`)
+
+`event.bublles`: 이벤트 버블 여부
+
+`event.cancelable`: 이벤트 디폴트 동작 방지 여부
+
+`event.timeStamp`: 이벤트 시간 지정
+
+**메서드**
+
+`event.stopPropagation()`: 추가전파 중지
+
+`event.stopImmediatePropagation()`: 다른 이벤트 호출X
+
+`event.preventDefault()`: 디폴트 동작 방지 (ex. submit)
 
 ### **XHR vs Axios**
 
-> fetch는 취소 불가, 다른 브라우저 호환성, 인코딩 문제(★)로 별로 쓰고싶지 않다.
->
-> [Fetch API](https://flaviocopes.com/fetch-api/)보다 Axios가 더 좋은 장점은 아래와 같습니다.([출저](https://tuhbm.github.io/2019/03/21/axios/))
->
-> 1. 구형브라우저를 지원합니다.(Fetch API의 경우는 [폴리필](http://hacks.mozilla.or.kr/2014/12/an-easier-way-of-using-polyfills/)이 필요합니다.)
-> 2. 요청을 중단시킬 수 있습니다.
-> 3. 응답 시간 초과를 설정하는 방법이 있습니다.
-> 4. [CSRF](https://laravel.kr/docs/5.5/csrf) 보호 기능이 내장되어있다.
-> 5. JSON 데이터 자동변환
-> 6. Node.js에서의 사용
+fetch는 취소 불가, 다른 브라우저 호환성, 인코딩 문제(★)로 별로 쓰고싶지 않다.
+
+[Fetch API](https://flaviocopes.com/fetch-api/)보다 Axios가 더 좋은 장점은 아래와 같습니다.([출저](https://tuhbm.github.io/2019/03/21/axios/))
+
+1. 구형브라우저를 지원합니다.(Fetch API의 경우는 [폴리필](http://hacks.mozilla.or.kr/2014/12/an-easier-way-of-using-polyfills/)이 필요합니다.)
+2. 요청을 중단시킬 수 있습니다.
+3. 응답 시간 초과를 설정하는 방법이 있습니다.
+4. [CSRF](https://laravel.kr/docs/5.5/csrf) 보호 기능이 내장되어있다.
+5. JSON 데이터 자동변환
+6. Node.js에서의 사용
 
 ### **웹 스토리지 API**
 
-> 쿠키의 단점으로 생겨남.
->
-> ​	단점1. 최대크기 4KB
->
-> ​	단점2. `Cross-site-scripting-acttack`에 취약함
->
-> 웹 스토리지 API는 5~25MB를 저장, HTTP 요청헤더에 어떠한 데이터도 추가하지 않음
->
-> ​	종류1. `localStorage` : 다른 탭과 공유, 영구히 유지
->
-> ​	종류2. `sessionStorage` : 하나의 탭, 세션 동안에만 유지
->
-> 사용 예제
->
-> ```js
-> function useStorage() {
->     if (!localStorage) {
->         return
->     }
->     let storage = localStorage
->     storage.setItem(`foo`, `Foo`)
->     console.log(storage.getItem(`foo`))
->     storage.removeItem(`foo`)
-> }
-> useStorage()
-> ```
->
-> 또는 (getter/setter 사용)
->
-> ```js
-> function useStorage() {
->     if (!localStorage) {
->         return
->     }
->     let storage = localStorage
->     storage.foo = `food`
->     console.log(storage.foo)
->     delete storage.foo
-> }
-> useStorage()
-> ```
->
-> 반복문 사용시
->
-> ```js
-> let len = storage.length
-> let key
-> for(let i = 0 ;i < len; i++) {
->     key = storage.key(i)
->     console.log(storage.key)
-> }
-> ```
+쿠키의 단점으로 생겨남.
+
+​	단점1. 최대크기 4KB
+
+​	단점2. `Cross-site-scripting-acttack`에 취약함
+
+웹 스토리지 API는 5~25MB를 저장, HTTP 요청헤더에 어떠한 데이터도 추가하지 않음
+
+​	종류1. `localStorage` : 다른 탭과 공유, 영구히 유지
+
+​	종류2. `sessionStorage` : 하나의 탭, 세션 동안에만 유지
+
+사용 예제
+
+```js
+function useStorage() {
+    if (!localStorage) {
+        return
+    }
+    let storage = localStorage
+    storage.setItem(`foo`, `Foo`)
+    console.log(storage.getItem(`foo`))
+    storage.removeItem(`foo`)
+}
+useStorage()
+```
+
+또는 (getter/setter 사용)
+
+```js
+function useStorage() {
+    if (!localStorage) {
+        return
+    }
+    let storage = localStorage
+    storage.foo = `food`
+    console.log(storage.foo)
+    delete storage.foo
+}
+useStorage()
+```
+
+반복문 사용시
+
+```js
+let len = storage.length
+let key
+for(let i = 0 ;i < len; i++) {
+    key = storage.key(i)
+    console.log(storage.key)
+}
+```
 
 
 

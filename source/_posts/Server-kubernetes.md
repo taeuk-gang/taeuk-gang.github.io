@@ -12,35 +12,32 @@ categories:
 
 "Kubernetes in Action" 책으로 학습한 내용입니다.
 
-
-
 ## Docker 설치
+
 [CentOs 7에서 도커 설치](https://niceman.tistory.com/36)
 
+## Hello World 컨테이너 실행
 
-
-
-## Hello World 컨테이너 실행　
 ```bash
 docker run busybox echo "Hello world"
 ```
+
+<br />
 
 |                          결과 화면                           |
 | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/26294469/62409937-8dbe3000-b619-11e9-88aa-1e77ea39dd68.png"> |
 
-
-
 ## 간단한 Node.js 앱 만들기
 
 ### 컨테이너 이미지 버전 실행법
+
 ```bash
 docker run <image>:<tag>
 ```
 
-
-
 ### `app.js` 파일 생성으로 애플리케이션 생성
+
 ```js
 // app.js 파일
 const http = require(`http`)
@@ -57,8 +54,6 @@ var www = http.createServer(handler)
 www.listen(8080)
 ```
 
-
-
 ### 이미지용 도커 파일 만들기
 
 이미지에 패키징하려면 `도커 파일` 필요
@@ -73,33 +68,31 @@ ADD app.js /app.js
 ENTRYPOINT ["node", "app.js"]
 ```
 
-
-
 ### 컨테이너 이미지 만들기
 
 ```bash
 docker build -t taeuk-test .
 ```
+
 도커에게 현재 디렉터리의 내용을 `taeuk-test`라는 이미지로 빌드하라는 요청
+
 도커파일을 찾고 설정에 따라 이미지 빌드
+
 (대문자는 되지않음)
 
 |                          결과 화면                           |
 | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/26294469/62410381-ab8e9380-b61f-11e9-8cd8-39d84f7ab3f8.png"> |
 
-
-
 ### 빌드 프로세스가 완료되면, 새 이미지가 로컬에 저장됨
 
 ```bash
 docker images
 ```
+
 |                          결과 화면                           |
 | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/26294469/62410407-de388c00-b61f-11e9-99f9-59298c60e1ad.png"> |
-
-
 
 ### 도커 이미지 실행
 
@@ -114,8 +107,6 @@ docker run --name taeuk-container -p 9381:8080 -d taeuk-test
 
 * 도커 데몬이 아닌 경우(Mac or Window는 VM 내부에서 데몬실행), VM의 호스트 네임이나 IP를 사용
 
-
-
 ### (이슈) 이미 사용된 포트일 경우, exist 상태이지만, running은 아니라서 컨테이너가 `docker ps` 명령어에도 뜨지 않는다.
 
 |  이미 사용중인 포트라고 해서, 다시 로컬 포트를 바꿨지만 이미 생성되있다고 뜬다  |
@@ -129,8 +120,6 @@ docker run --name taeuk-container -p 9381:8080 -d taeuk-test
 |                          결과 화면                           |
 | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/26294469/62410679-2063cc80-b624-11e9-81a9-d70e8df81cfd.png"> |
-
-
 
 ### 제대로 작동하고 있는지 확인, `curl localhost:port`
 
@@ -149,14 +138,13 @@ docker run --name taeuk-container -p 9381:8080 -d taeuk-test
 | :----------------------------------------------------------: |
 | <img src="https://user-images.githubusercontent.com/26294469/62410711-f363e980-b624-11e9-8feb-71160aad3abb.png"> |
 
-### (선택) 이후, 터널링(ssh를 이용해 서버에서 작업한 사람만 해당사항)
+이후, 터널링
 
 ```bash
 ssh -l 9381:127.0.0.1:9381 root@101.101.164.175
 ```
+
 명령어 친후, 내 컴퓨터에서 `localhost:9381`로 접속하여 확인
-
-
 
 ### 실행 중인 컨테이너 내부 탐색
 
@@ -171,11 +159,11 @@ docker exec -it taeuk-container bash
 ```bash
 ps aux
 ```
+
 컨테이너 내부 프로세스 나열하기
 
 |                          결과 화면                           |
 | :----------------------------------------------------------: |
-| <img src="https://user-images.githubusercontent.com/26294469/62412270-da663300-b63a-11e9-9dd5-3f6d448fabbe.png"> |
 
 컨테이너 내부 프로세스와 호스트내부 프로세스 ID가 다르다.
 
@@ -206,7 +194,7 @@ docker rm taeuk-container
 이미지 푸시 전에, 도커 허브 RULE에 따라 이미지 태그부터 지정해야한다.
 도커 허브는 이미지의 소티리지 이름이 도커 허브 ID로 시작하면 이미지를 푸시할 수 있다.
 도커 허브 ID는 도커허브에서 등록하여 만든다.
-
+  
 ```bash
 docker tag taeuk-test kangtaeuk/taeuk-test
 ```

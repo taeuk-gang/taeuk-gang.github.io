@@ -3,7 +3,10 @@ title: Book-tell-javascript
 toc: true
 date: 2019-08-16 15:40:19
 tags:
+    - Book
+    - Javascript
 categories:
+    - Book
 ---
 
 # 자바스크립트를 말하다 (1) 복습

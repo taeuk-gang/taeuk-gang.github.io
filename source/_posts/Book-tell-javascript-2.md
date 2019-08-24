@@ -1,5 +1,5 @@
 ---
-title: 자바스크립트를 말하다 (2)
+title: Book-tell-javascript-2
 toc: true
 date: 2019-08-19 22:11:11
 tags:

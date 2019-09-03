@@ -9,11 +9,9 @@ categories:
     - Book
 ---
 
-# Why Javascript?
+## Why Javascript?
 
 Speaking Javascript 책을 읽으며, 특별히 눈에 들어왔던 내용만 기록한 것으로 옛날 내용이 많습니다.
-
-
 
 ## 프로그래밍 언어를 쓸 때, 선택하는 기준 7가지
 

@@ -7,7 +7,7 @@ tags:
     - Cordova
     - Javascript
 categories:
-    - Project
+    - Projects
     - mac-tour
 ---
 

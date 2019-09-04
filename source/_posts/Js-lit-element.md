@@ -8,7 +8,7 @@ categories:
     - Javascript
 ---
 
-> 개인 학습 내용으로, 틀린 내용이 존재할 수 있습니다.(아마도 많이?)
+> 개인이 학습한 내용으로, 틀린 내용이 존재할 수 있습니다.
 
 ## 소개
 
@@ -29,7 +29,13 @@ LitElement를 이용하여 앱을 구성하려면, [PWA Starter kit](https://pwa
 
 > PWA Starter Kit이 뭐지?
 >
-> 음 기본 템플릿인 것 같다.
+> Progressive web application을 쉽게 만들 수 있는 샘플 프로젝트 (템플릿)
+>
+> [PWA Starter Kit](https://github.com/Polymer/pwa-starter-kit)은 PWA 앱 개발을 쉽게 시작할 수 있도록 제공되는 샘플 프로젝트다. 환경 구성과 페이지 구성(디자인, 반응형 레이아웃, 등)이 포함돼 있다. PWA Starter Kit을 활용하는 예제는 [Google I/O 2018](https://events.google.com/io/)의 "[PWA starter kit: build fast, scalable, modern apps with Web Components](https://www.youtube.com/watch?v=we3lLo-UFtk)" 세션을 참고한다.
+>
+> 출저: [2018년과 이후 JavaScript의 동향](https://d2.naver.com/helloworld/5644368)](https://d2.naver.com/helloworld/5644368)
+>
+> 으음... 프로젝트 구조 및 필요해보이는 모듈들을 분석이 필요해보임
 
 ### 다음 단계
 
@@ -41,4 +47,35 @@ LitElement를 이용하여 앱을 구성하려면, [PWA Starter kit](https://pwa
 - [라이프사이클](https://lit-element.polymer-project.org/guide/lifecycle): lifecycle API를 이용한 LitElement 작동
 
 -----------
+
+## 시작하기
+
+### 목차
+
+- 설치
+- LitElement 컴포넌트 생성
+  - LitElement TypeScript Decorators 사용
+- 컴포넌트 불러오기
+  - 너만의 컴포넌트 불러오기
+  - 서드파티 LitElement 컴포넌트 불러오기
+
+### 설치
+
+#### npm과 Node.js 가 필요 (설치: [instructions on NodeJS.org](https://nodejs.org/en/))
+
+#### npm을 이용한 Polymer CLI 설치
+
+```bash
+npm install -g polymer-cli
+```
+
+#### 로컬에서 서버 띄우기
+
+```bash
+polymer server
+```
+
+Polymer CLI 자세히 - [Polymer CLI documentation](https://polymer-library.polymer-project.org/3.0/docs/tools/polymer-cli) 
+
+간단히 생성히 보기 - [sample LitElement project](https://github.com/PolymerLabs/start-lit-element).
 

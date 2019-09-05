@@ -197,11 +197,10 @@ customElements.define('my-element', MyElement);
 ### 목차
 
 - 템플릿 정의 및 렌더링
-  - 템플릿의 성능 설계
+- 템플릿의 성능 설계
   - `properties, loop, conditionals` 문법 사용
   - child-element 속성 바인딩
   - slot-element 사용하기
-
 - 다른 템플릿과 함께 사용하기
 - shadow-dom 사용하기
 - 템플릿 치트시트
@@ -769,4 +768,395 @@ LitElement는 lit-html의 `html`, `render` 기능을 사용한다.
 
 - [on the lit-html homepage](https://lit-html.polymer-project.org/)
 - [in the Template Reference](https://lit-html.polymer-project.org/guide/template-reference)
+
+-------------
+
+## 스타일
+
+### 목차
+
+- 컴포넌트 개발을 위한 스타일 옵션
+  - 정의 위치
+  - static styles property
+  - style element
+  - external stylesheet
+  - host element와 shadow Dom에서의 css 작성
+
+- 컴포넌트 사용자를 위한 스타일 옵션 (`import`)
+- 테마 작업
+  - CSS 상속과 shadow Dom
+  - Custom CSS properties
+  - example theme
+
+> 만약, Shady Css polyfill을 사용한다면, 일부 제한사항이 발생함
+> 자세한 사항은 [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss)를 참조
+
+## Styling options for component developers
+
+### 정의하는 방법 3가지
+
+- ★추천★: css``를 이용한 선언 (static styles property)
+- `render` 안에 `<style>` 태그를 이용한 방법
+
+- 외부 스타일 시트를 이용한 방법 `<link rel="stylesheet" href="..." />`
+
+### css``이용: Define styles in a static styles property
+
+추천되는 이유는 정적 스타일이 최적화 성능이 잘되있어서 인 듯
+
+> 상세사항: We recommend using static styles for optimal performance. LitElement uses [Constructable Stylesheets](https://wicg.github.io/construct-stylesheets/) in browsers that support it, with a fallback for browsers that don’t. Constructable Stylesheets allow the browser to parse styles exactly once and reuse the resulting Stylesheet object for maximum efficiency.
+
+컴포넌트 개발자는 shadow Dom 안에서 CSS 스타일을 정의한다.
+
+import로 사용하는 이용자는 shadow Dom 밖에서 host 엘리멘트에 CSS 상속을 통해 CSS를 정의한다.
+
+##### 사용법
+
+1. `css` helper 함수를 import
+
+```js
+import {LitElement, css} from 'lit-element';
+```
+
+2. `styels`를 LitElement가 상속된 클래스에서 `static`을 이용해 정의함
+
+```js
+class myElement extends LitElement {
+    static get styles() {
+        return css`
+		:host {
+			display: block;
+		}
+		`
+    }
+}
+```
+
+또는, 배열을 이용해 정의도 가능
+
+```js
+class MyElement extends LitElement {
+    static get styles() {
+        return [ css`:host { display: block; }`, ...]
+    }
+}
+```
+
+##### 변수 사용
+
+악의적인 코드 삽입을 방지하기위해, css``를 사용하여 삽입
+
+```js
+static get styles() {
+    const mainColor = css`red`
+    
+    return css`
+	:host {
+		color: ${mainColor};
+	}
+	`
+}
+```
+
+그래도 정 문자열을 사용하고 싶다면 아래와 같이 사용
+
+```js
+import { LitElement, css, unsafeCSS } from 'lit-element'
+
+class MyElement extends LitElement {
+    static get styles() {
+        const mainColor = `red`
+        
+        return css`
+		:host {
+			color: ${unsafeCSS(mainColor)};
+		}
+		`
+    }
+}
+```
+
+다른 예제
+
+```js
+import { LitElement, css, unsafeCSS } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get styles() {
+    const mainWidth = 800;
+    const padding = 20;   
+    
+    return css`
+      :host { 
+        width: ${unsafeCSS(mainWidth + padding)}px;
+      }
+    `;
+  } 
+}
+```
+
+> **Only use the unsafeCSS tag with trusted input.** To prevent LitElement-based components from evaluating potentially malicious code, the `css` tag only accepts literal strings. `unsafeCSS` circumvents this safeguard.
+
+#### `<style>` 태그를 이용한 방법
+
+> **Expressions inside a <style> element won’t update per instance in ShadyCSS**. Due to limitations of the ShadyCSS polyfill, you can’t use element properties in CSS rules as the expressions won’t be evaluated.
+>
+> 스타일 태그를 이용한 방법은 ShadyCSS에서 인스턴스당 업데이트를 하지 않는다는 의미가 잘 와닿지가 않네.
+> ShadyCSS polyfill에 제한이 있을 수 있다는 뜻인가
+
+##### 사용법
+
+```js
+import {LitElement, property} from 'lit-element';
+
+class MyElement extends LitElement {
+  @property() mainColor = 'blue';
+  render() {
+    return html`
+      <style>
+        :host {
+          color: ${this.mainColor};
+        }
+      </style>
+    `;
+  }
+}
+```
+
+#### 외부 스타일시트 사용하기
+
+> We strongly recommend static styles, CSS custom properties, or [lit-html’s `classMap` or `styleMap` directives](https://lit-element.polymer-project.org/guide/TODO) if you’re styling non-host shadow root contents.
+
+##### 사용법
+
+```js
+import {LitElement} from 'lit-element';
+
+class MyElement extends LitElement {
+  render() {
+    return html`
+      <link rel="stylesheet" href="./styles.css">
+    `;
+  }
+}
+```
+
+이것은 SASS/LESS를 부를 때 좋은 방법이 될 수 있음
+그러나 몇가지 주의사항이 존재
+
+- 이 사용법은 FOUC를 발생시킴 (잠깐 CSS가 변경되는 모습이 보여지는 것)
+- 재사용 컴포넌트를 만들기에는 부적합할 수 있음
+
+### Write CSS styles for a host element and its shadow DOM
+
+host(밖)와 shadow Dom(안)에서 CSS 스타일링 방식이 다름
+
+- host element에서 스타일링 방법
+- shadow Dom 안에서 스타일링 방법
+- slot-element의 스타일링 방법
+
+#### Write CSS styles for a host element
+
+##### 사용법
+
+`:host` selects the host element of the shadow root
+
+```css
+:host {
+    display: block;
+    color: blue;
+}
+```
+
+`:host(...)` selects the host element, (...)안에 셀렉터를 사용할 수 있음
+
+```css
+:host(.important) {
+    color: red;
+    font-weight: bold;
+}
+```
+
+#### Write CSS styles for elements in shadow DOM
+
+일반적인 css 사용과 같음
+그러나, shadow Dom 밖으로 CSS 전파가 되지 않기 때문에 범용성 있는 네이밍이나 *태그를 쉽게 사용 가능
+
+```CSS
+* {
+  color: black;
+}
+
+h1 {
+  font-size: 4rem;
+}
+
+#main {
+  padding: 16px;
+}
+
+.important {
+  color: red;
+}
+```
+
+#### Write CSS styles for slotted children
+
+##### 사용법
+
+- `::slotted(*)` matches all slotted elements.
+- `::slotted(p)` matches slotted paragraphs.
+- `p ::slotted(*)` matches slotted elements in a paragraph element.
+
+##### 전체 code example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  render() {
+    return html`
+      <style>
+        :host([hidden]) { display: none; }
+        :host { display: block; }
+        ::slotted(*) { font-family: Roboto; }
+        ::slotted(span) { color: blue; }
+        div ::slotted(*) { color: red; }
+      </style>
+      <slot></slot>
+      <div><slot name="hi"></slot></div>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+### 컴포넌트 사용자를 위한 스타일 옵션 (`import`)
+
+import로 만들어진 컴포넌트를 불러와 스타일링 할 수 있다
+
+```html
+<style>
+  my-element { 
+    font-family: Roboto;
+    font-size: 20;
+    color: blue;
+  }
+</style>
+...
+<my-element></my-element>
+```
+
+> 이렇게 엘리먼트로 선언된 CSS가 `:host`보다 우선순위가 높다.
+>
+> Styles set for a host element from outside its shadow DOM will override styles set with the `:host` or `:host()` pseudo-class selectors inside shadow DOM. See Inheritance.
+>
+> 대충 덮어쓰기를 한다는 뜻인가
+
+## Theming
+
+CSS 상속을 어떻게 받고 커스텀할지 설명하는 부분
+
+#### Custom CSS Properties
+
+index.html
+
+```html
+<style>
+  html {
+    --themeColor1: rgb(67, 156, 144);
+  }
+  my-element {
+    --myBackground: var(--themeColor1);
+  }
+</style>
+```
+
+my-element.js
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  render() {
+    return html`
+      <style>
+        :host([hidden]) { display: none; }
+        :host { display: block;
+          background-color: var(--myBackground, yellow);
+          color: var(--myColor, black);
+          padding: var(--myPadding, 8px);
+        }
+      </style>
+      <p>Hello world</p>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### 전체 code example
+
+index.html
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <title>lit-element code sample</title>
+    <style>
+      body {
+        --theme-primary: green;
+        --theme-secondary: aliceblue;
+        --theme-warning: red;
+        --theme-font-family: Roboto;
+      }
+
+      my-element { 
+        --my-element-text-color: var(--theme-primary); 
+        --my-element-background-color: var(--theme-secondary); 
+        --my-element-font-family: var(--theme-font-family);
+      } 
+
+      my-element.warning {
+        --my-element-text-color: var(--theme-warning); 
+      }
+    </style>
+  </head>
+  <body>
+    <my-element></my-element>
+    <my-element class="warning"></my-element>
+  </body>
+</html>
+```
+
+my-element.js
+
+```js
+import { LitElement, html, css } from 'lit-element';
+
+class MyElement extends LitElement {
+  static styles = css`
+    :host { 
+      display: block;
+      color: var(--my-element-text-color); 
+      background: var(--my-element-background-color);  
+      font-family: var(--my-element-font-family);
+    }
+    :host([hidden]) {
+      display: none;
+    }
+  `;
+  render() {
+    return html`
+      <div>Hello from my-element</div>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+----------
 

@@ -1602,6 +1602,74 @@ customElements.define('my-element', MyElement);
 이 부분은 아직 자연스럽게 코딩할 수 없을 듯, 많은 프로젝트에서 사용해봐야 할 듯
 기능만 숙지하자
 
+#### observe
+
+attr이 변경될 때마다, `attributeChangedCallback` 을 실행시킴
+
+##### 사용법
+
+```js
+// Observed attribute will be called my-prop
+myProp: { attribute: 'my-prop' }
+
+// No observed attribute for this property
+myProp: { attribute: false }
+
+// observed attribute for this property (default)
+myProp: { attribute: true }
+```
+
+##### code example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { return {
+    myProp: { attribute: true },
+    theProp: { attribute: false },
+    otherProp: { attribute: 'other-prop' },
+  };}
+
+  constructor() {
+    super();
+    this.myProp = 'myProp';
+    this.theProp = 'theProp';
+    this.otherProp = 'otherProp';
+  }
+
+  attributeChangedCallback(name, oldval, newval) {
+    console.log('attribute change: ', name, newval);
+    super.attributeChangedCallback(name, oldval, newval);
+  }
+
+  render() {
+    return html`
+      <p>myProp ${this.myProp}</p>
+      <p>theProp ${this.theProp}</p>
+      <p>otherProp ${this.otherProp}</p>
+
+      <button @click="${this.changeAttributes}">change attributes</button>
+    `;
+  }
+
+  changeAttributes() {
+    let randomString = Math.floor(Math.random()*100).toString();
+    this.setAttribute('myprop', 'myprop ' + randomString);
+    this.setAttribute('theprop', 'theprop ' + randomString);
+    this.setAttribute('other-prop', 'other-prop ' + randomString);
+    this.requestUpdate();
+  }
+
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
 #### reflect
 
 `property`가 변경될 때마다, `attribute`에 반영된다.
@@ -1833,3 +1901,7 @@ customElements.define('my-element', MyElement);
 
 -----------
 
+
+
+> 아직 lit-element를 잘 모르는 상태로 작업한 문서기 때문에, 
+> 추후 프로젝트에 많이 사용한 뒤 요약본을 다시 작성해야겠다.

@@ -791,16 +791,16 @@ LitElement는 lit-html의 `html`, `render` 기능을 사용한다.
 > 만약, Shady Css polyfill을 사용한다면, 일부 제한사항이 발생함
 > 자세한 사항은 [Shady CSS](https://github.com/webcomponents/polyfills/tree/master/packages/shadycss)를 참조
 
-## Styling options for component developers
+### Styling options for component developers
 
-### 정의하는 방법 3가지
+#### 정의하는 방법 3가지
 
 - ★추천★: css``를 이용한 선언 (static styles property)
 - `render` 안에 `<style>` 태그를 이용한 방법
 
 - 외부 스타일 시트를 이용한 방법 `<link rel="stylesheet" href="..." />`
 
-### css``이용: Define styles in a static styles property
+#### css``이용: Define styles in a static styles property
 
 추천되는 이유는 정적 스타일이 최적화 성능이 잘되있어서 인 듯
 
@@ -899,7 +899,7 @@ class MyElement extends LitElement {
 
 #### `<style>` 태그를 이용한 방법
 
-> **Expressions inside a <style> element won’t update per instance in ShadyCSS**. Due to limitations of the ShadyCSS polyfill, you can’t use element properties in CSS rules as the expressions won’t be evaluated.
+> **Expressions inside a `<style>` element won’t update per instance in ShadyCSS**. Due to limitations of the ShadyCSS polyfill, you can’t use element properties in CSS rules as the expressions won’t be evaluated.
 >
 > 스타일 태그를 이용한 방법은 ShadyCSS에서 인스턴스당 업데이트를 하지 않는다는 의미가 잘 와닿지가 않네.
 > ShadyCSS polyfill에 제한이 있을 수 있다는 뜻인가
@@ -1053,11 +1053,13 @@ import로 만들어진 컴포넌트를 불러와 스타일링 할 수 있다
 >
 > 대충 덮어쓰기를 한다는 뜻인가
 
+
+
 ## Theming
 
 CSS 상속을 어떻게 받고 커스텀할지 설명하는 부분
 
-#### Custom CSS Properties
+### Custom CSS Properties
 
 index.html
 
@@ -1095,7 +1097,7 @@ class MyElement extends LitElement {
 customElements.define('my-element', MyElement);
 ```
 
-#### 전체 code example
+### 전체 code example
 
 index.html
 
@@ -1159,4 +1161,675 @@ customElements.define('my-element', MyElement);
 ```
 
 ----------
+
+## Properties
+
+### 목차
+
+- Overview
+  - [Property options](https://lit-element.polymer-project.org/guide/properties#property-options)
+- Declare properties
+  - [Declare properties in a static properties getter](https://lit-element.polymer-project.org/guide/properties#declare-properties-in-a-static-properties-getter)
+  - [Declare properties with decorators](https://lit-element.polymer-project.org/guide/properties#declare-with-decorators)
+- Initialize property values
+  - [Initialize property values in the element constructor](https://lit-element.polymer-project.org/guide/properties#initialize-property-values-in-the-element-constructor)
+  - [Initialize property values when using TypeScript decorators](https://lit-element.polymer-project.org/guide/properties#initialize-property-values-when-using-typescript-decorators)
+  - [Initialize property values from attributes in markup](https://lit-element.polymer-project.org/guide/properties#initialize-property-values-from-attributes-in-markup)
+- Configure attributes
+  - [Convert between properties and attributes](https://lit-element.polymer-project.org/guide/properties#conversion)
+  - [Configure observed attributes](https://lit-element.polymer-project.org/guide/properties#observed-attributes)
+  - [Configure reflected attributes](https://lit-element.polymer-project.org/guide/properties#reflected-attributes)
+- Configure property accessors
+  - [Create your own property accessors](https://lit-element.polymer-project.org/guide/properties#accessors-custom)
+  - [Prevent LitElement from generating a property accessor](https://lit-element.polymer-project.org/guide/properties#accessors-noaccessor)
+- [Configure property changes](https://lit-element.polymer-project.org/guide/properties#haschanged)
+
+### 개요
+
+살펴볼 사항
+
+- 선언된 속성이 변경될 때, 엘리멘트가 업데이트가 될지 결정
+
+- Capture **instance values** for declared properties. Apply any property values that are set before the browser registers a custom element definition.
+- Set up an observed (not reflected) attribute with the **lowercased name** of each property.
+- Property 설정 `String`, `Number`, `Boolean`, `Array`, and `Object`.
+- Use direct comparison (`oldValue !== newValue`) to **test** for property changes.
+- Apply any property options and accessors declared by a superclass.
+
+아직 이해가 되지 않는 부분은 영어 처리
+
+> **Remember to declare all of the properties that you want LitElement to manage.** 
+> For the property features above to be applied, you must [declare the property](https://lit-element.polymer-project.org/guide/properties#declare).
+>
+> lit-html와 다르게 type 선언 부분이 생김
+
+### ★★Property options
+
+The following options are available:
+
+- `converter`: [Convert between properties and attributes](https://lit-element.polymer-project.org/guide/properties#conversion). (수동 검사[to, from])
+- `type`: [Use LitElement’s default attribute converter](https://lit-element.polymer-project.org/guide/properties#conversion-type). (type)
+- `attribute`: [Configure observed attributes](https://lit-element.polymer-project.org/guide/properties#observed-attributes). (attr -> prop)
+- `reflect`: [Configure reflected attributes](https://lit-element.polymer-project.org/guide/properties#reflected-attributes). (prop -> attr)
+- `noAccessor`: Whether to set up a default [property accessor](https://lit-element.polymer-project.org/guide/properties#accessors).
+- `hasChanged`: Specify what constitutes a [property change](https://lit-element.polymer-project.org/guide/properties#haschanged).
+
+type 선언말고도 할 수 있는 부분이 많네
+
+### Declare properties
+
+```js
+// properties getter
+static get properties() {
+    return {
+        prop1: { type: String },
+        prop2: { type: Number },
+        prop3: { type: Boolean }
+    }
+}
+```
+
+```js
+// 만약, `constructor`를 이용해 초기화해주려면, 항상 `super()`를 처음에 작성한다
+constructor() {
+	super();
+	this.prop1 = 'Hello';
+}
+```
+
+#### code example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { return {
+    prop1: { type: String },
+    prop2: { type: Number },
+    prop3: { type: Boolean },
+    prop4: { type: Array },
+    prop5: { type: Object }
+  };}
+
+  constructor() {
+    super();
+    this.prop1 = 'Hello World';
+    this.prop2 = 5;
+    this.prop3 = false;
+    this.prop4 = [1,2,3];
+    this.prop5 = { subprop1: 'prop 5 subprop1 value' }
+  }
+
+  render() {
+    return html`
+      <p>prop1: ${this.prop1}</p>
+      <p>prop2: ${this.prop2}</p>
+      <p>prop3: ${this.prop3}</p>
+      <p>prop4[0]:</p>${this.prop4[0]}</p>
+      <p>prop5.subprop1: ${this.prop5.subprop1}</p>
+    `;
+  }
+}
+
+customElements.define('my-element', MyElement);
+```
+
+### Initialize property
+
+```js
+static get properties() {
+    return {
+        prop1: { type: String }
+    }
+        
+    constructor() {
+        super()
+        this.prop1 = 'Hello'
+    }
+}
+```
+
+#### code example
+
+```js
+import { LitElement, html } from 'lit-element'
+
+class MyElement extends LitElement {
+    static get properties() {
+        prop1: { type: String },
+        prop2: { type: Number },
+        prop3: { type: Boolean},
+        prop4: { type: Array },
+		prop5: { type: Object }
+    }
+    
+    constructor() {
+        super()
+        this.prop1 = 'Hello'
+        this.prop2 = 5
+        this.prop3 = true
+        this.prop4 = [1,2,3]
+        this.prop5 = { 
+            stuff: `h1`,
+            otherStuff: `wow`
+		}
+    }
+    
+    render() {
+        return html`
+		<p>prop1: ${this.prop1}</p>
+		<p>prop2: ${this.prop2}</p>
+		<p>prop3: ${this.prop3}</p>
+		<p>prop4: ${this.prop4.map((item, index) => 
+        	html`<span>[${index}]: ${item}&nbsp;</span>`)}
+		</p>
+
+		<p>prop5:
+			${Object.keys(this.prop5).map(item => 
+            	html`<span>${item}: ${this.prop5[item]}$nbsp;</span>`)}
+		</p>
+		`
+    }
+}
+
+customElements.define(`my-element`, MyElement)
+```
+
+#### Initialize property values from attributes in markup
+
+index.html
+
+```html
+<my-element 
+  mystring="hello world"
+  mynumber="5"
+  mybool
+  myobj='{"stuff":"hi"}'
+  myarray='[1,2,3,4]'></my-element>
+```
+
+이렇게 초기화한 값이 `constructor()`보다 우선순위로 적용됨
+
+### Configure attributes
+
+#### properties와 attribute간 전환
+
+properties는 여러 타입을 가지지만, attribute는 항상 문자열이다. 
+This impacts the [observed attributes](https://lit-element.polymer-project.org/guide/properties#observed-attributes) and [reflected attributes](https://lit-element.polymer-project.org/guide/properties#reflected-attributes) of non-string properties
+
+- attribue를 **observe**를 사용하여 관찰할 때, attribute는 항상 문자열에서 property type값으로 변환된다.
+- attribute를 **reflect**, property는 문자열로 변환된다.
+
+#### General converter 사용하기
+
+```js
+// Use LitElement's default converter 
+prop1: { type: String },
+prop2: { type: Number },
+prop3: { type: Boolean },
+prop4: { type: Array },
+prop5: { type: Object }
+```
+
+##### attribute -> property
+
+- String: 변화없음
+- Number: `Number(attributeValue)` 처리를 함
+- Boolean
+  - non-null: true
+  - null·undefined: false
+
+- Object·Array: JSON.parse(attributeValue)
+
+##### property -> attribute
+
+- String
+  - null: remove attr
+  - undefined:  don't change attr
+  - non-null: change prop
+
+- Number
+  - null: remove attr
+  - undefined: don't change attr
+  - non-null: change prop
+
+- Boolean
+  - true: create attr
+  - false: remove attr
+- Object · Array
+  - null·undefined: remove attr
+  - non-null: JSON.stringify(prop)
+
+```js
+import { LitElement, html } from 'lit-element'
+
+class MyElement extends LitElement {
+    static get properties() {
+        return {
+            prop1: { type: String, reflect: true },
+        	prop2: { type: Number, reflect: true },
+        	prop3: { type: Boolean, reflect: true },
+        	prop4: { type: Array, reflect: true },
+        	prop5: { type: Object, reflect: true }   
+        }     
+    }
+    
+    constructor() {
+        super()
+        this.prop1 = ''
+        this.prop2 = 0
+        this.prop3 = false
+        this.prop4 = []
+        this.prop5 = {}
+    }
+    
+    attributeChangedCallback(name, oldval, newval) {
+        console.log(`attr change: `, name, newval)
+        super.attributeChangeCallback(name, oldval, newval)
+    }
+    
+    render() {
+        return html`
+			<p>prop1 ${this.prop1}</p>
+			<p>prop2 ${this.prop2}</p>
+			<p>prop3 ${this.prop3}</p>
+			<p>prop4: ${this.prop4.map((item, index) => 
+            	html`<span>[${index}]: ${item}&nbsp;</span>`)}
+			</p>
+
+			<p>prop5:
+				${Object.keys(this.prop5).map(item => {
+            		html`<span>${item}: ${this.prop5[item]}&nbsp;</span>}`
+		        })}
+			</p>
+
+			<button @click="${this.changeProperties}">Change Prop</button>
+			<button @click="${this.changeAttributes}">Change Attr</button>
+		`
+    }
+    
+    changeAttributes() {
+        let randy = Math.floor(Math.random() * 10)
+        let myBool = this.getAttributes(`prop3`)
+        
+        this.setAttribute(`prop1`, randy.toString)
+        this.setAttribute(`prop2`, randy.toString)
+        this.setAttribute(`prop3`, myBool ? `` : null)
+        this.setAttribute(`prop4`, JSON.stringify([...this.prop4, randy]))
+        this.setAttribute(`prop5`,
+        	JSON.stringify(Object.assign({}, this.prop5, {[randy]: randy})))
+        this.requestUpdate()
+    }
+    
+    changeProperties() {
+        let randy = Math.floor(Math.random() * 10)
+        let myBool = this.prop3
+        
+        this.prop1 = randy.toString()
+        this.prop2 = randy
+        this.prop3 = !myBool
+        this.prop4 = [...this.prop4, randy]
+        this.prop5 = Object.assign({}, this.prop5, {[randy]: randy})
+    }
+    
+    updated(changedProperties) {
+        changedProperties.forEach((oldvalue, propName) => {
+            console.log(`${propName} change. oldValue: ${oldValue}`)
+        })
+    }
+}
+
+customElements.define(`my-element`, MyElement)
+```
+
+> Object.assign()
+>
+> 객체는 키값이 중복없이 객체를 반환함
+> `JSON.stringify(Object.assign({}, this.prop5, {[randy]: randy})));`
+>
+> `{[randy]: randy}`로 키값에서 변수를 받네
+
+```js
+const target = { a: 1, b: 2 };
+const source = { b: 4, c: 5 };
+
+const returnedTarget = Object.assign(target, source);
+
+console.log(target);
+// expected output: Object { a: 1, b: 4, c: 5 }
+
+console.log(returnedTarget);
+// expected output: Object { a: 1, b: 4, c: 5 }
+```
+
+#### Custom converter 사용하기
+
+```js
+prop1: {
+    converter: {
+        fromAttribute: (value, type) => {
+            
+        },
+        toAttribute: (value, type) => {
+            
+        }
+    }
+}
+```
+
+> During an update:
+>
+> - If `toAttribute` returns `null`, the attribute is removed.
+> - If `toAttribute` returns `undefined`, the attribute is not changed.
+
+##### example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { return {
+    myProp: {
+      reflect: true,
+      converter: {
+        toAttribute(value) {
+          console.log('myProp\'s toAttribute.');
+          console.log('Processing:', value, typeof(value));
+          let retVal = String(value);
+          console.log('Returning:', retVal, typeof(retVal));
+          return retVal;
+        },
+
+        fromAttribute(value) {
+          console.log('myProp\'s fromAttribute.');
+          console.log('Processing:', value, typeof(value));
+          let retVal = Number(value);
+          console.log('Returning:', retVal, typeof(retVal));
+          return retVal;
+        }
+      }
+    },
+
+    theProp: {
+      reflect: true,
+      converter(value) {
+        console.log('theProp\'s converter.');
+        console.log('Processing:', value, typeof(value));
+
+        let retVal = Number(value);
+        console.log('Returning:', retVal, typeof(retVal));
+        return retVal;
+      }},
+  };}
+
+  constructor() {
+    super();
+    this.myProp = 'myProp';
+    this.theProp = 'theProp';
+  }
+
+  attributeChangedCallback(name, oldval, newval) {
+    // console.log('attribute change: ', name, newval);
+    super.attributeChangedCallback(name, oldval, newval);
+  }
+
+  render() {
+    return html`
+      <p>myProp ${this.myProp}</p>
+      <p>theProp ${this.theProp}</p>
+
+      <button @click="${this.changeProperties}">change properties</button>
+      <button @click="${this.changeAttributes}">change attributes</button>
+    `;
+  }
+
+  changeAttributes() {
+    let randomString = Math.floor(Math.random()*100).toString();
+    this.setAttribute('myprop', 'myprop ' + randomString);
+    this.setAttribute('theprop', 'theprop ' + randomString);
+    this.requestUpdate();
+  }
+
+  changeProperties() {
+    let randomString = Math.floor(Math.random()*100).toString();
+    this.myProp='myProp ' + randomString;
+    this.theProp='theProp ' + randomString;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+이 부분은 아직 자연스럽게 코딩할 수 없을 듯, 많은 프로젝트에서 사용해봐야 할 듯
+기능만 숙지하자
+
+#### reflect
+
+`property`가 변경될 때마다, `attribute`에 반영된다.
+
+```js
+myProp: { reflect: true }
+```
+
+property가 수정되면, LitElement의 기능 중 하나인 `toAttribute`가 attribute를 수정한다.
+
+- toAttribute가 null을 반환하면, attr은 제거된다.
+- toAttribute가 undefined을 반환하면, attr은 수정되지 않는다.
+- If `toAttribute` itself is undefined, the property value is set to the attribute value without conversion.
+  (해봐야 알듯)
+
+##### code example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { return {
+    myProp: { reflect: true }
+  };}
+
+  constructor() {
+    super();
+    this.myProp='myProp';
+  }
+
+  attributeChangedCallback(name, oldval, newval) {
+    console.log('attribute change: ', newval);
+    super.attributeChangedCallback(name, oldval, newval);
+  }
+
+  render() {
+    return html`
+      <p>${this.myProp}</p>
+
+      <button @click="${this.changeProperty}">change property</button>
+    `;
+  }
+
+  changeProperty() {
+    let randomString = Math.floor(Math.random()*100).toString();
+    this.myProp='myProp ' + randomString;
+  }
+
+}
+customElements.define('my-element', MyElement);
+```
+
+### accessors
+
+#### example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { 
+    return { prop: { type: Number } };
+  }
+
+  set prop(val) {
+    let oldVal = this._prop;
+    this._prop = Math.floor(val);
+    this.requestUpdate('prop', oldVal);
+  }
+
+  get prop() { return this._prop; }
+
+  constructor() {
+    super();
+    this._prop = 0;
+  }
+
+  render() {
+    return html`
+      <p>prop: ${this.prop}</p>
+      <button @click="${() =>  { this.prop = Math.random()*10; }}">
+        change prop
+      </button>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### Prevent LitElement from generating a property accessor
+
+##### 사용법
+
+```js
+static get properties() { 
+  return { myProp: { type: Number, noAccessor: true } }; 
+}
+```
+
+noAccessor가 true면, prop이 getter와 setter 접근자에 의해 변경된다.
+
+noAccessor가 false면 getter와 setter가 사용되지 않는다.
+
+##### code example
+
+super-element.js
+
+```js
+import { LitElement, html } from 'lit-element';
+
+export class SuperElement extends LitElement {
+  static get properties() {
+    return { prop: { type: Number } };
+  }
+
+  set prop(val) {
+    let oldVal = this._prop;
+    this._prop = Math.floor(val);
+    this.requestUpdate('prop', oldVal);
+  }
+
+  get prop() { return this._prop; }
+
+  constructor() {
+    super();
+    this._prop = 0;
+  }
+
+  render() {
+    return html`  
+      <p>prop: ${this.prop}</p>
+      <button @click="${() => { this.prop = Math.random()*10; }}">
+        change prop
+      </button>
+  `;
+  }
+}
+customElements.define('super-element', SuperElement);
+
+```
+
+sub-element.js
+
+```js
+import { SuperElement } from './super-element.js';
+
+class SubElement extends SuperElement {  
+  static get properties() { 
+    return { prop: { reflectToAttribute: true, noAccessor: true } };
+  }
+}
+
+customElements.define('sub-element', SubElement);
+```
+
+### Configure property changes
+
+#### `hasChanged`: prop이 변경됬는지 검사
+
+true가 반환되면, update를 실행한다. 
+
+false가 반환되면, 변화가 없다는 뜻이다.
+
+#### 사용법
+
+```js
+myProp: { hasChanged(newVal, oldVal) {
+    if (newVal > oldVal) {
+        return true
+    } else {
+        return false
+    }
+}}
+```
+
+#### code example
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties(){ return {
+    myProp: {
+      type: Number,
+
+      /**
+       * Compare myProp's new value with its old value.
+       *
+       * Only consider myProp to have changed if newVal is larger than
+       * oldVal.
+       */
+      hasChanged(newVal, oldVal) {
+        if (newVal > oldVal) {
+          console.log(`${newVal} > ${oldVal}. hasChanged: true.`);
+          return true;
+        }
+        else {
+          console.log(`${newVal} <= ${oldVal}. hasChanged: false.`);
+          return false;
+        }
+      }
+    }};
+  }
+
+  constructor(){
+    super();
+    this.myProp = 1;
+  }
+
+  render(){
+    return html`
+      <p>${this.myProp}</p>
+      <button @click="${this.getNewVal}">get new value</button>
+    `;
+  }
+
+  updated(){
+    console.log('updated');
+  }
+
+  getNewVal(){
+    let newVal = Math.floor(Math.random()*10);
+    this.myProp = newVal;
+  }
+
+}
+customElements.define('my-element', MyElement);
+```
+
+-----------
 

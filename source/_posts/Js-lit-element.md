@@ -1901,7 +1901,192 @@ customElements.define('my-element', MyElement);
 
 -----------
 
+## Events
 
+### 목차
+
+- 개요
+  - 이벤트 핸들러 추가 위치
+  - `this` 사용
+  - useCase
+  - Fire Event
+  - Custom-event handler
+- Shadow Dom에서 이벤트
+  - 이벤트 버블링
+  - 이벤트 리타겟팅
+  - 커스텀 이벤트
+
+### 개요
+
+#### 이벤트 핸들러 추가 위치
+
+##### 컴포넌트를 이용한 이벤트 추가
+
+`@이벤트명`을 이용
+
+```js
+render() {
+  return html`<button @click="${this.handleClick}">`;
+}
+```
+
+##### Dom으로 추가되기 전에 받는 이벤트는 `constructor()`에서 선언
+
+```js
+constructor() {
+  super();
+  this.addEventListener('DOMContentLoaded', this.handleLoaded);
+}
+```
+
+##### firstUpdated()
+
+LifeCycle을 이용한 이벤트 추가, 처음으로 업데이트되거나 렌더링됬을 때 실행된다.
+
+```js
+firstUpdated(changedProperties) {
+  this.addEventListener('click', this.handleClick);
+}
+```
+
+##### connectedCallback()
+
+커스텀 엘리먼트에서 존재하던 LifeCycle. 엘리먼트가 Dom에 추가되면 발생하는 LifeCycle.
+
+##### disconnectedCallback()
+
+엘리먼트가 Dom에서 제거되면 발생하는 LifeCycle. 
+connectedCallback에서 생성된 이벤트들을 여기서 제거해준다.
+
+###### 예제
+
+```js
+connectedCallback() {
+  super.connectedCallback();
+  document.addEventListener('readystatechange', this.handleChange);
+}
+disconnectedCallback() {
+  document.removeEventListener('readystatechange', this.handleChange);
+  super.disconnectedCallback();
+}
+```
+
+#### `this`사용
+
+##### 예제
+
+```js
+class MyElement extends LitElement {
+  render() {
+    return html`<button @click="${this.handleClick}">click</button>`;
+  }
+  handleClick(e) {
+    console.log(this.prop);
+  }
+}
+```
+
+#### Fire Event
+
+##### Fire Custom Event
+
+```js
+class MyElement extends LitElement {
+  render() {
+    return html`<div>Hello World</div>`;
+  }
+  firstUpdated(changedProperties) {
+    let event = new CustomEvent('my-event', {
+      detail: {
+        message: 'Something important happened'
+      }
+    });
+    this.dispatchEvent(event);
+  }
+}
+```
+
+##### Fire Standard Event
+
+```js
+class MyElement extends LitElement {
+  render() {
+    return html`<div>Hello World</div>`;
+  }
+  updated(changedProperties) {
+    let click = new Event('click');
+    this.dispatchEvent(click);
+  }
+}
+```
+
+##### LitElement 기반에 이벤트 핸들러 추가
+
+```html
+<my-element @my-event="${(e) => { console.log(e.detail.message) }}"></my-element>
+```
+
+###### 기본 방식
+
+```js
+const myElement = document.querySelector('my-element');
+myElement.addEventListener('my-event', (e) => {console.log(e)});
+```
+
+### Shadow Dom에서 이벤트
+
+#### 이벤트 버블링
+
+버블링인지 아닌지 확인하는 방법
+
+```js
+handleEvent(e){
+  console.log(e.bubbles);
+}
+```
+
+#### Event retargeting
+
+```html
+<my-element onClick="(e) => console.log(e.target)"></my-element>
+```
+
+```js
+render() {
+  return html`
+    <button id="mybutton" @click="${(e) => console.log(e.target)}">
+      click me
+    </button>`;
+}
+```
+
+##### 이벤트 발생원인 찾을 때
+
+```js
+handleMyEvent(event) {
+  console.log('Origin: ', event.composedPath()[0]);
+}
+```
+
+#### 커스텀 이벤트
+
+버블링은 Shadow Dom 내부에서 발생하기 때문에, Shadow-root에 도달하면 중지된다.
+
+만약 shadow-root를 통과하고 싶다면, 다음과같이 설정한다.
+
+```js
+firstUpdated(changedProperties) {
+  let myEvent = new CustomEvent('my-event', { 
+    detail: { message: 'my-event happened.' },
+    bubbles: true, 
+    composed: true });
+  this.dispatchEvent(myEvent);
+}
+```
+
+
+
+----------
 
 > 아직 lit-element를 잘 모르는 상태로 작업한 문서기 때문에, 
 > 추후 프로젝트에 많이 사용한 뒤 요약본을 다시 작성해야겠다.

@@ -2587,6 +2587,37 @@ updateComplete.then(() => {
 });
 ```
 
+----------
+
+```
+updateComplete.then(() => {
+  // finished updating
+});
+```
+
+-----------
+
+## Publish an element
+
+### npm으로 게시하는 방법
+
+ES2017이상 문법으로 작성하는 것을 추천. 그렇지 않다면, 변환을 해야함
+
+#### package.json 수정
+
+```json
+{
+  "main": "my-element.js",
+  "module": "my-element.js"
+}
+```
+
+#### 사용방법 README 작성
+
+#### [npm packages 가이드에 따라 작성](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
+
+#### [한글 가이드 블로그 글](https://heropy.blog/2019/01/31/node-js-npm-module-publish/)
+
 
 
 ----------

@@ -2084,6 +2084,509 @@ firstUpdated(changedProperties) {
 }
 ```
 
+## LifeCycle
+
+### 목차
+
+- 개요
+- Methods and Prop
+  - `prop.hasChanged()`
+  - `requestUpdate()`
+  - `performUpdate()`
+  - `shouldUpdate()`
+  - `update()`
+  - `render()`
+  - `firstUpdated()`
+  - `updated()`
+  - `updateComplete()`
+- 예제
+
+### 개요
+
+Update LifeCycle:
+
+1. property 설정.
+2. 업데이트 필요한지 확인, 필요하다면 요청.
+3. 업데이트
+   - Process properties and attributes.
+   - Render the element.
+4. Resolve a Promise, indicating that the update is complete.
+
+#### LitElement and the browser event loop
+
+The browser executes JavaScript code by processing a queue of tasks in the [event loop](https://developer.mozilla.org/en-US/docs/Web/JavaScript/EventLoop).
+In each iteration of the event loop, the browser takes a task from the queue and runs it to completion.
+
+When the task completes, before taking the next task from the queue, 
+the browser allocates time to perform work from other sources
+—including DOM updates, user interactions, and the microtask queue.
+
+By default, LitElement updates are requested asynchronously, and queued as microtasks. 
+This means that Step 3 above (Perform the update) is executed at the end of the next iteration of the event loop.
+
+You can change this behavior so that Step 3 awaits a Promise before performing the update. 
+See [`performUpdate`](https://lit-element.polymer-project.org/guide/lifecycle#performUpdate) for more information.
+
+For a more detailed explanation of the browser event loop, see [Jake Archibald’s article](https://jakearchibald.com/2015/tasks-microtasks-queues-and-schedules/).
+
+> 흠냐... 코드가 없어서 생략
+
+#### Lifecycle callbacks
+
+- `connectedCallback`: Invoked when a component is added to the document’s DOM.
+- `disconnectedCallback`: Invoked when a component is removed from the document’s DOM.
+- `adoptedCallback`: Invoked when a component is moved to a new document.
+- `attributeChangedCallback`: Invoked when component attribute changes.
+
+> **Be aware that adoptedCallback is not polyfilled.**
+
+> 커스텀 엘리먼트와 동일함
+
+#### Promises and asynchronous functions
+
+```js
+// `async` makes the function return a Promise & lets you use `await`
+async myFunc(data) {
+  // Set a property, triggering an update
+  this.myProp = data;
+
+  // Wait for the updateComplete promise to resolve
+  await this.updateComplete;
+  // ...do stuff...
+  return 'done';
+}
+```
+
+### Method and Prop
+
+#### prop.hasChanged()
+
+prop이 변경됬는지 검사
+
+#### requestUpdate()
+
+return값, Promise
+Returns the [`updateComplete` Promise](https://lit-element.polymer-project.org/guide/lifecycle#updatecomplete), which resolves on completion of the update.
+
+```js
+// Manually start an update
+this.requestUpdate();
+
+// Call from within a custom property setter
+this.requestUpdate(propertyName, oldValue);
+```
+
+> 왜 oldValue를 집어넣는거지?, 아무거나 집어넣어도 update를 하는 것으로 확인 
+> (다른 method에서 oldValue를 쓰나?)
+
+##### 이전: 요소 업데이트를 수동으로 했을 경우
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  constructor() {
+    super();
+
+    // Request an update in response to an event
+    this.addEventListener('load-complete', async (e) => {
+      console.log(e.detail.message);
+      console.log(await this.requestUpdate());
+    });
+  }
+  render() {
+    return html`
+      <button @click="${this.fire}">Fire a "load-complete" event</button>
+    `;
+  }
+  fire() {
+    let newMessage = new CustomEvent('load-complete', {
+      detail: { message: 'hello. a load-complete happened.' }
+    });
+    this.dispatchEvent(newMessage);
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+##### `getter`, `setter` 으로, 사용했을 경우
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { 
+    return { prop: { type: Number } };
+  }
+
+  set prop(val) {
+    let oldVal = this._prop;
+    this._prop = Math.floor(val);
+    this.requestUpdate('prop', oldVal);
+  }
+
+  get prop() { return this._prop; }
+
+  constructor() {
+    super();
+    this._prop = 0;
+  }
+
+  render() {
+    return html`
+      <p>prop: ${this.prop}</p>
+      <button @click="${() =>  { this.prop = Math.random()*10; }}">
+        change prop
+      </button>
+    `;
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### performUpdate()
+
+return값, `void` or `Promise`
+
+```js
+/**
+ * Implement to override default behavior.
+ */
+async performUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  super.performUpdate();
+}
+```
+
+##### Full example code
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() { return { prop1: { type: Number } }; }
+
+  constructor() {
+    super();
+    this.prop1 = 0;
+  }
+
+  render() {
+    return html`
+      <p>prop1: ${this.prop1}</p>
+      <button @click="${() => this.prop1=this.change()}">Change prop1</button>
+    `;
+  }
+
+  async performUpdate() {
+    console.log('Requesting animation frame...');
+    await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+    console.log('Got animation frame. Performing update');
+    super.performUpdate();
+  }
+
+  change() {
+    return Math.floor(Math.random()*10);
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### shouldUpdate(changedProperties)
+
+return값, Boolean
+If `true`, update proceeds. Default return value is `true`.
+
+updates: YES
+
+특정 prop이 바뀔 때만 업데이트를 시킬 수 있음
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      prop1: { type: Number },
+      prop2: { type: Number }
+    };
+  }
+  constructor() {
+    super();
+    this.prop1 = 0;
+    this.prop2 = 0;
+  }
+
+  render() {
+    return html`
+      <p>prop1: ${this.prop1}</p>
+      <p>prop2: ${this.prop2}</p>
+      <button @click="${() => this.prop1=this.change()}">Change prop1</button>
+      <button @click="${() => this.prop2=this.change()}">Change prop2</button>
+    `;
+  }
+
+  /**
+   * Only update element if prop1 changed.
+   */
+  shouldUpdate(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+    // prop1이 바뀔 때만, update 
+    return changedProperties.has('prop1');
+  }
+
+  change() {
+    return Math.floor(Math.random()*10);
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### update(changedProperties)
+
+Reflects property values to attributes and calls `render` to render DOM via lit-html. Provided here for reference. You don’t need to override or call this method.
+
+#### render()
+
+return값, TemplateResult 
+
+#### firstUpdated(changedProperties)
+
+Updates: YES
+
+`Updated` 이전에 호출된다.
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      textAreaId: { type: String },
+      startingText: { type: String }
+    };
+  }
+  constructor() {
+    super();
+    this.textAreaId = 'myText';
+    this.startingText = 'Focus me on first update';
+  }
+  render() {
+    return html`
+      <textarea id="${this.textAreaId}">${this.startingText}</textarea>
+    `;
+  }
+  firstUpdated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+    const textArea = this.shadowRoot.getElementById(this.textAreaId);
+    textArea.focus();
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### updated(changedProperties)
+
+Updates: YES
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      prop1: { type: Number },
+      prop2: { type: Number }
+    };
+  }
+  constructor() {
+    super();
+    this.prop1 = 0;
+    this.prop2 = 0;
+  }
+  render() {
+    return html`
+      <style>button:focus { background-color: aliceblue; }</style>
+
+      <p>prop1: ${this.prop1}</p>
+      <p>prop2: ${this.prop2}</p>
+
+      <button id="a" @click="${() => this.prop1=Math.random()}">prop1</button>
+      <button id="b" @click="${() => this.prop2=Math.random()}">prop2</button>
+    `;
+  }
+  updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+      console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+    let b = this.shadowRoot.getElementById('b');
+    b.focus();
+  }
+}
+customElements.define('my-element', MyElement);
+```
+
+#### updateComplete()
+
+```js
+await this.updateComplete;
+// do stuff
+
+// or
+this.updateComplete.then(() => { /* do stuff */ });
+```
+
+##### 예제
+
+```js
+import { LitElement, html } from 'lit-element';
+
+class MyElement extends LitElement {
+  static get properties() {
+    return {
+      prop1: { type: Number }
+    };
+  }
+
+  constructor() {
+    super();
+    this.prop1 = 0;
+  }
+
+  render() {
+    return html`
+      <p>prop1: ${this.prop1}</p>
+      <button @click="${this.changeProp}">prop1</button>
+    `;
+  }
+
+  async getMoreState() {
+    return;
+  }
+
+  async changeProp() {
+    this.prop1 = Math.random();
+    await Promise.all([this.updateComplete, this.getMoreState()]);
+    console.log('Update complete. Other state completed.');
+  }
+}
+
+customElements.define('my-element', MyElement);
+```
+
+### 예제
+
+#### Control when updates are processed
+
+##### performUpdate
+
+```js
+async performUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve());
+  super.performUpdate();
+}
+```
+
+#### Customize which property changes should cause an update
+
+##### shouldUpdate
+
+```js
+shouldUpdate(changedProps) {
+  return changedProps.has('prop1');
+}
+```
+
+#### Customize what constitutes a property change
+
+##### `hasChanged()`
+
+#### Manage property changes and updates for object subproperties
+
+Mutations (changes to object subproperties and array items) are not observable.
+Instead, either rewrite the whole object, or call [`requestUpdate`](https://lit-element.polymer-project.org/guide/lifecycle#requestupdate) after a mutation.
+
+```js
+// Option 1: Rewrite whole object, triggering an update
+this.prop1 = Object.assign({}, this.prop1, { subProp: 'data' });
+
+// Option 2: Mutate a subproperty, then call requestUpdate
+this.prop1.subProp = 'data';
+this.requestUpdate();
+```
+
+> 아하, `requestUpdate()`는 prop.subProp의 변화를 감지해주네
+
+#### Update in response to something that isn’t a property change
+
+##### requestUpdate
+
+```js
+// Request an update in response to an event
+this.addEventListener('load-complete', async (e) => {
+  console.log(e.detail.message);
+  console.log(await this.requestUpdate());
+});
+```
+
+#### Request an update regardless of property changes
+
+```js
+this.requestUpdate();
+```
+
+#### Request an update for a specific property
+
+```js
+let oldValue = this.prop1;
+this.prop1 = 'new value';
+this.requestUpdate('prop1', oldValue);
+```
+
+#### Do something after the first update
+
+```js
+firstUpdated(changedProps) {
+  console.log(changedProps.get('prop1'));
+}
+```
+
+#### Do something after every update
+
+```js
+updated(changedProps) {
+  console.log(changedProps.get('prop1'));
+}
+```
+
+#### Do something when the element next updates
+
+```js
+await this.updateComplete;
+// do stuff
+
+// or
+
+this.updateComplete.then(() => {
+  // do stuff
+});
+```
+
+#### Wait for an element to finish updating
+
+```js
+let done = await updateComplete;
+
+// or
+updateComplete.then(() => {
+  // finished updating
+});
+```
+
 
 
 ----------

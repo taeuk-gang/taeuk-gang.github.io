@@ -2618,7 +2618,168 @@ ES2017이상 문법으로 작성하는 것을 추천. 그렇지 않다면, 변�
 
 #### [한글 가이드 블로그 글](https://heropy.blog/2019/01/31/node-js-npm-module-publish/)
 
+### Transpiling with Babel
 
+To transpile a LitElement component that uses proposed JavaScript features, use Babel.
+
+Install Babel and the Babel plugins you need. For example:
+
+```bash
+npm install --save-dev @babel/core
+npm install --save-dev @babel/plugin-proposal-class-properties
+npm install --save-dev @babel/plugin-proposal-decorators
+```
+
+Configure Babel. For example:
+
+#### **babel.config.js**
+
+```js
+const plugins = [
+  '@babel/plugin-proposal-class-properties',
+  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true } ],
+];
+
+module.exports = { plugins };
+```
+
+You can run Babel via a bundler plugin such as [rollup-plugin-babel](https://www.npmjs.com/package/rollup-plugin-babel), or from the command line. See the [Babel documentation](https://babeljs.io/docs/en/) for more information.
+
+## Use a component
+
+### 목차
+
+- lit-element 사용하기
+- Build for production
+- Polyfill
+
+### lit-element 사용하기
+
+1. npm install 모듈명
+
+   ```bash
+   npm install some-package-name
+   ```
+
+2. Javascript에서 사용
+
+   ```js
+   import 'some-package-name';
+   ```
+
+   HTML에서 사용
+
+   ```html
+   <script type="module">
+   import './path-to/some-package-name/some-component.js';
+   </script>
+   ```
+
+   Or:
+
+   ```html
+   <script type="module" src="./path-to/some-package-name/some-component.js"></script>
+   ```
+
+3. 이후, READE에 따른 컴포넌트 사용
+
+   ```html
+   <some-component></some-component>
+   ```
+
+### Build for production
+
+webpack과 비슷한 rollup을 써서 하는 듯
+
+```js
+import resolve from 'rollup-plugin-node-resolve';
+
+export default {
+  // If using any exports from a symlinked project, uncomment the following:
+  // preserveSymlinks: true,
+	input: ['src/index.js'],
+	output: {
+		file: 'build/index.js',
+		format: 'es',
+		sourcemap: true
+	},
+	plugins: [
+    resolve()
+  ]
+};
+```
+
+rollup과 webpack3을 비교하는 글을 읽고 요약해봄(그런데 지금은 webpack4잖아?)
+
+#### rollup 장점
+
+1. webpack은 ESM형태 번들이 안된다고함 (ts -> js ?)
+2. webpack은 빌드시, 중복코드 제거기능이 없다고함
+
+> Webpack 에서는 `import`는 `__webpack_require__`로 바뀌고 `export`는 `exports 오브젝트`로 바뀌면서 코드가 증가합니다. 
+> 그래서 상수를 사용하면 상수 이름을 그대로 쓰고 uglify가 되지 않기 때문에 오히려 코드가 증가할 수 있습니다.
+> Webpack에서도 `ModuleConcatenationPlugin`이 있어 Rollup과 비슷한 효과를 볼 수 있습니다. 
+> 하지만 typescript, babel 플러그인을 통해 생긴 함수의 중복은 제거할 수 없습니다.
+> 대표적인 예로 `assign`, `extends` 등과 같이 ES6 이상의 문법을 ES5로 바꾸면서 생기는 polyfill이 있습니다. 
+> 이 함수는 파일(모듈)마다 존재하고 각자 다른 함수로 인식해 파일 개수만큼 늘어납니다.
+
+3. webpack이 평균 빌드 용량이 큰 듯
+
+4. webpack3에서 Tree Shaking이 잘 안된다고 함
+
+#### rollup 단점
+
+1. entry(input, output)가 많아질수록 복잡해질 수 있습니다.
+2. plugin의 규칙을 정할 수 없습니다.
+
+>  흐음... 내가 rollup으로 바꿀 수가 있나?
+>
+> webpack에 의존되는 기술이 뭐가 있지?
+> css파일모아 합치기, scss, babel, postcss(autoprefixer), webpack-dev-server 
+> 생각보다 의존성이 있네... 
+>
+> 그런데 webpack4에서 극복한 느낌이군
+
+### Polyfill
+
+#### 폴리필 하는법
+
+1. npm install
+
+   ```bash
+   npm install --save-dev @webcomponents/webcomponentsjs
+   ```
+
+2. HTML Script 추가
+
+   ```
+   <head>  
+     <script src="./path-to/custom-elements-es5-loader.js"></script>
+     <script 
+       src="path-to/webcomponents-loader.js"
+       defer>
+     </script> 
+     <script type="module">
+       // Take care of cases in which the browser runs this
+       // script before it has finished running 
+       // webcomponents-loader.js (e.g. Firefox script execution order)
+       window.WebComponents = window.WebComponents || { 
+         waitFor(cb){ addEventListener('WebComponentsReady', cb) }
+       }
+   
+       WebComponents.waitFor(async () => { 
+         import('./path-to/some-element.js');
+       });
+     </script>
+   </head>
+   <body>
+     <some-element></some-element>
+   </body>
+   ```
+
+3. Ensure that `node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js` and `node_modules/@webcomponents/webcomponentsjs/bundles/**.*` are included in your build.
+
+>  **Do not transpile the polyfills.** Bundling them is okay.
 
 ----------
 

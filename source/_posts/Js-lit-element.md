@@ -4,11 +4,14 @@ toc: true
 date: 2019-08-29 23:16:48
 tags:
     - Javascript
+    - lit-element
 categories:
     - Javascript
 ---
 
 > 개인이 학습한 내용으로, 틀린 내용이 존재할 수 있습니다.
+>
+> TypeScript 부분은 생략
 
 ## 소개
 

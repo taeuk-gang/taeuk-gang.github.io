@@ -385,8 +385,6 @@ html`<input type="checkbox" .value="${this.prop4}" />`
 html`<button @click="${this.clickHandler}">pie?</button>`
 ```
 
-자동으로 저 엘리멘트를 `this`로 설정한다.
-
 ##### 전체 code example
 
 ```js
@@ -615,7 +613,7 @@ class MyPage extends LitElement {
 }
 ```
 
-import를 이용한 구성방법
+#### import를 이용한 구성방법
 
 my-article.js
 

@@ -53,6 +53,27 @@ customElements.define('my-element', MyElement);
 import './my-element.js';
 ```
 
+### babel 설정
+
+#### 설치
+
+```bash
+npm install --save-dev @babel/core
+npm install --save-dev @babel/plugin-proposal-class-properties
+npm install --save-dev @babel/plugin-proposal-decorators
+```
+
+#### `babel.config.js` 설정
+
+```js
+const plugins = [
+  '@babel/plugin-proposal-class-properties',
+  ['@babel/plugin-proposal-decorators', { decoratorsBeforeExport: true } ],
+];
+
+module.exports = { plugins };
+```
+
 ## 주의사항
 
 - lit-element은 virtual Dom과 다르지만, Dom을 완전히 직접 조작하는 것은 비효율적이다.
@@ -129,8 +150,30 @@ noAccessor가 false면 getter와 setter가 사용되지 않는다.
 
 #### hasChanged
 
+```js
+myProp: { hasChanged: true }
+```
+
 true가 반환되면, update를 실행한다. 
 false가 반환되면, 변화가 없다는 뜻이다.
+
+```js
+myProp: {
+    type: Number,
+    hasChanged(newVal, oldVal) {
+        if (newVal > oldVal) {
+            console.log(`${newVal} > ${oldVal}. hasChanged: true.`);
+            return true;
+        }
+        else {
+            console.log(`${newVal} <= ${oldVal}. hasChanged: false.`);
+            return false;
+        }
+    }
+}};
+```
+
+
 
 ### loop
 
@@ -329,3 +372,367 @@ class MyElement extends LitElement {
 }
 ```
 
+### `<style>`태그 사용
+
+```js
+import {LitElement, property} from 'lit-element';
+
+class MyElement extends LitElement {
+  const mainColor = css`blue`;
+
+  render() {
+    return html`
+      <style>
+        :host {
+          color: ${this.mainColor};
+        }
+      </style>
+    `;
+  }
+}
+```
+
+### 외부 스타일시트 사용
+
+```js
+import {LitElement} from 'lit-element';
+
+class MyElement extends LitElement {
+  render() {
+    return html`
+      <link rel="stylesheet" href="./styles.css">
+    `;
+  }
+}
+```
+
+## shadow Dom에서의 CSS 작성법
+
+### `:host(...)`
+
+```css
+:host {
+    display: block;
+    color: blue;
+}
+
+:host(.important) {
+    color: red;
+    font-weight: bold;
+}
+```
+
+### `::slot`
+
+```css
+::slotted(*) { font-family: Roboto; }
+::slotted(span) { color: blue; }
+```
+
+### 커스텀 엘리먼트명으로 CSS 작성
+
+```css
+my-element { 
+    font-family: Roboto;
+    font-size: 20;
+    color: blue;
+}
+```
+
+ `:host`보다 우선순위가 높다.
+
+### CSS Value 적용
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="/node_modules/@webcomponents/webcomponentsjs/custom-elements-es5-adapter.js"></script>
+    <script src="/node_modules/@webcomponents/webcomponentsjs/webcomponents-bundle.js"></script>
+    <title>lit-element code sample</title>
+    <style>
+      body {
+        --theme-primary: green;
+        --theme-secondary: aliceblue;
+        --theme-warning: red;
+        --theme-font-family: Roboto;
+      }
+
+      my-element { 
+        --my-element-text-color: var(--theme-primary); 
+        --my-element-background-color: var(--theme-secondary); 
+        --my-element-font-family: var(--theme-font-family);
+      } 
+
+      my-element.warning {
+        --my-element-text-color: var(--theme-warning); 
+      }
+    </style>
+  </head>
+  <body>
+    <my-element></my-element>
+    <my-element class="warning"></my-element>
+  </body>
+</html>
+```
+
+## Event
+
+### `@이벤트명`을 이용
+
+```js
+render() {
+  return html`<button @click="${this.handleClick}">`;
+}
+```
+
+### Dom으로 추가되기 전에 받는 이벤트는 `constructor()`에서 선언
+
+```js
+constructor() {
+  super();
+  this.addEventListener('DOMContentLoaded', this.handleLoaded);
+}
+```
+
+### `firstUpdated()`
+
+```js
+firstUpdated(changedProperties) {
+  this.addEventListener('click', this.handleClick);
+}
+```
+
+### `connectedCallback()`
+
+### `discconectedCallback()`
+
+```js
+connectedCallback() {
+  super.connectedCallback();
+  document.addEventListener('readystatechange', this.handleChange);
+}
+disconnectedCallback() {
+  document.removeEventListener('readystatechange', this.handleChange);
+  super.disconnectedCallback();
+}
+```
+
+### custom event
+
+```html
+<my-element @my-event="${(e) => { console.log(e.detail.message) }}"></my-element>
+```
+
+```js
+class MyElement extends LitElement {
+  render() {
+    return html`<div>Hello World</div>`;
+  }
+  firstUpdated(changedProperties) {
+    let event = new CustomEvent('my-event', {
+      detail: {
+        message: 'Something important happened'
+      }
+    });
+    this.dispatchEvent(event);
+  }
+}
+```
+
+### standard event
+
+```js
+class MyElement extends LitElement {
+  render() {
+    return html`<div>Hello World</div>`;
+  }
+  updated(changedProperties) {
+    let click = new Event('click');
+    this.dispatchEvent(click);
+  }
+}
+```
+
+### 이벤트 버블링
+
+#### 버블링 확인
+
+```js
+handleEvent(e){
+  console.log(e.bubbles);
+}
+```
+
+### e.target
+
+```html
+<my-element onClick="(e) => console.log(e.target)"></my-element>
+```
+
+```js
+render() {
+  return html`
+    <button id="mybutton" @click="${(e) => console.log(e.target)}">
+      click me
+    </button>`;
+}
+```
+
+### composedPath
+
+```js
+handleMyEvent(event) {
+  console.log('Origin: ', event.composedPath()[0]);
+}
+```
+
+### shadow root 통과
+
+```js
+firstUpdated(changedProperties) {
+  let myEvent = new CustomEvent('my-event', { 
+    detail: { message: 'my-event happened.' },
+    bubbles: true, 
+    composed: true // 이부분!
+  });
+  this.dispatchEvent(myEvent);
+}
+```
+
+## LifeCycle
+
+### `requestUpdate()`
+
+```js
+// Manually start an update
+this.requestUpdate();
+
+// Call from within a custom property setter
+this.requestUpdate(propertyName, oldValue);
+```
+
+### `performUpdate()`
+
+```js
+async performUpdate() {
+  await new Promise((resolve) => requestAnimationFrame(() => resolve()));
+  super.performUpdate();
+}
+```
+
+### `shouldUpdate(changedProp)`
+
+```js
+shouldUpdate(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+        console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+    // prop1이 바뀔 때만, update 
+    return changedProperties.has('prop1');
+}
+```
+
+### `update(changedProp)`
+
+### `render()`
+
+### `firstUpdated(changedProp)`
+
+```js
+firstUpdated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+        console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+    const textArea = this.shadowRoot.getElementById(this.textAreaId);
+    textArea.focus();
+}
+```
+
+### `updated(changedProp)`
+
+```js
+updated(changedProperties) {
+    changedProperties.forEach((oldValue, propName) => {
+        console.log(`${propName} changed. oldValue: ${oldValue}`);
+    });
+    let b = this.shadowRoot.getElementById('b');
+    b.focus();
+}
+```
+
+### `updateComplete()`
+
+```js
+await this.updateComplete;
+// do stuff
+
+// or
+this.updateComplete.then(() => { /* do stuff */ });
+```
+
+## npm 모듈로 만들기
+
+#### [npm packages 가이드에 따라 작성](https://docs.npmjs.com/packages-and-modules/contributing-packages-to-the-registry)
+
+#### [한글 가이드 블로그 글](https://heropy.blog/2019/01/31/node-js-npm-module-publish/)
+
+## npm 모듈 사용하기
+
+1. npm install 모듈명
+
+   ```bash
+   npm install some-package-name
+   ```
+
+2. Javascript에서 사용
+
+   ```js
+   import 'some-package-name';
+   ```
+
+   HTML에서 사용
+
+   ```html
+   <script type="module">
+   import './path-to/some-package-name/some-component.js';
+   </script>
+   ```
+
+   Or:
+
+   ```html
+   <script type="module" src="./path-to/some-package-name/some-component.js"></script>
+   ```
+
+3. 이후, READE에 따른 컴포넌트 사용
+
+   ```html
+   <some-component></some-component>
+   ```
+
+## Polyfill
+
+1. npm install
+
+   ```bash
+   npm install --save-dev @webcomponents/webcomponentsjs
+   ```
+
+2. HTML Script 추가
+
+   ```
+   <head>  
+     <script src="./path-to/custom-elements-es5-loader.js"></script>
+     <script src="path-to/webcomponents-loader.js"defer></script> 
+     <script type="module">
+       window.WebComponents = window.WebComponents || { 
+         waitFor(cb){ addEventListener('WebComponentsReady', cb) }
+       }
+   
+       WebComponents.waitFor(async () => { 
+         import('./path-to/some-element.js');
+       });
+     </script>
+   </head>
+   ```

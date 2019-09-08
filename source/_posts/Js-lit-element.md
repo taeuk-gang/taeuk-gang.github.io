@@ -911,7 +911,8 @@ class MyElement extends LitElement {
 import {LitElement, property} from 'lit-element';
 
 class MyElement extends LitElement {
-  @property() mainColor = 'blue';
+  const mainColor = css`blue`;
+
   render() {
     return html`
       <style>
@@ -1809,7 +1810,6 @@ export class SuperElement extends LitElement {
   }
 }
 customElements.define('super-element', SuperElement);
-
 ```
 
 sub-element.js
@@ -2072,7 +2072,6 @@ handleMyEvent(event) {
 #### 커스텀 이벤트
 
 버블링은 Shadow Dom 내부에서 발생하기 때문에, Shadow-root에 도달하면 중지된다.
-
 만약 shadow-root를 통과하고 싶다면, 다음과같이 설정한다.
 
 ```js
@@ -2080,7 +2079,8 @@ firstUpdated(changedProperties) {
   let myEvent = new CustomEvent('my-event', { 
     detail: { message: 'my-event happened.' },
     bubbles: true, 
-    composed: true });
+    composed: true 
+  });
   this.dispatchEvent(myEvent);
 }
 ```
@@ -2786,3 +2786,19 @@ rollup과 webpack3을 비교하는 글을 읽고 요약해봄(그런데 지금�
 
 > 아직 lit-element를 잘 모르는 상태로 작업한 문서기 때문에, 
 > 추후 프로젝트에 많이 사용한 뒤 요약본을 다시 작성해야겠다.
+
+> 작성해보니, lit-html에 이은 스택이지만, lit-html의 모든 docs를 담진 않았네
+> 당장 이벤트 캡쳐링 부분도 없고,
+
+```js
+clickTest() {
+    const root = this
+    return {
+        handleEvent(event) { 
+            console.log(`event!`)
+        },
+        capture: false,
+    }
+}
+```
+

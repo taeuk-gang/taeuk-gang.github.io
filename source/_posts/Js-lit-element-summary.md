@@ -723,7 +723,7 @@ this.updateComplete.then(() => { /* do stuff */ });
 
    ```
    <head>  
-     <script src="./path-to/custom-elements-es5-loader.js"></script>
+     <!--script src="./path-to/custom-elements-es5-loader.js"></script-->
      <script src="path-to/webcomponents-loader.js"defer></script> 
      <script type="module">
        window.WebComponents = window.WebComponents || { 
@@ -736,3 +736,14 @@ this.updateComplete.then(() => { /* do stuff */ });
      </script>
    </head>
    ```
+
+> 이유는 알 수 없는데 위 튜토리얼 사항대로 하면, ie11은 지원되지 않는다.
+> 아래와 같이하면 되는걸로 확인
+
+```html
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/7.4.4/polyfill.min.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/bundles/webcomponents-sd-ce-pf.js"></script>
+    <script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.2.10/custom-elements-es5-adapter.js"></script>
+    <script src="./main-bundle.js"></script>
+```
+

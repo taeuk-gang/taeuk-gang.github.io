@@ -6,7 +6,7 @@ tags:
     - Javascript
     - lit-element
 categories:
-    - Javascript콛
+    - Javascript
 ---
 
 > 실제 써먹을 것 Code만 간략히 적기
@@ -40,7 +40,7 @@ customElements.define('my-element', MyElement);
 ```
 
 ### 불러오기
-
+ 
 #### HTML
 
 ```html

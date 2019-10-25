@@ -127,6 +127,8 @@ self.addEventListener('install', function(event) {
 
 서비스 워커로 `js` 파일을 관리하는 웹사이트가 있어서 공부해볼려 했는데, 그 사이트부터 분석해봐야겠다.
 
+[서비스 워커 이용 사이트](https://flash-cards.netlify.com/)
+
 ------
 
 #### 요청 캐시 및 반환

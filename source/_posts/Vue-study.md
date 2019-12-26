@@ -1,18 +1,20 @@
 ---
-title: Vue.js Study (1)
+title: 잠깐 Vue.js 문법 정리
 toc: true
 date: 2019-12-24 23:57:07
 tags:
-  - Vue.js
+    - Vue.js
 categories:
-  - Vue.js
+    - Vue.js
 ---
 
-# 필수요소
+Vue.js 사용 안한지 오래되서, 한번 문법 정리하는 시간을 갖음.
+
+한번 문법 정리 후, Codepen을 이용하여 예제 샘플 나열해서 정리해둬야겠다...
+
+## 필수요소 
 
 Link : https://kr.vuejs.org/v2/guide/installation.html 링크 학습
-
-목표 학습기간 : 2019-12-25 (하루)
 
 ## 설치방법
 
@@ -35,12 +37,10 @@ Link: https://cli.vuejs.org/
 
 ### 선언적 렌더링
 
-#### `{{}}`
+#### 템플릿 안 변수 삽입
 
 ```html
-<div id="app">
-    {{ message }} 
-</div>
+<div id="app">{{ message }}</div>
 ```
 
 ```js
@@ -57,7 +57,7 @@ var app = new Vue({
 ```html
 <div id="app-2">
     <span v-bind:title="message">
-    	텍스트
+      텍스트
     </span>
 </div>
 ```
@@ -800,9 +800,28 @@ data: {
 
 ## 리스트 렌더링
 
+```html
+<ul id+"example-1">
+    <li v-for="(item, index) in items">{{ index }}: {{ item.message }}</li>
+</ul>
+```
 
+```js
+var example1 = new Vue({
+    data: {
+        items: [
+            { message: `item1`},
+            { message: `item2`}
+        ]
+    }
+})
+```
+
+`in` 대신 `of` 반복문도 사용 가능 (차이점은 일반적인 JS문법과 동일: in은 key값을 순회, of는 value값을 순회)
 
 ## 이벤트 핸들링
+
+
 
 ## 폼 입력 바인딩
 

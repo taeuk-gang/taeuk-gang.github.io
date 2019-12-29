@@ -783,6 +783,10 @@ data: {
 </template>
 ```
 
+`key` 속성이란, “이 두 엘리먼트는 완전히 별개이므로 다시 사용하지 마십시오.”라고 알리는 행위
+
+없으면 `input` 엘리먼트를 재사용함
+
 ### `v-show`
 
 ```html
@@ -819,9 +823,46 @@ var example1 = new Vue({
 
 `in` 대신 `of` 반복문도 사용 가능 (차이점은 일반적인 JS문법과 동일: in은 key값을 순회, of는 value값을 순회)
 
+
+
+### `v-for`와 객체
+
+```vue
+<ul id="v-for-object" class="demo">
+    <li v-for="(value, key, index) in object">{{index}}. {{key}}: {{value}}</li>
+</ul>
+```
+
+```js
+new Vue({
+	el: `#v-for-object`,
+	data: {
+		object: {
+			title: `제목`,
+            author: `저자`,
+            publishedAt: `2019-12-29`
+		}
+	}
+})
+```
+
+#### Result
+
+```
+0. title: 제목
+1. author: 저자
+2. publishedAt: 2019-12-29
+```
+
+#### 주의점
+
+객체 순서가 일관적이지 않음. `Object.keys()`의 결과에 따름.
+
+### Maintaining State
+
+
+
 ## 이벤트 핸들링
-
-
 
 ## 폼 입력 바인딩
 
@@ -862,6 +903,22 @@ var example1 = new Vue({
 ## Render Functions & JSX
 
 ## 플러그인
+
+### 사용법
+
+```vue
+Vue.use(MyPlugin)
+
+new Vue({
+    // ...options
+})
+```
+
+`Vue.use`는 자동으로 같은 플러그인 중복사용을 방지함 (한번만 설치됨)
+
+### 작성법 
+
+> 추후 작성
 
 ## 필터
 

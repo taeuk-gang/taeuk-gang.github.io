@@ -186,7 +186,7 @@ http://<docker IP>:8081
 
 #### 1. `Jenkins 관리 > 플러그인 관리 > 설치 가능`에서 블루오션 설치
 
-![1577658451063](./Vue-PWA.assets/1577658451063.png)
+![1577658451063](https://user-images.githubusercontent.com/26294469/71563747-e36b0b80-2ad7-11ea-96e3-500b58632875.png)
 
 `재시작 없이 설치하기` 클릭
 
@@ -196,5 +196,5 @@ http://<docker IP>:8081
 
 #### Result
 
-![1577658800703](./Vue-PWA.assets/1577658800703.png)
+![1577658800703](https://user-images.githubusercontent.com/26294469/71563749-e403a200-2ad7-11ea-8d79-a9a29f5f6762.png)
 

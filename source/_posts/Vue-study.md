@@ -329,13 +329,13 @@ dom이 새로 업데이트되기 직전 시점
 
 인스턴스 제거 후 시점, vue의 모든 디렉티브 바인딩과 리스너가 제거
 
-![1577214835872](1577214835872.png)
+![1577214829972](https://user-images.githubusercontent.com/26294469/71563756-fbdb2600-2ad7-11ea-8831-7bdddf483786.png)
 
 
 
 
 
-![1577209781216](1577209781216.png)
+![1577209781216](https://user-images.githubusercontent.com/26294469/71563757-fbdb2600-2ad7-11ea-851d-e401ea99d8fd.png)
 
 ## 템플릿 문법
 

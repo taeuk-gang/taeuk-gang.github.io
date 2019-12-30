@@ -198,3 +198,161 @@ http://<docker IP>:8081
 
 ![1577658800703](https://user-images.githubusercontent.com/26294469/71563749-e403a200-2ad7-11ea-8d79-a9a29f5f6762.png)
 
+
+
+### 젠킨스 Ngnix 구성하기
+
+#### 배경
+
+ 젠킨스는 Ngnix 또는 Apache 같은 리버스 프록시 서버에서 운영하는 것이 일반적이다.
+
+1. 젠킨스 스레드를 차단하지 않고도 느린 클라이언트에 정적 파일을 전송 가능
+2. 젠킨스의 부하를 낮추기위해 정적 파일 캐싱, 서빙 수행 가능
+3. Ngnix는 SSL 자원에 매우 효율적, 기본 제공되는 윈스턴 서블릿 컨테이너보다 더 좋음
+
+#### 실행법
+
+##### 1. proxy_pass를 젠킨스의 IP와 포트로 직접 연결
+
+```ngnix
+# ngnix *.conf 파일
+
+upstream jenkins {
+	keepalive 32;
+	server 127.0.0.1:8080;
+}
+
+server {
+	listen 80;
+	server_name jenkins.example.com;
+	
+	root /var/run/jenkins/war/;
+	
+	access_log /var/log/nginx/jenkins/access.log;
+	error_log /var/log/nginx/jenkins/error.log;
+	ignore_invalid_headers off;	
+}
+
+location /userContent {
+	root /var/lib/jenkins/;
+	
+	if (!-f $request_filename) {
+		rewrite (.*) /$1 last;
+		break;
+	}
+	
+	sendfile on;
+}
+
+location @jenkins {
+	sendfile off;
+	proxy_pass http://jenkins;
+	
+	if ($request_uri ~* "/blue(/.*)") {
+		proxy_pass http://jenkins/blue$1;
+		break;
+	}
+	
+	proxy_redirect default;
+	proxy_http_version 1.1;
+	
+	proxy_set_header Host $host;
+	proxy_set_header X-Real_IP $remote_addr;
+	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+	proxy_set_header X-Forwarded-Proto $scheme;
+	proxy_max_temp_file_size 0;
+	
+	client_max_body_size 10m;
+	client_body_buffer_size 128k;
+	
+	proxy_connect_timeout 90;
+	proxy_send_timeout 90;
+	proxy_read_timeout 90;
+	proxy_buffering off;
+	proxy_request_buffering off;
+	proxy_set_header Connection "";
+}
+
+location / {
+	if ($http_user_agent ~* '(iPhone|iPad)') {
+		rewrite ^/$ /view/iphone/ redirect;
+	}
+	
+	try_files $uri @jenkins;
+}
+```
+
+
+
+### Nginx에서 젠킨스 블루오션 운영하기
+
+#### 1. jenkins 컨테이너 실행
+
+```bash
+docker run -d --name jenkins -v jenkins_home:/var/jenkins_home jenkinsci/blueocean
+```
+
+젠킨스를 호스트 IP에 노출시키지 않음
+
+#### 2. Ngnix 도커 이미지 다운
+
+```bash
+docker pull nginx
+```
+
+#### 3. Ngnix 도커 이미지 생성
+
+```bash
+docker run -d --name nginx -p 80:80 --link jenkins nginx
+```
+
+`--link` 옵션을 통해 nginx 컨테이너를 젠킨스 컨테이너에 연결
+
+#### 4. docker exec 명령어 실행
+
+```bash
+docker exec -it nginx /bin/bash
+```
+
+#### 5. 우분투 패키지 업데이트
+
+```bash
+apt-get update
+```
+
+#### 6. `/etc/ngnix/conf.d` 백업 후 수정
+
+```bash
+cp etc/nginx/conf.d/default.conf etc/nginx/conf.d/default.conf.backup
+```
+
+```nginx
+upstream jenkins {
+    server jenkins:8080;
+}
+
+server {
+    listen 80;
+    server_name jenkins.example.com;
+}
+
+location / {
+    proxy_pass http://jenkins;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+}
+```
+
+#### 7. 컨테이너 재실행
+
+```bash
+exit
+docker restart nginx
+```
+
+#### 8. 젠킨스 접속
+
+`http://<도커 호스트 IP>` 로 접속 (`http://<도커 호스트 IP>:8080`으로 접속되선 안된다.)
+

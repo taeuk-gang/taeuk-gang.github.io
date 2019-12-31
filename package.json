@@ -2,6 +2,9 @@
   "name": "taeuk-web",
   "version": "0.0.1",
   "private": true,
+  "scripts": {
+    "deploy": "git add --all && git commit -m \"write document\" && git push origin writing && hexo d -g"
+  },
   "hexo": {
     "version": "3.9.0"
   },

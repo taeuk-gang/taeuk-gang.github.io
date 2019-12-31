@@ -180,7 +180,7 @@ http://<docker IP>:8081
 
 >  * 번외: VSCODE에서 Docker 플러그인을 사용하면 더 편하게 진행이 가능하다.
 
-
+### 
 
 ### 기존 젠킨스에 블루오션 설정하기
 
@@ -382,7 +382,7 @@ cat ssh_key.pub
 
 `Jenkins 관리 > Credentials > global > Add Credentials` 버튼 클릭
 
-![1577700345446](Vue-PWA.assets/71635640-9028c280-2c69-11ea-93f9-ed8c7d292035.png)
+![71577420-640d2480-2b37-11ea-8cfd-acfefccf25ef](https://user-images.githubusercontent.com/26294469/71635814-3e813780-2c6b-11ea-9cd0-2751921a07c0.png)
 
 
 
@@ -390,17 +390,17 @@ cat ssh_key.pub
 
 ### ~~Jenkins에 Docker 플러그인 설치~~
 
-~~`Jenkins 관리 > 플러그인 관리 > 설치 가능 ` 에서 Docker를 검색하여 설치 ![71577552-fb727780-2b37-11ea-96cc-b033877643ac](Vue-PWA.assets/71635652-a8004680-2c69-11ea-9a42-5460b5b70d92.png)~~
+~~`Jenkins 관리 > 플러그인 관리 > 설치 가능 ` 에서 Docker를 검색하여 설치 ![71577552-fb727780-2b37-11ea-96cc-b033877643ac](https://user-images.githubusercontent.com/26294469/71635819-49d46300-2c6b-11ea-9bc5-2f9225218250.png)~~
 
 
 
 #### ~~Docker 플러그인 설정~~
 
-~~![71577675-72a80b80-2b38-11ea-8f3f-39827d29e876](Vue-PWA.assets/71635661-b51d3580-2c69-11ea-8267-7b210eeef61f.png)~~
+~~![71577675-72a80b80-2b38-11ea-8f3f-39827d29e876](https://user-images.githubusercontent.com/26294469/71635821-51940780-2c6b-11ea-940e-786bb5dac00a.png)~~
 
 ##### ~~1. Cloud Tab에서 `Docker` 를 추가~~
 
-~~![1577701111631](Vue-PWA.assets/71635665-bd757080-2c69-11ea-9adf-52d38b4ac2a7.png)~~
+~~![1577701111631](https://user-images.githubusercontent.com/26294469/71635827-5c4e9c80-2c6b-11ea-9071-6ca3eab66e10.png)~~
 
 
 
@@ -424,6 +424,6 @@ cat ssh_key.pub
 
 #### 2. 소스관리를 BitBucket으로 설정 후 연결
 
-![1577705256654](Vue-PWA.assets/71635673-c9f9c900-2c69-11ea-8f9f-180f07c87f8c.png)
+![71635673-c9f9c900-2c69-11ea-8f9f-180f07c87f8c](https://user-images.githubusercontent.com/26294469/71635840-7d16f200-2c6b-11ea-9c1a-1075e65b09ca.png)
 
-![71580156-e0593500-2b42-11ea-9640-ac03610f4d35](Vue-PWA.assets/71635681-df6ef300-2c69-11ea-853f-d8189af688ab.png)
+![image](Vue-PWA.assets/71580156-e0593500-2b42-11ea-9640-ac03610f4d35.png)

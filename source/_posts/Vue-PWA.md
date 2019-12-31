@@ -80,7 +80,7 @@ vue create vue-pwa-template
 
 
 
-## Github + Docker 연결
+## Vue.js + Nginx Dockerfile 작성
 
 ### 설치
 
@@ -355,4 +355,76 @@ docker restart nginx
 #### 8. 젠킨스 접속
 
 `http://<도커 호스트 IP>` 로 접속 (`http://<도커 호스트 IP>:8080`으로 접속되선 안된다.)
+
+>  기존 젠킨스 화면이 당신을 반겨준다면 성공!
+
+
+
+### Jenkins Credentials 생성
+
+#### 1. Jenkins Docker Image에 접속해서 ssh키 등록
+
+```bash
+# ssh 폴더 생성
+mkdir -p /var/lib/jenkins/.ssh
+
+# 이동
+cd /var/lib/jenkins/.ssh
+
+# ssh key 생성
+ssh-keygen -t rsa -f /var/lib/jenkins/.ssh/ssh_key
+
+# ssh_key.pub 복사
+cat ssh_key.pub
+```
+
+#### 2. 복사한 ssh key를 젠킨스에 등록
+
+`Jenkins 관리 > Credentials > global > Add Credentials` 버튼 클릭
+
+![image](Vue-PWA.assets/71577420-640d2480-2b37-11ea-8cfd-acfefccf25ef.png)
+
+
+
+------
+
+### ~~Jenkins에 Docker 플러그인 설치~~
+
+~~`Jenkins 관리 > 플러그인 관리 > 설치 가능 ` 에서 Docker를 검색하여 설치 ![image](Vue-PWA.assets/71577552-fb727780-2b37-11ea-96cc-b033877643ac.png)~~
+
+
+
+#### ~~Docker 플러그인 설정~~
+
+~~![image](Vue-PWA.assets/71577675-72a80b80-2b38-11ea-8f3f-39827d29e876.png)~~
+
+##### ~~1. Cloud Tab에서 `Docker` 를 추가~~
+
+~~![1577701127007](Vue-PWA.assets/1577701127007.png)~~
+
+
+
+##### ~~2. Docker Host URI 알아내기~~
+
+
+
+##### ~~3. Docker Cloud Details 버튼을 클릭 후 설정~~
+
+
+
+> 이부분 이해가 안됨
+
+-------
+
+
+
+### Jenkins +  Bitbucket 연결
+
+#### 1. 블루오션 접속 후, `파이프라인 생성` 버튼 클릭
+
+#### 2. 소스관리를 BitBucket으로 설정 후 연결
+
+![1577705256654](Vue-PWA.assets/1577705256654.png)
+
+![image](Vue-PWA.assets/71580156-e0593500-2b42-11ea-9640-ac03610f4d35.png)
 

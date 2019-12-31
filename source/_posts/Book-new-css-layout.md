@@ -215,6 +215,4 @@ supports (display: grid) {
 
 {% raw %}
 <a href ='/assets/new-css-layout-code-master.zip' download>예제 코드 Download</a>
-<br />
-<a target='_blank' href ='/assets/new-css-layout-code-master/index.html'>예제 코드 Reference</a>
 {% endraw %}

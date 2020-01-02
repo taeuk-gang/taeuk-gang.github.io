@@ -14,16 +14,29 @@ categories:
 
 - [x] Vue.js 템플릿 사용
   - [ ] 기본 문법 정리
+  - [x] Typescript 사용
+    - [ ] Typescript 문법 정리
   - [ ] vue-cli 내용 정리
   - [ ] Vuex 라우팅 구축
   - [ ] nuxt.js 서버 사이드 렌더링 짜기
   - [ ] SCSS 환경 구축
-- [ ] Kubernetes 위에서 작동하기
-- [ ] Github + Jenkins 연동
-  - [ ] Jenkins pipeline 내용 정리
+  
+- [ ] Kubernetes 위에서 작동하기 (이해 필요)
+
+  - [ ] 외부 클러스터 연결 & 사용하기
+
+- [ ] Git + Jenkins 연동 (쿠버 이후) 
+
+  - 세부 목표: 젠킨스를 구축하면, Bitbucket으로 push시 테스트를 자동 검사 해야함.
+
+  - [ ] Jenkins pipeline 내용 정리 
+
 - [ ] Progressive Web App 으로 작성
+
 - [ ] Mocha + StoryBook + Cypress 테스트 모듈 사용
+
 - [ ] ESLint Rule 짜기
+
 - [ ] 스타일 가이드 정리
   - [ ] Vue.js 스타일 가이드 정리
   - [ ] TOAST FE 가이드 정리
@@ -178,9 +191,9 @@ http://<docker IP>:8081
 
 블루오션이 없는 최신 버전 표준 젠킨스가 실행이 된다.
 
->  * 번외: VSCODE에서 Docker 플러그인을 사용하면 더 편하게 진행이 가능하다.
+>  * 번외: VSCODE에서 Docker 플러그인을 사용하면 더 편하게 설치가 가능하다.
 
-### 
+
 
 ### 기존 젠킨스에 블루오션 설정하기
 
@@ -412,7 +425,7 @@ cat ssh_key.pub
 
 
 
-> 이부분 이해가 안됨
+> 이부분에 대한 이해가 완벽하지 않다.
 
 -------
 
@@ -426,4 +439,5 @@ cat ssh_key.pub
 
 ![71635673-c9f9c900-2c69-11ea-8f9f-180f07c87f8c](https://user-images.githubusercontent.com/26294469/71635840-7d16f200-2c6b-11ea-9c1a-1075e65b09ca.png)
 
-![image](Vue-PWA.assets/71580156-e0593500-2b42-11ea-9640-ac03610f4d35.png)
+
+

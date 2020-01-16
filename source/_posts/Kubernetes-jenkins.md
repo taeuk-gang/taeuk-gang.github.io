@@ -1,5 +1,5 @@
 ---
-title: Kubernetes-jenkins
+title: 쿠버네티스 + 젠킨스 설치해보기
 toc: true
 date: 2020-01-16 17:15:23
 tags:

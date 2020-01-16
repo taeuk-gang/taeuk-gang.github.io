@@ -104,7 +104,7 @@ kubectl create clusterrolebinding tiller-admin-binding --clusterrole=cluster-adm
 kubectl get pods
 ```
 
-#### Jenkins UI 포트 설정
+#### Jenkins UI 포트 설정(8080 포트로 연결)
 
 ``` bash
 export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/component=jenkins-master" -l "app.kubernetes.io/instance=cd" -o jsonpath="{.items[0].metadata.name}")
@@ -139,6 +139,16 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 
 
 
+### 6. Jenkins + Bitbucket 연결
+
+#### 1. 블루오션 접속 후, `파이프라인 생성` 버튼 클릭
+
+#### 2. 소스관리를 BitBucket으로 설정 후 연결
+
+![71635673-c9f9c900-2c69-11ea-8f9f-180f07c87f8c](https://user-images.githubusercontent.com/26294469/71635840-7d16f200-2c6b-11ea-9c1a-1075e65b09ca.png)
+
+
+
 ### 참고링크
 
 [Jenkins를 사용하여 Google Kubernetes Engine에 지속적으로 배포](https://cloud.google.com/solutions/continuous-delivery-jenkins-kubernetes-engine?hl=ko)
@@ -146,3 +156,4 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 [Kubernetes Engine에서 Jenkins 사용](https://cloud.google.com/solutions/jenkins-on-kubernetes-engine?hl=ko)
 
 [Google Kubernetes Engine에서 Jenkins 설정](https://cloud.google.com/solutions/jenkins-on-kubernetes-engine-tutorial?hl=ko)
+

@@ -6,8 +6,13 @@ tags:
     - Kubernetes
 	- Jenkins
 categories:
-    - Kubernetes
+    - Kubernetes모
 ---
+
+## 목표
+
+- [ ] 쿠버네티스 환경에 젠킨스 설치하기
+- [ ] 젠킨스 + Bitbucket 환경 구성하기 (Commit시 자동 테스트)
 
 ## 쿠버네티스 + 젠킨스 설치해보기
 
@@ -21,10 +26,13 @@ GCP에서 쉽게 GUI로 클러스터 만들기 가능
 
 윈도우에서 진행하기에 어려움이 많아, gcp에서 제공하는 cloud shell을 사용하여 진행
 
+![image](https://user-images.githubusercontent.com/26294469/72597197-9baa0800-3950-11ea-958e-6a6a16cb4682.png)
+![image](https://user-images.githubusercontent.com/26294469/72597228-a5cc0680-3950-11ea-8a74-56d19b7ca49c.png)
+
 #### config
 
 ```bash
-gcloud config set project taeuk-project
+gcloud container clusters get-credentials your-first-cluster-1 --zone us-central1-a --project taeuk-project
 ```
 
 ![image](https://user-images.githubusercontent.com/26294469/72502741-5e287a80-387d-11ea-93df-b23d67e228cc.png)
@@ -108,6 +116,7 @@ kubectl get pods
 
 ``` bash
 export POD_NAME=$(kubectl get pods --namespace default -l "app.kubernetes.io/component=jenkins-master" -l "app.kubernetes.io/instance=cd" -o jsonpath="{.items[0].metadata.name}")
+
 kubectl port-forward $POD_NAME 8080:8080 >> /dev/null &
 ```
 

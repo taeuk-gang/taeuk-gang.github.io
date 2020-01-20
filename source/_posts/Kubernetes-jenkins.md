@@ -11,8 +11,8 @@ categories:
 
 ## 목표
 
-- [ ] 쿠버네티스 환경에 젠킨스 설치하기
-- [ ] 젠킨스 + Bitbucket 환경 구성하기 (Commit시 자동 테스트)
+- [x] 쿠버네티스 환경에 젠킨스 설치하기
+- [x] 젠킨스 + Bitbucket 환경 구성하기
 
 ## 쿠버네티스 + 젠킨스 설치해보기
 
@@ -28,6 +28,8 @@ GCP에서 쉽게 GUI로 클러스터 만들기 가능
 
 ![image](https://user-images.githubusercontent.com/26294469/72597197-9baa0800-3950-11ea-958e-6a6a16cb4682.png)
 ![image](https://user-images.githubusercontent.com/26294469/72597228-a5cc0680-3950-11ea-8a74-56d19b7ca49c.png)
+
+> 항상 연결 명령어와 `gcloud components update`를 이용하여 최신 동기화할 것
 
 #### config
 
@@ -156,7 +158,102 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 
 ![71635673-c9f9c900-2c69-11ea-8f9f-180f07c87f8c](https://user-images.githubusercontent.com/26294469/71635840-7d16f200-2c6b-11ea-9c1a-1075e65b09ca.png)
 
+### 7. JenkinsFile 작성
 
+#### Secret 생성
+
+> https://arisu1000.tistory.com/27844 이 곳 참고하여 작성
+
+`JenkinsFile`을 작성하기에 앞서, `docker login` 커맨드를 사용하기 위해 `username`과 `userpassword`를 쿠버네티스 시크릿으로 생성해줘야 한다.
+
+```bash
+kubectl create secret generic docker-hub-password --from-literal DOCKER_HUB_PASSWORD='<비밀번호>'
+```
+
+#### Secret 생성 확인
+
+```bash
+kubectl get secret user-pass-secret -o yaml
+```
+
+![image](https://user-images.githubusercontent.com/26294469/72699353-56bde580-3b8b-11ea-9ec8-4dcbca6b388f.png)
+
+##### 원래 값으로 확인하는 방법
+
+```bash
+echo <bash64코드> | base64 --decode
+```
+
+#### Secret 사용하기 (환경변수로 사용하기)
+
+쿠버네티스의 `Deployment`부분을 살펴봄
+
+```yaml
+env:
+    - name: SECRET_USERNAME
+      valueFrom:
+        secretKeyRef:
+          key: username
+          name: user-pass-secret
+    - name: SECRET_PASSWORD
+      valueFrom:
+        secretKeyRef:
+          key: password
+          name: user-pass-secret
+```
+
+env부분에 환경변수를 추가해줌
+
+```bash
+kubectl apply -f <yaml파일명>.yaml
+```
+
+#### JenkinsFile 작성
+
+```jenkinsFile
+podTemplate(
+    label: 'mypod',
+    volumes: [
+        emptyDirVolume(mountPath: '/etc/gitrepo', memory: false),
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+    ],
+    containers:
+    [
+        containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true,
+            envVars: [secretEnvVar(key: 'DOCKER_HUB_PASSWORD', secretName: 'docker-hub-password', secretKey: 'DOCKER_HUB_PASSWORD')]
+        )
+    ]
+)
+{
+    node('mypod') {
+        stage('Clone repository') {
+            container('git') {
+                sh 'git clone -b master https://taeuk-gang@bitbucket.org/taeuk-gang/vue-template.git /etc/gitrepo'
+            }
+        }
+        stage('Build and push docker image'){
+            container('docker') {
+                sh 'docker login -u kangtaeuk -p $DOCKER_HUB_PASSWORD'
+                sh 'docker build /etc/gitrepo/ -t kangtaeuk/vuepwa --no-cache'
+                sh 'docker push kangtaeuk/vuepwa'
+            }
+        }
+    }
+}
+```
+
+#### CronJob 설정
+
+![image](https://user-images.githubusercontent.com/26294469/72710856-461d6780-3bab-11ea-8755-77dc326cb8a5.png)
+
+해당 프로젝트 설정으로 들어가 10분마다 빌드되게 구성
+
+### 끝
+
+![image](https://user-images.githubusercontent.com/26294469/72710972-7ebd4100-3bab-11ea-915e-39cf1eb267fc.png)
+
+지속적으로 테스트 및 배포를 하는 것을 알 수 있다.
 
 ### 참고링크
 
@@ -165,4 +262,6 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 [Kubernetes Engine에서 Jenkins 사용](https://cloud.google.com/solutions/jenkins-on-kubernetes-engine?hl=ko)
 
 [Google Kubernetes Engine에서 Jenkins 설정](https://cloud.google.com/solutions/jenkins-on-kubernetes-engine-tutorial?hl=ko)
+
+[174. [Kubernetes] 쿠버네티스에서 Jenkins CI와 Github Webhook를 이용한 도커 이미지 빌드 파이프라인 구축](https://m.blog.naver.com/PostView.nhn?blogId=alice_k106&logNo=221562805601&proxyReferer=https%3A%2F%2Fwww.google.com%2F)
 

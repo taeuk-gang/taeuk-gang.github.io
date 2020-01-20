@@ -175,8 +175,6 @@ kubectl create secret generic docker-hub-password --from-literal DOCKER_HUB_PASS
 kubectl get secret user-pass-secret -o yaml
 ```
 
-![image](https://user-images.githubusercontent.com/26294469/72699353-56bde580-3b8b-11ea-9ec8-4dcbca6b388f.png)
-
 ##### 원래 값으로 확인하는 방법
 
 ```bash

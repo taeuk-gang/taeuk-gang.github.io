@@ -4,7 +4,6 @@ toc: true
 date: 2020-01-16 17:15:23
 tags:
     - Kubernetes
-	- Jenkins
 categories:
     - Kubernetes
 ---
@@ -182,30 +181,6 @@ kubectl get secret user-pass-secret -o yaml
 
 ```bash
 echo <bash64코드> | base64 --decode
-```
-
-#### Secret 사용하기 (환경변수로 사용하기)
-
-쿠버네티스의 `Deployment`부분을 살펴봄
-
-```yaml
-env:
-    - name: SECRET_USERNAME
-      valueFrom:
-        secretKeyRef:
-          key: username
-          name: user-pass-secret
-    - name: SECRET_PASSWORD
-      valueFrom:
-        secretKeyRef:
-          key: password
-          name: user-pass-secret
-```
-
-env부분에 환경변수를 추가해줌
-
-```bash
-kubectl apply -f <yaml파일명>.yaml
 ```
 
 #### JenkinsFile 작성

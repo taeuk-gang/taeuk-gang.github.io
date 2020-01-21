@@ -220,7 +220,60 @@ podTemplate(
 
 ![image](https://user-images.githubusercontent.com/26294469/72710856-461d6780-3bab-11ea-8755-77dc326cb8a5.png)
 
-해당 프로젝트 설정으로 들어가 10분마다 빌드되게 구성
+~~해당 프로젝트 설정으로 들어가 10분마다 빌드되게 구성~~
+
+어째서인지 적용이 안된다. 
+
+그냥 Jenkinsfile에 추가해주자
+
+```Jenkinsfile
+properties([
+    pipelineTriggers([cron('H/15 * * * *')]),
+])
+```
+
+
+
+#### 전체 Jenkinsfile
+
+```Jenkinsfile
+properties([
+    pipelineTriggers([cron('H/15 * * * *')]),
+])
+
+podTemplate(
+    label: 'mypod',
+    volumes: [
+        emptyDirVolume(mountPath: '/etc/gitrepo', memory: false),
+        hostPathVolume(mountPath: '/var/run/docker.sock', hostPath: '/var/run/docker.sock')
+    ],
+    containers:
+    [
+        containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
+        containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true,
+            envVars: [secretEnvVar(key: 'DOCKER_HUB_PASSWORD', secretName: 'docker-hub-password', secretKey: 'DOCKER_HUB_PASSWORD')]
+        )
+    ]
+)
+{
+    node('mypod') {
+        stage('Clone repository') {
+            container('git') {
+                sh 'git clone -b master https://taeuk-gang@bitbucket.org/taeuk-gang/vue-template.git /etc/gitrepo'
+            }
+        }
+        stage('Build and push docker image'){
+            container('docker') {
+                sh 'docker login -u kangtaeuk -p $DOCKER_HUB_PASSWORD'
+                sh 'docker build /etc/gitrepo/ -t kangtaeuk/vuepwa --no-cache'
+                sh 'docker push kangtaeuk/vuepwa'
+            }
+        }
+    }
+}
+```
+
+
 
 ### 끝
 

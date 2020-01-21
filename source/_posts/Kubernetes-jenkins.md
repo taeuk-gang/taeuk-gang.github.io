@@ -195,7 +195,8 @@ podTemplate(
         containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true,
             envVars: [secretEnvVar(key: 'DOCKER_HUB_PASSWORD', secretName: 'docker-hub-password', secretKey: 'DOCKER_HUB_PASSWORD')]
-        )
+        ),
+        containerTemplate(name: 'node', image: 'node:10-alpine', command: 'cat', ttyEnabled: true)
     ]
 )
 {
@@ -203,6 +204,12 @@ podTemplate(
         stage('Clone repository') {
             container('git') {
                 sh 'git clone -b master https://taeuk-gang@bitbucket.org/taeuk-gang/vue-template.git /etc/gitrepo'
+            }
+        }
+        stage('Unit Test source codes') {
+            container('node') {
+                sh 'cd /etc/gitrepo && npm install'
+                sh 'cd /etc/gitrepo && npm run test:unit' 
             }
         }
         stage('Build and push docker image'){
@@ -252,7 +259,8 @@ podTemplate(
         containerTemplate(name: 'git', image: 'alpine/git', ttyEnabled: true, command: 'cat'),
         containerTemplate(name: 'docker', image: 'docker', command: 'cat', ttyEnabled: true,
             envVars: [secretEnvVar(key: 'DOCKER_HUB_PASSWORD', secretName: 'docker-hub-password', secretKey: 'DOCKER_HUB_PASSWORD')]
-        )
+        ),
+        containerTemplate(name: 'node', image: 'node:10-alpine', command: 'cat', ttyEnabled: true)
     ]
 )
 {
@@ -260,6 +268,12 @@ podTemplate(
         stage('Clone repository') {
             container('git') {
                 sh 'git clone -b master https://taeuk-gang@bitbucket.org/taeuk-gang/vue-template.git /etc/gitrepo'
+            }
+        }
+        stage('Unit Test source codes') {
+            container('node') {
+                sh 'cd /etc/gitrepo && npm install'
+                sh 'cd /etc/gitrepo && npm run test:unit' 
             }
         }
         stage('Build and push docker image'){

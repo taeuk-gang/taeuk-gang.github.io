@@ -163,7 +163,7 @@ printf $(kubectl get secret cd-jenkins -o jsonpath="{.data.jenkins-admin-passwor
 
 > https://arisu1000.tistory.com/27844 이 곳 참고하여 작성
 
-`JenkinsFile`을 작성하기에 앞서, `docker login` 커맨드를 사용하기 위해 `username`과 `userpassword`를 쿠버네티스 시크릿으로 생성해줘야 한다.
+`JenkinsFile`을 작성하기에 앞서, `docker login` 커맨드를 사용하기 위해 `username`과 `userpassword`를 쿠버네티스 시크릿으로 생성해줘야 한다. 
 
 ```bash
 kubectl create secret generic docker-hub-password --from-literal DOCKER_HUB_PASSWORD='<비밀번호>'

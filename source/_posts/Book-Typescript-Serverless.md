@@ -384,10 +384,7 @@ console.log(Counter.count)
 
 
 
-
-
 ---------
 
 
 
-### Async

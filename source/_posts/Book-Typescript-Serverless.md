@@ -1,5 +1,5 @@
 ---
-title: 타입스크립트, AWS 서버리스로 들어올리다.
+title: Typescript 정리
 toc: true
 date: 2020-01-21 14:54:56
 tags:
@@ -8,7 +8,7 @@ tags:
     - Typescript
     - Vue.js
 categories:
-    - Book
+    - Typescript
 ---
 
 > 책 읽고 도움될만한 것 정리

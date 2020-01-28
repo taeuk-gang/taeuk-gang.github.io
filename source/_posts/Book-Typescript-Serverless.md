@@ -150,7 +150,7 @@ let a: number = null;
 
 #### Never
 
-절대 발생하지는 값의 유형. Ex. 절대 리턴이 발생하지 않는 경우, 항상 예외값 등
+절대 발생하지않는 값의 유형. Ex. 절대 리턴이 발생하지 않는 경우, 항상 예외값 등
 
 ```typescript
 function error(message: string): never {

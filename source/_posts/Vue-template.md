@@ -44,3 +44,7 @@ categories:
  ┗ 📜tsconfig.json # 이건 좀 봐두자
 ```
 
+## 흐름
+
+![image](https://user-images.githubusercontent.com/26294469/73253730-6f1fa700-4200-11ea-9a45-c0f02a28aad2.png)
+

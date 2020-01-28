@@ -25,17 +25,17 @@ categories:
   - [ ] nuxt.js 서버 사이드 렌더링 짜기
   - [ ] SCSS 환경 구축
   
-- [ ] Kubernetes 위에서 작동하기 (이해 필요)
+- [x] Kubernetes 위에서 작동하기 (이해 필요)
 
-  - [ ] 외부 클러스터 연결 & 사용하기
+  - [x] 외부 클러스터 연결 & 사용하기
 
-- [ ] Git + Jenkins 연동 (쿠버 이후) 
+- [x] Git + Jenkins 연동 (쿠버 이후) 
 
   - 세부 목표: 젠킨스를 구축하면, Bitbucket으로 push시 테스트를 자동 검사 해야함.
 
-  - [ ] Jenkins pipeline 내용 정리 
+  - [x] Jenkins pipeline 내용 정리 
 
-- [ ] Progressive Web App 으로 작성
+- [x] Progressive Web App 으로 작성
 
 - [ ] Mocha + StoryBook + Cypress 테스트 모듈 사용
 

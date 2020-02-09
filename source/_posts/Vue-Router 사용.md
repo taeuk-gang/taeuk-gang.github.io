@@ -1,5 +1,5 @@
 ---
-title: Vue Router 사용해보기
+title: Vue Router 사용
 toc: true
 date: 2020-01-28 19:04:47
 tags:
@@ -8,7 +8,7 @@ categories:
 	- Vue.js
 ---
 
-## Vue Router 사용해보기
+## Vue Router
 
 ### Install
 
@@ -119,4 +119,6 @@ export default {
 };
 </script>
 ```
+
+`<router-link>`는 현재 라우트와 일치할 때 자동으로 `.router-link-active` 클래스가 추가
 

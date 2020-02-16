@@ -4,10 +4,11 @@ toc: true
 date: 2020-02-10 02:04:47
 tags:
 	- SSH
-	- SERVER
-	- VSCODE
+	- Server
+	- Vscode
 categories:
-	- SERVER
+	- Server
+	- Vscode
 ---
 
 ## VS Code에서 서버 내 파일 작업하기

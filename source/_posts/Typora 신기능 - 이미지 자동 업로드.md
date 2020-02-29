@@ -31,11 +31,11 @@ Typora - Winodow 버전에 신기능이 업데이트됬다. 이전부터 Mac버�
 
 ![image-20200229230615472](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200229230615472.png)
 
-### 2. Open Config File 버튼을 누르기
+### 2. Open Config File 버튼을 누르고, `config.json` 설정
 
 그럼 `config.json` 파일이 뜰텐데, 현재 아무것도 설정되있지 않은 상태이다.
 
-이미지를 업로드하기 좋은 곳이 어디있을까 생각하다가, `github`가 제일 좋을 것 같아 아래와 같이 설정할 수 있다.
+이미지를 업로드하기 좋은 곳이 어디있을까 생각하다가, `github`가 제일 좋을 것 같아 아래와 같이 설정할 수 있다. (* github repo 만드는 법은 생략)
 
 #### Github용 `config.json` 템플릿
 

@@ -11,11 +11,12 @@ categories:
 
 ## 기능 설명
 
-Typora - Winodow 버전에 신기능이 업데이트됬다. 이전부터 Mac버전은 있던 기능이었는데 Window만 없던 기능이다. 다름 아닌, 이미지를 삽입했을 때, 자동으로 웹 서버에 저장 + 링크 연결해주는 기능이다.
+Typora - Winodow 버전에 신기능이 업데이트됬다. 이전부터 Mac은 있던 기능인데 Window만 없었다. 
+이미지를 삽입시, 자동으로 웹 서버에 올려주고 링크를 연결해주는 기능이다.
 
 ![너무 좋아!](https://user-images.githubusercontent.com/26294469/74609914-0312cd80-5132-11ea-9aae-74cb65d7571e.gif)
 
-### Typora에서 사용하는 영상(GIF)
+### Typora에서 사용 영상(GIF)
 
 ![사용영상](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/사용영상.gif)
 
@@ -88,6 +89,10 @@ Typora - Winodow 버전에 신기능이 업데이트됬다. 이전부터 Mac버�
 ```
 
 이후, `config.json` 저장한 뒤 Typora에서 이미지를 삽입하면 `Upload Image` 버튼이 생긴 것을 확인 할 수 있다!
+
+![커밋 사진](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200301105851396.png)
+
+![폴더 올라간 모습](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200301105914720.png)
 
 
 

@@ -16,6 +16,8 @@ categories:
 
 개인 학습 용도로, 틀린 요소가 있을 수 있음
 
+[참고 링크](https://medium.com/keycloak/secure-vue-js-app-with-keycloak-94814181e344)
+
 ## 백엔드 설치
 
 그래도 백엔드가 없으면, Client에서 되는지 안되는지 모르므로 간단하게 도커를 이용해 환경설정을 해준다.
@@ -36,9 +38,9 @@ docker run -d -e KEYCLOAK_USER=<USERNAME> -e KEYCLOAK_PASSWORD=<PASSWORD> -p 808
 
 ### 설정 화면 들어가기
 
-![이 UI 클릭](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200302223431929.png)
-
-![관리자 로그인 - 도커 생성때 만듦](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200302224827885.png)
+|                       1. 버튼 클릭하기                       |                        2. 로그인 하기                        |
+| :----------------------------------------------------------: | :----------------------------------------------------------: |
+| <img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200302223431929.png" width="400"> | <img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200302224827885.png" width="400"> |
 
 
 

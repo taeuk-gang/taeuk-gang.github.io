@@ -1,5 +1,5 @@
 ---
-title: Keycloak을 사용한 로그인 구현(Client 관점) 개발일지
+title: Keycloak을 사용한 로그인 구현
 toc: true
 date: 2020-02-21 02:04:47
 tags:
@@ -14,9 +14,7 @@ categories:
 
 `Keycloak`을 사용한 Client 관점의 로그인 구현 개발 일지
 
-개인 학습 용도로, 틀린 요소가 있을 수 있음
-
-[참고 링크](https://medium.com/keycloak/secure-vue-js-app-with-keycloak-94814181e344)
+개인 학습 용도로, 틀린 요소가 있을 수 있음 [참고 링크](https://medium.com/keycloak/secure-vue-js-app-with-keycloak-94814181e344)
 
 ## 백엔드 설치
 
@@ -189,6 +187,15 @@ function errorRefresh() {
 ```
 
 ![Demo](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/test.gif)
+
+## 결론
+
+`FE`에서 Vue.js를 사용하긴 했지만 별도 Vue 의존성이 있는건 아니라서, VanilaJS 또는 React에서도 바로 사용할 수 있을 것 같다. 또한, Client에서 사용이 어렵지않아, 쉽게 사용할 수 있을 것 같다.
+
+그렇지만, Keycloak 객체에 어떤 메소드들이 있는지 정리할 필요성이 있다. 
+(라이브러리를 사용함에는 그 기능을 완벽히 파악하는 것이 중요하기 때문에...)
+
+[Javascript docs](https://github.com/keycloak/keycloak-documentation/blob/master/securing_apps/topics/oidc/javascript-adapter.adoc)
 
 ## 참고링크
 

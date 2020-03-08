@@ -27,11 +27,10 @@ categories:
 
 
 ### `package.json` 작성
-
-- [이 사이트 (공식)](https://docs.npmjs.com/files/package.json)에서 자세히 설명되어있다. 
-- +[한글 사이트](https://programmingsummaries.tistory.com/385)
-
 > 개인적으로 중요하다고 생각되는 부분이나 몰랐던 부분만 정리
+[이 사이트 (공식)](https://docs.npmjs.com/files/package.json)에서 자세히 설명되어있다. 
+
++[한글 사이트](https://programmingsummaries.tistory.com/385)
 
 #### name
 

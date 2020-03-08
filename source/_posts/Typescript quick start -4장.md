@@ -401,15 +401,85 @@ const code: Language = Language.korean
 
 ##### Array
 
+###### array type
+
+```typescript
+let array; string[] = [`a`, `b`, `c`];
+```
+
+###### generic array type <>
+
+```typescript
+let array: Array<string> = [`a`, `b`, `c`];
+```
+
+차이점: primitive 타입 외에 object 타입도 받을 수 있다.
+
+```typescript
+let array: Array<() => string> = [() => `a`, () => `b`, () => `c`];
+```
+
 ##### Tuple
+
+n개에 대한 배열 타입
+
+```typescript
+let array: [string, number] = [`text`, 10];
+
+array = [1, `t`];	// error - 각 index에 대한 타입이 안맞음
+array = [`t`, 10, `e`, 1];	// error - index를 초과하여 받음
+```
+
+> 이번 장에서 다루지 않는 것들 생략
 
 ##### (생략) Function
 
 ##### (생략) 생성자
 
-##### Class
+##### (생략) Class
 
-##### Interface
+##### (생략) Interface
 
-##### 
+ 
 
+## 📝p114 `undefined` !== `null`
+
+`undefined`는 선언은 됬지만, 값이 할당되지 않은 상태
+
+`null`은 선언과 값이 없다고 할당된 상태
+
+```js
+undefined === null; // false
+undefined == null; // true
+```
+
+`===` 비교 연산자는 type까지 값은지 체크해주지만, `==`는 값만 체크
+
+ex.
+
+```js
+1 == `1`;	// true
+1 === `1`;	// false
+```
+
+
+
+## 📝p123 for ... in 문 주의사항
+
+> 이전에 이슈 걸렸던 사항으로 작성
+
+`for ... in` 문은 없는 인덱스는 출력하지 않는다.
+
+ex.
+
+```js
+for (i in [1,,,4]) {
+    console.log(i);
+}
+```
+
+![for...in문](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200309004858167.png)
+
+`for ... of`문은 출력
+
+![for...of문](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200309004950037.png)

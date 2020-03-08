@@ -48,7 +48,11 @@ categories:
 
 #### scripts
 
-> 개인적으로 가장 `package.json` 파일을 열었을 때, 가장 먼저 보는 항목
+> 개인적으로 가장 `package.j0son` 파일을 열었을 때, 가장 먼저 보는 항목
+>
+> **참고링크**
+> [npm-scripts](https://docs.npmjs.com/misc/scripts)
+> [npm-run-scripts](https://docs.npmjs.com/cli/run-script)
 
 개발자가 설정해둔 커맨드 라인 명령어를 alias처럼 `npm run <key값>`으로 사용할 수 있다.
 
@@ -65,13 +69,6 @@ npm run test:make
 
 # mkdir make-test-folder 명령어가 실행되고, 현재 경로에 make-test-folder 디렉토리가 생긴다.
 ```
-
-##### 참고 링크
-
-- [npm-scripts](https://docs.npmjs.com/misc/scripts)
-- [npm-run-scripts](https://docs.npmjs.com/cli/run-script)
-
-
 
 #### dependencies
 
@@ -121,9 +118,9 @@ npm rm <패키지명>
 
 타입스크립트 컴파일 옵션 정의된 파일.
 
-> 중요한 파일로, 개인 공부겸 다시 정리했습니다.
+> 중요한 파일로, 개인 공부겸 다시 정리하기
 >
-> [잘 정리된 블로그](https://vomvoru.github.io/blog/tsconfig-compiler-options-kr/)
+> [참고: 잘 정리된 블로그]1(https://vomvoru.github.io/blog/tsconfig-compiler-options-kr/)
 
 
 

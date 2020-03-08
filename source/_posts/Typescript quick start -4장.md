@@ -17,7 +17,7 @@ categories:
 
 
 
-## :memo:p39. `package.json`
+##  📝p39. `package.json`
 
 프론트엔드에서 가장 먼저 살펴보는 파일
 
@@ -95,7 +95,7 @@ npm run test:make
 
 
 
-## :memo:p40. npm 주요 명령어
+##  📝p40. npm 주요 명령어
 
 npm 주요 명령어를 짧게 칠 수 있다. (기본 aliases)
 
@@ -123,7 +123,7 @@ npm rm <패키지명>
 
 
 
-## :memo:p48. `tsconfig.json` 설정
+##  📝p48. `tsconfig.json` 설정
 
 타입스크립트 컴파일 옵션 정의된 파일
 
@@ -145,7 +145,7 @@ const DashboardView = () => import(/* webpackChunkName: "dashboard" */ '@/views/
 
 
 
-## :memo:p76. 변수 선언
+##  📝p76. 변수 선언
 
 > 기존 JS(ES5) `var` 과 ES6에서 생긴 `let`, `const` 차이점이 중요
 >
@@ -254,7 +254,7 @@ function func() {
 
 
 
-## :memo:p86. 타입 계층도
+##  📝p86. 타입 계층도
 
 ![출처: Quick start Typescript p.86](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200308220210471.png)
 
@@ -346,6 +346,18 @@ const ORANGE = Symbol();
 >
 > [사용 사례에 대한 링크](https://perfectacle.github.io/2017/04/16/ES6-Symbol/)
 
+
+
+##### type
+
+특정 문자열만 허용하는 타입
+
+```typescript
+type EventType = "keyup" | "mouseover";
+```
+
+
+
 ##### enum
 
 ```typescript
@@ -381,16 +393,6 @@ enum Language {
 }
 
 const code: Language = Language.korean
-```
-
-
-
-##### 문자열 리터럴
-
-`type` 예약어 사용하여, 특정 문자열만 허용하는 타입
-
-```typescript
-type EventType = "keyup" | "mouseover";
 ```
 
 --------

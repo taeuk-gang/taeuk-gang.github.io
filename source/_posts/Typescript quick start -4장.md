@@ -57,11 +57,13 @@ categories:
 
 #### scripts
 
-> 개인적으로 가장 `package.j0son` 파일을 열었을 때, 가장 먼저 보는 항목
+> 개인적으로 가장 `package.json` 파일을 열었을 때, 가장 먼저 보는 항목
 >
 > **참고링크**
-> [npm-scripts](https://docs.npmjs.com/misc/scripts)
-> [npm-run-scripts](https://docs.npmjs.com/cli/run-script)
+>
+> [참고: npm-scripts](https://docs.npmjs.com/misc/scripts)
+>
+> [참고: npm-run-scripts](https://docs.npmjs.com/cli/run-script)
 
 개발자가 설정해둔 커맨드 라인 명령어를 alias처럼 `npm run <key값>`으로 사용할 수 있다.
 

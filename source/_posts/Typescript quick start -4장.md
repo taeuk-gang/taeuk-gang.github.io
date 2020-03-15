@@ -164,6 +164,10 @@ const DashboardView = () => import(/* webpackChunkName: "dashboard" */ '@/views/
 
 JS에서 대표적으로 호이스팅(끌어올림)으로 되는 것이 `function`과 `var`이 있다. 안되는 것으로는 `class`, `const`, `let`이 있다.
 
+> 실질적으로는 `const`, `let`은 호이스팅은 된다. 선언은 되지만, 초기화가 필요해서 Error가 뜨는 것일 뿐이다.
+>
+> V8 엔진에 관심을 갖고 글을 읽던 중 알게 되었다. [참고 블로그](https://evan-moon.github.io/2019/06/18/javascript-let-const/)
+
 ##### var의 경우
 
 ```js

@@ -1,5 +1,5 @@
 ---
-ㅇtitle: Quick Start Typescript ~ 5장 정리
+title: Quick Start Typescript ~ 5장 정리
 toc: true
 date: 2020-03-15 12:39:05
 tags: 

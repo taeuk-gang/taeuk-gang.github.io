@@ -1,7 +1,7 @@
 ---
-📝title: Quick Start Typescript ~ 7장 정리
+title: Quick Start Typescript ~ 7장 정리
 toc: true
-date: 2020-03-22 20:39:05
+date: 2020-04-05 13:39:05
 tags: 
     - Typescript
 categories: 

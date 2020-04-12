@@ -314,3 +314,19 @@ import { default as Validator } from './validator';
 ## 📝289 ~ 313p. 모듈시스템 생략
 
 > 모듈 시스템은 각 파트마다 다르기 때문에 웹개발자라면 ES2015모듈을, Node.js개발자라면 CommonJs 모듈 형식을 기본으로 알고, 나머지는 상황에 따라 알아야할 것 같다
+
+
+
+
+
+## 참고링크
+
+> 책은 이론적인 부분으로 많이 설명되어있어, 실제에서는 어떻게 사용되고, 더 추가적인 내용을 찾아봄
+
+- [타입스크립트 컴파일러가 모듈 타입 선언을 참조하는 과정](https://medium.com/naver-fe-platform/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC%EA%B0%80-%EB%AA%A8%EB%93%88-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8%EC%9D%84-%EC%B0%B8%EC%A1%B0%ED%95%98%EB%8A%94-%EA%B3%BC%EC%A0%95-5bfc55a88bb6)
+- [d.ts 만들기](https://www.slideshare.net/gloridea/dts-74589285) - 개인적으로 몇몇 부분이 잘못? 이해가 안되는 부분 존재
+- [타입스크립트 전환 후기 - import, export](https://www.zerocho.com/category/TypeScript/post/5bab2086103eac558e45cdd7) - global로 선언하는건 맞는지 모르겠는 부분
+- [Chart.js의 타입 정의](https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/chart.js/index.d.ts)
+- [정적 타이핑](https://poiemaweb.com/typescript-typing)
+- [TypeScript - 남의 라이브러리 쓸 때 d.ts 파일이 없는 경우](https://velog.io/@bigbrothershin/TypeScript-%EB%82%A8%EC%9D%98-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%93%B8-%EB%95%8C-d.ts-%ED%8C%8C%EC%9D%BC%EC%9D%B4-%EC%97%86%EB%8A%94-%EA%B2%BD%EC%9A%B0)
+

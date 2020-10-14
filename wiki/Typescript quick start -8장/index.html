@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Quick Start Typescript ~ 8장 정리 | TAEUK WEB</title>
+    
+    
+        <meta name="keywords" content="Typescript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성  8장 모듈📝253p. 모듈 필요성 유지보수 전역 스코프 오염 방지 재사용성  모듈러 프로그래밍 기반 과정 모듈 식별 모듈 분리 선언 외부 공개  📝254p. 내부 모듈, 외부 모듈 차이타입스크립트 1.5부터 Namespce라는 특징과 ES">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quick Start Typescript ~ 8장 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/index.html">
+<meta property="og:site_name" content="TAEUK WEB">
+<meta property="og:description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성  8장 모듈📝253p. 모듈 필요성 유지보수 전역 스코프 오염 방지 재사용성  모듈러 프로그래밍 기반 과정 모듈 식별 모듈 분리 선언 외부 공개  📝254p. 내부 모듈, 외부 모듈 차이타입스크립트 1.5부터 Namespce라는 특징과 ES">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200413001659451.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200413001720503.png">
+<meta property="article:published_time" content="2020-04-12T04:39:05.000Z">
+<meta property="article:modified_time" content="2020-10-14T15:42:17.857Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200413001659451.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WEB" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WEB</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file active"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-10%E1%84%8C%E1%85%A1%E1%86%BC/">Quick Start Typescript ~ 10장 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Typescript quick start -8장" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">
+            <time datetime="2020-04-12T04:39:05.000Z" itemprop="datePublished">2020-04-12</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start -8장.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start -8장.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start -8장.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Quick Start Typescript ~ 8장 정리
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#8%EC%9E%A5-%EB%AA%A8%EB%93%88"><span class="toc-number">1.</span> <span class="toc-text">8장 모듈</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D253p-%EB%AA%A8%EB%93%88-%ED%95%84%EC%9A%94%EC%84%B1"><span class="toc-number">1.1.</span> <span class="toc-text">📝253p. 모듈 필요성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AA%A8%EB%93%88%EB%9F%AC-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EA%B8%B0%EB%B0%98-%EA%B3%BC%EC%A0%95"><span class="toc-number">1.1.1.</span> <span class="toc-text">모듈러 프로그래밍 기반 과정</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D254p-%EB%82%B4%EB%B6%80-%EB%AA%A8%EB%93%88-%EC%99%B8%EB%B6%80-%EB%AA%A8%EB%93%88-%EC%B0%A8%EC%9D%B4"><span class="toc-number">1.2.</span> <span class="toc-text">📝254p. 내부 모듈, 외부 모듈 차이</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D259p-Namespace"><span class="toc-number">1.3.</span> <span class="toc-text">📝259p. Namespace</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#namespace-module"><span class="toc-number">1.3.1.</span> <span class="toc-text">namespace &#x3D; module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%82%A4%EC%9B%8C%EB%93%9C-%EC%A4%91%EB%B3%B5-%EC%9D%B4%EC%9C%A0"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">키워드 중복 이유</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D261p-%ED%95%9C-%ED%8C%8C%EC%9D%BC%EC%97%90-%EC%97%AC%EB%9F%AC-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%84%A0%EC%96%B8"><span class="toc-number">1.4.</span> <span class="toc-text">📝261p. 한 파일에 여러 네임스페이스 선언</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D263p-%E2%98%85-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%97%AC%EB%9F%AC-%ED%8C%8C%EC%9D%BC%EC%97%90-%EC%84%A0%EC%96%B8"><span class="toc-number">1.5.</span> <span class="toc-text">📝263p. ★ 네임스페이스 여러 파일에 선언</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D268p-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%AA%A8%EB%93%88"><span class="toc-number">1.6.</span> <span class="toc-text">📝268p. 네임스페이스 모듈</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="toc-number">1.6.1.</span> <span class="toc-text">사용법</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D271p-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%9D%B4%EB%A6%84-%ED%99%95%EC%9E%A5"><span class="toc-number">1.7.</span> <span class="toc-text">📝271p. 네임스페이스 이름 확장</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D274p-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80%EC%97%90%EC%84%9C-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%AA%A8%EB%93%88-%ED%98%B8%EC%B6%9C"><span class="toc-number">1.8.</span> <span class="toc-text">📝274p. 브라우저에서 네임스페이스 모듈 호출</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D276p-%EB%AA%A8%EB%93%88-%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="toc-number">1.9.</span> <span class="toc-text">📝276p. 모듈 사용법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B0%9C%EB%B3%84-export"><span class="toc-number">1.9.1.</span> <span class="toc-text">개별 export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%95%A8%EA%BB%98-export"><span class="toc-number">1.9.2.</span> <span class="toc-text">함께 export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AA%A8%EB%91%90-export"><span class="toc-number">1.9.3.</span> <span class="toc-text">모두 export</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AA%A8%EB%93%88-%EC%9E%AC%EB%85%B8%EC%B6%9C"><span class="toc-number">1.9.4.</span> <span class="toc-text">모듈 재노출</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D281p-%E2%98%85%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A1%9C-%EA%B0%90%EC%8B%B8%EC%84%9C-%EC%9E%AC%EB%85%B8%EC%B6%9C"><span class="toc-number">1.10.</span> <span class="toc-text">📝281p. ★네임스페이스로 감싸서 재노출</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D283p-%EB%94%94%ED%8F%B4%ED%8A%B8-%EB%AC%B4%EB%B2%95"><span class="toc-number">1.11.</span> <span class="toc-text">📝283p. 디폴트 무법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#export-equals-import-equals-%EB%AC%B8"><span class="toc-number">1.11.1.</span> <span class="toc-text">export-equals, import-equals 문</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2"><span class="toc-number">1.11.2.</span> <span class="toc-text">2</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD"><span class="toc-number">1.11.3.</span> <span class="toc-text">주의사항</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D289-313p-%EB%AA%A8%EB%93%88%EC%8B%9C%EC%8A%A4%ED%85%9C-%EC%83%9D%EB%9E%B5"><span class="toc-number">1.12.</span> <span class="toc-text">📝289 ~ 313p. 모듈시스템 생략</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B0%B8%EA%B3%A0%EB%A7%81%ED%81%AC"><span class="toc-number">1.13.</span> <span class="toc-text">참고링크</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성</p>
+</blockquote>
+<h1 id="8장-모듈"><a href="#8장-모듈" class="headerlink" title="8장 모듈"></a>8장 모듈</h1><h2 id="📝253p-모듈-필요성"><a href="#📝253p-모듈-필요성" class="headerlink" title="📝253p. 모듈 필요성"></a>📝253p. 모듈 필요성</h2><ol>
+<li>유지보수</li>
+<li>전역 스코프 오염 방지</li>
+<li>재사용성</li>
+</ol>
+<h3 id="모듈러-프로그래밍-기반-과정"><a href="#모듈러-프로그래밍-기반-과정" class="headerlink" title="모듈러 프로그래밍 기반 과정"></a>모듈러 프로그래밍 기반 과정</h3><ol>
+<li>모듈 식별</li>
+<li>모듈 분리 선언</li>
+<li>외부 공개</li>
+</ol>
+<h2 id="📝254p-내부-모듈-외부-모듈-차이"><a href="#📝254p-내부-모듈-외부-모듈-차이" class="headerlink" title="📝254p. 내부 모듈, 외부 모듈 차이"></a>📝254p. 내부 모듈, 외부 모듈 차이</h2><p>타입스크립트 1.5부터 <code>Namespce</code>라는 특징과 ES6 모듈 특지이 추가 ECMAScript 표준 용어집에 2가지 형태의 모듈 구분</p>
+<ol>
+<li>내부 모듈 - <code>namespace</code></li>
+<li>외부 모듈 - <code>export</code></li>
+</ol>
+<p>내부모듈, <code>namespace</code>란 여러 파일에 걸쳐 하나의 이름을 공유, <code>reference</code>를 통해 참조</p>
+<p>외부모듈은 파일마다 이름 공간이 정해짐, <code>import</code>를 통해 참조</p>
+<p>그러므로, <code>namespace</code>는 프로젝트와 분리해 라이브러리 단위의 모듈을 구성할 때 좋음</p>
+<blockquote>
+<p><code>@types</code> 폴더에서 구분하여 타입선언 등 을 하는 듯 하다</p>
+</blockquote>
+<h2 id="📝259p-Namespace"><a href="#📝259p-Namespace" class="headerlink" title="📝259p. Namespace"></a>📝259p. Namespace</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> Hello &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="namespace-module"><a href="#namespace-module" class="headerlink" title="namespace = module"></a>namespace = module</h3><p>키워드는 다르지만, 역할과 기능상 차이가 없습니다</p>
+<h4 id="키워드-중복-이유"><a href="#키워드-중복-이유" class="headerlink" title="키워드 중복 이유"></a>키워드 중복 이유</h4><p>ES2015에서 <code>namespace</code> 용어가 표준으로 채택되면서, 원래 Typescript 1.5에서 사용하던 <code>module</code> 용어가 자연스럽게 Deprecated됨</p>
+<blockquote>
+<p>그런데, Typescript 타입 만드는 example code를 보면 아직은 module이라는 용어가 많이 쓰이는 듯 하다</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/chart.js/index.d.ts">참고링크 - chart.js</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.slideshare.net/gloridea/dts-74589285">여기</a>는 왜 <code>module</code>과 <code>namespace</code>를 동시에 사용한걸까? </p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// namespace 사용 예시</span></span><br><span class="line"><span class="keyword">namespace</span> Hello &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="comment">// module 사용 예시</span></span><br><span class="line"><span class="keyword">module</span> Hello &#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">print</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>ES6 변환 결과</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Hello;</span><br><span class="line">(<span class="function"><span class="keyword">function</span>: <span class="title">Hello</span>) </span>&#123;</span><br><span class="line">    funtion print() &#123;&#125;</span><br><span class="line">&#125;(Hello || (Hello = &#123;&#125;));	<span class="comment">// 모듈이 있으면 전달, 없으면 초기화 = 느슨한 확장 loose argument</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝261p-한-파일에-여러-네임스페이스-선언"><a href="#📝261p-한-파일에-여러-네임스페이스-선언" class="headerlink" title="📝261p. 한 파일에 여러 네임스페이스 선언"></a>📝261p. 한 파일에 여러 네임스페이스 선언</h2><p>네임스페이스마다 구분이 필요하게 되므로, <code>export</code> 선언 필요</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">namespace</span> MyInfo1 &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">let</span> name = <span class="string">`name1`</span>;</span><br><span class="line">    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> MyInfo2.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">namespace</span> MyInfo2 &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">let</span> name = <span class="string">`name2`</span>;</span><br><span class="line">    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">getName</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> MyInfo1.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="built_in">console</span>.log(MyInfo1.getName());</span><br><span class="line"><span class="built_in">console</span>.log(MyInfo2.getName());</span><br></pre></td></tr></table></figure>
+
+<p>변환시 <code>var</code>로 변환되어 호이스팅 특성때문에 순서와 상관없이 서로 호출 가능</p>
+<h2 id="📝263p-★-네임스페이스-여러-파일에-선언"><a href="#📝263p-★-네임스페이스-여러-파일에-선언" class="headerlink" title="📝263p. ★ 네임스페이스 여러 파일에 선언"></a>📝263p. ★ 네임스페이스 여러 파일에 선언</h2><p>프로젝트 규모 커지면, 파일 단위로 모듈을 분할</p>
+<p><code>tsc</code> 명령시, 타입스크립트 컴파일러가 자동으로 네임스페이스간 참조 관계를 고려함</p>
+<p>그러나, 개별 파일을 컴파일시에는 <code>///&lt;reference path=&quot;to/path&quot; /&gt;</code>가 필요함</p>
+<p>파일 상단의 표시하면 됨</p>
+<p>그러나, 사실 <code>tsc</code> 명령어로도 같이</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">ts-node car2.ts <span class="comment"># undefined, undefined 출력</span></span><br><span class="line"></span><br><span class="line">tsc --out out.js car2.ts <span class="comment"># 합쳐 컴파일 필요</span></span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>ts-node car2.ts</th>
+<th>tsc -out out.js car2.ts</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200413001659451.png" alt="image-20200413001659451"></td>
+<td><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200413001720503.png" alt="image-20200413001720503"></td>
+</tr>
+</tbody></table>
+<p>컴파일 후에도, 결과를 명시적으로 표시되게 하려면, 네임스페이스를 모듈로 선언하고 <code>import</code>를 선언 필요</p>
+<p>(다음장에서 설명됨)</p>
+<h2 id="📝268p-네임스페이스-모듈"><a href="#📝268p-네임스페이스-모듈" class="headerlink" title="📝268p. 네임스페이스 모듈"></a>📝268p. 네임스페이스 모듈</h2><h3 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// car1.ts</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">namespace</span> Car &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">let</span> auto: <span class="built_in">boolean</span> = <span class="literal">false</span>;</span><br><span class="line">    <span class="keyword">export</span> <span class="keyword">interface</span> ICar &#123;</span><br><span class="line">        name: <span class="built_in">string</span>;</span><br><span class="line">        vendor: <span class="built_in">string</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> ns <span class="keyword">from</span> <span class="string">&#x27;./car1&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// namespace를 한번 더 선언해서 사용? 이유가 있나?</span></span><br><span class="line"><span class="keyword">namespace</span> Car &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(ns.Car.auto);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">class</span> Taxi <span class="keyword">implements</span> ns.Car.ICar &#123;</span><br><span class="line">        name: <span class="built_in">string</span>;</span><br><span class="line">        vendor: <span class="built_in">string</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="built_in">console</span>.log(ns.Car.auto);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝271p-네임스페이스-이름-확장"><a href="#📝271p-네임스페이스-이름-확장" class="headerlink" title="📝271p. 네임스페이스 이름 확장"></a>📝271p. 네임스페이스 이름 확장</h2><p>네임스페이스 이름은 <code>.</code>을 허용, 이름 계층 확장하는데 사용</p>
+<p><strong>사용 예시</strong></p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 순서 바뀌어도 문제는 없지만, 상위에서 하위로 선언하는게 맞음</span></span><br><span class="line"><span class="keyword">namespace</span> Animal&#123;&#125;</span><br><span class="line"><span class="keyword">namespace</span> Animal.Pet&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>그러나 상속에 개념이 전혀 아니고, 서로 다른 네임스페이스이므로, 변수나 메소드 공유 X</p>
+<h2 id="📝274p-브라우저에서-네임스페이스-모듈-호출"><a href="#📝274p-브라우저에서-네임스페이스-모듈-호출" class="headerlink" title="📝274p. 브라우저에서 네임스페이스 모듈 호출"></a>📝274p. 브라우저에서 네임스페이스 모듈 호출</h2><blockquote>
+<p> 네임스페이스간 결국 js에는 없는 개념으로, 순서대로 js 스크립트 호출해서 사용해야한다는 것 같음</p>
+</blockquote>
+<h2 id="📝276p-모듈-사용법"><a href="#📝276p-모듈-사용법" class="headerlink" title="📝276p. 모듈 사용법"></a>📝276p. 모듈 사용법</h2><h3 id="개별-export"><a href="#개별-export" class="headerlink" title="개별 export"></a>개별 export</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">interface</span> ICar &#123;&#125;</span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">Test</span>(<span class="params"></span>) </span>&#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ICar, Test &#125; <span class="keyword">from</span> <span class="string">&#x27;../to/path&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="함께-export"><a href="#함께-export" class="headerlink" title="함께 export"></a>함께 export</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> ver: <span class="built_in">string</span> = <span class="string">`1.0`</span>;</span><br><span class="line"><span class="keyword">let</span> display = <span class="function">() =&gt;</span> <span class="string">`hello`</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> &#123; ver, display &#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; ver, display &#125; <span class="keyword">from</span> <span class="string">&#x27;../to/path&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="모두-export"><a href="#모두-export" class="headerlink" title="모두 export"></a>모두 export</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> ver: <span class="built_in">string</span> = <span class="string">`1.0`</span>;</span><br><span class="line"><span class="keyword">export</span> <span class="keyword">let</span> display = <span class="function">() =&gt;</span> <span class="string">`hello`</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> m <span class="keyword">from</span> <span class="string">&#x27;./to/path&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(m.ver);</span><br><span class="line"><span class="built_in">console</span>.log(m.display());</span><br></pre></td></tr></table></figure>
+
+<h3 id="모듈-재노출"><a href="#모듈-재노출" class="headerlink" title="모듈 재노출"></a>모듈 재노출</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">&#x27;../to/path&#x27;</span>;</span><br><span class="line"><span class="keyword">export</span> * <span class="keyword">from</span> <span class="string">&#x27;../to/path&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> m <span class="keyword">from</span> <span class="string">&#x27;./to/path&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>모듈 파일을 가져와서 다시 <code>export</code> 하는 예시, 최상위에 모듈에서 많이 사용됨</p>
+<h2 id="📝281p-★네임스페이스로-감싸서-재노출"><a href="#📝281p-★네임스페이스로-감싸서-재노출" class="headerlink" title="📝281p. ★네임스페이스로 감싸서 재노출"></a>📝281p. ★네임스페이스로 감싸서 재노출</h2><blockquote>
+<p>namepsace 간 class보다 상위의 개념이기 때문에 감싸서 노출하면 편한 것 같다</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// car-info.module.ts &lt;- 모듈 파일 명명법</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">namespace</span> CarInfo &#123;</span><br><span class="line">    <span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; CarInfo &#125; <span class="keyword">from</span> <span class="string">&#x27;./car-info.module&#x27;</span>;</span><br><span class="line"></span><br><span class="line">CarInfo.hello();</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝283p-디폴트-무법"><a href="#📝283p-디폴트-무법" class="headerlink" title="📝283p. 디폴트 무법"></a>📝283p. 디폴트 무법</h2><h3 id="export-equals-import-equals-문"><a href="#export-equals-import-equals-문" class="headerlink" title="export-equals, import-equals 문"></a>export-equals, import-equals 문</h3><blockquote>
+<p><code>default</code> 이전에 사용됬던 방식인 것 같은데, 몰랐던 부분 - 가끔 다른 프로젝트에서 종종 보였는데 이런 의미였구나</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> = Chart;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 동일</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Chart;</span><br><span class="line"><span class="keyword">export</span> &#123;  Chart <span class="keyword">as</span> <span class="keyword">default</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="2"><a href="#2" class="headerlink" title="2"></a>2</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Validator <span class="keyword">from</span> <span class="string">&#x27;./validator&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 동일</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> &#123; <span class="keyword">default</span> <span class="keyword">as</span> Validator &#125; <span class="keyword">from</span> <span class="string">&#x27;./validator&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="주의사항"><a href="#주의사항" class="headerlink" title="주의사항"></a>주의사항</h3><p>모듈 하나당 <code>default</code>는 하나만 선언 가능</p>
+<h2 id="📝289-313p-모듈시스템-생략"><a href="#📝289-313p-모듈시스템-생략" class="headerlink" title="📝289 ~ 313p. 모듈시스템 생략"></a>📝289 ~ 313p. 모듈시스템 생략</h2><blockquote>
+<p>모듈 시스템은 각 파트마다 다르기 때문에 웹개발자라면 ES2015모듈을, Node.js개발자라면 CommonJs 모듈 형식을 기본으로 알고, 나머지는 상황에 따라 알아야할 것 같다</p>
+</blockquote>
+<h2 id="참고링크"><a href="#참고링크" class="headerlink" title="참고링크"></a>참고링크</h2><blockquote>
+<p>책은 이론적인 부분으로 많이 설명되어있어, 실제에서는 어떻게 사용되고, 더 추가적인 내용을 찾아봄</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://medium.com/naver-fe-platform/%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%BB%B4%ED%8C%8C%EC%9D%BC%EB%9F%AC%EA%B0%80-%EB%AA%A8%EB%93%88-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8%EC%9D%84-%EC%B0%B8%EC%A1%B0%ED%95%98%EB%8A%94-%EA%B3%BC%EC%A0%95-5bfc55a88bb6">타입스크립트 컴파일러가 모듈 타입 선언을 참조하는 과정</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.slideshare.net/gloridea/dts-74589285">d.ts 만들기</a> - 개인적으로 몇몇 부분이 잘못? 이해가 안되는 부분 존재</li>
+<li><a target="_blank" rel="noopener" href="https://www.zerocho.com/category/TypeScript/post/5bab2086103eac558e45cdd7">타입스크립트 전환 후기 - import, export</a> - global로 선언하는건 맞는지 모르겠는 부분</li>
+<li><a target="_blank" rel="noopener" href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/master/types/chart.js/index.d.ts">Chart.js의 타입 정의</a></li>
+<li><a target="_blank" rel="noopener" href="https://poiemaweb.com/typescript-typing">정적 타이핑</a></li>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@bigbrothershin/TypeScript-%EB%82%A8%EC%9D%98-%EB%9D%BC%EC%9D%B4%EB%B8%8C%EB%9F%AC%EB%A6%AC-%EC%93%B8-%EB%95%8C-d.ts-%ED%8C%8C%EC%9D%BC%EC%9D%B4-%EC%97%86%EB%8A%94-%EA%B2%BD%EC%9A%B0">TypeScript - 남의 라이브러리 쓸 때 d.ts 파일이 없는 경우</a></li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Quick Start Typescript ~ 9장 정리
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Vue JSX 사용법</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="Jaeyoung-blog/jaeyoung-blog.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

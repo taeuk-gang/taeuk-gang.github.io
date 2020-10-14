@@ -1,7 +1,7 @@
 ---
 title: Quick Start Typescript ~ 10장 정리
 toc: true
-date: 2020-10-14 18:39:05
+date: 2020-10-14 20:39:05
 tags: 
     - Typescript
 categories: 
@@ -303,3 +303,4 @@ east1 = 1000;
 east2 = 2000;
 ```
 
+ 

@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Quick Start Typescript ~ 11장 정리 | TAEUK WEB</title>
+    
+    
+        <meta name="keywords" content="Typescript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성  11장 제네릭📝361p 제네릭 소개제네릭(generics)은 클래스와 함수에 타입이 고정되는 것을 방지하고 재사용할 수 있는 요소를 선언할 수 있게 하는 것 기존 C#, JAVA에서 제공되었던 기능, 타입스크립트는 0.9부터 지원 장점 컴파">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quick Start Typescript ~ 11장 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Typescript%20quick%20start_11/index.html">
+<meta property="og:site_name" content="TAEUK WEB">
+<meta property="og:description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성  11장 제네릭📝361p 제네릭 소개제네릭(generics)은 클래스와 함수에 타입이 고정되는 것을 방지하고 재사용할 수 있는 요소를 선언할 수 있게 하는 것 기존 C#, JAVA에서 제공되었던 기능, 타입스크립트는 0.9부터 지원 장점 컴파">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2020-10-14T11:39:05.000Z">
+<meta property="article:modified_time" content="2020-10-18T08:14:13.776Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Typescript">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WEB" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WEB</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file active"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Typescript quick start_11" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Typescript%20quick%20start_11/">
+            <time datetime="2020-10-14T11:39:05.000Z" itemprop="datePublished">2020-10-14</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start_11.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start_11.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start_11.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Quick Start Typescript ~ 11장 정리
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#11%EC%9E%A5-%EC%A0%9C%EB%84%A4%EB%A6%AD"><span class="toc-number">1.</span> <span class="toc-text">11장 제네릭</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D361p-%EC%A0%9C%EB%84%A4%EB%A6%AD-%EC%86%8C%EA%B0%9C"><span class="toc-number">1.1.</span> <span class="toc-text">📝361p 제네릭 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9E%A5%EC%A0%90"><span class="toc-number">1.1.1.</span> <span class="toc-text">장점</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="toc-number">1.1.2.</span> <span class="toc-text">사용법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%98%88%EC%A0%9C-%ED%83%80%EC%9E%85-%EC%BA%90%EC%8A%A4%ED%8C%85%EA%B3%BC-%EA%B4%80%EB%A0%A8-%EC%BD%94%EB%93%9C-%EC%A0%9C%EA%B1%B0"><span class="toc-number">1.1.3.</span> <span class="toc-text">예제. 타입 캐스팅과 관련 코드 제거</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D366p-%ED%83%80%EC%9E%85-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-T%EB%A5%BC-%ED%8A%B9%EC%A0%95-%ED%83%80%EC%9E%85%EC%9C%BC%EB%A1%9C-%EC%A0%9C%ED%95%9C%ED%95%B4%EC%95%BC%ED%95%A0-%EA%B2%BD%EC%9A%B0"><span class="toc-number">1.2.</span> <span class="toc-text">📝366p. 타입 매개변수 T를 특정 타입으로 제한해야할 경우</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D367p-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C%EC%8B%9C%EC%9D%98-%EC%A0%9C%EB%84%A4%EB%A6%AD"><span class="toc-number">1.3.</span> <span class="toc-text">📝367p. 오버로드시의 제네릭</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D369p-%ED%83%80%EC%9E%85-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-2%EA%B0%9C-%EC%9D%B4%EC%83%81-%EC%84%A0%EC%96%B8%EB%B2%95"><span class="toc-number">1.4.</span> <span class="toc-text">📝369p. 타입 매개변수 2개 이상 선언법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D371p-Generic-class"><span class="toc-number">1.5.</span> <span class="toc-text">📝371p. Generic class</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D377p-%EB%A3%A9%EC%97%85-%ED%83%80%EC%9E%85-lookup"><span class="toc-number">1.6.</span> <span class="toc-text">📝377p. 룩업 타입(lookup)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%99%9C%EC%9A%A9-%EC%98%88%EC%A0%9C"><span class="toc-number">1.6.1.</span> <span class="toc-text">활용 예제</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D379p-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%83%81%EC%86%8D%EA%B3%BC-%EB%8F%99%EC%8B%9C%EC%97%90-%EC%A0%9C%EB%84%A4%EB%A6%AD-%ED%99%95%EC%9E%A5"><span class="toc-number">1.7.</span> <span class="toc-text">📝379p. 인터페이스 상속과 동시에 제네릭 확장</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D381p-%EB%A7%B5-%EA%B0%9D%EC%B2%B4-%EC%86%8C%EA%B0%9C"><span class="toc-number">1.8.</span> <span class="toc-text">📝381p. 맵 객체 소개</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D384p-%EC%A0%9C%EB%84%A4%EB%A6%AD-%EA%B8%B0%EB%B0%98%EC%9D%98-%EC%9E%90%EB%A3%8C%EA%B5%AC%EC%A1%B0-%EC%9E%91%EC%84%B1"><span class="toc-number">1.9.</span> <span class="toc-text">📝384p. 제네릭 기반의 자료구조 작성</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mag-%EC%B0%B8%EA%B3%A0%EC%9E%90%EB%A3%8C"><span class="toc-number">1.10.</span> <span class="toc-text">:mag: 참고자료</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성</p>
+</blockquote>
+<h1 id="11장-제네릭"><a href="#11장-제네릭" class="headerlink" title="11장 제네릭"></a>11장 제네릭</h1><h2 id="📝361p-제네릭-소개"><a href="#📝361p-제네릭-소개" class="headerlink" title="📝361p 제네릭 소개"></a>📝361p 제네릭 소개</h2><p>제네릭(generics)은 클래스와 함수에 <strong>타입이 고정되는 것을 방지</strong>하고 <strong>재사용할 수 있는 요소를 선언</strong>할 수 있게 하는 것</p>
+<p>기존 C#, JAVA에서 제공되었던 기능, 타입스크립트는 0.9부터 지원</p>
+<h3 id="장점"><a href="#장점" class="headerlink" title="장점"></a>장점</h3><ol>
+<li>컴파일 시간에 진행해 타입 안정성을 보장</li>
+<li>타입 캐스팅과 관련된 코드를 제거 가능</li>
+<li>재사용이 가능한 코드 작성 가능</li>
+</ol>
+<h3 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">arrayConcat</span>&lt;<span class="title">T</span>&gt;(<span class="params">array1: T[], array2: T[]</span>): <span class="title">T</span>[] </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> [...array1, ...array2];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> array1 = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line"><span class="keyword">const</span> array2 = [<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> resultConcat = arrayConcat&lt;<span class="built_in">number</span>&gt;(array1, array2);</span><br></pre></td></tr></table></figure>
+
+<p><code>&lt;T&gt;</code>  가상의 타입(= 타입 매개변수(<code>type parameter</code>) = 제네릭 타입 변수(<code>generic type variables</code>))으로 임의의 단어를 사용해도 된다.</p>
+<h3 id="예제-타입-캐스팅과-관련-코드-제거"><a href="#예제-타입-캐스팅과-관련-코드-제거" class="headerlink" title="예제. 타입 캐스팅과 관련 코드 제거"></a>예제. 타입 캐스팅과 관련 코드 제거</h3><blockquote>
+<p>음… 결국 문자열만 받아서, 캐스팅 코드를 없애거나, 숫자를 받아서 캐스팅 코드를 이후 처리하는거나 조삼모사 아닌가?</p>
+<p>그럼 본질적으로 타입 캐스팅과 관련된 코드를 제거할 수 없는 것이 아닌가?</p>
+</blockquote>
+<p>이전</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">str1, str2</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="built_in">String</span>(str) + <span class="built_in">String</span>(str2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">concat(<span class="string">`abc`</span>, <span class="number">123</span>);</span><br></pre></td></tr></table></figure>
+
+<p>이후</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>&lt;<span class="title">T</span>&gt;(<span class="params">str1: T, str2: T</span>): <span class="title">T</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str1 + str2;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">concat&lt;<span class="built_in">string</span>&gt;(<span class="string">`abc`</span>, <span class="built_in">String</span>(<span class="number">123</span>));	<span class="comment">// 음 결국? 캐스팅 코드가 필요해져버림</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝366p-타입-매개변수-T를-특정-타입으로-제한해야할-경우"><a href="#📝366p-타입-매개변수-T를-특정-타입으로-제한해야할-경우" class="headerlink" title="📝366p. 타입 매개변수 T를 특정 타입으로 제한해야할 경우"></a>📝366p. 타입 매개변수 T를 특정 타입으로 제한해야할 경우</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// &lt;T extends string&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>&lt;<span class="title">T</span> <span class="title">extends</span> <span class="title">string</span>&gt;(<span class="params">str1: T, str2: T</span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str1 + str2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝367p-오버로드시의-제네릭"><a href="#📝367p-오버로드시의-제네릭" class="headerlink" title="📝367p. 오버로드시의 제네릭"></a>📝367p. 오버로드시의 제네릭</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>&lt;<span class="title">T</span>&gt;(<span class="params">str1: T, str2: T</span>): <span class="title">T</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">str1: <span class="built_in">any</span>, str2: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> str1 + str2;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝369p-타입-매개변수-2개-이상-선언법"><a href="#📝369p-타입-매개변수-2개-이상-선언법" class="headerlink" title="📝369p. 타입 매개변수 2개 이상 선언법"></a>📝369p. 타입 매개변수 2개 이상 선언법</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mapArray = [];</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>&lt;<span class="title">T</span>, <span class="title">T2</span>&gt;(<span class="params">str1: T, str2: T2</span>): <span class="title">T</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">put</span>(<span class="params">idx: <span class="built_in">any</span>, str: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  mapArray[idx] = str;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>&lt;<span class="title">T</span>, <span class="title">T2</span>&gt;(<span class="params">idx: T</span>): <span class="title">T2</span></span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">get</span>(<span class="params">idx: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> mapArray[idx];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">put&lt;<span class="built_in">number</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>, <span class="string">`hello`</span>);</span><br><span class="line"><span class="built_in">console</span>.log(get&lt;<span class="built_in">number</span>, <span class="built_in">string</span>&gt;(<span class="number">1</span>));</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝371p-Generic-class"><a href="#📝371p-Generic-class" class="headerlink" title="📝371p. Generic class"></a>📝371p. Generic class</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> 클래스명&lt;T&gt; &#123;</span><br><span class="line">  메소드(param: <span class="built_in">Array</span>&lt;T&gt;, param2: <span class="built_in">number</span>): T &#123;</span><br><span class="line">    <span class="keyword">return</span> param[param2];</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> 인스턴스명 = <span class="keyword">new</span> 클래스명&lt;<span class="built_in">number</span>&gt;(파라미터);</span><br></pre></td></tr></table></figure>
+
+<p>Example</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> IName &#123;</span><br><span class="line">  name: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Profile <span class="keyword">implements</span> IName &#123;</span><br><span class="line">  name: <span class="built_in">string</span> = <span class="string">`taeuk`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Accessor&lt;T <span class="keyword">extends</span> IName&gt; &#123;</span><br><span class="line">  getKey(obj: T) &#123;</span><br><span class="line">    <span class="keyword">return</span> obj.name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> acc = <span class="keyword">new</span> Accessor();</span><br><span class="line"><span class="built_in">console</span>.log(acc.getKey(<span class="keyword">new</span> Profile()));	<span class="comment">// LOG: taeuk</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝377p-룩업-타입-lookup"><a href="#📝377p-룩업-타입-lookup" class="headerlink" title="📝377p. 룩업 타입(lookup)"></a>📝377p. 룩업 타입(lookup)</h2><p><code>keyof</code> 키워드로 키값을 탐색하여, 유니언 타입처럼 작동시킴</p>
+<p>아래의 예제를 보면, 인터페이스의 키값만을 허용하는 유니언 방식처럼 작동됨을 알 수 있음</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> INumber &#123;</span><br><span class="line">  one: <span class="built_in">number</span>;</span><br><span class="line">  two: <span class="built_in">number</span>;</span><br><span class="line">  three: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> NumberKeys = keyof INumber;	<span class="comment">// one, two, three, 인터페이스 키값만을 허용</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="활용-예제"><a href="#활용-예제" class="headerlink" title="활용 예제"></a>활용 예제</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">getValue</span>&lt;<span class="title">T</span>, <span class="title">K</span> <span class="title">extends</span> <span class="title">keyof</span> <span class="title">T</span>&gt;(<span class="params">obj: T, key: K</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> obj[key];</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> numbersKeys = &#123;</span><br><span class="line">  one: <span class="number">1</span>,</span><br><span class="line">  two: <span class="number">2</span>,</span><br><span class="line">  three: <span class="number">3</span>,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(getValue(numbersKeys, <span class="string">`one`</span>));	<span class="comment">// LOG: 1</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝379p-인터페이스-상속과-동시에-제네릭-확장"><a href="#📝379p-인터페이스-상속과-동시에-제네릭-확장" class="headerlink" title="📝379p. 인터페이스 상속과 동시에 제네릭 확장"></a>📝379p. 인터페이스 상속과 동시에 제네릭 확장</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> IFilter&lt;T&gt; &#123;</span><br><span class="line">  unique(array: <span class="built_in">Array</span>&lt;T&gt;): <span class="built_in">Array</span>&lt;T&gt;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Filter&lt;T&gt; <span class="keyword">implements</span> IFilter&lt;T&gt; &#123;</span><br><span class="line">  unique(array: <span class="built_in">Array</span>&lt;T&gt;): <span class="built_in">Array</span>&lt;T&gt; &#123;</span><br><span class="line">    <span class="keyword">return</span> array.filter(<span class="function">(<span class="params">v, i, array</span>) =&gt;</span> array.indexOf(v) === i);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myFilter = <span class="keyword">new</span> Filter&lt;<span class="built_in">string</span>&gt;();</span><br><span class="line"><span class="keyword">let</span> resultFilter = myFilter.unique([<span class="string">`a`</span>, <span class="string">`b`</span>, <span class="string">`c`</span>, <span class="string">`a`</span>, <span class="string">`b`</span>]);</span><br><span class="line"><span class="built_in">console</span>.log(resultFilter);	<span class="comment">// LOG: [`a`, `b`, `c`]</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝381p-맵-객체-소개"><a href="#📝381p-맵-객체-소개" class="headerlink" title="📝381p. 맵 객체 소개"></a>📝381p. 맵 객체 소개</h2><p>생략</p>
+<h2 id="📝384p-제네릭-기반의-자료구조-작성"><a href="#📝384p-제네릭-기반의-자료구조-작성" class="headerlink" title="📝384p. 제네릭 기반의 자료구조 작성"></a>📝384p. 제네릭 기반의 자료구조 작성</h2><p>스택, 큐, ArrayList같은 자료구조는 내장 객체로 지원되지 않아서 직접 구현을 필요로 하는데, 이 때 제네릭을 사용하는 것이 좋음</p>
+<p>이 중 책에서는 ArrayList를 구현하는 것을 설명</p>
+<p>자료구조를 학습하는 것이 목적이 아니기 때문에 생략</p>
+<h2 id="mag-참고자료"><a href="#mag-참고자료" class="headerlink" title=":mag: 참고자료"></a>:mag: 참고자료</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes">https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/class">https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/class</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html">https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://poiemaweb.com/typescript-class">https://poiemaweb.com/typescript-class</a></p>
+</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Typescript%20quick%20start_10/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Quick Start Typescript ~ 10장 정리
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Quick Start Typescript ~ 9장 정리</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="Jaeyoung-blog/jaeyoung-blog.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2020 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

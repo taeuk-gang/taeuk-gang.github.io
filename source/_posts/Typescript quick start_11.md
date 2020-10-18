@@ -217,12 +217,3 @@ console.log(resultFilter);	// LOG: [`a`, `b`, `c`]
 이 중 책에서는 ArrayList를 구현하는 것을 설명
 
 자료구조를 학습하는 것이 목적이 아니기 때문에 생략
-
-## :mag: 참고자료
-
-- https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Classes
-- https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Operators/class
-
-- https://www.typescriptlang.org/docs/handbook/release-notes/typescript-1-6.html
-
-- https://poiemaweb.com/typescript-class

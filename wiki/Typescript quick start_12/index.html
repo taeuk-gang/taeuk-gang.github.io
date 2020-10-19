@@ -3,22 +3,27 @@
 <head>
     <meta charset="utf-8">
     
-    <title>태그: Javascript | TAEUK WEB</title>
+    <title>Quick Start Typescript ~ 12장 정리 | TAEUK WEB</title>
     
     
-        <meta name="keywords" content="Javascript" />
+        <meta name="keywords" content="Typescript" />
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
-    <meta name="description" content="For Memory">
-<meta property="og:type" content="website">
-<meta property="og:title" content="TAEUK WEB">
-<meta property="og:url" content="https://taeuk-gang.github.io/tags/Javascript/index.html">
+    <meta name="description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성  12장 비동기 처리📝395p. 브라우저 Promise 지원 현황IE 지원 안함 Chrome 57 이상 Safari 10 이상 Android Browser 53 이상 IOS safari 10.2 이상 📝SetTimeout 3번째 인자http">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quick Start Typescript ~ 12장 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Typescript%20quick%20start_12/index.html">
 <meta property="og:site_name" content="TAEUK WEB">
-<meta property="og:description" content="For Memory">
+<meta property="og:description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성  12장 비동기 처리📝395p. 브라우저 Promise 지원 현황IE 지원 안함 Chrome 57 이상 Safari 10 이상 Android Browser 53 이상 IOS safari 10.2 이상 📝SetTimeout 3번째 인자http">
 <meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://i.loli.net/2020/10/19/8xwAXZgfmGTuL5h.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/19/nQ1J5lgir3dueyA.png">
+<meta property="article:published_time" content="2020-10-18T15:00:00.000Z">
+<meta property="article:modified_time" content="2020-10-19T16:09:54.037Z">
 <meta property="article:author" content="Taeuk Kang">
-<meta property="article:tag" content="Javascript">
+<meta property="article:tag" content="Typescript">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/19/8xwAXZgfmGTuL5h.png">
     
 
     
@@ -348,13 +353,13 @@
                      </ul> 
                     </li> 
                     
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             Typescript
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file active"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -472,378 +477,168 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">#Javascript</h1>
-    </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-Typescript quick start_12" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
                 
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">
-            <time datetime="2020-03-02T17:04:47.000Z" itemprop="datePublished">2020-03-03</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/Optimize/" rel="tag">Optimize</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Book-Typescript-Serverless/">
-            <time datetime="2020-01-21T05:54:56.000Z" itemprop="datePublished">2020-01-21</time>
-        </a>
-    </div>
-
-
-                    
+                    <div class="article-meta">
+                        
     <div class="article-category">
     	<i class="fa fa-folder"></i>
         <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
     </div>
 
-                    
+                        
     <div class="article-tag">
         <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Book/" rel="tag">Book</a>, <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>, <a class="tag-link-link" href="/tags/Vue-js/" rel="tag">Vue.js</a>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
     </div>
 
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
+                        
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/wiki/Js-pwa-starter-kit/">
-            <time datetime="2019-10-25T12:16:18.000Z" itemprop="datePublished">2019-10-25</time>
+        <a href="/wiki/Typescript%20quick%20start_12/">
+            <time datetime="2020-10-18T15:00:00.000Z" itemprop="datePublished">2020-10-19</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start_12.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start_12.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start_12.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a>
+        <h1 class="article-title" itemprop="name">
+            Quick Start Typescript ~ 12장 정리
         </h1>
     
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Js-serviceWorker/">
-            <time datetime="2019-09-27T13:51:30.000Z" itemprop="datePublished">2019-09-27</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/ServiceWorker/" rel="tag">ServiceWorker</a>
-    </div>
-
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#12%EC%9E%A5-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%B2%98%EB%A6%AC"><span class="toc-number">1.</span> <span class="toc-text">12장 비동기 처리</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D395p-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-Promise-%EC%A7%80%EC%9B%90-%ED%98%84%ED%99%A9"><span class="toc-number">1.1.</span> <span class="toc-text">📝395p. 브라우저 Promise 지원 현황</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9DSetTimeout-3%EB%B2%88%EC%A7%B8-%EC%9D%B8%EC%9E%90"><span class="toc-number">1.2.</span> <span class="toc-text">📝SetTimeout 3번째 인자</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise-all-%EA%B2%B0%EA%B3%BC%EA%B0%92"><span class="toc-number">1.3.</span> <span class="toc-text">Promise.all([]) 결과값</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D404p-RxJS"><span class="toc-number">1.4.</span> <span class="toc-text">📝404p. RxJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A4%EC%B9%98"><span class="toc-number">1.4.1.</span> <span class="toc-text">설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Import"><span class="toc-number">1.4.2.</span> <span class="toc-text">Import</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8D%B0%EC%9D%B4%ED%84%B0-%EC%8A%A4%ED%8A%B8%EB%A6%BC%EC%9D%98-%ED%98%95%ED%83%9C"><span class="toc-number">1.4.3.</span> <span class="toc-text">데이터 스트림의 형태</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%BD%94%EB%93%9C-%EC%A0%9C%EC%96%B4%EC%9D%98-%EB%B0%A9%EC%8B%9D-%EC%B0%A8%EC%9D%B4"><span class="toc-number">1.4.4.</span> <span class="toc-text">비동기 코드 제어의 방식 차이</span></a></li></ol></li></ol></li></ol>
                 </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Js-lit-element-summary/">lit-element 요약본</a>
-        </h1>
-    
+            
+        
+        
+            <blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성</p>
+</blockquote>
+<h1 id="12장-비동기-처리"><a href="#12장-비동기-처리" class="headerlink" title="12장 비동기 처리"></a>12장 비동기 처리</h1><h2 id="📝395p-브라우저-Promise-지원-현황"><a href="#📝395p-브라우저-Promise-지원-현황" class="headerlink" title="📝395p. 브라우저 Promise 지원 현황"></a>📝395p. 브라우저 Promise 지원 현황</h2><p>IE 지원 안함</p>
+<p>Chrome 57 이상</p>
+<p>Safari 10 이상</p>
+<p>Android Browser 53 이상</p>
+<p>IOS safari 10.2 이상</p>
+<h2 id="📝SetTimeout-3번째-인자"><a href="#📝SetTimeout-3번째-인자" class="headerlink" title="📝SetTimeout 3번째 인자"></a>📝SetTimeout 3번째 인자</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/API/WindowTimers/setTimeout">https://developer.mozilla.org/ko/docs/Web/API/WindowTimers/setTimeout</a></p>
+<p><img src="https://i.loli.net/2020/10/19/8xwAXZgfmGTuL5h.png" alt="image-20201020004247332"></p>
+<p><code>param ~ paramN</code> : 타이머 완료 이후, 추가적으로 전달되는 파라미터</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promiseAsync = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> sec = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">5</span>) + <span class="number">1</span>;</span><br><span class="line">  <span class="built_in">setTimeout</span>(<span class="function">(<span class="params">isTrue: <span class="built_in">boolean</span></span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (isTrue) &#123;</span><br><span class="line">      resolve(sec);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;, sec * <span class="number">1000</span>, <span class="literal">true</span>);</span><br><span class="line">&#125;).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(res + <span class="string">`s`</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Js-lit-element-summary/">
-            <time datetime="2019-09-07T03:15:22.000Z" itemprop="datePublished">2019-09-07</time>
+
+
+<h2 id="Promise-all-결과값"><a href="#Promise-all-결과값" class="headerlink" title="Promise.all([]) 결과값"></a>Promise.all([]) 결과값</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">asyncDelay</span>(<span class="params">order: <span class="built_in">number</span></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">const</span> ms = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * <span class="number">1000</span>) + <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">        <span class="built_in">window</span>.setTimeout(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">            <span class="built_in">console</span>.log(<span class="string">`작업 완료: `</span> + order);</span><br><span class="line">            resolve(order);</span><br><span class="line">        &#125;, ms);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">syncResultPromise</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> p1 = asyncDelay(<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">const</span> p2 = asyncDelay(<span class="number">2</span>);</span><br><span class="line">    <span class="keyword">const</span> p3 = asyncDelay(<span class="number">3</span>);</span><br><span class="line">    <span class="keyword">const</span> p4 = asyncDelay(<span class="number">4</span>);</span><br><span class="line"></span><br><span class="line">    <span class="built_in">Promise</span>.all([p1, p2, p3, p4]).then(<span class="function"><span class="params">order</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`동기화된 출력: <span class="subst">$&#123;order&#125;</span>`</span>);</span><br><span class="line">    &#125;);	<span class="comment">// LOG: 동기화된 출력: 1,2,3,4</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">syncResultPromise();</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/10/19/nQ1J5lgir3dueyA.png" alt="image-20201020005554668"></p>
+<p>[p1, p2, p3, p4]의 결과값을 한번에 결과값으로 제공해주는 것을 알 수 있음 </p>
+<h2 id="📝404p-RxJS"><a href="#📝404p-RxJS" class="headerlink" title="📝404p. RxJS"></a>📝404p. RxJS</h2><blockquote>
+<p>RxJS에 관한 책이 아니기 때문에, 간단하게 설명하고 넘어간 듯 하다.</p>
+<p>간단하게만 정리</p>
+</blockquote>
+<p>반응형 프로그래밍 모델은 스트림 형태의 입력 이벤트를 감지해 반응을 처리할 수 있는 모델</p>
+<p>입력된 데이터 스트림은 관측할 수 있고 다랄 수 있는 대상이 되므로 observables이 됨</p>
+<p><strong>발행 구독 패턴</strong></p>
+<p>옵저버 &lt;-&gt; 옵저버블</p>
+<p>-&gt; 구독</p>
+<p>&lt;- 통지</p>
+<h3 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i @reactivex/rxjs</span><br></pre></td></tr></table></figure>
+
+<h3 id="Import"><a href="#Import" class="headerlink" title="Import"></a>Import</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> * <span class="keyword">as</span> Rx <span class="keyword">from</span> <span class="string">&#x27;@reactivex/rxjs&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h3 id="데이터-스트림의-형태"><a href="#데이터-스트림의-형태" class="headerlink" title="데이터 스트림의 형태"></a>데이터 스트림의 형태</h3><p>유형1: 규칙이 있고, 제한범위가 있는 경우</p>
+<p>유형2: 규칙이 있고, 제한 범위가 없는</p>
+<p>유형3: 규칙이 없고, 제한 범위가 있는</p>
+<p>유형4: 규칙이 없고, 제한 범위가 없는</p>
+<h3 id="비동기-코드-제어의-방식-차이"><a href="#비동기-코드-제어의-방식-차이" class="headerlink" title="비동기 코드 제어의 방식 차이"></a>비동기 코드 제어의 방식 차이</h3><p><code>promise</code>와 다르게 오퍼레이터 메서드를 이용하여 연쇄적으로 처리할 수 있게 관련 인터페이스를 제공</p>
+<ol>
+<li><p>생성 연산자</p>
+</li>
+<li><p>변형 연산자</p>
+</li>
+<li><p>콤비네이션 연산자</p>
+</li>
+<li><p>조건 연산자</p>
+</li>
+<li><p>필터링 연산자</p>
+</li>
+</ol>
+<blockquote>
+<p>자세한 사항은 RxJs에 관한 문서가 아니기 때문에 생략</p>
+<p>추후, 별도 문서에서 공식 도큐먼트 참고하여 작성하기로…</p>
+</blockquote>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+    
+        <a href="/wiki/Typescript%20quick%20start_11/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Quick Start Typescript ~ 11장 정리</div>
         </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/lit-element/" rel="tag">lit-element</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
     
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
+</nav>
+
+
+
+
+
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a>
-        </h1>
     
 
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Project-cordova-1/">
-            <time datetime="2019-09-01T19:37:23.000Z" itemprop="datePublished">2019-09-02</time>
-        </a>
-    </div>
+    <script src="https://utteranc.es/client.js"
+        repo="Jaeyoung-blog/jaeyoung-blog.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Projects/">Projects</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Projects/mac-tour/">mac-tour</a>
-    </div>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Cordova/" rel="tag">Cordova</a>, <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/Project/" rel="tag">Project</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Js-lit-element/">lit-element 학습 일지</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Js-lit-element/">
-            <time datetime="2019-08-29T14:16:48.000Z" itemprop="datePublished">2019-08-29</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>, <a class="tag-link-link" href="/tags/lit-element/" rel="tag">lit-element</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Js-mutation-observer/">
-            <time datetime="2019-08-28T13:25:04.000Z" itemprop="datePublished">2019-08-28</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Javascript/">Javascript</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Book-tell-javascript-2/">
-            <time datetime="2019-08-19T13:11:11.000Z" itemprop="datePublished">2019-08-19</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Book/">Book</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Book/" rel="tag">Book</a>, <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a>
-        </h1>
-    
-
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/wiki/Book-tell-javascript/">
-            <time datetime="2019-08-16T06:40:19.000Z" itemprop="datePublished">2019-08-16</time>
-        </a>
-    </div>
-
-
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/Book/">Book</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link-link" href="/tags/Book/" rel="tag">Book</a>, <a class="tag-link-link" href="/tags/Javascript/" rel="tag">Javascript</a>
-    </div>
-
-                </div>
-            </div>
-        </div>
-    
-</div>
-
-    <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/tags/Javascript/page/2/">2</a><a class="extend next" rel="next" href="/tags/Javascript/page/2/">다음 &amp;raquo;</a>
-    </nav>
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
 </section>
         </div>
         <footer id="footer">

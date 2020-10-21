@@ -1,0 +1,220 @@
+title: "Schedules"
+layout: "page"
+---
+
+# 조건 및 방식
+
+할일 정렬 방식: 공부 -> 하고싶은 일 순서 (마지막의 일은 제한시간 없음)
+
+할 일 조건
+
+1. 생상적이거나 의미있는 일이여함
+2. 내부, 외부에 방해요소가 있어선 안됨
+3. 일단 컨트롤 할 수 있는 것들은 미리 해결
+
+3. 만약, 방해요소가 있고 그것이 컨트롤 할 수 없는 것(특히나 재미가 없는 일)이라면 그것부터 해결
+4. 컨트롤할 수 없지만, 재미가 있다면 그냥 하면 된다.
+
+
+
+할 일의 2가지 방법
+
+1. 방해요소를 0으로 만들고 일하기
+2. 컨트롤 가능한 방해요소와 함께 일하기
+
+------
+
+## 10.21
+
+### 회사 일정
+
+- [ ] 개선: 목록 높이값 가변형(이름 전부 표시)
+- [ ] 네임스페이스 영역 개선 (개요, 리소스)
+
+### 개인 일정
+
+- [x] C++ 3챕터 정리 및 연습문제 풀이
+  - 2챕터 간단하게만 정리 + 3챕터
+- [x] 하루 하나 Udemy K8s 강의 듣기
+  - 이해했는지 알아보기 위해, 쿠버네티스 공식 페이지를 참고하여 정리
+- [ ] 일일 커밋 어플 손대보기
+- [ ] React days에 관해서는 직접 실습해보고, 이후 학습에 대한 내용 적는게 올바른 순서로 보임
+
+- [ ] 책 원고 꾸준히 쓰기
+
+-------
+
+## 10.21
+
+### 회사 업무
+
+새기능 #1998 레이아웃 개선 작업 지속
+
+개선 내용
+
+1. 화면 Depth 줄이기
+2. 모달 -> 드롭다운
+3. 테이블 -> 이메일 클라이언트 형식
+4. [x] User-controller(유저 관리 페이지) API 401 문제 확인
+   -> accordionadmin 계정 없을시 발생하는 것으로 확인
+5. [x] 사이드바 UI 개선: 현재 라우팅한 메뉴 조금 더 명확하게 표시
+
+- [ ] 개선 논의: 목록 높이값 가변형(이름 전부 표시)
+
+
+
+### 개인 일정
+
+- [x] C++ 2챕터 정리 및 연습문제 풀이
+- [x] 하루 하나 Udemy K8s 강의 듣기
+- [ ] 일일 커밋 어플 제작
+- [ ] React days에 관해서는 직접 실습해보고, 이후 학습에 대한 내용 적는게 올바른 순서로 보임
+- [ ] ~~Typescript 13장 정리 (마지막 장 - 이후 장은 타입스크립트에 관한 부분이 아니므로 생략)~~
+
+- [ ] 책 원고 꾸준히 쓰기
+
+
+
+평가: udemy 강의를 들으면서, k8s 개발을 하면서 궁금했던 아키텍처나 그 외 개념들에 대해서 자세하게 아는 시간을 가짐
+
+앞으로 꾸준히 들어봐야 알 듯. 
+
+------
+
+## 10.20
+
+### 회사 업무
+
+- [ ] 새기능 #1998 레이아웃 개선 작업 지속
+
+  개선 내용
+
+  1. 화면 Depth 줄이기
+  2. 모달 -> 드롭다운
+  3. 테이블 -> 이메일 클라이언트 형식
+
+  - [x] Job List 항목, Completions 개수, duration 별도 표시값 존재
+    - Job Completions n/m 항목이 status.conditions.type === 'Complete' 개수인지 확인
+    - duration 항목이 status.completionTime - status.startTime 인지 확인
+  - [x] CronJob List 항목, Schedules, Suspend, Active, Last Schedule 별도 표시
+  - [x] yaml Parser, null값을 ?로 표시하는 버그 해결
+    - Yaml Parser Option SimpleKeys: true 필요
+
+  - [x] 리소스 새로 만들기시, Yaml Text가 Pod로 하드코딩되어있던 문제 수정
+  - [x] 아래의 항목, 이름, 네임스페이스(있는 항목만), 생성날짜만 간략하게하여 구현
+    - [x] Service List, label, PodSelector + Type, ClusterIP, ExternalIP, Port
+    - [x] Ingress List, label + host, port
+    - [x] ConfigMap List, data
+    - [x] Secret List, type, data
+    - [x] PV List, label, claim, capacity, acess mode
+    - [x] PVC List, status, pv, capacity
+    - [x] SC List, provisioner, recliam policty
+    - [x] Role List, 
+    - [x] RoleBinding List,
+    - [x] ClusterRole List
+    - [x] ClusterRoleBinding List,
+    - [x] NetworkPolicy List,s
+  - [x] 빌드 속도 향상시키기
+    - 초기 빌드 속도는 상관없지만, 수정시 빌드 시간 향상이 필요하다
+    - 기존(1600 ~ 1847ms) -> 개선(700 ~ 1071ms)
+
+  ![image-20201020214712739](https://i.loli.net/2020/10/20/lCGSrBUT7YMJkj6.png)
+
+  ![image-20201020215028163](/Users/admin/Library/Application Support/typora-user-images/image-20201020215028163.png)
+
+  - [x] user-controller 현재 작동X
+  - [x] okd web console 환경 구성하여 실행 시켜보고, 기존 코드 개선할 점 확인 및 빌드 속도 체크
+
+### 개인 일정
+
+- [ ] Typescript 13장 정리
+- [ ] 일일 커밋 어플 손대보기
+- [ ] React days에 관해서는 직접 실습해보고, 이후 학습에 대한 내용 적는게 올바른 순서로 보임
+- [ ] C++의 경우도 마찬가지
+- [ ] 책 원고 꾸준히 쓰기
+
+
+
+평가: 회사 일정으로 할게 제법 있어서, 개인 일정을 소화하지 못한 날
+
+--------
+
+## 10.19
+
+### 회사 업무
+
+- [ ] 새기능 #1998 레이아웃 개선 작업 지속
+
+  개선 내용
+
+  1. 화면 Depth 줄이기
+  2. 모달 -> 드롭다운
+  3. 테이블 -> 이메일 클라이언트 형식
+  4. [x] Statufulsets List 항목의 Label, PodSelector 값 표시 방법 기획 및 구현
+  5. [x] Deployments List 항목, statefulsets 항목과 동일 
+  6. [x] 공통 메소드의 Pods API URL 하드코딩 되어있음, 수정 필요
+  7. [x] Daemonsets List 항목, statefulsets 항목과 동일
+
+
+
+![image-20201019174132092](https://i.loli.net/2020/10/19/aEYrfPJ6I1MGpLv.png)
+
+### 개인 일정
+
+- [x] Typescript 12장 정리
+- [ ] C++ 2챕터 정리 연습문제 블로그 정리 - 템플릿 짜기
+- [ ] React 1days 정리
+- [ ] 일일커밋 어플 만들기 (~ 2days)
+
+평가: React, C++ 정독은 하였으나, 문서 정리를 어떤 방식으로 해야할지 고민 단계, 블로그 정리가 아닌 깃허브에 정리하는게 좋아보이기도함
+
+------
+
+## 10.18
+
+- [x] Typescript 11장 정리 (제네릭)
+- [ ] C++ 2챕터 정리 연습문제 블로그 정리 - 템플릿 짜기
+- [ ] React 1days 정리
+- [ ] 블로그에 개인일정 올릴 수 있게 가능한가 보기
+  - 이 md파일을 올리면 되는거 아니야?
+  - 그렇다면 about 탭 하나 만들고, 이름만 수정하면 될 것 같음
+- [ ] 일일커밋 어플 만들기 (~ 2days)
+
+평가: 개인 주말에 학습 의욕을 내기는 생각보다 힘든 일이며, 의욕을 더 높이기 위한 방법을 더 강구해 봐야할 것 같다.
+
+----------
+
+## 10.17
+
+- [ ] Typescript 11장 정리 (제네릭)
+  - 오후 6 - 9시
+- [ ] C++ 2챕터 정리 연습문제 블로그 정리 - 템플릿 짜기
+  - 9 - 11시
+- [ ] React 1days 정리
+  - 11 - 1시
+- [ ] 일일커밋 어플 만들기 (~ 2days)
+  - 자유
+
+평가: 주말 친구들과 시간을 보냄, 나쁘지 않은 하루였다.
+
+대신 내일 빡세게 살아야겠는 걸...
+
+---------
+
+## 10.16
+
+회사 일정으로 인하여, 개인 일정 없음
+
+------------
+
+## 10.15
+
+- [ ] C++ 2챕터 정리 연습문제 블로그 정리 - 템플릿 짜기
+- [ ] React 1days 정리
+- [ ] React native 1 days 훑어보기
+- [x] Typescript 10장 정리 (타입 선언과 변경, 그리고 호환)
+
+
+
+평가: 사람의 집중력은 한도가 있고, 하루에 그것은 한정되있으므로 그것을 어디다 적절히 분배할지 생각하는 습관이 필요해보임
+

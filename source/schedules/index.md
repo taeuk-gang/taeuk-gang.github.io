@@ -28,9 +28,9 @@ layout: "page"
 
 ### 회사 일정
 
-- [ ] 아코디언2.0 로드맵 작성 ([해당 링크](https://accordions.bitbucket.io/) 참조)
-- [ ] 버그픽스: 스트림 API
-- [ ] LIST 레이아웃 PR 등록
+- [x] 아코디언2.0 로드맵 작성 ([해당 링크](https://accordions.bitbucket.io/) 참조)
+- [x] 버그픽스: 스트림 API
+- [ ] LIST 레이아웃 PR 등록 (~ 수 연기)
 
 ### 개인 일정
 

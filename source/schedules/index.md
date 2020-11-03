@@ -47,7 +47,9 @@ layout: "page"
 
 - [ ] ~~일일 커밋 어플 - RxJs 설정~~ - 
 
-- [x] Udemy 강의 요약 (k8s)
+- [x] Udemy k8s demo 시청
+
+- [x] Udemy k8s Practice Test - Pods
 
 - [ ] 
 

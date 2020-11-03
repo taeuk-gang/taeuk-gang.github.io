@@ -24,11 +24,36 @@ layout: "page"
 
 ------
 
-## 10.30
+## 11.3
 
 ### 회사 일정
 
+- [x] 각 리소스 삭제시 경고 Alert 컴포넌트 구현
+- [x] 버그픽스: Persistent Volume에서 Claim 참조할 수 없는 경우 예외 처리
+- [x] 테스트 러너 환경 설정 
+  - (web-test-runner 사용 고려 하였지만, 한정적인 번들러 지원 - only rollup)으로 인한 karam 그대로 사용
+- [x] 테스트 환경에 맞게 karma 재설정
+
 ### 개인 일정
+
+- [x] 일일 커밋 어플 - Redux, React-native Typescript환경에 맞춰 설정
+
+  - [x] 개발 규모에 비하여, 상태 관리 라이브러리의 필요가 전혀 없지만, 학습을 위하여 템플릿 구성
+  - [x] Reducer
+  - [x] `safetype-actions`를 이용한 액션 처리
+  - [ ] `createAsyncAction()` 과 redux-thunk 환경 설정 (진행 중)
+
+  - [ ] 
+
+- [ ] ~~일일 커밋 어플 - RxJs 설정~~ - 
+
+- [x] Udemy 강의 요약 (k8s)
+
+- [ ] 
+
+## 10.30 - 11.2
+
+PC 문제로 미작성
 
 ## 10.29
 

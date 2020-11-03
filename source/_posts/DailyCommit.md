@@ -253,7 +253,35 @@ https://loy124.tistory.com/238
 
 뭐쓰지? redux? mobx? redux가 함수형에 가까우므로, 오랜만에 사용해보자
 
-https://www.digitalocean.com/community/tutorials/react-react-native-redux
+### 참고 링크
 
-https://chaewonkong.github.io/posts/react-native-redux.html 참고
+- https://www.digitalocean.com/community/tutorials/react-react-native-redux
+
+- https://chaewonkong.github.io/posts/react-native-redux.html 
+
+- https://react.vlpt.us/using-typescript/05-ts-redux.html#
+
+
+
+## Redux는 선택사항 이라는 글을 읽고...
+
+`useState`를 사용하면서, redux의 필요성에 관해 의문이 들어 자료 조사
+
+https://delivan.dev/react/stop-asking-if-react-hooks-replace-redux-kr/
+
+
+
+## Redux Action + axios
+
+[https://velog.io/@secho/React-13-%EB%A6%AC%EB%8D%95%EC%8A%A4-Axios%EB%A1%9C-%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0](https://velog.io/@secho/React-13-리덕스-Axios로-상태관리하기)
+
+
+
+`createAsyncAction` : https://github.com/piotrwitek/typesafe-actions#createasyncaction
+
+흠... 앱의 규모에 맞지않게 기술 스택이 너무 깊어지는데? 학습 목적이라고 생각을 해야하나...
+
+기존의 간단한 코드로 가능한 사항들이 복잡도가 올라가고 있어서 불편
+
+
 

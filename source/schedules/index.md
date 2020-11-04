@@ -22,7 +22,27 @@ layout: "page"
 1. 방해요소를 0으로 만들고 일하기
 2. 컨트롤 가능한 방해요소와 함께 일하기
 
+
+
+회사 일정은 출근 하자마자 작성하기
+
+개인 일정은 퇴근 하자마자 작성하기
+
 ------
+
+## 11.4
+
+### 회사 일정
+
+- [x] 디테일 페이지 UI/UX 검토 후, 개발 착수 여부 판단하여 테스트 명세 작성하기
+- [x] 사용자 관리 페이지 테스트 코드 작성 (진행)
+
+### 개인 일정
+
+- [ ] 일일 커밋 어플 - Redux, React-native Typescript환경에 맞춰 설정
+  - [ ] `createAsyncAction()` 과 redux-thunk 환경 설정 (진행 중)
+
+- [ ] Udemy k8s Practice Test - Statefulsets
 
 ## 11.3
 
@@ -49,7 +69,7 @@ layout: "page"
 
 - [x] Udemy k8s demo 시청
 
-- [x] Udemy k8s Practice Test - Pods
+- [x] Udemy k8s Practice Test - Pods 
 
 - [ ] 
 

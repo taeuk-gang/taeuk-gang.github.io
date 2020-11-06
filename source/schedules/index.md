@@ -30,31 +30,25 @@ layout: "page"
 
 ------
 
+## 11.6 (금)
+
+- [ ] 
+
+## 11.5 (목)
+
+평가: 개인 일정 없던 날
+
 ## 11.4
 
-### 회사 일정
-
-- [x] 디테일 페이지 UI/UX 검토 후, 개발 착수 여부 판단하여 테스트 명세 작성하기
-- [x] 사용자 관리 페이지 테스트 코드 작성 (진행)
-
-### 개인 일정
-
-- [ ] 일일 커밋 어플 - Redux, React-native Typescript환경에 맞춰 설정
-  - [ ] `createAsyncAction()` 과 redux-thunk 환경 설정 (진행 중)
+- [x] 일일 커밋 어플 - Redux, React-native Typescript환경에 맞춰 설정
+  - [x] `createAsyncAction()` 과 redux-thunk 환경 설정 (진행 중)
 
 - [ ] Udemy k8s Practice Test - Statefulsets
+- [ ] 쿠버네티스 인 액션 책 요약 - 1장 쿠버네티스 소개
+
+평가: 컨디션 조절이 필요한 시기, 의욕과 일의 효율에 대한 것에 대해 생각해보자
 
 ## 11.3
-
-### 회사 일정
-
-- [x] 각 리소스 삭제시 경고 Alert 컴포넌트 구현
-- [x] 버그픽스: Persistent Volume에서 Claim 참조할 수 없는 경우 예외 처리
-- [x] 테스트 러너 환경 설정 
-  - (web-test-runner 사용 고려 하였지만, 한정적인 번들러 지원 - only rollup)으로 인한 karam 그대로 사용
-- [x] 테스트 환경에 맞게 karma 재설정
-
-### 개인 일정
 
 - [x] 일일 커밋 어플 - Redux, React-native Typescript환경에 맞춰 설정
 
@@ -79,19 +73,9 @@ PC 문제로 미작성
 
 ## 10.29
 
-### 회사 일정
-
-- [x] 유저 관리 페이지 및 각 리소스 테스트 코드 작성
-- [x] 브라우저에서의 터미널 구현 자료 조사
+개인 일정 없음
 
 ## 10.28
-
-### 회사 일정
-
-- [x] LIST 레이아웃 PR 등록 (~ 수)
-- [x] 셀프 코드 리뷰
-
-### 개인 일정
 
 - [x] 일일 커밋 React-native Redux + Typescript 템플릿 만들기
 - [ ] Redux + Rxjs 템플릿 적용
@@ -107,14 +91,6 @@ PC 문제로 미작성
 
 ## 10.27
 
-### 회사 일정
-
-- [x] 네임스페이스 영역 LIST 레이아웃으로 개선
-- [x] 마지막 기획대로의 레이아웃 수정 작업
-- [ ] LIST 레이아웃 PR 등록 (~ 수)
-
-### 개인 일정
-
 - [x] 일일 커밋 어플 라우터 구현 및 UI 구현
 - [ ] Udemy 강의 요약 (k8s)
 - [ ] 책 원고 챕터 하나 작성
@@ -126,14 +102,6 @@ PC 문제로 미작성
 --------
 
 ## 10.26
-
-### 회사 일정
-
-- [x] 아코디언2.0 로드맵 작성 ([해당 링크](https://accordions.bitbucket.io/) 참조)
-- [x] 버그픽스: 스트림 API
-- [ ] LIST 레이아웃 PR 등록 (~ 수 연기)
-
-### 개인 일정
 
 - [x] 일일 커밋 어플 깃허브 로그인 연결 검토 (안되면, userId 검색 방식으로 변경)
   - Expo 에서 지원하는 것을 사용
@@ -155,15 +123,6 @@ PC 문제로 미작성
 
 ## 10.22
 
-### 회사 일정
-
-- [x] 네임스페이스 영역 개선 (개요, 리소스)
-- [x] 중간 이슈: stream API connection 지속되는 경우 발생, 원인 파악
-
-- [x] 개선: 목록 높이값 가변형(이름 전부 표시)
-
-### 개인 일정
-
 - [x] 일일 커밋 어플 UI 구현
   - 7시간 소모 (리액트 네이티브 개발)
 - [ ] C++ 3챕터 정리 및 연습문제 풀이
@@ -180,26 +139,6 @@ PC 문제로 미작성
 -------
 
 ## 10.21
-
-### 회사 업무
-
-새기능 #1998 레이아웃 개선 작업 지속
-
-개선 내용
-
-1. 화면 Depth 줄이기
-2. 모달 -> 드롭다운
-3. 테이블 -> 이메일 클라이언트 형식
-   - [x] User-controller(유저 관리 페이지) API 401 문제 확인
-     -> accordionadmin 계정 없을시 발생하는 것으로 확인
-
-   - [x] 사이드바 UI 개선: 현재 라우팅한 메뉴 조금 더 명확하게 표시
-
-- [ ] 개선 논의: 목록 높이값 가변형(이름 전부 표시)
-
-
-
-### 개인 일정
 
 - [x] C++ 2챕터 정리 및 연습문제 풀이
 - [x] 하루 하나 Udemy K8s 강의 듣기
@@ -218,50 +157,6 @@ PC 문제로 미작성
 
 ## 10.20
 
-### 회사 업무
-
-- [ ] 새기능 #1998 레이아웃 개선 작업 지속
-
-  개선 내용
-
-  1. 화면 Depth 줄이기
-  2. 모달 -> 드롭다운
-  3. 테이블 -> 이메일 클라이언트 형식
-
-  - [x] Job List 항목, Completions 개수, duration 별도 표시값 존재
-    - Job Completions n/m 항목이 status.conditions.type === 'Complete' 개수인지 확인
-    - duration 항목이 status.completionTime - status.startTime 인지 확인
-  - [x] CronJob List 항목, Schedules, Suspend, Active, Last Schedule 별도 표시
-  - [x] yaml Parser, null값을 ?로 표시하는 버그 해결
-    - Yaml Parser Option SimpleKeys: true 필요
-
-  - [x] 리소스 새로 만들기시, Yaml Text가 Pod로 하드코딩되어있던 문제 수정
-  - [x] 아래의 항목, 이름, 네임스페이스(있는 항목만), 생성날짜만 간략하게하여 구현
-    - [x] Service List, label, PodSelector + Type, ClusterIP, ExternalIP, Port
-    - [x] Ingress List, label + host, port
-    - [x] ConfigMap List, data
-    - [x] Secret List, type, data
-    - [x] PV List, label, claim, capacity, acess mode
-    - [x] PVC List, status, pv, capacity
-    - [x] SC List, provisioner, recliam policty
-    - [x] Role List, 
-    - [x] RoleBinding List,
-    - [x] ClusterRole List
-    - [x] ClusterRoleBinding List,
-    - [x] NetworkPolicy List,s
-  - [x] 빌드 속도 향상시키기
-    - 초기 빌드 속도는 상관없지만, 수정시 빌드 시간 향상이 필요하다
-    - 기존(1600 ~ 1847ms) -> 개선(700 ~ 1071ms)
-
-  ![image-20201020214712739](https://i.loli.net/2020/10/20/lCGSrBUT7YMJkj6.png)
-
-  ![image-20201020215028163](/Users/admin/Library/Application Support/typora-user-images/image-20201020215028163.png)
-
-  - [x] user-controller 현재 작동X
-  - [x] okd web console 환경 구성하여 실행 시켜보고, 기존 코드 개선할 점 확인 및 빌드 속도 체크
-
-### 개인 일정
-
 - [ ] Typescript 13장 정리
 - [ ] 일일 커밋 어플 손대보기
 - [ ] React days에 관해서는 직접 실습해보고, 이후 학습에 대한 내용 적는게 올바른 순서로 보임
@@ -275,26 +170,6 @@ PC 문제로 미작성
 --------
 
 ## 10.19
-
-### 회사 업무
-
-- [ ] 새기능 #1998 레이아웃 개선 작업 지속
-
-  개선 내용
-
-  1. 화면 Depth 줄이기
-  2. 모달 -> 드롭다운
-  3. 테이블 -> 이메일 클라이언트 형식
-  4. [x] Statufulsets List 항목의 Label, PodSelector 값 표시 방법 기획 및 구현
-  5. [x] Deployments List 항목, statefulsets 항목과 동일 
-  6. [x] 공통 메소드의 Pods API URL 하드코딩 되어있음, 수정 필요
-  7. [x] Daemonsets List 항목, statefulsets 항목과 동일
-
-
-
-![image-20201019174132092](https://i.loli.net/2020/10/19/aEYrfPJ6I1MGpLv.png)
-
-### 개인 일정
 
 - [x] Typescript 12장 정리
 - [ ] C++ 2챕터 정리 연습문제 블로그 정리 - 템플릿 짜기

@@ -299,11 +299,44 @@ https://reactrouter.com/web/api/Hooks
 
 ## 비율
 
-전체 높이: 812
+전체 높이: 100%
 
-1. 헤더 68
-2. 오늘 커밋 100
-3. 첫 커밋 내용 
-4. 전체 커밋 현황
-5. 셋팅
-6. 로그아웃
+1. 헤더 10%
+2. 오늘 커밋 15%
+3. 첫 커밋 내용 10%
+4. 전체 커밋 현황 25%
+5. 셋팅 30% 
+6. 로그아웃 10%
+
+
+
+## 오늘 커밋 개수 구하기
+
+```
+https://api.github.com/repos/{owner}/{repo}/stats/commit_activity
+```
+
+owner, repo 필요함
+
+- owner: 이미 access_token으로 가지고있음 + organzation 도 포함해야할듯
+  - organization List의 경우, 하나하나 사용자가 클릭해서 허락해줘야하는 번거로움이 있어 퍼블릭 올거니제이션만 포함
+- repo: repo list에서 반복 돌려야할듯
+
+### :owner
+
+```
+https://api.github.com/users/taeuk-gang/orgs
+```
+
+`+` login(유저 고유아이디)
+
+### :repo
+
+```
+https://api.github.com/user/repos
+```
+
+```
+https://api.github.com/orgs/:org/repos
+```
+

@@ -2,13 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://taeuk-gang.github.io/wiki/k8s_3_pod/</loc>
-    
-    <lastmod>2020-11-08</lastmod>
-    
-  </url>
-  
-  <url>
     <loc>https://taeuk-gang.github.io/schedules/index.html</loc>
     
     <lastmod>2020-11-08</lastmod>
@@ -17,6 +10,13 @@
   
   <url>
     <loc>https://taeuk-gang.github.io/wiki/DailyCommit/</loc>
+    
+    <lastmod>2020-11-08</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>https://taeuk-gang.github.io/wiki/k8s_3_pod/</loc>
     
     <lastmod>2020-11-08</lastmod>
     

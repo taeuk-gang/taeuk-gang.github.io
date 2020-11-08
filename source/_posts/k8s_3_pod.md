@@ -8,8 +8,6 @@ categories:
     - Kubernetes
 ---
 > 개인이 "쿠버네티스 인 액션" 책을 읽고 학습한 내용으로, 틀린 내용이 있을 수 있습니다.
->
-> 책을 읽고 의문이 든 생각을 **Q**라고 적었고, 의문이 해결된 부분을 A라고 적어서 학습 진행하였습니다.
 
 # 3장 파드: 쿠버네티스에서 컨테이너 실행
 
@@ -255,25 +253,158 @@ curl localhost:8888
 
 ### 3.3.2 파드 생성시 라벨 지정
 
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubia-menual
+  labels:
+    app: test
+    rel: beta
+spec:
+  containers:
+  - image: luksa/kubia
+    name: kubia
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+```
 
+#### 파드 라벨 보기
+
+```bash
+kubectl get pod --show-labels
+```
+
+![image-20201108184538134](https://i.loli.net/2020/11/08/Yht1nmSdaj9KA7l.png)
+
+#### 파드 특정 라벨만 보기
+
+```bash
+kubectl get pod -L app
+```
+
+![image-20201108184629324](https://i.loli.net/2020/11/08/S6RFvwdjXlDCgLW.png)
 
 ### 3.3.3 기존 파드 라벨 수정
 
+#### 파드에 새로운 라벨 추가
+
+```bash
+kubectl label po kubia-manual added_label=0
+```
+
+![image-20201108185237231](https://i.loli.net/2020/11/08/phAWVZw8Y2oByFI.png)
+
+#### 파드에 기존 라벨 수정
+
+```bash
+kubectl label po kubia-manual added_label=1
+```
+
+![image-20201108185303697](https://i.loli.net/2020/11/08/LFmABDTg3h2jNqn.png)
+
 ## 3.4 라벨 셀렉터로 파드 부분 집합 나열
+
+라벨의 중요성은 라벨 셀렉터를 함께 사용할때 알 수 있음
+
+예를 들어,
+
+- 특정 키를 포함하거나 포함하지않는 라벨의 리소스
+- 특정 키와 값을 가진 라벨의 리소스
+- 특정 키를 가지고있지만, 다른 값을 라벨의 리소스
 
 ### 3.4.1 라벨 셀렉터로 파드 나열
 
+#### 특정 키와 값 라벨 셀렉터 조건
+
+```bash
+kubectl get po -l app=test -L app
+```
+
+![image-20201108185938590](https://i.loli.net/2020/11/08/2Yd5CRl4ZVqO163.png)
+
+#### 값은 상관하지않는 라벨 셀렉터 조건
+
+```bash
+kubectl get po -l app -L app
+```
+
+#### 값을 가지고있지 않는 라벨 셀렉터 조건
+
+```bash
+kubectl get po -l '!app'
+```
+
+#### 값이 아닌 라벨 셀렉터 조건
+
+```bash
+kubectl get po -l app!=test
+```
+
+#### 값이 A 또는 B 인 조건
+
+```bash
+kubectl get po -l env in (test, rel)
+```
+
+#### 값이 둘다 아닌 것
+
+```bash
+kubectl get po -l env notin (test, rel)
+```
+
+
+
 ### 3.4.2 라벨 셀렉터에서 조건 사용
 
-## 3.5 하나의 특정 노드로 스케줄링
+책에 자세한 내용 X
+
+> [해당 링크](https://kubernetes.io/ko/docs/concepts/overview/working-with-objects/labels/) 참조
+
+## 3.5 라벨 셀렉터로 파드 스케줄링
+
+쿠버네티스는 기본적으로 무작위로 워커 노드에 스케줄링한다. 모든 노드를 하나의 대규모 배포 플랫폼으로 생각하고 어떤 노드에 스케줄링은 중요하지 않기 때문이다.
+
+그러나, 하드웨어 인프라가 동일하지 않은 상황일 경우, ex- 워커 노드 중 일부는 ssd, 다른 일부는 hdd, 거나 GPU 가속 제한 등은 특정 파드를 스케줄링 해주어야 할 것이다.
+
+정확한 노드를 지정하는 대신, 노드의 필요 요구사항을 기술하고 만족하는 노드를 선택하도록 한다.
+이를 노드 라벨과 라벨 셀렉터를 통해 할 수 있다.
 
 ### 3.5.1 워커 노드 분류에 라벨 사용
 
+라벨은 모든 리소스에 적용 가능
+
+```bash
+kubectl label node <노드명> gpu=true
+```
+
 ### 3.5.2 특정 노드에 파드 스케줄링
+
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kubia-gpu
+spec:
+  nodeSelector:
+    gpu: "true"
+  containers:
+  - image: luksa/kubia
+    name: kubia
+```
+
+spec.nodeSelector를 사용하여 파드 스케줄링
 
 ### 3.5.3 하나의 특정 노드로 스케줄링
 
+각 노드에는 `kubernetes.io/hostname=<호트트네임>`으로 고유 라벨이 존재하기 때문에 특정 하나의 노드로 스케줄링이 가능하다.
+
+그러나, 해당 노드가 오프라인일 경우, 스케줄링이 되지 않을 수 있다.
+
 ## 3.6 파드에 어노테이션 달기
+
+
 
 ### 3.6.1 오브젝트 어노테이션 조회
 

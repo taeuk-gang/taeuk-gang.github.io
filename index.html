@@ -414,7 +414,7 @@
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wiki/%E1%84%8C%E1%85%A9%E1%87%82%E1%84%8B%E1%85%B3%E1%86%AB%20kubeconfig/"></a></li>  <li class="file"><a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/"></a></li>  </ul> 
+                     <li class="file"><a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/"></a></li>  </ul> 
     </div>
     <script>
         $(document).ready(function() {
@@ -527,45 +527,6 @@
             </div>   
             <div class="article-more-link">
                 <a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/#more">자세히 보기</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-좋은 kubeconfig" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-            
-        
-        
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: DATA+OMITTED</span><br><span class="line">    server: https:&#x2F;&#x2F;127.0.0.1:41620</span><br><span class="line">  name: kind-host</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: DATA+OMITTED</span><br><span class="line">    server: https:&#x2F;&#x2F;127.0.0.1:45027</span><br><span class="line">  name: kind-kubesphere</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-host</span><br><span class="line">    user: kind-host</span><br><span class="line">  name: kind-host</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-kubesphere</span><br><span class="line">    user: kind-kubesphere</span><br><span class="line">  name: kind-kubesphere</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-host</span><br><span class="line">    user: oidc</span><br><span class="line">  name: oidc@kind-host</span><br><span class="line">current-context: kind-kubesphere</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kind-host</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: REDACTED</span><br><span class="line">    client-key-data: REDACTED</span><br><span class="line">- name: kind-kubesphere</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: REDACTED</span><br><span class="line">    client-key-data: REDACTED</span><br><span class="line">- name: oidc</span><br><span class="line">  user:</span><br><span class="line">    auth-provider:</span><br><span class="line">      config:</span><br><span class="line">        client-id: kubernetes</span><br><span class="line">        client-secret: cefabde4-d71c-4ebd-a0e4-d613da8b2c24</span><br><span class="line">        extra-scopes: groups</span><br><span class="line">        id-token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZXhVUDVOWE9NQU1MbG9BREc3RjV2VEl6X1Y1QWxBdGU0ZzAyLXVGOWlnIn0.eyJleHAiOjE2MDQ4Mzc5ODQsImlhdCI6MTYwNDgzNzY4NCwiYXV0aF90aW1lIjowLCJqdGkiOiI2NDBlYjY2MS1hMjM4LTQwMWEtYjA2Yi00MDk1YTBmZjYxNzYiLCJpc3MiOiJodHRwczovLzEwLjIwLjIwMC4yMDA6ODQ0My9hdXRoL3JlYWxtcy9tYW50ZWNoIiwiYXVkIjoia3ViZXJuZXRlcyIsInN1YiI6IjM0NTQ3ZTVlLTA0ZTgtNDg2OC1hYTRkLTFkMGJjMzY4NWJjMSIsInR5cCI6IklEIiwiYXpwIjoia3ViZXJuZXRlcyIsInNlc3Npb25fc3RhdGUiOiIzMGJjMmRmNS1kODZjLTRlM2YtODViYy01ODA3ZTIwZjU4Y2IiLCJhdF9oYXNoIjoiYXVNQU1seU9Jdk12LTh4SDFReVc4QSIsImFjciI6IjEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqanBhcmsifQ.E0lelPKmcttW0ozYHwpXyByv8attpLvXwQRH3VW4EZ_jFva0z_riSXhC8wERMiu09mcn6_ZUIIBQ9QhuQsXXMCjEIsFdr_VhOpIWxjfdQPL1nsEDs3jHD5yMggqKBstEhBJmeLEOa7FUV8tiPXgNdIMnM0en2eOqGL2RmdhX5XWxIiv7v_G7wKRfiICIW1f-X8oHX5KbJRqIyYjSuZgtu_q0kjwLz1KdvA39SjoIdS-GuUTJk6wMQqgXxzg0l5hMVbyVBfz7Q9cSa5r6Q9iO4uP3WiU1zCyovzY_5b1UStp1uThZN6No8WZdcJjpq0hGrmmTX1NcLLLDjXQzMPHM5w</span><br><span class="line">        idp-issuer-url: https:&#x2F;&#x2F;10.20.200.200:8443&#x2F;auth&#x2F;realms&#x2F;kubernetes</span><br><span class="line">        refresh-token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5Y2RlOWU2Mi1jMDEyLTQxZjQtOWI3OC1mNThlYzUzZDE2MDgifQ.eyJleHAiOjE2MDQ4Mzk0ODQsImlhdCI6MTYwNDgzNzY4NCwianRpIjoiMTI1NjUwMmQtMzc1YS00OTY0LTlkMDktN2M0Nzg1MjFiNTEzIiwiaXNzIjoiaHR0cHM6Ly8xMC4yMC4yMDAuMjAwOjg0NDMvYXV0aC9yZWFsbXMvbWFudGVjaCIsImF1ZCI6Imh0dHBzOi8vMTAuMjAuMjAwLjIwMDo4NDQzL2F1dGgvcmVhbG1zL21hbnRlY2giLCJzdWIiOiIzNDU0N2U1ZS0wNGU4LTQ4NjgtYWE0ZC0xZDBiYzM2ODViYzEiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoia3ViZXJuZXRlcyIsInNlc3Npb25fc3RhdGUiOiIzMGJjMmRmNS1kODZjLTRlM2YtODViYy01ODA3ZTIwZjU4Y2IiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIn0._u2xfgoA8FBrN9eitZGZYgAsTH0oNabIkUZB6dCRxSw</span><br><span class="line">      name: oidc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
             </div>
         
         <footer class="article-footer">
@@ -1398,6 +1359,110 @@
             </div>   
             <div class="article-more-link">
                 <a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-Typescript quick start -7장" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">
+            <time datetime="2020-04-05T04:39:05.000Z" itemprop="datePublished">2020-04-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start -7장.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start -7장.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start -7장.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성</p>
+<p>분량이 많아, 이미 아는 내용이나 자주 사용하는 부분은 생략함</p>
+</blockquote>
+<h1 id="7장-클래스와-인터페이스-목차"><a href="#7장-클래스와-인터페이스-목차" class="headerlink" title="7장 클래스와 인터페이스 목차"></a>7장 클래스와 인터페이스 목차</h1><h2 id="📝183p-타입스크립트의-객체지향-프로그래밍-지원"><a href="#📝183p-타입스크립트의-객체지향-프로그래밍-지원" class="headerlink" title="📝183p. 타입스크립트의 객체지향 프로그래밍 지원"></a>📝183p. 타입스크립트의 객체지향 프로그래밍 지원</h2><p>객체지향의 목적은 코드 중복을 최소화</p><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/#more">자세히 보기</a>
             </div>
         
         <footer class="article-footer">

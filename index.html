@@ -414,7 +414,7 @@
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wiki/kubesphere%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5/"></a></li>  <li class="file"><a href="/wiki/%E1%84%8C%E1%85%A9%E1%87%82%E1%84%8B%E1%85%B3%E1%86%AB%20kubeconfig/"></a></li>  </ul> 
+                     <li class="file"><a href="/wiki/%E1%84%8C%E1%85%A9%E1%87%82%E1%84%8B%E1%85%B3%E1%86%AB%20kubeconfig/"></a></li>  <li class="file"><a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/"></a></li>  </ul> 
     </div>
     <script>
         $(document).ready(function() {
@@ -486,46 +486,7 @@
 </aside>
             
             <section id="main">
-        <article id="post-좋은 kubeconfig" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-            
-        
-        
-            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: DATA+OMITTED</span><br><span class="line">    server: https:&#x2F;&#x2F;127.0.0.1:41620</span><br><span class="line">  name: kind-host</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: DATA+OMITTED</span><br><span class="line">    server: https:&#x2F;&#x2F;127.0.0.1:45027</span><br><span class="line">  name: kind-kubesphere</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-host</span><br><span class="line">    user: kind-host</span><br><span class="line">  name: kind-host</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-kubesphere</span><br><span class="line">    user: kind-kubesphere</span><br><span class="line">  name: kind-kubesphere</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-host</span><br><span class="line">    user: oidc</span><br><span class="line">  name: oidc@kind-host</span><br><span class="line">current-context: kind-kubesphere</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kind-host</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: REDACTED</span><br><span class="line">    client-key-data: REDACTED</span><br><span class="line">- name: kind-kubesphere</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: REDACTED</span><br><span class="line">    client-key-data: REDACTED</span><br><span class="line">- name: oidc</span><br><span class="line">  user:</span><br><span class="line">    auth-provider:</span><br><span class="line">      config:</span><br><span class="line">        client-id: kubernetes</span><br><span class="line">        client-secret: cefabde4-d71c-4ebd-a0e4-d613da8b2c24</span><br><span class="line">        extra-scopes: groups</span><br><span class="line">        id-token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZXhVUDVOWE9NQU1MbG9BREc3RjV2VEl6X1Y1QWxBdGU0ZzAyLXVGOWlnIn0.eyJleHAiOjE2MDQ4Mzc5ODQsImlhdCI6MTYwNDgzNzY4NCwiYXV0aF90aW1lIjowLCJqdGkiOiI2NDBlYjY2MS1hMjM4LTQwMWEtYjA2Yi00MDk1YTBmZjYxNzYiLCJpc3MiOiJodHRwczovLzEwLjIwLjIwMC4yMDA6ODQ0My9hdXRoL3JlYWxtcy9tYW50ZWNoIiwiYXVkIjoia3ViZXJuZXRlcyIsInN1YiI6IjM0NTQ3ZTVlLTA0ZTgtNDg2OC1hYTRkLTFkMGJjMzY4NWJjMSIsInR5cCI6IklEIiwiYXpwIjoia3ViZXJuZXRlcyIsInNlc3Npb25fc3RhdGUiOiIzMGJjMmRmNS1kODZjLTRlM2YtODViYy01ODA3ZTIwZjU4Y2IiLCJhdF9oYXNoIjoiYXVNQU1seU9Jdk12LTh4SDFReVc4QSIsImFjciI6IjEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqanBhcmsifQ.E0lelPKmcttW0ozYHwpXyByv8attpLvXwQRH3VW4EZ_jFva0z_riSXhC8wERMiu09mcn6_ZUIIBQ9QhuQsXXMCjEIsFdr_VhOpIWxjfdQPL1nsEDs3jHD5yMggqKBstEhBJmeLEOa7FUV8tiPXgNdIMnM0en2eOqGL2RmdhX5XWxIiv7v_G7wKRfiICIW1f-X8oHX5KbJRqIyYjSuZgtu_q0kjwLz1KdvA39SjoIdS-GuUTJk6wMQqgXxzg0l5hMVbyVBfz7Q9cSa5r6Q9iO4uP3WiU1zCyovzY_5b1UStp1uThZN6No8WZdcJjpq0hGrmmTX1NcLLLDjXQzMPHM5w</span><br><span class="line">        idp-issuer-url: https:&#x2F;&#x2F;10.20.200.200:8443&#x2F;auth&#x2F;realms&#x2F;kubernetes</span><br><span class="line">        refresh-token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5Y2RlOWU2Mi1jMDEyLTQxZjQtOWI3OC1mNThlYzUzZDE2MDgifQ.eyJleHAiOjE2MDQ4Mzk0ODQsImlhdCI6MTYwNDgzNzY4NCwianRpIjoiMTI1NjUwMmQtMzc1YS00OTY0LTlkMDktN2M0Nzg1MjFiNTEzIiwiaXNzIjoiaHR0cHM6Ly8xMC4yMC4yMDAuMjAwOjg0NDMvYXV0aC9yZWFsbXMvbWFudGVjaCIsImF1ZCI6Imh0dHBzOi8vMTAuMjAuMjAwLjIwMDo4NDQzL2F1dGgvcmVhbG1zL21hbnRlY2giLCJzdWIiOiIzNDU0N2U1ZS0wNGU4LTQ4NjgtYWE0ZC0xZDBiYzM2ODViYzEiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoia3ViZXJuZXRlcyIsInNlc3Npb25fc3RhdGUiOiIzMGJjMmRmNS1kODZjLTRlM2YtODViYy01ODA3ZTIwZjU4Y2IiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIn0._u2xfgoA8FBrN9eitZGZYgAsTH0oNabIkUZB6dCRxSw</span><br><span class="line">      name: oidc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
-        <article id="post-kubesphere 설치" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-새기능 #2077 네임스페이스 대시보드 개발" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -554,10 +515,10 @@
                 
                     
                     <!-- Bug Exist: When start table html, crash main page. -->
-                    <p><h1 id="Kubesphere-설치"><a href="#Kubesphere-설치" class="headerlink" title="Kubesphere 설치"></a>Kubesphere 설치</h1><p>kind로 하면 더 좋음</p>
-<p><a target="_blank" rel="noopener" href="https://kubesphere.com.cn/forum/d/1673-kind-kubernetes-kubesphere">https://kubesphere.com.cn/forum/d/1673-kind-kubernetes-kubesphere</a></p>
-<p><img src="https://i.loli.net/2020/11/10/4MTxPDGgSNaFusm.png" alt="image-20201110110621709"></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">admin</span><br><span class="line">P@88w0rd</span><br></pre></td></tr></table></figure>
+                    <p><h1 id="새기능-2077-네임스페이스-대시보드-개발"><a href="#새기능-2077-네임스페이스-대시보드-개발" class="headerlink" title="새기능 #2077 네임스페이스 대시보드 개발"></a>새기능 #2077 네임스페이스 대시보드 개발</h1><h2 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h2><p><a target="_blank" rel="noopener" href="https://10.20.200.201:31313/cluster/c201/namespace/test2/overview">https://10.20.200.201:31313/cluster/c201/namespace/test2/overview</a> 접속하여 확인</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http://jenkins.accordions.co.kr/job/accordion-client/job/feat%252Fnamespace-dashboard/</span></span><br><span class="line"><span class="comment"># 젠킨스에서 확인</span></span><br><span class="line"><span class="comment"># 또는</span></span><br><span class="line">npm <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="테스트-시나리오"><a href="#테스트-시나리오" class="headerlink" title="테스트 시나리오"></a>테스트 시나리오</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Feature 네임스페이스 대시보드</span><br><span class="line">	@Before</span><br><span class="line">	Background</span><br><span class="line">    Given 사용자가 로그인을 하고, 네임스페이스 대시보드에 접속한 상태</span><br><span class="line">		TODO: And 프로메테우스 데이터 모킹 (CURL 및 인터페이스 모르는 상태로 모킹 X)</span><br><span class="line">		And 앱 리소스 자원 모킹</span><br><span class="line">		And 리소스 쿼터 자원 모킹</span><br><span class="line"></span><br><span class="line">	Scenario 물리 리소스 조회</span><br><span class="line">		When CPU 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then CPU 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When Memory 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then Memory 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When Network rx 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then Network rx 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When Network tx 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then Network tx 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When FileSystem 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then FileSystem 데이터가 API에서 보낸 값과 일치</span><br><span class="line"></span><br><span class="line">	Scenario 앱 리소스 조회</span><br><span class="line">		When 파드 정보 엘리먼트 존재</span><br><span class="line">		Then 파드 정보 (개수, Running, Fail)을 API에서 보낸값과 일치</span><br><span class="line">		When 볼륨 정보 엘리먼트 존재</span><br><span class="line">		Then 볼륨 정보 (개수, Running, Fail)을 API에서 보낸값과 일치</span><br><span class="line">		When 스테이트풀셋 정보 엘리먼트 존재</span><br><span class="line">		Then 스테이트풀셋 정보 (개수, Ready)을 API에서 보낸값과 일치</span><br><span class="line">		When 디플로이먼트 정보 엘리먼트 존재</span><br><span class="line">		Then 디플로이먼트 정보 (개수, Ready)을 API에서 보낸값과 일치</span><br><span class="line">		When 서비스 정보 엘리먼트 존재</span><br><span class="line">		Then 서비스 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">		When 컨피그맵 정보 엘리먼트 존재</span><br><span class="line">		Then 컨피그맵 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">		When 시크릿 정보 엘리먼트 존재</span><br><span class="line">		Then 시크릿 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">	</span><br><span class="line">	Scenario 앱 리소스 쿼터 조회</span><br><span class="line">		When 리소스 쿼터 정보 엘리먼트 존재</span><br><span class="line">		Then 리소스 쿼터 정보 API와 일치</span><br></pre></td></tr></table></figure>
 <p>
                 
             
@@ -565,7 +526,46 @@
         
             </div>   
             <div class="article-more-link">
-                <a href="/wiki/kubesphere%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5/#more">자세히 보기</a>
+                <a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
+        <article id="post-좋은 kubeconfig" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+            
+        
+        
+            <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">apiVersion: v1</span><br><span class="line">clusters:</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: DATA+OMITTED</span><br><span class="line">    server: https:&#x2F;&#x2F;127.0.0.1:41620</span><br><span class="line">  name: kind-host</span><br><span class="line">- cluster:</span><br><span class="line">    certificate-authority-data: DATA+OMITTED</span><br><span class="line">    server: https:&#x2F;&#x2F;127.0.0.1:45027</span><br><span class="line">  name: kind-kubesphere</span><br><span class="line">contexts:</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-host</span><br><span class="line">    user: kind-host</span><br><span class="line">  name: kind-host</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-kubesphere</span><br><span class="line">    user: kind-kubesphere</span><br><span class="line">  name: kind-kubesphere</span><br><span class="line">- context:</span><br><span class="line">    cluster: kind-host</span><br><span class="line">    user: oidc</span><br><span class="line">  name: oidc@kind-host</span><br><span class="line">current-context: kind-kubesphere</span><br><span class="line">kind: Config</span><br><span class="line">preferences: &#123;&#125;</span><br><span class="line">users:</span><br><span class="line">- name: kind-host</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: REDACTED</span><br><span class="line">    client-key-data: REDACTED</span><br><span class="line">- name: kind-kubesphere</span><br><span class="line">  user:</span><br><span class="line">    client-certificate-data: REDACTED</span><br><span class="line">    client-key-data: REDACTED</span><br><span class="line">- name: oidc</span><br><span class="line">  user:</span><br><span class="line">    auth-provider:</span><br><span class="line">      config:</span><br><span class="line">        client-id: kubernetes</span><br><span class="line">        client-secret: cefabde4-d71c-4ebd-a0e4-d613da8b2c24</span><br><span class="line">        extra-scopes: groups</span><br><span class="line">        id-token: eyJhbGciOiJSUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5ZXhVUDVOWE9NQU1MbG9BREc3RjV2VEl6X1Y1QWxBdGU0ZzAyLXVGOWlnIn0.eyJleHAiOjE2MDQ4Mzc5ODQsImlhdCI6MTYwNDgzNzY4NCwiYXV0aF90aW1lIjowLCJqdGkiOiI2NDBlYjY2MS1hMjM4LTQwMWEtYjA2Yi00MDk1YTBmZjYxNzYiLCJpc3MiOiJodHRwczovLzEwLjIwLjIwMC4yMDA6ODQ0My9hdXRoL3JlYWxtcy9tYW50ZWNoIiwiYXVkIjoia3ViZXJuZXRlcyIsInN1YiI6IjM0NTQ3ZTVlLTA0ZTgtNDg2OC1hYTRkLTFkMGJjMzY4NWJjMSIsInR5cCI6IklEIiwiYXpwIjoia3ViZXJuZXRlcyIsInNlc3Npb25fc3RhdGUiOiIzMGJjMmRmNS1kODZjLTRlM2YtODViYy01ODA3ZTIwZjU4Y2IiLCJhdF9oYXNoIjoiYXVNQU1seU9Jdk12LTh4SDFReVc4QSIsImFjciI6IjEiLCJwcmVmZXJyZWRfdXNlcm5hbWUiOiJqanBhcmsifQ.E0lelPKmcttW0ozYHwpXyByv8attpLvXwQRH3VW4EZ_jFva0z_riSXhC8wERMiu09mcn6_ZUIIBQ9QhuQsXXMCjEIsFdr_VhOpIWxjfdQPL1nsEDs3jHD5yMggqKBstEhBJmeLEOa7FUV8tiPXgNdIMnM0en2eOqGL2RmdhX5XWxIiv7v_G7wKRfiICIW1f-X8oHX5KbJRqIyYjSuZgtu_q0kjwLz1KdvA39SjoIdS-GuUTJk6wMQqgXxzg0l5hMVbyVBfz7Q9cSa5r6Q9iO4uP3WiU1zCyovzY_5b1UStp1uThZN6No8WZdcJjpq0hGrmmTX1NcLLLDjXQzMPHM5w</span><br><span class="line">        idp-issuer-url: https:&#x2F;&#x2F;10.20.200.200:8443&#x2F;auth&#x2F;realms&#x2F;kubernetes</span><br><span class="line">        refresh-token: eyJhbGciOiJIUzI1NiIsInR5cCIgOiAiSldUIiwia2lkIiA6ICI5Y2RlOWU2Mi1jMDEyLTQxZjQtOWI3OC1mNThlYzUzZDE2MDgifQ.eyJleHAiOjE2MDQ4Mzk0ODQsImlhdCI6MTYwNDgzNzY4NCwianRpIjoiMTI1NjUwMmQtMzc1YS00OTY0LTlkMDktN2M0Nzg1MjFiNTEzIiwiaXNzIjoiaHR0cHM6Ly8xMC4yMC4yMDAuMjAwOjg0NDMvYXV0aC9yZWFsbXMvbWFudGVjaCIsImF1ZCI6Imh0dHBzOi8vMTAuMjAuMjAwLjIwMDo4NDQzL2F1dGgvcmVhbG1zL21hbnRlY2giLCJzdWIiOiIzNDU0N2U1ZS0wNGU4LTQ4NjgtYWE0ZC0xZDBiYzM2ODViYzEiLCJ0eXAiOiJSZWZyZXNoIiwiYXpwIjoia3ViZXJuZXRlcyIsInNlc3Npb25fc3RhdGUiOiIzMGJjMmRmNS1kODZjLTRlM2YtODViYy01ODA3ZTIwZjU4Y2IiLCJzY29wZSI6Im9wZW5pZCBwcm9maWxlIGVtYWlsIn0._u2xfgoA8FBrN9eitZGZYgAsTH0oNabIkUZB6dCRxSw</span><br><span class="line">      name: oidc</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
             </div>
         
         <footer class="article-footer">

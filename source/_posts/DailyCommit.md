@@ -340,3 +340,23 @@ https://api.github.com/user/repos
 https://api.github.com/orgs/:org/repos
 ```
 
+
+
+## commit history
+
+개인 레포
+
+```
+/user/repos
+```
+
+올거니제이션 레포
+
+```
+
+```
+
+```
+/repos/{owner}/{repo}/commits
+```
+

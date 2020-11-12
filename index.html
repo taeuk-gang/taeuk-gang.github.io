@@ -414,7 +414,7 @@
                         </a>
                          <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
                     </li> 
-                     <li class="file"><a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/"></a></li>  </ul> 
+                     </ul> 
     </div>
     <script>
         $(document).ready(function() {
@@ -486,60 +486,6 @@
 </aside>
             
             <section id="main">
-        <article id="post-새기능 #2077 네임스페이스 대시보드 개발" class="article article-type-post" itemscope itemprop="blogPost">
-    <div class="article-inner">
-        
-        
-        
-        <div class="article-entry" itemprop="articleBody">
-        
-        
-            
-                
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                    
-                    
-                
-                
-                    
-                    <!-- Bug Exist: When start table html, crash main page. -->
-                    <p><h1 id="새기능-2077-네임스페이스-대시보드-개발"><a href="#새기능-2077-네임스페이스-대시보드-개발" class="headerlink" title="새기능 #2077 네임스페이스 대시보드 개발"></a>새기능 #2077 네임스페이스 대시보드 개발</h1><h2 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h2><p><a target="_blank" rel="noopener" href="https://10.20.200.201:31313/cluster/c201/namespace/test2/overview">https://10.20.200.201:31313/cluster/c201/namespace/test2/overview</a> 접속하여 확인</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http://jenkins.accordions.co.kr/job/accordion-client/job/feat%252Fnamespace-dashboard/</span></span><br><span class="line"><span class="comment"># 젠킨스에서 확인</span></span><br><span class="line"><span class="comment"># 또는</span></span><br><span class="line">npm <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="테스트-시나리오"><a href="#테스트-시나리오" class="headerlink" title="테스트 시나리오"></a>테스트 시나리오</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Feature 네임스페이스 대시보드</span><br><span class="line">	@Before</span><br><span class="line">	Background</span><br><span class="line">    Given 사용자가 로그인을 하고, 네임스페이스 대시보드에 접속한 상태</span><br><span class="line">		TODO: And 프로메테우스 데이터 모킹 (CURL 및 인터페이스 모르는 상태로 모킹 X)</span><br><span class="line">		And 앱 리소스 자원 모킹</span><br><span class="line">		And 리소스 쿼터 자원 모킹</span><br><span class="line"></span><br><span class="line">	Scenario 물리 리소스 조회</span><br><span class="line">		When CPU 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then CPU 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When Memory 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then Memory 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When Network rx 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then Network rx 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When Network tx 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then Network tx 데이터가 API에서 보낸 값과 일치</span><br><span class="line">		When FileSystem 조회 엘리먼트 존재</span><br><span class="line">		TODO: Then FileSystem 데이터가 API에서 보낸 값과 일치</span><br><span class="line"></span><br><span class="line">	Scenario 앱 리소스 조회</span><br><span class="line">		When 파드 정보 엘리먼트 존재</span><br><span class="line">		Then 파드 정보 (개수, Running, Fail)을 API에서 보낸값과 일치</span><br><span class="line">		When 볼륨 정보 엘리먼트 존재</span><br><span class="line">		Then 볼륨 정보 (개수, Running, Fail)을 API에서 보낸값과 일치</span><br><span class="line">		When 스테이트풀셋 정보 엘리먼트 존재</span><br><span class="line">		Then 스테이트풀셋 정보 (개수, Ready)을 API에서 보낸값과 일치</span><br><span class="line">		When 디플로이먼트 정보 엘리먼트 존재</span><br><span class="line">		Then 디플로이먼트 정보 (개수, Ready)을 API에서 보낸값과 일치</span><br><span class="line">		When 서비스 정보 엘리먼트 존재</span><br><span class="line">		Then 서비스 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">		When 컨피그맵 정보 엘리먼트 존재</span><br><span class="line">		Then 컨피그맵 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">		When 시크릿 정보 엘리먼트 존재</span><br><span class="line">		Then 시크릿 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">	</span><br><span class="line">	Scenario 앱 리소스 쿼터 조회</span><br><span class="line">		When 리소스 쿼터 정보 엘리먼트 존재</span><br><span class="line">		Then 리소스 쿼터 정보 API와 일치</span><br></pre></td></tr></table></figure>
-<p>
-                
-            
-        
-        
-            </div>   
-            <div class="article-more-link">
-                <a href="/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/#more">자세히 보기</a>
-            </div>
-        
-        <footer class="article-footer">
-        </footer>
-    </div>
-</article>
-
-
-
-
-
-
-    
         <article id="post-k8s_3_pod" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
@@ -1476,8 +1422,112 @@
 
 
     
+        <article id="post-Typescript quick start -6장" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">
+            <time datetime="2020-03-22T11:39:05.000Z" itemprop="datePublished">2020-03-22</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start -6장.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start -6장.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start -6장.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 itemprop="name">
+            <a class="article-title" href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a>
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                    
+                    
+                
+                
+                    
+                    <!-- Bug Exist: When start table html, crash main page. -->
+                    <p><blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성했습니다.</p>
+</blockquote>
+<h2 id="6장-함수-목차"><a href="#6장-함수-목차" class="headerlink" title="6장 함수 목차"></a>6장 함수 목차</h2><ol>
+<li>사용법 (Js vs Ts 비교)</li><p>
+                
+            
+        
+        
+            </div>   
+            <div class="article-more-link">
+                <a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/#more">자세히 보기</a>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+
+
+
+
+    
         <nav id="page-nav">
-        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">다음 &amp;raquo;</a>
+        <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="extend next" rel="next" href="/page/2/">다음 &amp;raquo;</a>
         </nav>
     
 </section>

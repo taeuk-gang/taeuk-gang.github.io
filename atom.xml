@@ -6,7 +6,7 @@
   <link href="https://taeuk-gang.github.io/atom.xml" rel="self"/>
   
   <link href="https://taeuk-gang.github.io/"/>
-  <updated>2020-11-12T08:08:04.414Z</updated>
+  <updated>2020-11-08T11:53:03.474Z</updated>
   <id>https://taeuk-gang.github.io/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title></title>
-    <link href="https://taeuk-gang.github.io/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/"/>
-    <id>https://taeuk-gang.github.io/wiki/%E1%84%89%E1%85%A2%E1%84%80%E1%85%B5%E1%84%82%E1%85%B3%E1%86%BC%20#2077%20%E1%84%82%E1%85%A6%E1%84%8B%E1%85%B5%E1%86%B7%E1%84%89%E1%85%B3%E1%84%91%E1%85%A6%E1%84%8B%E1%85%B5%E1%84%89%E1%85%B3%20%E1%84%83%E1%85%A2%E1%84%89%E1%85%B5%E1%84%87%E1%85%A9%E1%84%83%E1%85%B3%20%E1%84%80%E1%85%A2%E1%84%87%E1%85%A1%E1%86%AF/</id>
-    <published>2020-11-10T18:31:49.753Z</published>
-    <updated>2020-11-12T08:08:04.414Z</updated>
-    
-    <content type="html"><![CDATA[<h1 id="새기능-2077-네임스페이스-대시보드-개발"><a href="#새기능-2077-네임스페이스-대시보드-개발" class="headerlink" title="새기능 #2077 네임스페이스 대시보드 개발"></a>새기능 #2077 네임스페이스 대시보드 개발</h1><h2 id="테스트"><a href="#테스트" class="headerlink" title="테스트"></a>테스트</h2><p><a href="https://10.20.200.201:31313/cluster/c201/namespace/test2/overview">https://10.20.200.201:31313/cluster/c201/namespace/test2/overview</a> 접속하여 확인</p><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># http://jenkins.accordions.co.kr/job/accordion-client/job/feat%252Fnamespace-dashboard/</span></span><br><span class="line"><span class="comment"># 젠킨스에서 확인</span></span><br><span class="line"><span class="comment"># 또는</span></span><br><span class="line">npm <span class="built_in">test</span></span><br></pre></td></tr></table></figure><h2 id="테스트-시나리오"><a href="#테스트-시나리오" class="headerlink" title="테스트 시나리오"></a>테스트 시나리오</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line">Feature 네임스페이스 대시보드</span><br><span class="line">@Before</span><br><span class="line">Background</span><br><span class="line">    Given 사용자가 로그인을 하고, 네임스페이스 대시보드에 접속한 상태</span><br><span class="line">TODO: And 프로메테우스 데이터 모킹 (CURL 및 인터페이스 모르는 상태로 모킹 X)</span><br><span class="line">And 앱 리소스 자원 모킹</span><br><span class="line">And 리소스 쿼터 자원 모킹</span><br><span class="line"></span><br><span class="line">Scenario 물리 리소스 조회</span><br><span class="line">When CPU 조회 엘리먼트 존재</span><br><span class="line">TODO: Then CPU 데이터가 API에서 보낸 값과 일치</span><br><span class="line">When Memory 조회 엘리먼트 존재</span><br><span class="line">TODO: Then Memory 데이터가 API에서 보낸 값과 일치</span><br><span class="line">When Network rx 조회 엘리먼트 존재</span><br><span class="line">TODO: Then Network rx 데이터가 API에서 보낸 값과 일치</span><br><span class="line">When Network tx 조회 엘리먼트 존재</span><br><span class="line">TODO: Then Network tx 데이터가 API에서 보낸 값과 일치</span><br><span class="line">When FileSystem 조회 엘리먼트 존재</span><br><span class="line">TODO: Then FileSystem 데이터가 API에서 보낸 값과 일치</span><br><span class="line"></span><br><span class="line">Scenario 앱 리소스 조회</span><br><span class="line">When 파드 정보 엘리먼트 존재</span><br><span class="line">Then 파드 정보 (개수, Running, Fail)을 API에서 보낸값과 일치</span><br><span class="line">When 볼륨 정보 엘리먼트 존재</span><br><span class="line">Then 볼륨 정보 (개수, Running, Fail)을 API에서 보낸값과 일치</span><br><span class="line">When 스테이트풀셋 정보 엘리먼트 존재</span><br><span class="line">Then 스테이트풀셋 정보 (개수, Ready)을 API에서 보낸값과 일치</span><br><span class="line">When 디플로이먼트 정보 엘리먼트 존재</span><br><span class="line">Then 디플로이먼트 정보 (개수, Ready)을 API에서 보낸값과 일치</span><br><span class="line">When 서비스 정보 엘리먼트 존재</span><br><span class="line">Then 서비스 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">When 컨피그맵 정보 엘리먼트 존재</span><br><span class="line">Then 컨피그맵 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line">When 시크릿 정보 엘리먼트 존재</span><br><span class="line">Then 시크릿 정보 (개수)을 API에서 보낸값과 일치</span><br><span class="line"></span><br><span class="line">Scenario 앱 리소스 쿼터 조회</span><br><span class="line">When 리소스 쿼터 정보 엘리먼트 존재</span><br><span class="line">Then 리소스 쿼터 정보 API와 일치</span><br></pre></td></tr></table></figure><ul><li><code>page-namespace-dashboard.test.ts</code> 참조</li></ul><h2 id="UI"><a href="#UI" class="headerlink" title="UI"></a>UI</h2><h3 id="width-1000px-이상"><a href="#width-1000px-이상" class="headerlink" title="width 1000px 이상"></a>width 1000px 이상</h3><p><img src="https://i.loli.net/2020/11/12/TKiVcXf2ZI8Eb7o.png" alt="image-20201112140651316"></p><h3 id="width-1000px이하"><a href="#width-1000px이하" class="headerlink" title="width 1000px이하"></a>width 1000px이하</h3><p><img src="https://i.loli.net/2020/11/12/JaRPg2Y6UVAmcLB.png" alt="image-20201112141152188"></p><h2 id="개발-전-Adobe-Component-도입-가능한지-테스트"><a href="#개발-전-Adobe-Component-도입-가능한지-테스트" class="headerlink" title="개발 전 Adobe Component 도입 가능한지 테스트"></a>개발 전 Adobe Component 도입 가능한지 테스트</h2><p>모든 컴포넌트를 혼자서 만들어 하기에 시간과 퀼리티를 보장하기 힘들다고 판단하여, 목표로 한 웹컴포넌트 라이브러리 중에서 adobe 컴포넌트 사용 환경 테스트 진행</p><ul><li>웹팩 설정이 충돌</li><li>컴포넌트 스타일링을 위해 도입 결정</li><li>웹팩 설정 별도로 작성하여 도입</li></ul><h3 id="참고링크"><a href="#참고링크" class="headerlink" title="참고링크"></a>참고링크</h3><ul><li><p><a href="https://github.com/adobe/spectrum-web-components/blob/main/projects/example-project-webpack/webpack.config.js">adobe webpack 사이트 가이드</a></p></li><li><p><a href="https://github.com/adobe/spectrum-web-components/blob/main/documentation/webpack.config.js">adobe webpack 실제 설정</a></p></li></ul><h2 id="스토어-및-API"><a href="#스토어-및-API" class="headerlink" title="스토어 및 API"></a>스토어 및 API</h2><h3 id="api"><a href="#api" class="headerlink" title="/api"></a>/api</h3><ul><li>pod.ts</li><li>persistent</li><li>statefulset.ts</li><li>deployment.ts</li><li>service.ts</li><li>configmap.ts</li><li>secret.ts</li><li>resourcequota.ts</li></ul><h3 id="stores"><a href="#stores" class="headerlink" title="/stores"></a>/stores</h3><ul><li><code>store-namespace-dashboard.ts</code> </li></ul><h2 id="사용자-마지막-Refresh-Time-저장"><a href="#사용자-마지막-Refresh-Time-저장" class="headerlink" title="사용자 마지막 Refresh Time 저장"></a>사용자 마지막 Refresh Time 저장</h2><ul><li><p>현재는 로컬스토리지에 저장하여, url로 식별하여 마지막 refreshTime을 저장</p></li><li><p>이슈: refreshTime을 브라우저에 저장하기 때문에 사용자간 시간이 다른것은 아님</p></li></ul><h2 id="Audit"><a href="#Audit" class="headerlink" title="Audit"></a>Audit</h2>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;h1 id=&quot;새기능-2077-네임스페이스-대시보드-개발&quot;&gt;&lt;a href=&quot;#새기능-2077-네임스페이스-대시보드-개발&quot; class=&quot;headerlink&quot; title=&quot;새기능 #2077 네임스페이스 대시보드 개발&quot;&gt;&lt;/a&gt;새기능 #2077 네임스페이스</summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>3장 파드 - 쿠버네티스에서 컨테이너 실행</title>
@@ -541,6 +521,30 @@
       
       
     <summary type="html">&lt;h2 id=&quot;Vue-Router&quot;&gt;&lt;a href=&quot;#Vue-Router&quot; class=&quot;headerlink&quot; title=&quot;Vue Router&quot;&gt;&lt;/a&gt;Vue Router&lt;/h2&gt;&lt;h3 id=&quot;Install&quot;&gt;&lt;a href=&quot;#Install&quot; class</summary>
+      
+    
+    
+    
+    <category term="Vue.js" scheme="https://taeuk-gang.github.io/categories/Vue-js/"/>
+    
+    
+    <category term="Vue.js" scheme="https://taeuk-gang.github.io/tags/Vue-js/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Vue Init Template 구조 파악</title>
+    <link href="https://taeuk-gang.github.io/wiki/Vue-template/"/>
+    <id>https://taeuk-gang.github.io/wiki/Vue-template/</id>
+    <published>2020-01-28T06:26:47.000Z</published>
+    <updated>2020-10-14T15:42:17.858Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="구조"><a href="#구조" class="headerlink" title="구조"></a>구조</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">📦vue-pwa-tree</span><br><span class="line"> ┣ 📂docker # Ngnix 환경에서 돌려질 도커 이미지 환경설정</span><br><span class="line"> ┣ 📂public # &#39;&#x2F;&#39; 경로</span><br><span class="line"> ┃ ┣ 📂img</span><br><span class="line"> ┃ ┃ ┗ 📂icons # PWA Icon 폴더</span><br><span class="line"> ┃ ┣ 📜index.html # 시작 파일</span><br><span class="line"> ┣ 📂src # 작업 폴더</span><br><span class="line"> ┃ ┣ 📂assets # 리소스</span><br><span class="line"> ┃ ┣ 📂components # 공용 컴포넌트</span><br><span class="line"> ┃ ┣ 📂router # 라우터</span><br><span class="line"> ┃ ┣ 📂store # 상태관리</span><br><span class="line"> ┃ ┣ 📂views # 페이지</span><br><span class="line"> ┃ ┣ 📜App.vue # 시작 파일</span><br><span class="line"> ┃ ┣ 📜main.ts # 메인</span><br><span class="line"> ┃ ┣ 📜registerServiceWorker.ts # 서비스워커</span><br><span class="line"> ┃ ┣ 📜shims-tsx.d.ts # ?</span><br><span class="line"> ┃ ┗ 📜shims-vue.d.ts # ?</span><br><span class="line"> ┣ 📂tests # 테스트 코드</span><br><span class="line"> ┃ ┣ 📂e2e # e2e</span><br><span class="line"> ┃ ┗ 📂unit # 유닛 테스트</span><br><span class="line"> ┣ 📜.dockerignore</span><br><span class="line"> ┣ 📜.gitignore</span><br><span class="line"> ┣ 📜babel.config.js</span><br><span class="line"> ┣ 📜cypress.json</span><br><span class="line"> ┣ 📜devspace.yaml</span><br><span class="line"> ┣ 📜Dockerfile</span><br><span class="line"> ┣ 📜Jenkinsfile</span><br><span class="line"> ┣ 📜package-lock.json</span><br><span class="line"> ┣ 📜package.json</span><br><span class="line"> ┣ 📜README.md</span><br><span class="line"> ┗ 📜tsconfig.json # 이건 좀 봐두자</span><br></pre></td></tr></table></figure><h2 id="흐름"><a href="#흐름" class="headerlink" title="흐름"></a>흐름</h2><p><img src="https://user-images.githubusercontent.com/26294469/73253730-6f1fa700-4200-11ea-9a45-c0f02a28aad2.png" alt="image"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h2 id=&quot;구조&quot;&gt;&lt;a href=&quot;#구조&quot; class=&quot;headerlink&quot; title=&quot;구조&quot;&gt;&lt;/a&gt;구조&lt;/h2&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span </summary>
       
     
     

@@ -353,10 +353,6 @@ https://api.github.com/orgs/:org/repos
 올거니제이션 레포
 
 ```
-
-```
-
-```
 /repos/{owner}/{repo}/commits
 ```
 

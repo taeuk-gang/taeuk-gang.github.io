@@ -12,7 +12,7 @@
     <meta name="description" content="kind를 이용한 클러스터 설치Download123curl -Lo .&#x2F;kind https:&#x2F;&#x2F;kind.sigs.k8s.io&#x2F;dl&#x2F;v0.8.1&#x2F;kind-$(uname)-amd64chmod +x .&#x2F;kindmv .&#x2F;kind &#x2F;some-dir-in-your-PATH&#x2F;kind # e.g. mv .&#x2F;kind &#x2F;usr&#x2F;local&#x2F;bin&#x2F;kind    Basic com">
 <meta property="og:type" content="article">
 <meta property="og:title" content="kind를 이용한 클러스터 설치">
-<meta property="og:url" content="https://taeuk-gang.github.io/wiki/kind%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5/index.html">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/make-kind-cluster/index.html">
 <meta property="og:site_name" content="TAEUK WEB">
 <meta property="og:description" content="kind를 이용한 클러스터 설치Download123curl -Lo .&#x2F;kind https:&#x2F;&#x2F;kind.sigs.k8s.io&#x2F;dl&#x2F;v0.8.1&#x2F;kind-$(uname)-amd64chmod +x .&#x2F;kindmv .&#x2F;kind &#x2F;some-dir-in-your-PATH&#x2F;kind # e.g. mv .&#x2F;kind &#x2F;usr&#x2F;local&#x2F;bin&#x2F;kind    Basic com">
 <meta property="og:locale" content="ko_KR">
@@ -265,7 +265,7 @@
                             &nbsp;
                             Kubernetes
                         </a>
-                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file active"><a href="/wiki/kind%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5/">kind를 이용한 클러스터 설치</a></li>  </ul> 
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file active"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -491,7 +491,7 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><article id="post-kind를 이용한 클러스터 설치" class="article article-type-post" itemscope itemprop="blogPost">
+            <section id="main"><article id="post-make-kind-cluster" class="article article-type-post" itemscope itemprop="blogPost">
     <div class="article-inner">
         
         
@@ -513,7 +513,7 @@
                         
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/wiki/kind%E1%84%85%E1%85%B3%E1%86%AF%20%E1%84%8B%E1%85%B5%E1%84%8B%E1%85%AD%E1%86%BC%E1%84%92%E1%85%A1%E1%86%AB%20%E1%84%8F%E1%85%B3%E1%86%AF%E1%84%85%E1%85%A5%E1%84%89%E1%85%B3%E1%84%90%E1%85%A5%20%E1%84%89%E1%85%A5%E1%86%AF%E1%84%8E%E1%85%B5/">
+        <a href="/wiki/make-kind-cluster/">
             <time datetime="2020-11-15T14:43:18.000Z" itemprop="datePublished">2020-11-15</time>
         </a>
     </div>
@@ -525,13 +525,13 @@
                         
                         
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/kind를 이용한 클러스터 설치.md'> Source </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/make-kind-cluster.md'> Source </a>
                             </div>
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/kind를 이용한 클러스터 설치.md'> Edit </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/make-kind-cluster.md'> Edit </a>
                             </div>
                             <div class="article-meta-button">
-                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/kind를 이용한 클러스터 설치.md'> History </a>
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/make-kind-cluster.md'> History </a>
                             </div>
                         
                     </div>

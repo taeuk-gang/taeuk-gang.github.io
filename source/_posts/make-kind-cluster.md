@@ -1,5 +1,5 @@
 ---
-title: kind를 이용한 클러스터 설치
+x5title: kind를 이용한 클러스터 설치
 toc: true
 date: 2020-11-15 23:43:18
 tags:

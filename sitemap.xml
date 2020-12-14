@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://taeuk-gang.github.io/wiki/Refactoring_typescript/</loc>
+    
+    <lastmod>2020-12-14</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>https://taeuk-gang.github.io/wiki/make-kind-cluster/</loc>
     
     <lastmod>2020-12-14</lastmod>

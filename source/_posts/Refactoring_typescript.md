@@ -1,5 +1,5 @@
 ---
-title: 리팩토링: Typescript
+title: 리팩토링 - Typescript
 toc: true
 date: 2020-12-15 23:43:18
 tags:

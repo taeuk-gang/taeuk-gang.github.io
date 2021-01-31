@@ -17,17 +17,127 @@ categories:
 > 2. 연관성 있는 리팩토링 기법은 묶기
 > 3. 중요도 순서별로 순서 배열하기
 
-## 1. 값을 참조로 바꾸기
+
+
+
+
+## 코드 악취 (안티 코딩)
+
+### 1. 기이한 이름
+
+- 함수 선언 바꾸기
+- 변수 이름 바꾸기
+- 필드 이름 바꾸기
+
+### 2. 중복 코드
+
+### 3. 긴 함수
+
+### 4. 긴 매개변수 목록
+
+### 5. 전역 데이터
+
+### 6. 가변 데이터
+
+### 7. 뒤엉킨 변경
+
+### 8. 산탄총 수술
+
+### 9. 기능 편애
+
+### 10. 데이터 뭉치
+
+### 11. 기본형 집착
+
+### 12. 반복 switch문
+
+### 13. 반복문
+
+### 14. 성의 없는 요소
+
+### 15. 추측성 일반화
+
+### 16. 임시 필드
+
+### 17. 메시지 체인
+
+### 18. 중개자
+
+### 19. 내부자 거래
+
+### 20. 거대한 클래스
+
+### 21. 서로 다른 인터페이스의 대안 클래스
+
+### 22. 데이터 클래스
+
+### 23. 상속 포기
+
+### 24. 주석
+
+
+
+## 리팩토링 기법
+
+### 기본적인 리팩토링
+
+#### 7. 변수 이름 바꾸기
+
+##### AS-IS
+
+```typescript
+let a = height * width;
+```
+
+##### TO-BE
+
+```typescript
+let area = heigth * width;
+```
+
+
+
+### 캡슐화
+
+
+
+### 기능 이동
+
+
+
+### 데이터 조직화
+
+
+
+### 조건부 로직 간소화
+
+
+
+### API 리팩토링
+
+
+
+### 상속 다루기
+
+
+
+
+
+
+
+
+
+### 값을 참조로 바꾸기
 
 만약 데이터를 갱신해야하는 경우면, 해당 데이터를 값으로 복사하면 안된다. 갱신의 경우에는 참조를 이용
 
-### AS-IS
+#### AS-IS
 
 ```typescript
 let customer = new Customer(customData);
 ```
 
-### TO-BE
+#### TO-BE
 
 ```typescript
 let customer = customerRepository.get(customerData.id);
@@ -35,7 +145,33 @@ let customer = customerRepository.get(customerData.id);
 
 
 
-## 2. 객체 통째로 넘기기
+## 참조를 값으로 바꾸기
+
+### AS-IS
+
+```typescript
+class Product {
+	applyDiscount(arg) {
+    this._price.amount -= arg;
+  }
+}
+```
+
+### TO-BE
+
+```typescript
+class Product {
+  applyDiscount(arg) {
+    this._price = new Money(this._price.amount - arg, this._price.currency);
+  }
+}
+```
+
+
+
+
+
+## 객체 통째로 넘기기
 
 변화에 대응이 쉬움, 그러나 함수가 레코드 자체에 의존하지 않는다면 쓰지말 것
 
@@ -56,7 +192,7 @@ if (aPlan.withinRange(aRoom.daysTempRange))
 
 
 
-## 3. 계층 합치기
+## 계층 합치기
 
 클래스 계층구조가 개발하면서, 부모와 자식관계가 너무 비슷해져 더는 독립적일 필요가 없는 경우에 사용
 
@@ -75,7 +211,7 @@ class Employee {...}
 
 
 
-## 4. 기본형을 객체로 바꾸기
+## 기본형을 객체로 바꾸기
 
 >  직관적이지는 않으나, 이후 프로그램이 커질수록 유지보수가 쉬워짐
 
@@ -192,7 +328,95 @@ console.log(
 
 
 
-## 5. 단계 쪼개기
+## 단계 쪼개기
+
+### AS-IS
+
+```typescript
+const orderData = orderString.split(`/\s+/`);
+const productPrice = priceList[orderData[0].split(`-`)[1]];
+const orderPrice = parseInt(orderData[1]) * productPrice;
+```
+
+### TO-BE
+
+```javascript
+const orderRecord = parseOrder(order);
+const productPrice = priceList[orderData[0].split(`-`)[1]];
+
+function parseOrder(aString) {
+  const values = aString.split(/\s+/);
+  
+  return {
+    productID: values[0].split(`-`)[1],
+    quantity: parseInt(values[1]),
+  };
+}
+
+function price(order, priceList) {
+  return order.quantity + priceList[order.productID];
+}
+```
+
+
+
+## 레코드 캡슐화하기
+
+### AS-IS
+
+```typescript
+organization = {
+  name: `taeuk`,
+  country: `korea`,
+}
+```
+
+### TO-BE
+
+```typescript
+class Organization {
+  constructor(data) {
+    this._name = data.name;
+    this._country = data.country;
+  }
+  
+  get name(): string {
+    return this._name;
+  }
+  
+  set name(aString): string {
+		this._name = aString;
+  }
+  
+  get country(): string {
+    return this._country;
+  }
+  
+  set country(aString): string {
+    this._country = aString;
+  }
+}
+```
+
+
+
+## 매개변수 객체 만들기
+
+### AS-IS
+
+```typescript
+function amountInvoiced(startDate, endDate) { ... }
+```
+
+### TO-BE
+
+```typescript
+function amountInvoiced(aDateRange) { ... }
+```
+
+
+
+## 매개변수를 질의 함수로 바꾸기
 
 ### AS-IS
 
@@ -208,7 +432,7 @@ console.log(
 
 
 
-## 6. 레코드 캡슐화하기
+## 질의 함수를 매개변수로 바꾸기
 
 ### AS-IS
 
@@ -223,36 +447,6 @@ console.log(
 ```
 
 
-
-## 7. 매개변수 객체 만들기
-
-### AS-IS
-
-```typescript
-
-```
-
-### TO-BE
-
-```typescript
-
-```
-
-
-
-## 8. 매개변수를 질의 함수로 바꾸기
-
-### AS-IS
-
-```typescript
-
-```
-
-### TO-BE
-
-```typescript
-
-```
 
 
 
@@ -864,39 +1058,7 @@ console.log(
 
 
 
-## 47. 질의 함수를 매개변수로 바꾸기
-
-### AS-IS
-
-```typescript
-
-```
-
-### TO-BE
-
-```typescript
-
-```
-
-
-
 ## 48. 질의 함수와 변경 함수 분리하기
-
-### AS-IS
-
-```typescript
-
-```
-
-### TO-BE
-
-```typescript
-
-```
-
-
-
-## 49. 참조를 값으로 바꾸기
 
 ### AS-IS
 

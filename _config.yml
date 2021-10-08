@@ -120,3 +120,11 @@ deploy:
   type: git
   repo: https://github.com/taeuk-gang/taeuk-gang.github.io.git
   branch: master
+hide_posts:
+  # Change the filter name to fit your need
+  filter: hidden
+  # Generators which you want to expose all posts (include hidden ones) to.
+  # Common generators: index, tag, category, archive, sitemap, feed, etc.
+  public_generators: []
+  # Add "noindex" meta tag to prevent hidden posts from being indexed by search engines
+  noindex: true

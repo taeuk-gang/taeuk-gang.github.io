@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "marp": "npx @marp-team/marp-cli@latest source/presentation && mv public/presentation public/docs && cp -R source/presentation public/presentation",
+    "marp": "rm -rf public/docs && mv -f public/presentation public/docs && npx @marp-team/marp-cli@latest source/presentation && cp -rf source/presentation public/presentation",
     "server": "hexo g && npm run marp && hexo server -s",
     "deploy": "hexo g && npm run marp && git add --all && git commit -m \"write document\" && git push origin writing && hexo d"
   },

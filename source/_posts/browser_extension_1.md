@@ -6,7 +6,7 @@ tags:
     - Browser_Extension
 categories:
     - Browser_Extension
-hidden: true
+secret: true
 ---
 
 # 브라우저 확장 프로그램 개발 시작하기

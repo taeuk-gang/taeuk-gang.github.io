@@ -30,7 +30,7 @@ i18n_dir: :lang
 skip_render:
   - README.md
   - '_posts/**/embed_page/**'
-  - "TIL/**"
+  - 'presentation/**/*.html'
 
 # Writing
 new_post_name: :title.md # File name of new posts
@@ -123,7 +123,7 @@ deploy:
   branch: master
 hide_posts:
   # Change the filter name to fit your need
-  filter: hidden
+  filter: secret
   # Generators which you want to expose all posts (include hidden ones) to.
   # Common generators: index, tag, category, archive, sitemap, feed, etc.
   public_generators: []

@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "marp:TIL": "npx @marp-team/marp-cli@latest source/TIL",
-    "deploy": "npm run marp:TIL && git add --all && git commit -m \"write document\" && git push origin writing && hexo d -g"
+    "marp": "npx @marp-team/marp-cli@latest source/presentation && rm -rf public/presentation && cp -R source/presentation public/presentation",
+    "server": "hexo g && npm run marp && hexo server -s",
+    "deploy": "git add --all && git commit -m \"write document\" && git push origin writing && hexo generate && npm run marp && hexo deploy"
   },
   "hexo": {
     "version": "5.2.0"

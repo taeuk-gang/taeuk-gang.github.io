@@ -1,10 +1,11 @@
 ---
+title: TIL 10월 10일 (일)
 _class: lead
 paginate: true
 backgroundColor: #fff
 backgroundImage: url('https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20210919162643014.png')
 marp: true
-hidden: true
+secret: true
 ---
 <style>
 ul, ol, p {
@@ -51,7 +52,6 @@ h5 {
 ## TIL: 10월 10일 (일)
 
 ![w:300 center](https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif)
-
 
 <style scoped>
 h2, h3 {
@@ -409,4 +409,3 @@ shutdown -h now
 ![bg fit right](https://user-images.githubusercontent.com/26294469/136707142-66c43158-3f0d-41fc-8fe9-cdf44eb0818b.png)
 - 이후 ssh 연결시 정상 접속되는 것을 확인
 - 공유기 설정을 통해 공인IP까지 맞추면 외부 접속 가능할 듯?
-

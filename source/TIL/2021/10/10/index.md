@@ -49,7 +49,7 @@ h5 {
 
 ## TIL: 10월 10일 (일)
 
-![bg](https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20210919161534265.png)
+![w:300 center](https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif)
 
 <style scoped>
 h2, h3 {
@@ -58,7 +58,7 @@ h2, h3 {
   align-items: center; */
   text-align: center;  
   line-height: 0.8rem;
-  color: #fff;
+  color: #000;
 }
 
 h2 {

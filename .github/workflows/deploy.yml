@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v3
+      - uses: actions/setup-node@v1
         with:
-          node-version: 16.x
+          node-version: 12.x
       - name: ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -20,8 +20,6 @@ jobs:
           sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
       - name: NPM Install
         run: npm ci
-      - name: Hexo Clean
-        run: ./node_modules/.bin/hexo clean
       - name: Hexo Generate
         run: ./node_modules/.bin/hexo g
       - name: Marp Generate

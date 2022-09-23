@@ -19,7 +19,9 @@ jobs:
           git config --global user.email "taeuk_kang@naver.com"
           sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
       - name: NPM Install
-        run: npm i
+        run: npm ci
+      - name: Hexo Clean
+        run: ./node_modules/.bin/hexo clean
       - name: Hexo Generate
         run: ./node_modules/.bin/hexo g
       - name: Marp Generate

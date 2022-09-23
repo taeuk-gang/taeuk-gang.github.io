@@ -121,7 +121,7 @@ deploy:
   type: git
   repo: https://github.com/taeuk-gang/taeuk-gang.github.io.git
   branch: master
-  token: $GITHUB_TOKEN
+  token: __GITHUB_TOKEN__
 hide_posts:
   # Change the filter name to fit your need
   filter: secret

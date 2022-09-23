@@ -18,7 +18,7 @@ jobs:
           git config --global user.name "taeuk-gang"
           git config --global user.email "taeuk_kang@naver.com"
           git config --global core.autocrlf false
-          sed -i "s/$GITHUB_TOKEN/${GITHUB_TOKEN}/" _config.yml
+          sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
       - name: NPM Install
         run: npm ci
       - name: Hexo Generate

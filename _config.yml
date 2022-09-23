@@ -119,7 +119,7 @@ sitemap:
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
   type: git
-  repo: git@github.com:taeuk-gang/taeuk-gang.github.io.git
+  repo: https://github.com/taeuk-gang/taeuk-gang.github.io.git
   branch: master
   token: $GITHUB_TOKEN
 hide_posts:

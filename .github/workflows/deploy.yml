@@ -1,0 +1,32 @@
+name: Hexo Deploy
+
+on:
+  push:
+
+jobs:
+  hexo:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: ENV
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "taeuk-gang"
+          git config --global user.email "taeuk_kang@naver.com"
+          sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
+      - name: NPM Install
+        run: npm install
+      - name: Hexo Generate
+        run: ./node_modules/.bin/hexo g
+      - name: Marp Generate
+        run: npm run marp
+      - name: Hexo Deploy
+        run: ./node_modules/.bin/hexo d
+
+      
+
+

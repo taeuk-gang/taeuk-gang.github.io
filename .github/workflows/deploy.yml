@@ -8,9 +8,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - uses: actions/setup-node@v2
         with:
-          node-version: 12.x
+          node-version: 16.x
       - name: ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -18,7 +18,7 @@ jobs:
           git config --global user.name "taeuk-gang"
           git config --global user.email "taeuk_kang@naver.com"
           git config --global core.autocrlf false
-          # sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
+          sed -i "s/$GITHUB_TOKEN/${GITHUB_TOKEN}/" _config.yml
       - name: NPM Install
         run: npm ci
       - name: Hexo Generate

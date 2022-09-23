@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>잠깐 Vue.js 문법 정리 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Vue.js" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="Vue.js 사용 안한지 오래되서, 한번 문법 정리하는 시간을 갖음. 한번 문법 정리 후, Codepen을 이용하여 예제 샘플 나열해서 정리해둬야겠다… 필수요소Link : https:&#x2F;&#x2F;kr.vuejs.org&#x2F;v2&#x2F;guide&#x2F;installation.html 링크 학습 설치방법npm12# 최신 안정화 버전npm i vue  cliLink: https:&#x2F;&#x2F;cl">
+<meta property="og:type" content="article">
+<meta property="og:title" content="잠깐 Vue.js 문법 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Vue-study/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="Vue.js 사용 안한지 오래되서, 한번 문법 정리하는 시간을 갖음. 한번 문법 정리 후, Codepen을 이용하여 예제 샘플 나열해서 정리해둬야겠다… 필수요소Link : https:&#x2F;&#x2F;kr.vuejs.org&#x2F;v2&#x2F;guide&#x2F;installation.html 링크 학습 설치방법npm12# 최신 안정화 버전npm i vue  cliLink: https:&#x2F;&#x2F;cl">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71563756-fbdb2600-2ad7-11ea-8831-7bdddf483786.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71563757-fbdb2600-2ad7-11ea-851d-e401ea99d8fd.png">
+<meta property="article:published_time" content="2019-12-24T14:57:07.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.386Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/71563756-fbdb2600-2ad7-11ea-8831-7bdddf483786.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Vue-study" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Vue-js/" rel="tag">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Vue-study/">
+            <time datetime="2019-12-24T14:57:07.000Z" itemprop="datePublished">2019-12-24</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Vue-study.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Vue-study.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Vue-study.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            잠깐 Vue.js 문법 정리
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%95%84%EC%88%98%EC%9A%94%EC%86%8C"><span class="toc-number">1.</span> <span class="toc-text">필수요소</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%A4%EC%B9%98%EB%B0%A9%EB%B2%95"><span class="toc-number">2.</span> <span class="toc-text">설치방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#npm"><span class="toc-number">2.1.</span> <span class="toc-text">npm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cli"><span class="toc-number">2.2.</span> <span class="toc-text">cli</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B2%88%EB%93%A4%EB%9F%AC"><span class="toc-number">2.3.</span> <span class="toc-text">번들러</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0"><span class="toc-number">3.</span> <span class="toc-text">시작하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A0%EC%96%B8%EC%A0%81-%EB%A0%8C%EB%8D%94%EB%A7%81"><span class="toc-number">3.1.</span> <span class="toc-text">선언적 렌더링</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%95%88-%EB%B3%80%EC%88%98-%EC%82%BD%EC%9E%85"><span class="toc-number">3.1.1.</span> <span class="toc-text">템플릿 안 변수 삽입</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-bind-%EB%8B%A8%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9-v-dom-gt-dom"><span class="toc-number">3.1.2.</span> <span class="toc-text">v-bind &#x3D; 단방향 바인딩 (v-dom -&gt; dom)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A1%B0%EA%B1%B4%EB%AC%B8-%EB%B0%98%EB%B3%B5%EB%AC%B8"><span class="toc-number">3.2.</span> <span class="toc-text">조건문 &#x2F; 반복문</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%A1%B0%EA%B1%B4%EB%AC%B8-v-if"><span class="toc-number">3.2.1.</span> <span class="toc-text">조건문 v-if</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%B0%98%EB%B3%B5%EB%AC%B8-v-for"><span class="toc-number">3.2.2.</span> <span class="toc-text">반복문 v-for</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%9E%85%EB%A0%A5-%ED%95%B8%EB%93%A4%EB%A7%81-v-on-event-v-model"><span class="toc-number">3.3.</span> <span class="toc-text">사용자 입력 핸들링 v-on:event, v-model</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-on"><span class="toc-number">3.3.1.</span> <span class="toc-text">v-on</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-model-%EC%96%91%EB%B0%A9%ED%96%A5-%EB%B0%94%EC%9D%B8%EB%94%A9"><span class="toc-number">3.3.2.</span> <span class="toc-text">v-model &#x3D; 양방향 바인딩</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%9D%B4%EC%9A%A9%EB%B2%95"><span class="toc-number">3.4.</span> <span class="toc-text">컴포넌트 이용법</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4"><span class="toc-number">4.</span> <span class="toc-text">Vue 인스턴스</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#vue-%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%A7%8C%EB%93%A4%EA%B8%B0"><span class="toc-number">4.1.</span> <span class="toc-text">vue 인스턴스 만들기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%86%8D%EC%84%B1%EA%B3%BC-%EB%A9%94%EC%86%8C%EB%93%9C"><span class="toc-number">4.2.</span> <span class="toc-text">속성과 메소드</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Object-freeze"><span class="toc-number">4.2.1.</span> <span class="toc-text">Object.freeze()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9C%A0%EC%9A%A9%ED%95%9C-%EC%86%8D%EC%84%B1-%EB%B0%8F-%EB%A9%94%EC%86%8C%EB%93%9C"><span class="toc-number">4.2.2.</span> <span class="toc-text">$ 유용한 속성 및 메소드</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B8%EC%8A%A4%ED%84%B4%EC%8A%A4-%EB%9D%BC%EC%9D%B4%ED%94%84%EC%82%AC%EC%9D%B4%ED%81%B4-%ED%9B%85"><span class="toc-number">4.3.</span> <span class="toc-text">인스턴스 라이프사이클 훅</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#beforeCreate"><span class="toc-number">4.3.1.</span> <span class="toc-text">beforeCreate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#created"><span class="toc-number">4.3.2.</span> <span class="toc-text">created</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#beforeMount"><span class="toc-number">4.3.3.</span> <span class="toc-text">beforeMount</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#mounted"><span class="toc-number">4.3.4.</span> <span class="toc-text">mounted</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#beforeUpdate"><span class="toc-number">4.3.5.</span> <span class="toc-text">beforeUpdate</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#updated"><span class="toc-number">4.3.6.</span> <span class="toc-text">updated</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#beforeDestroy"><span class="toc-number">4.3.7.</span> <span class="toc-text">beforeDestroy</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#destroyed"><span class="toc-number">4.3.8.</span> <span class="toc-text">destroyed</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%85%9C%ED%94%8C%EB%A6%BF-%EB%AC%B8%EB%B2%95"><span class="toc-number">5.</span> <span class="toc-text">템플릿 문법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#interpolation"><span class="toc-number">5.1.</span> <span class="toc-text">interpolation</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-once"><span class="toc-number">5.1.1.</span> <span class="toc-text">v-once</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-html"><span class="toc-number">5.1.2.</span> <span class="toc-text">v-html</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-bind"><span class="toc-number">5.1.3.</span> <span class="toc-text">v-bind:</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Javascript-%ED%91%9C%ED%98%84%EC%8B%9D"><span class="toc-number">5.1.4.</span> <span class="toc-text">Javascript 표현식</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%94%94%EB%A0%89%ED%8B%B0%EB%B8%8C"><span class="toc-number">5.2.</span> <span class="toc-text">디렉티브</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%8F%99%EC%A0%81-%EC%A0%84%EB%8B%AC%EC%9D%B8%EC%9E%90-2-6-0-%EB%B6%80%ED%84%B0-%EC%83%9D%EA%B9%80"><span class="toc-number">5.2.1.</span> <span class="toc-text">동적 전달인자 (2.6.0+부터 생김)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#preventDefault"><span class="toc-number">5.2.2.</span> <span class="toc-text">preventDefault()</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%95%BD%EC%96%B4"><span class="toc-number">5.3.</span> <span class="toc-text">약어</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#v-bind-%EC%95%BD%EC%96%B4"><span class="toc-number">5.3.1.</span> <span class="toc-text">v-bind 약어</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#v-on-%EC%95%BD%EC%96%B4"><span class="toc-number">5.3.2.</span> <span class="toc-text">v-on 약어</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#computed%EC%99%80-watch"><span class="toc-number">6.</span> <span class="toc-text">computed와 watch</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#computed-%EB%B0%B0%EA%B2%BD"><span class="toc-number">6.1.</span> <span class="toc-text">computed 배경</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#computed-%EC%98%88%EC%A0%9C"><span class="toc-number">6.2.</span> <span class="toc-text">computed 예제</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#computed-vs-method"><span class="toc-number">6.3.</span> <span class="toc-text">computed vs method</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#computed-vs-watch"><span class="toc-number">6.4.</span> <span class="toc-text">computed vs watch</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#computed-setter"><span class="toc-number">6.5.</span> <span class="toc-text">computed(setter)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#watch"><span class="toc-number">6.6.</span> <span class="toc-text">watch</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%B0%94%EC%9D%B8%EB%94%A9"><span class="toc-number">7.</span> <span class="toc-text">클래스와 스타일 바인딩</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%8F%99%EC%A0%81-%ED%86%A0%EA%B8%80"><span class="toc-number">7.1.</span> <span class="toc-text">클래스 동적 토글</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%B0%B0%EC%97%B4"><span class="toc-number">7.1.1.</span> <span class="toc-text">배열</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Result"><span class="toc-number">7.1.1.1.</span> <span class="toc-text">Result:</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EC%82%BC%ED%95%AD%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">7.1.1.2.</span> <span class="toc-text">삼항연산자</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8"><span class="toc-number">7.1.2.</span> <span class="toc-text">컴포넌트</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#Result-1"><span class="toc-number">7.1.2.1.</span> <span class="toc-text">Result:</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B8%EB%9D%BC%EC%9D%B8-%EC%8A%A4%ED%83%80%EC%9D%BC-%EB%B0%94%EC%9D%B8%EB%94%A9"><span class="toc-number">7.2.</span> <span class="toc-text">인라인 스타일 바인딩</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#b-bind-style"><span class="toc-number">7.2.1.</span> <span class="toc-text">b-bind:style</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9E%90%EB%8F%99-%EC%A0%91%EB%91%90%EC%82%AC"><span class="toc-number">7.2.2.</span> <span class="toc-text">자동 접두사</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A1%B0%EA%B1%B4%EB%B6%80-%EB%A0%8C%EB%8D%94%EB%A7%81"><span class="toc-number">8.</span> <span class="toc-text">조건부 렌더링</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-if-v-else"><span class="toc-number">8.1.</span> <span class="toc-text">v-if, v-else</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#lt-template-gt-%EC%9D%98-v-if"><span class="toc-number">8.1.1.</span> <span class="toc-text">&lt;template&gt;의 v-if</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#v-show"><span class="toc-number">8.2.</span> <span class="toc-text">v-show</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A3%BC%EC%9D%98%EC%82%AC%ED%95%AD-v-for%EC%9A%B0%EC%84%A0%EC%88%9C%EC%9C%84"><span class="toc-number">8.3.</span> <span class="toc-text">주의사항 v-for우선순위</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A6%AC%EC%8A%A4%ED%8A%B8-%EB%A0%8C%EB%8D%94%EB%A7%81"><span class="toc-number">9.</span> <span class="toc-text">리스트 렌더링</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#v-for%EC%99%80-%EA%B0%9D%EC%B2%B4"><span class="toc-number">9.1.</span> <span class="toc-text">v-for와 객체</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Result-2"><span class="toc-number">9.1.1.</span> <span class="toc-text">Result</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%A3%BC%EC%9D%98%EC%A0%90"><span class="toc-number">9.1.2.</span> <span class="toc-text">주의점</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Maintaining-State"><span class="toc-number">9.2.</span> <span class="toc-text">Maintaining State</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%A7%81"><span class="toc-number">10.</span> <span class="toc-text">이벤트 핸들링</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%8F%BC-%EC%9E%85%EB%A0%A5-%EB%B0%94%EC%9D%B8%EB%94%A9"><span class="toc-number">11.</span> <span class="toc-text">폼 입력 바인딩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-1"><span class="toc-number">12.</span> <span class="toc-text">컴포넌트</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%AA%A8%EC%95%84%EB%B3%B4%EA%B8%B0"><span class="toc-number"></span> <span class="toc-text">컴포넌트 모아보기</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EB%93%B1%EB%A1%9D"><span class="toc-number">1.</span> <span class="toc-text">컴포넌트 등록</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Props"><span class="toc-number">2.</span> <span class="toc-text">Props</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BB%A4%EC%8A%A4%ED%85%80-%EC%9D%B4%EB%B2%A4%ED%8A%B8"><span class="toc-number">3.</span> <span class="toc-text">커스텀 이벤트</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%AC%EB%A1%AF-slots"><span class="toc-number">4.</span> <span class="toc-text">슬롯(slots)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%8F%99%EC%A0%81-amp-%EB%B9%84%EB%8F%99%EA%B8%B0-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8"><span class="toc-number">5.</span> <span class="toc-text">동적 &amp; 비동기 컴포넌트</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Handling-Edge-Cases"><span class="toc-number">6.</span> <span class="toc-text">Handling Edge Cases</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%ED%8A%B8%EB%9E%9C%EC%A7%80%EC%85%98-amp-%EC%95%A0%EB%8B%88%EB%A9%94%EC%9D%B4%EC%85%98"><span class="toc-number"></span> <span class="toc-text">트랜지션 &amp; 애니메이션</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A7%84%EC%9E%85-%EC%A7%84%EC%B6%9C-%EB%B4%90%EC%95%BC%EC%95%8C-%EB%93%AF"><span class="toc-number">1.</span> <span class="toc-text">진입&#x2F;진출? 봐야알 듯</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%83%81%ED%83%9C-%ED%8A%B8%EB%9E%9C%EC%A7%80%EC%85%98"><span class="toc-number">2.</span> <span class="toc-text">상태 트랜지션</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9E%AC%EC%82%AC%EC%9A%A9-amp-%EC%BB%B4%ED%8F%AC%EC%A7%80%EC%85%98"><span class="toc-number"></span> <span class="toc-text">재사용 &amp; 컴포지션</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%AF%B9%EC%8A%A4%EC%9D%B8"><span class="toc-number">1.</span> <span class="toc-text">믹스인</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A7%80%EC%A0%95-%EB%94%94%EB%A0%89%ED%8B%B0%EB%B8%8C"><span class="toc-number">2.</span> <span class="toc-text">사용자 지정 디렉티브</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Render-Functions-amp-JSX"><span class="toc-number">3.</span> <span class="toc-text">Render Functions &amp; JSX</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8"><span class="toc-number">4.</span> <span class="toc-text">플러그인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="toc-number">4.1.</span> <span class="toc-text">사용법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9E%91%EC%84%B1%EB%B2%95"><span class="toc-number">4.2.</span> <span class="toc-text">작성법</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%95%84%ED%84%B0"><span class="toc-number">5.</span> <span class="toc-text">필터</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%8F%84%EA%B5%AC"><span class="toc-number"></span> <span class="toc-text">도구</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8B%B1%EA%B8%80-%ED%8C%8C%EC%9D%BC-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8"><span class="toc-number">1.</span> <span class="toc-text">싱글 파일 컴포넌트</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%8B%A8%EC%9C%84-%ED%85%8C%EC%8A%A4%ED%8C%85"><span class="toc-number">2.</span> <span class="toc-text">단위 테스팅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Typescript"><span class="toc-number">3.</span> <span class="toc-text">Typescript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B0%B0%ED%8F%AC"><span class="toc-number">4.</span> <span class="toc-text">배포</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81-%EC%97%85"><span class="toc-number"></span> <span class="toc-text">스케일링 업</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%9D%BC%EC%9A%B0%ED%8C%85"><span class="toc-number">1.</span> <span class="toc-text">라우팅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%83%81%ED%83%9C-%EA%B4%80%EB%A6%AC"><span class="toc-number">2.</span> <span class="toc-text">상태 관리</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%9C%EB%B2%84%EC%82%AC%EC%9D%B4%EB%93%9C-%EB%A0%8C%EB%8D%94%EB%A7%81"><span class="toc-number">3.</span> <span class="toc-text">서버사이드 렌더링</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Security"><span class="toc-number">4.</span> <span class="toc-text">Security</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%82%B4%EB%B6%80"><span class="toc-number"></span> <span class="toc-text">내부</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B0%98%EC%9D%91%ED%98%95"><span class="toc-number">1.</span> <span class="toc-text">반응형</span></a></li></ol>
+                </div>
+            
+        
+        
+            <p>Vue.js 사용 안한지 오래되서, 한번 문법 정리하는 시간을 갖음.</p>
+<p>한번 문법 정리 후, Codepen을 이용하여 예제 샘플 나열해서 정리해둬야겠다…</p>
+<h2 id="필수요소"><a href="#필수요소" class="headerlink" title="필수요소"></a>필수요소</h2><p>Link : <a target="_blank" rel="noopener" href="https://kr.vuejs.org/v2/guide/installation.html">https://kr.vuejs.org/v2/guide/installation.html</a> 링크 학습</p>
+<h2 id="설치방법"><a href="#설치방법" class="headerlink" title="설치방법"></a>설치방법</h2><h3 id="npm"><a href="#npm" class="headerlink" title="npm"></a>npm</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 최신 안정화 버전</span></span><br><span class="line">npm i vue</span><br></pre></td></tr></table></figure>
+
+<h3 id="cli"><a href="#cli" class="headerlink" title="cli"></a>cli</h3><p>Link: <a target="_blank" rel="noopener" href="https://cli.vuejs.org/">https://cli.vuejs.org/</a></p>
+<h3 id="번들러"><a href="#번들러" class="headerlink" title="번들러"></a>번들러</h3><p>번들러는 Vue.js + Webpack 템플릿 보면 알 수 있을 듯</p>
+<h2 id="시작하기"><a href="#시작하기" class="headerlink" title="시작하기"></a>시작하기</h2><h3 id="선언적-렌더링"><a href="#선언적-렌더링" class="headerlink" title="선언적 렌더링"></a>선언적 렌더링</h3><h4 id="템플릿-안-변수-삽입"><a href="#템플릿-안-변수-삽입" class="headerlink" title="템플릿 안 변수 삽입"></a>템플릿 안 변수 삽입</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">`Hello, World`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="v-bind-단방향-바인딩-v-dom-gt-dom"><a href="#v-bind-단방향-바인딩-v-dom-gt-dom" class="headerlink" title="v-bind = 단방향 바인딩 (v-dom -&gt; dom)"></a><code>v-bind</code> = 단방향 바인딩 (v-dom -&gt; dom)</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-2&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind:title</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line">      텍스트</span><br><span class="line">    <span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app2 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app-2`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">`데이터: <span class="subst">$&#123;<span class="keyword">new</span> <span class="built_in">Date</span>()&#125;</span>`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="조건문-반복문"><a href="#조건문-반복문" class="headerlink" title="조건문 / 반복문"></a>조건문 / 반복문</h3><h4 id="조건문-v-if"><a href="#조건문-v-if" class="headerlink" title="조건문 v-if"></a>조건문 <code>v-if</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-3&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span> <span class="attr">v-if</span>=<span class="string">&quot;seen&quot;</span>&gt;</span></span><br><span class="line">        seen의 bool값에 따라 보일지 결정됨</span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app-3`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        seen: <span class="literal">true</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="반복문-v-for"><a href="#반복문-v-for" class="headerlink" title="반복문 v-for"></a>반복문 <code>v-for</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-4&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;todo in tods&quot;</span>&gt;</span></span><br><span class="line">        	&#123;&#123; todo.text &#125;&#125;</span><br><span class="line">        <span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span>  </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app4 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app-4`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        todos: [</span><br><span class="line">            &#123;<span class="attr">text</span>: <span class="string">`Text1`</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">text</span>: <span class="string">`Text2`</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">text</span>: <span class="string">`Text3`</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 리스트 추가법</span></span><br><span class="line"><span class="comment">// app4.todos.push(&#123;text: `Text4`&#125;)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="사용자-입력-핸들링-v-on-event-v-model"><a href="#사용자-입력-핸들링-v-on-event-v-model" class="headerlink" title="사용자 입력 핸들링 v-on:event, v-model"></a>사용자 입력 핸들링 <code>v-on:event</code>, <code>v-model</code></h3><h4 id="v-on"><a href="#v-on" class="headerlink" title="v-on"></a><code>v-on</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-5&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123;message&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;onclickBtn&quot;</span>&gt;</span></span><br><span class="line">        버튼</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app5 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app-5`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">`First Message.`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        onclickBtn: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.message = <span class="string">`Message Change!`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="v-model-양방향-바인딩"><a href="#v-model-양방향-바인딩" class="headerlink" title="v-model = 양방향 바인딩"></a><code>v-model</code> = 양방향 바인딩</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-6&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">&quot;message&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> app6 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app-6`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">`Hello`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="컴포넌트-이용법"><a href="#컴포넌트-이용법" class="headerlink" title="컴포넌트 이용법"></a>컴포넌트 이용법</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">`todo-item`</span>, &#123;</span><br><span class="line">    props: [<span class="string">`todo`</span>]</span><br><span class="line">    template: <span class="string">`&lt;li&gt;&#123;&#123; todo.text &#125;&#125;&lt;/li&gt;`</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app = <span class="keyword">new</span> Vue(...)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app-7&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ol</span>&gt;</span></span><br><span class="line">        <span class="tag">&lt;<span class="name">todo-item</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">v-for</span>=<span class="string">&quot;item in list&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">v-bind:todo</span>=<span class="string">&quot;item&quot;</span></span></span><br><span class="line"><span class="tag">                   <span class="attr">v-bind:key</span>=<span class="string">&quot;item.id&quot;</span></span></span><br><span class="line"><span class="tag">        &gt;</span><span class="tag">&lt;/<span class="name">todo-item</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">ol</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">`todo-item`</span>, &#123;</span><br><span class="line">    props: [<span class="string">`todo`</span>],</span><br><span class="line">    template: <span class="string">`&lt;li&gt;&#123;&#123; todo.text &#125;&#125;&lt;/li&gt;`</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> app7 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app-7`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        list: [</span><br><span class="line">            &#123;<span class="attr">id</span>: <span class="number">0</span>, <span class="attr">text</span>: <span class="string">`text1`</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">id</span>: <span class="number">1</span>, <span class="attr">text</span>: <span class="string">`text2`</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">id</span>: <span class="number">2</span>, <span class="attr">text</span>: <span class="string">`text3`</span>&#125;	</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="Vue-인스턴스"><a href="#Vue-인스턴스" class="headerlink" title="Vue 인스턴스"></a>Vue 인스턴스</h2><h3 id="vue-인스턴스-만들기"><a href="#vue-인스턴스-만들기" class="headerlink" title="vue 인스턴스 만들기"></a>vue 인스턴스 만들기</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="속성과-메소드"><a href="#속성과-메소드" class="headerlink" title="속성과 메소드"></a>속성과 메소드</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">a</span>: <span class="number">1</span>&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.a === data.a <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">vm.a = <span class="number">2</span></span><br><span class="line">data.a <span class="comment">// =&gt; 2 (참조 복사임, swallow)</span></span><br><span class="line"></span><br><span class="line">data.a = <span class="number">3</span></span><br><span class="line">vm.a <span class="comment">// =&gt; 3 양방향임</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="Object-freeze"><a href="#Object-freeze" class="headerlink" title="Object.freeze()"></a><code>Object.freeze()</code></h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    foo: <span class="string">`bar`</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// obj가 변경되도 반영되지 않음</span></span><br><span class="line"><span class="built_in">Object</span>.freeze(obj)</span><br><span class="line"></span><br><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#app`</span>,</span><br><span class="line">    data: obj</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;app&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; foo &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">button</span> <span class="attr">v-on:click</span>=<span class="string">&quot;foo = &#x27;baz&#x27;&quot;</span>&gt;</span></span><br><span class="line">        Change</span><br><span class="line">    <span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="유용한-속성-및-메소드"><a href="#유용한-속성-및-메소드" class="headerlink" title="$ 유용한 속성 및 메소드"></a><code>$</code> 유용한 속성 및 메소드</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> data = &#123;<span class="attr">a</span>: <span class="number">1</span>&#125;</span><br><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#example`</span>,</span><br><span class="line">    data: data</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">vm.$data === data <span class="comment">// true</span></span><br><span class="line">vm.$el === <span class="built_in">document</span>.querySelector(<span class="string">`#example`</span>) <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line">vm.$watch(<span class="string">`a`</span>, <span class="function">(<span class="params">newVal, oldVal</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="comment">// vm.a 메소드가 변경되면 호출됨</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="인스턴스-라이프사이클-훅"><a href="#인스턴스-라이프사이클-훅" class="headerlink" title="인스턴스 라이프사이클 훅"></a>인스턴스 라이프사이클 훅</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        a: <span class="number">1</span></span><br><span class="line">    &#125;,</span><br><span class="line">    created: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="comment">// this는 vm 인스턴스를 가르킴</span></span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`a = <span class="subst">$&#123;<span class="built_in">this</span>.a&#125;</span>`</span>)</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="beforeCreate"><a href="#beforeCreate" class="headerlink" title="beforeCreate"></a>beforeCreate</h4><p>가장 먼저 실행되는 훅</p>
+<p>data, events(vm.$on, $once, $off, $emit) 세팅되지 않음</p>
+<h4 id="created"><a href="#created" class="headerlink" title="created"></a>created</h4><p>data와 events가 활성화된 시점 ~ 템플릿과 가상돔은 마운트·렌더링 되지 않음</p>
+<h4 id="beforeMount"><a href="#beforeMount" class="headerlink" title="beforeMount"></a>beforeMount</h4><p>렌더링 일어나기 직전</p>
+<h4 id="mounted"><a href="#mounted" class="headerlink" title="mounted"></a>mounted</h4><p>컴포넌트, 템플릿, 돔에 접근가능한 시점, 모든 하위 컴포넌트 마운트를 보장하지는 않음<br>자식부터 차근차근 생성 후 부모가 생성되기 때문에 주의 (무조건, 순서대로 되지 않을 수도 있음)</p>
+<h4 id="beforeUpdate"><a href="#beforeUpdate" class="headerlink" title="beforeUpdate"></a>beforeUpdate</h4><p>dom이 새로 업데이트되기 직전 시점</p>
+<h4 id="updated"><a href="#updated" class="headerlink" title="updated"></a>updated</h4><p>재 렌더링 이후, 실행된다. 잘못 작성한다면 무한루프에 빠질 수 있음</p>
+<h4 id="beforeDestroy"><a href="#beforeDestroy" class="headerlink" title="beforeDestroy"></a>beforeDestroy</h4><p>뷰 인스턴스 제거되기 직전 시점, 컴포넌트의 원래 형태를 그대로 유지된 상태<br>이벤트 리스너를 제거하기 좋은 시점</p>
+<h4 id="destroyed"><a href="#destroyed" class="headerlink" title="destroyed"></a>destroyed</h4><p>인스턴스 제거 후 시점, vue의 모든 디렉티브 바인딩과 리스너가 제거</p>
+<p><img src="https://user-images.githubusercontent.com/26294469/71563756-fbdb2600-2ad7-11ea-8831-7bdddf483786.png" alt="1577214829972"></p>
+<p><img src="https://user-images.githubusercontent.com/26294469/71563757-fbdb2600-2ad7-11ea-851d-e401ea99d8fd.png" alt="1577209781216"></p>
+<h2 id="템플릿-문법"><a href="#템플릿-문법" class="headerlink" title="템플릿 문법"></a>템플릿 문법</h2><h3 id="interpolation"><a href="#interpolation" class="headerlink" title="interpolation"></a>interpolation</h3><h4 id="v-once"><a href="#v-once" class="headerlink" title="v-once"></a><code>v-once</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-once</span>&gt;</span>한번 이후, 변경되지 않음 &#123;&#123; msg &#125;&#125;<span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="v-html"><a href="#v-html" class="headerlink" title="v-html"></a><code>v-html</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"># rawHtml = `<span class="tag">&lt;<span class="name">span</span> <span class="attr">style</span>=<span class="string">&quot;color:red&quot;</span>&gt;</span>HTML<span class="tag">&lt;/<span class="name">span</span>&gt;</span>`</span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-html</span>=<span class="string">&quot;rawHtml&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>데이터 바인딩이 무시됨, Vue는 문자열 기반 템플릿 엔진은 아니여서, <code>v-html</code>을 이용한 템플릿을 사용할 수는 없음<br>또한 XSS 취약점이 존재하기 때문에, 사용자 폼에서는 금지</p>
+<h4 id="v-bind"><a href="#v-bind" class="headerlink" title="v-bind:"></a><code>v-bind:</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">&quot;dynamicId&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">button</span> <span class="attr">v-bind:disabled</span>=<span class="string">&quot;isButtonDisabled&quot;</span>&gt;</span>Button<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>isButtonDisabled</code>가 <code>null</code>, <code>undefined</code>, <code>false</code>면 속성으로 표시되지 않음</p>
+<h4 id="Javascript-표현식"><a href="#Javascript-표현식" class="headerlink" title="Javascript 표현식"></a>Javascript 표현식</h4><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 여러 표현식 사용 가능, 대신 구문은 작성 불가능(ex. 선언/if문은 작동하지 않음)</span></span><br><span class="line">&#123;&#123; number + <span class="number">1</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123; ok ? <span class="string">&#x27;YES&#x27;</span> : <span class="string">&#x27;NO&#x27;</span> &#125;&#125;</span><br><span class="line"></span><br><span class="line">&#123;&#123; message.split(<span class="string">``</span>).reserve().join(<span class="string">``</span>) &#125;&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:id</span>=<span class="string">&quot;&#x27;last-&#x27; + id&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="디렉티브"><a href="#디렉티브" class="headerlink" title="디렉티브"></a>디렉티브</h3><h4 id="동적-전달인자-2-6-0-부터-생김"><a href="#동적-전달인자-2-6-0-부터-생김" class="headerlink" title="동적 전달인자 (2.6.0+부터 생김)"></a>동적 전달인자 (2.6.0+부터 생김)</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:</span>[<span class="attr">attribueName</span>]=<span class="string">&quot;url&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:</span>[<span class="attr">attribueName</span>]=<span class="string">&quot;function&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>대신 스페이스나 따옴표를 쓰지말 것, 또한 소문자만 쓰는 것이 좋음</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 컴파일러 경고를 불러옵니다 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:</span>[&#x27;<span class="attr">foo</span>&#x27; + <span class="attr">bar</span>]=<span class="string">&quot;value&quot;</span>&gt;</span> ... <span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="preventDefault"><a href="#preventDefault" class="headerlink" title="preventDefault()"></a><code>preventDefault()</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">form</span> <span class="attr">v-on:submit.prevent</span>=<span class="string">&quot;onSubmit&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">form</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="약어"><a href="#약어" class="headerlink" title="약어"></a>약어</h3><h4 id="v-bind-약어"><a href="#v-bind-약어" class="headerlink" title="v-bind 약어"></a>v-bind 약어</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 전체 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-bind:href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 약어 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:href</span>=<span class="string">&quot;url&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 동적 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">:</span>[<span class="attr">key</span>]=<span class="string">&quot;url&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="v-on-약어"><a href="#v-on-약어" class="headerlink" title="v-on 약어"></a>v-on 약어</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 전체 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> <span class="attr">v-on:click</span>=<span class="string">&quot;function&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 약어 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> @<span class="attr">click</span>=<span class="string">&quot;function&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 동적 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">a</span> @[<span class="attr">event</span>]=<span class="string">&quot;function&quot;</span>&gt;</span>...<span class="tag">&lt;/<span class="name">a</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="computed와-watch"><a href="#computed와-watch" class="headerlink" title="computed와 watch"></a>computed와 watch</h2><h3 id="computed-배경"><a href="#computed-배경" class="headerlink" title="computed 배경"></a>computed 배경</h3><p>너무 많은 템플릿 내 표현식은 유지보수가 힘듬</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 어려움 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;example&quot;</span>&gt;</span></span><br><span class="line">  &#123;&#123; message.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;) &#125;&#125;</span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="computed-예제"><a href="#computed-예제" class="headerlink" title="computed 예제"></a>computed 예제</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;example&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>원본: &#123;&#123; message &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>역순: &#123;&#123; reversedMessage &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span> </span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#example`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        message: <span class="string">`안녕`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        reversedMessage: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">this</span>.message.split(<span class="string">``</span>).reverse().join(<span class="string">``</span>)</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="computed-vs-method"><a href="#computed-vs-method" class="headerlink" title="computed vs method"></a>computed vs method</h3><p>차이점: <code>computed</code>는 종속 대상이 변경될 때만 함수를 실행하고, 변경되지 않으면 그 이전 계산했던 값을 돌려줌<br><code>Date.now()</code>처럼 아무곳에 의존되지 않은 값은 업데이트 되지 않음</p>
+<p>이것과 비교하여 <code>method</code>는 항상 함수를 재실행함</p>
+<h3 id="computed-vs-watch"><a href="#computed-vs-watch" class="headerlink" title="computed vs watch"></a>computed vs watch</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;demo&quot;</span>&gt;</span>&#123;&#123; fullName &#125;&#125;<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>비교(<strong>watch</strong>)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#demo`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        firstName: <span class="string">`TAEUK`</span>,</span><br><span class="line">        lastName: <span class="string">`KANG`</span>,</span><br><span class="line">        fullName: <span class="string">`TAEUK KANG`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">        firstName: <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.fullName = val + <span class="string">` `</span> + <span class="built_in">this</span>.lastName</span><br><span class="line">        &#125;,</span><br><span class="line">        lastName: <span class="function"><span class="keyword">function</span>(<span class="params">val</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.fullName = <span class="built_in">this</span>.firstName + <span class="string">` `</span> + val</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><strong>computed</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> vm = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#demo`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        firstName: <span class="string">`TAEUK`</span>,</span><br><span class="line">        lastName: <span class="string">`KANG`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    computed: &#123;</span><br><span class="line">        fullName: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.firstName&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.lastName&#125;</span>`</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="computed-setter"><a href="#computed-setter" class="headerlink" title="computed(setter)"></a>computed(setter)</h3><p>computed는 기본적으로 getter함수이지만, setter로 지정하여 만들 수 있음</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">computed: &#123;</span><br><span class="line">    fullName: &#123;</span><br><span class="line">        <span class="comment">// getter</span></span><br><span class="line">        get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.firstName&#125;</span> <span class="subst">$&#123;<span class="built_in">this</span>.lastName&#125;</span>`</span></span><br><span class="line">        &#125;,</span><br><span class="line">        <span class="comment">// setter</span></span><br><span class="line">        set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span><br><span class="line">            <span class="keyword">var</span> names = newValue.split(<span class="string">` `</span>)</span><br><span class="line">            <span class="built_in">this</span>.firstName = names[<span class="number">0</span>]</span><br><span class="line">            <span class="built_in">this</span>.lastName = names[names.length - <span class="number">1</span>]</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>vm.fullName = <code>TAEUK KANG</code> 실행하면, 업데이트가 되는 것을 볼 수 있음</p>
+<h3 id="watch"><a href="#watch" class="headerlink" title="watch"></a>watch</h3><p>비동기식 또는 시간이 많이 소요되는 조작을 수행하려는 경우에 가장 유용</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;watch-example&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">        yes/no ?</span><br><span class="line">        <span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">&quot;question&quot;</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; answer &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// axios, lodash 사용 예제</span></span><br><span class="line"><span class="keyword">var</span> watchExampleVM = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    el: <span class="string">`#watch-example`</span>,</span><br><span class="line">    data: &#123;</span><br><span class="line">        question: <span class="string">``</span>,</span><br><span class="line">        answer: <span class="string">`대답 미입력`</span></span><br><span class="line">    &#125;,</span><br><span class="line">    watch: &#123;</span><br><span class="line">        question: <span class="function"><span class="keyword">function</span>(<span class="params">newQuestion</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">this</span>.answer = <span class="string">`입력 대기 중...`</span></span><br><span class="line">            <span class="built_in">this</span>.getAnswer()</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123;</span><br><span class="line">        <span class="comment">// _.debounce는 lodash가 제공하는 기능, 시간이 많이 소요되는 작업에 실행 빈도를 제한</span></span><br><span class="line">        getAnswer: _.debounce(</span><br><span class="line">        	<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (<span class="built_in">this</span>.question.indexOf(<span class="string">`?`</span>) === <span class="number">-1</span>) &#123;</span><br><span class="line">                    <span class="built_in">this</span>.answer = <span class="string">`질문에 물음표를 넣어줘`</span></span><br><span class="line">                    <span class="keyword">return</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="built_in">this</span>.answer = <span class="string">`생각 중...`</span></span><br><span class="line">                <span class="keyword">var</span> vm = <span class="built_in">this</span></span><br><span class="line">                </span><br><span class="line">                axios.get(<span class="string">`api url`</span>).then(<span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">                    vm.answer = _.capitalize(res.data.answer)</span><br><span class="line">                &#125;).catch(<span class="function"><span class="params">err</span> =&gt;</span> &#123;</span><br><span class="line">                    vm.answer = <span class="string">`Err! <span class="subst">$&#123;err&#125;</span>`</span></span><br><span class="line">                &#125;)</span><br><span class="line">            &#125;,</span><br><span class="line">            <span class="comment">// 사용자가 기다리는 시간(ms)</span></span><br><span class="line">            <span class="number">500</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h2 id="클래스와-스타일-바인딩"><a href="#클래스와-스타일-바인딩" class="headerlink" title="클래스와 스타일 바인딩"></a>클래스와 스타일 바인딩</h2><h3 id="클래스-동적-토글"><a href="#클래스-동적-토글" class="headerlink" title="클래스 동적 토글"></a>클래스 동적 토글</h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;&#123; active isActive &#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span></span></span><br><span class="line"><span class="tag">     <span class="attr">class</span>=<span class="string">&quot;static&quot;</span></span></span><br><span class="line"><span class="tag">     <span class="attr">v-bind:class</span>=<span class="string">&quot;&#123; active: isActive, &#x27;test-danger&#x27;: hasError&#125;&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: [</span><br><span class="line">    isActive: <span class="literal">true</span>,</span><br><span class="line">    hasError: <span class="literal">false</span></span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+
+<p><strong>결과값:</strong></p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;static active&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>굳이 인라인 스크립트를 쓰지 않아도 됨</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;classObject&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    classObject: &#123;</span><br><span class="line">        active: <span class="literal">true</span>,</span><br><span class="line">        <span class="string">&#x27;text-danger&#x27;</span>: <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// computed도 가능</span></span><br><span class="line">data: &#123;</span><br><span class="line">  isActive: <span class="literal">true</span>,</span><br><span class="line">  error: <span class="literal">null</span></span><br><span class="line">&#125;,</span><br><span class="line">computed: &#123;</span><br><span class="line">  classObject: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      active: <span class="built_in">this</span>.is	Active &amp;&amp; !<span class="built_in">this</span>.error,</span><br><span class="line">      <span class="string">&#x27;text-danger&#x27;</span>: <span class="built_in">this</span>.error &amp;&amp; <span class="built_in">this</span>.error.type === <span class="string">&#x27;fatal&#x27;</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="배열"><a href="#배열" class="headerlink" title="배열"></a>배열</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;[activeClass, errorClass]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    activeClass: <span class="string">`active`</span>,</span><br><span class="line">    errorClass: <span class="string">`text-danger`</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h5 id="Result"><a href="#Result" class="headerlink" title="Result:"></a>Result:</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;active text-danger&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="삼항연산자"><a href="#삼항연산자" class="headerlink" title="삼항연산자"></a>삼항연산자</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;[isActive ? activeClass : &#x27;&#x27;, errorClass]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:class</span>=<span class="string">&quot;[&#123;active: isActive&#125;, errorClass]&quot;</span></span></span><br></pre></td></tr></table></figure>
+
+<h4 id="컴포넌트"><a href="#컴포넌트" class="headerlink" title="컴포넌트"></a>컴포넌트</h4><p>Vue 컴포넌트의 기존 클래스가 덮어쓰기 되지않고, 추가됨. 바인딩도 마찬가지</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Vue.component(<span class="string">`my-component`</span>, &#123;</span><br><span class="line">    template: <span class="string">`&lt;p class=&quot;foo bar&quot;&gt;Hi&lt;/p&gt;`</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">my-component</span> <span class="attr">class</span>=<span class="string">&quot;baz boo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">my-component</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h5 id="Result-1"><a href="#Result-1" class="headerlink" title="Result:"></a>Result:</h5><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">p</span> <span class="attr">class</span>=<span class="string">&quot;foo bar baz boo&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="인라인-스타일-바인딩"><a href="#인라인-스타일-바인딩" class="headerlink" title="인라인 스타일 바인딩"></a>인라인 스타일 바인딩</h3><h4 id="b-bind-style"><a href="#b-bind-style" class="headerlink" title="b-bind:style"></a><code>b-bind:style</code></h4><p>속성 이름에 camelCase와 kebab-case (따옴표를 함께 사용해야 합니다)를 사용</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;&#123; color: activeColor, fontSize: fontSize + &#x27;px&#x27;&#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    activeColor: <span class="string">`red`</span>,</span><br><span class="line">    fontSize: <span class="number">30</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>데이터 밑 객체를 삽입하여 간결하게</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;styleObject&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">data: &#123;</span><br><span class="line">    styleObject: &#123;</span><br><span class="line">        color: <span class="string">`red`</span>,</span><br><span class="line">        fontSize: <span class="string">`13px`</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 여러 스타일시트 사용 가능 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;[baseStyles, overridingStyles]&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="자동-접두사"><a href="#자동-접두사" class="headerlink" title="자동 접두사"></a>자동 접두사</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-bind:style</span>=<span class="string">&quot;&#123; display: [&#x27;-webkit-box&#x27;, &#x27;-ms-flexbox&#x27;, &#x27;flex&#x27;] &#125;&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>그런데 그냥 PostCSS의 autoPrefixer을 쓰는게 편해보임.</p>
+<h2 id="조건부-렌더링"><a href="#조건부-렌더링" class="headerlink" title="조건부 렌더링"></a>조건부 렌더링</h2><h3 id="v-if-v-else"><a href="#v-if-v-else" class="headerlink" title="v-if, v-else"></a><code>v-if</code>, <code>v-else</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span>Yes<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-else</span>&gt;</span>No<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-if</span>=<span class="string">&quot;type === &#x27;A&#x27;&quot;</span>&gt;</span>A<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;B&#x27;&quot;</span>&gt;</span>B<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else-if</span>=<span class="string">&quot;type === &#x27;C&#x27;&quot;</span>&gt;</span>C<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">v-else</span>&gt;</span>Not A/B/C<span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>v-else</code> 엘리먼트는 <code>v-if</code> 엘리먼트 또는 <code>v-else-if</code> 엘리먼트 바로 뒤에 있어야 합니다. 그렇지 않으면 인식할 수 없습니다.</p>
+<h4 id="lt-template-gt-의-v-if"><a href="#lt-template-gt-의-v-if" class="headerlink" title="&lt;template&gt;의 v-if"></a><code>&lt;template&gt;</code>의 <code>v-if</code></h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;ok&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">h1</span>&gt;</span>Title<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-if</span>=<span class="string">&quot;loginType === &#x27;username&#x27;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>사용자 이름<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">&quot;사용자 이름을 입력하세요&quot;</span> <span class="attr">key</span>=<span class="string">&quot;username-input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">template</span> <span class="attr">v-else</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">label</span>&gt;</span>이메일<span class="tag">&lt;/<span class="name">label</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">input</span> <span class="attr">placeholder</span>=<span class="string">&quot;이메일 주소를 입력하세요&quot;</span> <span class="attr">key</span>=<span class="string">&quot;email-input&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">template</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>key</code> 속성이란, “이 두 엘리먼트는 완전히 별개이므로 다시 사용하지 마십시오.”라고 알리는 행위</p>
+<p>없으면 <code>input</code> 엘리먼트를 재사용함</p>
+<h3 id="v-show"><a href="#v-show" class="headerlink" title="v-show"></a><code>v-show</code></h3><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span> <span class="attr">v-show</span>=<span class="string">&quot;ok&quot;</span>&gt;</span>안녕하세요!<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><code>v-if</code>와 다른 점은 항상 DOM에 남겨져 있고, css의 display 상태로만 감춰져있음<br>그러므로, 매우 자주 바뀌는 렌더링 비용은 <code>v-show</code>를 이용하는 것을 권장</p>
+<h3 id="주의사항-v-for우선순위"><a href="#주의사항-v-for우선순위" class="headerlink" title="주의사항 v-for우선순위"></a>주의사항 <code>v-for</code>우선순위</h3><p><code>v-for</code>가 <code>v-if</code>보다 높은 우선순위 권을 갖기 때문에 사용에 주의할 것</p>
+<h2 id="리스트-렌더링"><a href="#리스트-렌더링" class="headerlink" title="리스트 렌더링"></a>리스트 렌더링</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">ul</span> <span class="attr">id</span>+&quot;<span class="attr">example-1</span>&quot;&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">li</span> <span class="attr">v-for</span>=<span class="string">&quot;(item, index) in items&quot;</span>&gt;</span>&#123;&#123; index &#125;&#125;: &#123;&#123; item.message &#125;&#125;<span class="tag">&lt;/<span class="name">li</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> example1 = <span class="keyword">new</span> Vue(&#123;</span><br><span class="line">    data: &#123;</span><br><span class="line">        items: [</span><br><span class="line">            &#123; <span class="attr">message</span>: <span class="string">`item1`</span>&#125;,</span><br><span class="line">            &#123; <span class="attr">message</span>: <span class="string">`item2`</span>&#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>in</code> 대신 <code>of</code> 반복문도 사용 가능 (차이점은 일반적인 JS문법과 동일: in은 key값을 순회, of는 value값을 순회)</p>
+<h3 id="v-for와-객체"><a href="#v-for와-객체" class="headerlink" title="v-for와 객체"></a><code>v-for</code>와 객체</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;ul id&#x3D;&quot;v-for-object&quot; class&#x3D;&quot;demo&quot;&gt;</span><br><span class="line">    &lt;li v-for&#x3D;&quot;(value, key, index) in object&quot;&gt;&#123;&#123;index&#125;&#125;. &#123;&#123;key&#125;&#125;: &#123;&#123;value&#125;&#125;&lt;&#x2F;li&gt;</span><br><span class="line">&lt;&#x2F;ul&gt;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> Vue(&#123;</span><br><span class="line">	el: <span class="string">`#v-for-object`</span>,</span><br><span class="line">	data: &#123;</span><br><span class="line">		object: &#123;</span><br><span class="line">			title: <span class="string">`제목`</span>,</span><br><span class="line">            author: <span class="string">`저자`</span>,</span><br><span class="line">            publishedAt: <span class="string">`2019-12-29`</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Result-2"><a href="#Result-2" class="headerlink" title="Result"></a>Result</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0. title: 제목</span><br><span class="line">1. author: 저자</span><br><span class="line">2. publishedAt: 2019-12-29</span><br></pre></td></tr></table></figure>
+
+<h4 id="주의점"><a href="#주의점" class="headerlink" title="주의점"></a>주의점</h4><p>객체 순서가 일관적이지 않음. <code>Object.keys()</code>의 결과에 따름.</p>
+<h3 id="Maintaining-State"><a href="#Maintaining-State" class="headerlink" title="Maintaining State"></a>Maintaining State</h3><h2 id="이벤트-핸들링"><a href="#이벤트-핸들링" class="headerlink" title="이벤트 핸들링"></a>이벤트 핸들링</h2><h2 id="폼-입력-바인딩"><a href="#폼-입력-바인딩" class="headerlink" title="폼 입력 바인딩"></a>폼 입력 바인딩</h2><h2 id="컴포넌트-1"><a href="#컴포넌트-1" class="headerlink" title="컴포넌트"></a>컴포넌트</h2><h1 id="컴포넌트-모아보기"><a href="#컴포넌트-모아보기" class="headerlink" title="컴포넌트 모아보기"></a>컴포넌트 모아보기</h1><h2 id="컴포넌트-등록"><a href="#컴포넌트-등록" class="headerlink" title="컴포넌트 등록"></a>컴포넌트 등록</h2><h2 id="Props"><a href="#Props" class="headerlink" title="Props"></a>Props</h2><h2 id="커스텀-이벤트"><a href="#커스텀-이벤트" class="headerlink" title="커스텀 이벤트"></a>커스텀 이벤트</h2><h2 id="슬롯-slots"><a href="#슬롯-slots" class="headerlink" title="슬롯(slots)"></a>슬롯(slots)</h2><h2 id="동적-amp-비동기-컴포넌트"><a href="#동적-amp-비동기-컴포넌트" class="headerlink" title="동적 &amp; 비동기 컴포넌트"></a>동적 &amp; 비동기 컴포넌트</h2><h2 id="Handling-Edge-Cases"><a href="#Handling-Edge-Cases" class="headerlink" title="Handling Edge Cases"></a>Handling Edge Cases</h2><h1 id="트랜지션-amp-애니메이션"><a href="#트랜지션-amp-애니메이션" class="headerlink" title="트랜지션 &amp; 애니메이션"></a>트랜지션 &amp; 애니메이션</h1><h2 id="진입-진출-봐야알-듯"><a href="#진입-진출-봐야알-듯" class="headerlink" title="진입/진출? 봐야알 듯"></a>진입/진출? 봐야알 듯</h2><h2 id="상태-트랜지션"><a href="#상태-트랜지션" class="headerlink" title="상태 트랜지션"></a>상태 트랜지션</h2><h1 id="재사용-amp-컴포지션"><a href="#재사용-amp-컴포지션" class="headerlink" title="재사용 &amp; 컴포지션"></a>재사용 &amp; 컴포지션</h1><h2 id="믹스인"><a href="#믹스인" class="headerlink" title="믹스인"></a>믹스인</h2><h2 id="사용자-지정-디렉티브"><a href="#사용자-지정-디렉티브" class="headerlink" title="사용자 지정 디렉티브"></a>사용자 지정 디렉티브</h2><h2 id="Render-Functions-amp-JSX"><a href="#Render-Functions-amp-JSX" class="headerlink" title="Render Functions &amp; JSX"></a>Render Functions &amp; JSX</h2><h2 id="플러그인"><a href="#플러그인" class="headerlink" title="플러그인"></a>플러그인</h2><h3 id="사용법"><a href="#사용법" class="headerlink" title="사용법"></a>사용법</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vue.use(MyPlugin)</span><br><span class="line"></span><br><span class="line">new Vue(&#123;</span><br><span class="line">    &#x2F;&#x2F; ...options</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<p><code>Vue.use</code>는 자동으로 같은 플러그인 중복사용을 방지함 (한번만 설치됨)</p>
+<h3 id="작성법"><a href="#작성법" class="headerlink" title="작성법"></a>작성법</h3><blockquote>
+<p>추후 작성</p>
+</blockquote>
+<h2 id="필터"><a href="#필터" class="headerlink" title="필터"></a>필터</h2><h1 id="도구"><a href="#도구" class="headerlink" title="도구"></a>도구</h1><h2 id="싱글-파일-컴포넌트"><a href="#싱글-파일-컴포넌트" class="headerlink" title="싱글 파일 컴포넌트"></a>싱글 파일 컴포넌트</h2><h2 id="단위-테스팅"><a href="#단위-테스팅" class="headerlink" title="단위 테스팅"></a>단위 테스팅</h2><h2 id="Typescript"><a href="#Typescript" class="headerlink" title="Typescript"></a>Typescript</h2><h2 id="배포"><a href="#배포" class="headerlink" title="배포"></a>배포</h2><h1 id="스케일링-업"><a href="#스케일링-업" class="headerlink" title="스케일링 업"></a>스케일링 업</h1><h2 id="라우팅"><a href="#라우팅" class="headerlink" title="라우팅"></a>라우팅</h2><h2 id="상태-관리"><a href="#상태-관리" class="headerlink" title="상태 관리"></a>상태 관리</h2><h2 id="서버사이드-렌더링"><a href="#서버사이드-렌더링" class="headerlink" title="서버사이드 렌더링"></a>서버사이드 렌더링</h2><h2 id="Security"><a href="#Security" class="headerlink" title="Security"></a>Security</h2><h1 id="내부"><a href="#내부" class="headerlink" title="내부"></a>내부</h1><h2 id="반응형"><a href="#반응형" class="headerlink" title="반응형"></a>반응형</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Vue-PWA/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Vue.js 환경 구축 기록일지
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Js-pwa-starter-kit/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">PWA-Starter-Kit 요약</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

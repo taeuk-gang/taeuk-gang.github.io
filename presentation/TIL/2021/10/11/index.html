@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>TIL 10월 11일 (월) | TAEUK WIKI</title><meta name="robots" content="noindex">
+    
+    
+        <meta name="keywords" content="Javascript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="ul, ol, p {     font-size: 0.75rem; } img[alt~&#x3D;&quot;center&quot;] {   display: block;   margin: 0 auto; }  header {   color: #fff; }  table {   font-size: 0.6rem; }  pre &gt; code {   color: initial; }  h1 {   f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TIL 10월 11일 (월)">
+<meta property="og:url" content="https://taeuk-gang.github.io/presentation/TIL/2021/10/11/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="ul, ol, p {     font-size: 0.75rem; } img[alt~&#x3D;&quot;center&quot;] {   display: block;   margin: 0 auto; }  header {   color: #fff; }  table {   font-size: 0.6rem; }  pre &gt; code {   color: initial; }  h1 {   f">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif">
+<meta property="og:image" content="https://camo.githubusercontent.com/94e6e2096b0bc286c36b61494276534d8f70f5e7e6171587c65832f2c621f688/68747470733a2f2f636572742d6d616e616765722e696f2f696d616765732f686967682d6c6576656c2d6f766572766965772e737667">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/136773635-974cfd3b-c3ef-4140-8a9c-d89b0423e9a9.png">
+<meta property="article:published_time" content="2022-09-23T10:58:11.429Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.429Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            TIL 10월 11일 (월)
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <style>
+ul, ol, p {
+    font-size: 0.75rem;
+}
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+header {
+  color: #fff;
+}
+
+table {
+  font-size: 0.6rem;
+}
+
+pre > code {
+  color: initial;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h3 {
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 0.6rem;
+}
+
+h5 {
+  font-size: 0.4rem;
+}
+</style>
+
+<h2 id="TIL-10월-11일-월"><a href="#TIL-10월-11일-월" class="headerlink" title="TIL: 10월 11일 (월)"></a>TIL: 10월 11일 (월)</h2><p><img src="https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif" alt="w:300 center"></p>
+<style scoped>
+h2, h3 {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  text-align: center;  
+  line-height: 0.8rem;
+  color: #000;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+strong {
+  color: #fff;
+}
+
+p {
+  color: #fff;
+}
+</style>
+
+<hr>
+<!-- header: K8S Ingress -->
+<h3 id="K8S-Ingress"><a href="#K8S-Ingress" class="headerlink" title="K8S Ingress"></a>K8S Ingress</h3><style scoped>
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 1rem;
+}
+</style>
+
+
+<hr>
+<blockquote>
+<p>참고 자료: <a target="_blank" rel="noopener" href="https://arisu1000.tistory.com/27840">https://arisu1000.tistory.com/27840</a></p>
+</blockquote>
+<h2 id="인그레스-정의"><a href="#인그레스-정의" class="headerlink" title="인그레스 정의"></a>인그레스 정의</h2><p>인그레스(ingress)는 클러스터 외부에서 내부로 접근하는 요청들을 어떻게 처리할지 정의해둔 규칙들의 모음</p>
+<h2 id="할-수-있는-것들"><a href="#할-수-있는-것들" class="headerlink" title="할 수 있는 것들"></a>할 수 있는 것들</h2><ul>
+<li>외부에서 접근가능한 URL을 사용할 수 있게 함</li>
+<li>트래픽 로드밸런싱</li>
+<li>SSL 인증서 처리</li>
+<li>도메인 기반으로 가상 호스팅을 제공</li>
+</ul>
+<blockquote>
+<p>이런 규칙들을 실제로 동작하게 해주는게 인그레스 컨트롤러(ingress controller)</p>
+</blockquote>
+<hr>
+<ol>
+<li><p>클라우드 서비스는 별다른 설정없이 자사의 로드밸런서 서비스들과 연동해서 인그레스를 사용</p>
+</li>
+<li><p>직접 쿠버네티스 클러스터를 구축해서 사용하는 경우라면 인그레스 컨트롤러를 직접 인그레스와 연동</p>
+</li>
+<li><p>이때 가장 많이 사용되는건 쿠버네티스에서 제공하는  ingress-nginx(<a target="_blank" rel="noopener" href="https://github.com/kubernetes/ingress-nginx">https://github.com/kubernetes/ingress-nginx</a>)</p>
+</li>
+</ol>
+<hr>
+<h2 id="YAML-예제"><a href="#YAML-예제" class="headerlink" title="YAML 예제"></a>YAML 예제</h2><p>foo.bar.com으로 요청이 들어오더라도 뒷부분의 경로에 따라 /foos1이면 서비스 s1으로 연결되고 /bars2이면 서비스 s2쪽으로 연결</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1beta1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Ingress</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">test</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="attr">nginx.ingress.kubernetes.io/rewrite-target:</span> <span class="string">/</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">host:</span> <span class="string">foo.bar.com</span></span><br><span class="line">    <span class="attr">http:</span></span><br><span class="line">      <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">/foos1</span></span><br><span class="line">        <span class="attr">backend:</span></span><br><span class="line">          <span class="attr">serviceName:</span> <span class="string">s1</span></span><br><span class="line">          <span class="attr">servicePort:</span> <span class="number">80</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">path:</span> <span class="string">/bars2</span></span><br><span class="line">        <span class="attr">backend:</span></span><br><span class="line">          <span class="attr">serviceName:</span> <span class="string">s2</span></span><br><span class="line">          <span class="attr">servicePort:</span> <span class="number">80</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">host:</span> <span class="string">bar.foo.com</span></span><br><span class="line">    <span class="attr">http:</span></span><br><span class="line">      <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">backend:</span></span><br><span class="line">          <span class="attr">serviceName:</span> <span class="string">s2</span></span><br><span class="line">          <span class="attr">servicePort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<style scoped>
+  pre {
+    font-size: 0.5rem;
+  }
+</style>
+
+<hr>
+<!-- header: Cert-manager -->
+<h3 id="Cert-manager"><a href="#Cert-manager" class="headerlink" title="Cert-manager"></a>Cert-manager</h3><style scoped>
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 1rem;
+}
+</style>
+<hr>
+<!-- footer: 참고 링크: [Cert-manager Github](https://github.com/jetstack/cert-manager) -->
+<h3 id="설명"><a href="#설명" class="headerlink" title="설명"></a>설명</h3><ul>
+<li><p>cert-manager는 k8s에서 자동으로 TLS 인증서를 갱신해주는 쿠버네티스 에드온</p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/jetstack/kube-lego">kube lego</a> 프로젝트에 기초</p>
+</li>
+<li><p>유사 프로젝트로 <a target="_blank" rel="noopener" href="https://github.com/PalmStoneGames/kube-cert-manager">kube-cert-manager</a>가 존재</p>
+</li>
+<li><p>외부 Issuers를 사용하거나 self-signed 방식으로 자동 갱신</p>
+</li>
+</ul>
+<blockquote>
+<p>openssl로 안하고 이걸 사용하는 이유는 인증서 자동 갱신 및 관리?</p>
+</blockquote>
+<p><img src="https://camo.githubusercontent.com/94e6e2096b0bc286c36b61494276534d8f70f5e7e6171587c65832f2c621f688/68747470733a2f2f636572742d6d616e616765722e696f2f696d616765732f686967682d6c6576656c2d6f766572766965772e737667" alt="bg fit right"></p>
+<hr>
+<!-- footer: 참고 링크: [Cert-manager Official Installation](https://cert-manager.io/docs/installation/) -->
+
+<h3 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h3><p><code>cert-manager</code> 네임스페이스를 사용</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl apply -f https:&#x2F;&#x2F;github.com&#x2F;jetstack&#x2F;cert-manager&#x2F;releases&#x2F;download&#x2F;v1.5.4&#x2F;cert-manager.yaml</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="설치-확인"><a href="#설치-확인" class="headerlink" title="설치 확인"></a>설치 확인</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">[root@stg-accordion1 twkang] k get all -n cert-manager </span><br><span class="line">NAME                                           READY   STATUS    RESTARTS   AGE</span><br><span class="line">pod/cert-manager-7c6f78c46d-t9j4r              1/1     Running   0          100s</span><br><span class="line">pod/cert-manager-cainjector-668d9c86df-lwhzv   1/1     Running   0          100s</span><br><span class="line">pod/cert-manager-webhook-979688b46-zffvw       1/1     Running   0          100s</span><br><span class="line"></span><br><span class="line">NAME                           TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)    AGE</span><br><span class="line">service/cert-manager           ClusterIP   10.98.36.159    &lt;none&gt;        9402/TCP   101s</span><br><span class="line">service/cert-manager-webhook   ClusterIP   10.102.126.21   &lt;none&gt;        443/TCP    101s</span><br><span class="line"></span><br><span class="line">NAME                                      READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/cert-manager              1/1     1            1           101s</span><br><span class="line">deployment.apps/cert-manager-cainjector   1/1     1            1           101s</span><br><span class="line">deployment.apps/cert-manager-webhook      1/1     1            1           101s</span><br><span class="line"></span><br><span class="line">NAME                                                 DESIRED   CURRENT   READY   AGE</span><br><span class="line">replicaset.apps/cert-manager-7c6f78c46d              1         1         1       101s</span><br><span class="line">replicaset.apps/cert-manager-cainjector-668d9c86df   1         1         1       101s</span><br><span class="line">replicaset.apps/cert-manager-webhook-979688b46       1         1         1       101s</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: 참고 링크: [Cert-manager를 이용해 selfsigned 인증서 생성하기](https://ooeunz.tistory.com/143)-->
+
+<ul>
+<li>Cert-manager는 기본적으로 외부 Issuer(let’s enscypt)가 아닌,<br>Cluster 내부에서 사용할 수 있는 자체적으로 서명된 self-signed issuer를 생성</li>
+</ul>
+<blockquote>
+<p>Issuer 뜻 = CA라고 칭하는 서명할 수 있는 주체를 지칭, Certificate(인증서)를 생성할 수 있는 발급기관</p>
+</blockquote>
+<ul>
+<li>cluster 내부에서 사용하거나 테스트 용도로 사용하는 것이라면 self-signed 인증서를 사용하는 것도 좋은 방법</li>
+</ul>
+<hr>
+<h3 id="시스템-구성도"><a href="#시스템-구성도" class="headerlink" title="시스템 구성도"></a>시스템 구성도</h3><ul>
+<li><p>cert-manager를 이용해서 클러스터 전역에서 사용할 수 있는 Cluster Issuer를 생성</p>
+</li>
+<li><p>해당 Issuer를 이용해서 각각의 Namespace 별로 Certificate를 생성</p>
+</li>
+</ul>
+<blockquote>
+<p>클러스터/네임스페이스 스코프별로 <code>ClusterIssuer</code>, <code>Issuer</code> 리소스 따로 존재</p>
+</blockquote>
+<p><img src="https://user-images.githubusercontent.com/26294469/136773635-974cfd3b-c3ef-4140-8a9c-d89b0423e9a9.png" alt="bg fit right 80%"></p>
+<hr>
+<h3 id="Usage"><a href="#Usage" class="headerlink" title="Usage"></a>Usage</h3><ol>
+<li>Issuer 생성</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">cert-manager.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterIssuer</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">selfsigned-issuer</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selfSigned:</span> &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<p>결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[root@stg-accordion1 twkang] k get clusterissuers.cert-manager.io -A</span><br><span class="line">NAME                READY   AGE</span><br><span class="line">selfsigned-issuer   True    4s</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ol start="2">
+<li>Certificate 생성</li>
+</ol>
+<ul>
+<li>생성된 <code>ClusterIssuer</code>를 사용해서 self-signed Certificate를 생성</li>
+<li>해당 Certificate는 속해있는 Namespace 내의 모든 서비스가 사용할 수 있는 인증서가 됨</li>
+<li>해당 인증서가 생성됨과 동시에 Certificate는 Kubernetes내에서 사용할 수 있도록 Public key, Secret key와 같은 데이터를 가진 secret 리소스가 생성</li>
+</ul>
+<hr>
+<!-- footer: 참고 링크: [Certificate Official Usage](https://cert-manager.io/docs/usage/certificate/) -->
+<p>아래 yaml을 apply 하면 certificate와 secret 리소스가 함께 생성 (v1 기준으로 작성: v1beta1은 yaml 스펙이 다름)</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">cert-manager.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Certificate</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">selfsigned-cert</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">&lt;네임스페이스명&gt;</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">secretName:</span> <span class="string">selfsigned-cert-tls</span> <span class="comment"># Certificate와 동시에 함께 생성되는 secret의 이름</span></span><br><span class="line">  <span class="attr">duration:</span> <span class="string">2880h</span> <span class="comment"># 120d, 인증서의 유효기간</span></span><br><span class="line">  <span class="attr">renewBefore:</span> <span class="string">360h</span> <span class="comment"># 15d, 자동으로 인증서를 갱신할 때를 지정</span></span><br><span class="line">  <span class="attr">commonName:</span> <span class="string">example.com</span> <span class="comment"># host name, dnsName 옵션과 함게 사용가능</span></span><br><span class="line">  <span class="comment"># commonName이 설정되지 않았을 경우에는 dnsName의 가장 첫번째 값을 commonName이 기본값</span></span><br><span class="line">  <span class="attr">isCA:</span> <span class="literal">false</span> <span class="comment"># CA서명이 유효하도록 하는 옵션</span></span><br><span class="line">  <span class="attr">privateKey:</span></span><br><span class="line">    <span class="attr">algorithm:</span> <span class="string">RSA</span></span><br><span class="line">    <span class="attr">encoding:</span> <span class="string">PKCS1</span></span><br><span class="line">    <span class="attr">size:</span> <span class="number">2048</span>  </span><br><span class="line">  <span class="attr">usages:</span> <span class="comment"># 참고 https://cert-manager.io/docs/reference/api-docs/#cert-manager.io/v1alpha2.KeyUsage</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">digital</span> <span class="string">signature</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">key</span> <span class="string">encipherment</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">server</span> <span class="string">auth</span></span><br><span class="line">  <span class="attr">issuerRef:</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">selfsigned-issuer</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">ClusterIssuer</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">cert-manager.io</span></span><br></pre></td></tr></table></figure>
+
+<style scoped>
+  pre {
+    font-size: 0.6rem;
+  }
+</style>
+
+<hr>
+<p>결과</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@stg-accordion1</span> <span class="string">twkang</span>] <span class="string">k</span> <span class="string">get</span> <span class="string">certificate</span> <span class="string">-n</span> <span class="string">docs</span> <span class="string">selfsigned-cert</span> </span><br><span class="line"><span class="string">NAME</span>              <span class="string">READY</span>   <span class="string">SECRET</span>                <span class="string">AGE</span></span><br><span class="line"><span class="string">selfsigned-cert</span>   <span class="literal">True</span>    <span class="string">selfsigned-cert-tls</span>   <span class="string">9s</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<ol start="3">
+<li>생성되는 secret 데이터 확인</li>
+</ol>
+<ul>
+<li>ca.crt: public certificate file</li>
+<li>tls.crt: Public Key</li>
+<li>tls.key: Private Key</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">root@stg-accordion1</span> <span class="string">twkang</span>] <span class="string">k</span> <span class="string">get</span> <span class="string">secrets</span> <span class="string">-n</span> <span class="string">docs</span> </span><br><span class="line"><span class="string">NAME</span>                       <span class="string">TYPE</span>                                  <span class="string">DATA</span>   <span class="string">AGE</span></span><br><span class="line"><span class="string">selfsigned-cert-tls</span>        <span class="string">kubernetes.io/tls</span>                     <span class="number">3</span>      <span class="string">10m</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: 참고 링크: [Securing Ingress Resources](https://cert-manager.io/docs/usage/ingress/) -->
+
+<ol start="4">
+<li>생성된 TLS Secret을 Ingress에 적용</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Ingress</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">annotations:</span></span><br><span class="line">    <span class="comment"># 1. add an annotation indicating the issuer to use.</span></span><br><span class="line">    <span class="attr">cert-manager.io/cluster-issuer:</span> <span class="string">selfsigned-issuer</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">myIngress</span></span><br><span class="line">  <span class="attr">namespace:</span> <span class="string">myIngress</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">rules:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">host:</span> <span class="string">example.com</span></span><br><span class="line">    <span class="attr">http:</span></span><br><span class="line">      <span class="attr">paths:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">pathType:</span> <span class="string">Prefix</span></span><br><span class="line">        <span class="attr">path:</span> <span class="string">/</span></span><br><span class="line">        <span class="attr">backend:</span></span><br><span class="line">          <span class="attr">service:</span></span><br><span class="line">            <span class="attr">name:</span> <span class="string">myservice</span></span><br><span class="line">            <span class="attr">port:</span></span><br><span class="line">              <span class="attr">number:</span> <span class="number">80</span></span><br><span class="line">  <span class="attr">tls:</span> <span class="comment"># &lt; 2. placing a host in the TLS config will determine what ends up in the cert&#x27;s subjectAltNames</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">hosts:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="string">example.com</span></span><br><span class="line">    <span class="attr">secretName:</span> <span class="string">selfsigned-cert-tls</span> <span class="comment"># &lt; 3. cert-manager will store the created certificate in this secret.</span></span><br></pre></td></tr></table></figure>
+<!-- flag of hidden posts -->
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

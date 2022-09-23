@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Vue.js 환경 구축 기록일지 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Vue.js" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="잠깐 여행을 다녀와서 해봐야겠다…  Vue.js 환경 구축 기록일지목표   Vue.js 템플릿 사용   기본 문법 정리  Typescript 사용  Typescript 문법 정리    vue-cli 내용 정리  Vuex 라우팅 구축  nuxt.js 서버 사이드 렌더링 짜기  SCSS 환경 구축     Kubernetes 위에서 작동하기 (이해 필요)">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vue.js 환경 구축 기록일지">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Vue-PWA/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="잠깐 여행을 다녀와서 해봐야겠다…  Vue.js 환경 구축 기록일지목표   Vue.js 템플릿 사용   기본 문법 정리  Typescript 사용  Typescript 문법 정리    vue-cli 내용 정리  Vuex 라우팅 구축  nuxt.js 서버 사이드 렌더링 짜기  SCSS 환경 구축     Kubernetes 위에서 작동하기 (이해 필요)">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71563747-e36b0b80-2ad7-11ea-96e3-500b58632875.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71563749-e403a200-2ad7-11ea-8d79-a9a29f5f6762.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71635814-3e813780-2c6b-11ea-9cd0-2751921a07c0.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71635819-49d46300-2c6b-11ea-9bc5-2f9225218250.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71635821-51940780-2c6b-11ea-940e-786bb5dac00a.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71635827-5c4e9c80-2c6b-11ea-9071-6ca3eab66e10.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/71635840-7d16f200-2c6b-11ea-9c1a-1075e65b09ca.png">
+<meta property="article:published_time" content="2019-12-28T09:23:12.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.386Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Vue.js">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/71563747-e36b0b80-2ad7-11ea-96e3-500b58632875.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file active"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Vue-PWA" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue-js/">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Vue-js/" rel="tag">Vue.js</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Vue-PWA/">
+            <time datetime="2019-12-28T09:23:12.000Z" itemprop="datePublished">2019-12-28</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Vue-PWA.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Vue-PWA.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Vue-PWA.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Vue.js 환경 구축 기록일지
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-js-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95-%EA%B8%B0%EB%A1%9D%EC%9D%BC%EC%A7%80"><span class="toc-number">1.</span> <span class="toc-text">Vue.js 환경 구축 기록일지</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AA%A9%ED%91%9C"><span class="toc-number">1.1.</span> <span class="toc-text">목표</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-%EC%9D%B4%ED%95%B4"><span class="toc-number">2.</span> <span class="toc-text">Kubernetes 이해</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-%EA%B5%AC%EC%B6%95"><span class="toc-number">3.</span> <span class="toc-text">Kubernetes 구축</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-GCP-%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1"><span class="toc-number">3.1.</span> <span class="toc-text">1. GCP 프로젝트 생성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%EA%B5%AC%EA%B8%80-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C-SDK-gcloud-%EC%84%A4%EC%B9%98"><span class="toc-number">3.2.</span> <span class="toc-text">2. 구글 클라우드 SDK(gcloud) 설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0-%EC%83%9D%EC%84%B1"><span class="toc-number">3.3.</span> <span class="toc-text">3. 쿠버네티스 클러스터 생성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-DB-%EA%B5%AC%EC%B6%95"><span class="toc-number">3.4.</span> <span class="toc-text">4. DB 구축</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-API-%EA%B5%AC%EC%B6%95"><span class="toc-number">3.5.</span> <span class="toc-text">5. API 구축</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%EC%9B%B9-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EA%B5%AC%EC%B6%95"><span class="toc-number">3.6.</span> <span class="toc-text">6. 웹 어플리케이션 구축</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-%EC%9B%B9-%EC%96%B4%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%85%B8%EC%B6%9C"><span class="toc-number">3.7.</span> <span class="toc-text">7. 웹 어플리케이션 노출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#8-%ED%81%B4%EB%9D%BC%EC%9A%B0%EB%93%9C%EC%97%86%EC%9D%B4-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4-%EA%B5%AC%EC%B6%95-kuberspray"><span class="toc-number">3.8.</span> <span class="toc-text">8. * 클라우드없이 쿠버네티스 구축 (kuberspray)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link"><span class="toc-number">3.9.</span> <span class="toc-text"></span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Kubernetes-%EC%82%AC%EC%9A%A9%EB%B2%95"><span class="toc-number">4.</span> <span class="toc-text">Kubernetes 사용법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1"><span class="toc-number">4.1.</span> <span class="toc-text">1.</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%82%AC%EC%9A%A9"><span class="toc-number">5.</span> <span class="toc-text">Vue 템플릿 사용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A4%EC%B9%98"><span class="toc-number">5.1.</span> <span class="toc-text">설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%94%84%EB%A1%9C%EC%A0%9D%ED%8A%B8-%EC%83%9D%EC%84%B1"><span class="toc-number">5.2.</span> <span class="toc-text">프로젝트 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Result-%EC%83%9D%EC%84%B1-%EB%82%B4-%EB%AA%A8%EB%93%88-%EB%A6%AC%EC%8A%A4%ED%8A%B8"><span class="toc-number">5.2.1.</span> <span class="toc-text">Result: 생성 내 모듈 리스트</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue-js-Nginx-Dockerfile-%EC%9E%91%EC%84%B1"><span class="toc-number">6.</span> <span class="toc-text">Vue.js + Nginx Dockerfile 작성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A4%EC%B9%98-1"><span class="toc-number">6.1.</span> <span class="toc-text">설치</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#DockerFile-%EC%9E%91%EC%84%B1"><span class="toc-number">6.1.1.</span> <span class="toc-text">DockerFile 작성</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%B3%84%EB%8F%84-nginx-conf"><span class="toc-number">6.1.2.</span> <span class="toc-text">*별도 nginx.conf</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#docker-build"><span class="toc-number">6.1.3.</span> <span class="toc-text">docker build</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jenkins-%ED%99%98%EA%B2%BD-%EA%B5%AC%EC%B6%95"><span class="toc-number">7.</span> <span class="toc-text">Jenkins 환경 구축</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8F%84%EC%BB%A4%EB%A1%9C-%ED%91%9C%EC%A4%80-%EC%A0%A0%ED%82%A8%EC%8A%A4-%EC%84%9C%EB%B2%84-%EC%83%9D%EC%84%B1"><span class="toc-number">7.1.</span> <span class="toc-text">도커로 표준 젠킨스 서버 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%EC%A0%A0%ED%82%A8%EC%8A%A4-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EA%B0%80%EC%A0%B8%EC%98%A4%EA%B8%B0"><span class="toc-number">7.1.1.</span> <span class="toc-text">1. 젠킨스 도커 이미지 가져오기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EB%8F%84%EC%BB%A4-%EB%B3%BC%EB%A5%A8-%EC%83%9D%EC%84%B1"><span class="toc-number">7.1.2.</span> <span class="toc-text">2. 도커 볼륨 생성</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-%EB%8F%84%EC%BB%A4-%EC%8B%A4%ED%96%89"><span class="toc-number">7.1.3.</span> <span class="toc-text">3. 도커 실행</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EC%A0%91%EC%86%8D"><span class="toc-number">7.1.4.</span> <span class="toc-text">4. 브라우저 접속</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B8%B0%EC%A1%B4-%EC%A0%A0%ED%82%A8%EC%8A%A4%EC%97%90-%EB%B8%94%EB%A3%A8%EC%98%A4%EC%85%98-%EC%84%A4%EC%A0%95%ED%95%98%EA%B8%B0"><span class="toc-number">7.2.</span> <span class="toc-text">기존 젠킨스에 블루오션 설정하기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Jenkins-%EA%B4%80%EB%A6%AC-gt-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EA%B4%80%EB%A6%AC-gt-%EC%84%A4%EC%B9%98-%EA%B0%80%EB%8A%A5%EC%97%90%EC%84%9C-%EB%B8%94%EB%A3%A8%EC%98%A4%EC%85%98-%EC%84%A4%EC%B9%98"><span class="toc-number">7.2.1.</span> <span class="toc-text">1. Jenkins 관리 &gt; 플러그인 관리 &gt; 설치 가능에서 블루오션 설치</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Tip-%EC%A0%A0%ED%82%A8%EC%8A%A4-%EC%9E%AC%EC%8B%9C%EC%9E%91%EB%B2%95"><span class="toc-number">7.2.2.</span> <span class="toc-text">Tip. 젠킨스 재시작법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Result"><span class="toc-number">7.2.3.</span> <span class="toc-text">Result</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%A0%ED%82%A8%EC%8A%A4-Ngnix-%EA%B5%AC%EC%84%B1%ED%95%98%EA%B8%B0"><span class="toc-number">7.3.</span> <span class="toc-text">젠킨스 Ngnix 구성하기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%B0%B0%EA%B2%BD"><span class="toc-number">7.3.1.</span> <span class="toc-text">배경</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%8B%A4%ED%96%89%EB%B2%95"><span class="toc-number">7.3.2.</span> <span class="toc-text">실행법</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-proxy-pass%EB%A5%BC-%EC%A0%A0%ED%82%A8%EC%8A%A4%EC%9D%98-IP%EC%99%80-%ED%8F%AC%ED%8A%B8%EB%A1%9C-%EC%A7%81%EC%A0%91-%EC%97%B0%EA%B2%B0"><span class="toc-number">7.3.2.1.</span> <span class="toc-text">1. proxy_pass를 젠킨스의 IP와 포트로 직접 연결</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx%EC%97%90%EC%84%9C-%EC%A0%A0%ED%82%A8%EC%8A%A4-%EB%B8%94%EB%A3%A8%EC%98%A4%EC%85%98-%EC%9A%B4%EC%98%81%ED%95%98%EA%B8%B0"><span class="toc-number">7.4.</span> <span class="toc-text">Nginx에서 젠킨스 블루오션 운영하기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-jenkins-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%8B%A4%ED%96%89"><span class="toc-number">7.4.1.</span> <span class="toc-text">1. jenkins 컨테이너 실행</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-Ngnix-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%8B%A4%EC%9A%B4"><span class="toc-number">7.4.2.</span> <span class="toc-text">2. Ngnix 도커 이미지 다운</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3-Ngnix-%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%83%9D%EC%84%B1"><span class="toc-number">7.4.3.</span> <span class="toc-text">3. Ngnix 도커 이미지 생성</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4-docker-exec-%EB%AA%85%EB%A0%B9%EC%96%B4-%EC%8B%A4%ED%96%89"><span class="toc-number">7.4.4.</span> <span class="toc-text">4. docker exec 명령어 실행</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#5-%EC%9A%B0%EB%B6%84%ED%88%AC-%ED%8C%A8%ED%82%A4%EC%A7%80-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"><span class="toc-number">7.4.5.</span> <span class="toc-text">5. 우분투 패키지 업데이트</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#6-etc-ngnix-conf-d-%EB%B0%B1%EC%97%85-%ED%9B%84-%EC%88%98%EC%A0%95"><span class="toc-number">7.4.6.</span> <span class="toc-text">6. &#x2F;etc&#x2F;ngnix&#x2F;conf.d 백업 후 수정</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#7-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9E%AC%EC%8B%A4%ED%96%89"><span class="toc-number">7.4.7.</span> <span class="toc-text">7. 컨테이너 재실행</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#8-%EC%A0%A0%ED%82%A8%EC%8A%A4-%EC%A0%91%EC%86%8D"><span class="toc-number">7.4.8.</span> <span class="toc-text">8. 젠킨스 접속</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jenkins-Credentials-%EC%83%9D%EC%84%B1"><span class="toc-number">7.5.</span> <span class="toc-text">Jenkins Credentials 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-Jenkins-Docker-Image%EC%97%90-%EC%A0%91%EC%86%8D%ED%95%B4%EC%84%9C-ssh%ED%82%A4-%EB%93%B1%EB%A1%9D"><span class="toc-number">7.5.1.</span> <span class="toc-text">1. Jenkins Docker Image에 접속해서 ssh키 등록</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EB%B3%B5%EC%82%AC%ED%95%9C-ssh-key%EB%A5%BC-%EC%A0%A0%ED%82%A8%EC%8A%A4%EC%97%90-%EB%93%B1%EB%A1%9D"><span class="toc-number">7.5.2.</span> <span class="toc-text">2. 복사한 ssh key를 젠킨스에 등록</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jenkins%EC%97%90-Docker-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%B9%98"><span class="toc-number">7.6.</span> <span class="toc-text">Jenkins에 Docker 플러그인 설치</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Docker-%ED%94%8C%EB%9F%AC%EA%B7%B8%EC%9D%B8-%EC%84%A4%EC%A0%95"><span class="toc-number">7.6.1.</span> <span class="toc-text">Docker 플러그인 설정</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#1-Cloud-Tab%EC%97%90%EC%84%9C-Docker-%EB%A5%BC-%EC%B6%94%EA%B0%80"><span class="toc-number">7.6.1.1.</span> <span class="toc-text">1. Cloud Tab에서 Docker 를 추가</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#2-Docker-Host-URI-%EC%95%8C%EC%95%84%EB%82%B4%EA%B8%B0"><span class="toc-number">7.6.1.2.</span> <span class="toc-text">2. Docker Host URI 알아내기</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#3-Docker-Cloud-Details-%EB%B2%84%ED%8A%BC%EC%9D%84-%ED%81%B4%EB%A6%AD-%ED%9B%84-%EC%84%A4%EC%A0%95"><span class="toc-number">7.6.1.3.</span> <span class="toc-text">3. Docker Cloud Details 버튼을 클릭 후 설정</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Jenkins-Bitbucket-%EC%97%B0%EA%B2%B0"><span class="toc-number">7.7.</span> <span class="toc-text">Jenkins +  Bitbucket 연결</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-%EB%B8%94%EB%A3%A8%EC%98%A4%EC%85%98-%EC%A0%91%EC%86%8D-%ED%9B%84-%ED%8C%8C%EC%9D%B4%ED%94%84%EB%9D%BC%EC%9D%B8-%EC%83%9D%EC%84%B1-%EB%B2%84%ED%8A%BC-%ED%81%B4%EB%A6%AD"><span class="toc-number">7.7.1.</span> <span class="toc-text">1. 블루오션 접속 후, 파이프라인 생성 버튼 클릭</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-%EC%86%8C%EC%8A%A4%EA%B4%80%EB%A6%AC%EB%A5%BC-BitBucket%EC%9C%BC%EB%A1%9C-%EC%84%A4%EC%A0%95-%ED%9B%84-%EC%97%B0%EA%B2%B0"><span class="toc-number">7.7.2.</span> <span class="toc-text">2. 소스관리를 BitBucket으로 설정 후 연결</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>잠깐 여행을 다녀와서 해봐야겠다…</p>
+</blockquote>
+<h2 id="Vue-js-환경-구축-기록일지"><a href="#Vue-js-환경-구축-기록일지" class="headerlink" title="Vue.js 환경 구축 기록일지"></a>Vue.js 환경 구축 기록일지</h2><h3 id="목표"><a href="#목표" class="headerlink" title="목표"></a>목표</h3><ul>
+<li><p><input checked="" disabled="" type="checkbox">  Vue.js 템플릿 사용</p>
+<ul>
+<li><input disabled="" type="checkbox"> 기본 문법 정리</li>
+<li><input checked="" disabled="" type="checkbox"> Typescript 사용<ul>
+<li><input disabled="" type="checkbox"> Typescript 문법 정리</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> vue-cli 내용 정리</li>
+<li><input disabled="" type="checkbox"> Vuex 라우팅 구축</li>
+<li><input disabled="" type="checkbox"> nuxt.js 서버 사이드 렌더링 짜기</li>
+<li><input disabled="" type="checkbox"> SCSS 환경 구축</li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  Kubernetes 위에서 작동하기 (이해 필요)</p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> 외부 클러스터 연결 &amp; 사용하기</li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  Git + Jenkins 연동 (쿠버 이후) </p>
+<ul>
+<li><p>세부 목표: 젠킨스를 구축하면, Bitbucket으로 push시 테스트를 자동 검사 해야함.</p>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  Jenkins pipeline 내용 정리 </p>
+</li>
+</ul>
+</li>
+<li><p><input checked="" disabled="" type="checkbox">  Progressive Web App 으로 작성</p>
+</li>
+<li><p><input disabled="" type="checkbox">  Mocha + StoryBook + Cypress 테스트 모듈 사용</p>
+</li>
+<li><p><input disabled="" type="checkbox">  ESLint Rule 짜기</p>
+</li>
+<li><p><input disabled="" type="checkbox">  스타일 가이드 정리</p>
+<ul>
+<li><input disabled="" type="checkbox"> Vue.js 스타일 가이드 정리</li>
+<li><input disabled="" type="checkbox"> TOAST FE 가이드 정리</li>
+<li><input disabled="" type="checkbox"> Clean code 가이드 라인 정리</li>
+</ul>
+</li>
+</ul>
+<h2 id="Kubernetes-이해"><a href="#Kubernetes-이해" class="headerlink" title="Kubernetes 이해"></a>Kubernetes 이해</h2><p>개념 이해 없이 구축하려다보니, 뭔가 꼬이네…</p>
+<h2 id="Kubernetes-구축"><a href="#Kubernetes-구축" class="headerlink" title="Kubernetes 구축"></a>Kubernetes 구축</h2><h3 id="1-GCP-프로젝트-생성"><a href="#1-GCP-프로젝트-생성" class="headerlink" title="1. GCP 프로젝트 생성"></a>1. GCP 프로젝트 생성</h3><h3 id="2-구글-클라우드-SDK-gcloud-설치"><a href="#2-구글-클라우드-SDK-gcloud-설치" class="headerlink" title="2. 구글 클라우드 SDK(gcloud) 설치"></a>2. 구글 클라우드 SDK(gcloud) 설치</h3><h3 id="3-쿠버네티스-클러스터-생성"><a href="#3-쿠버네티스-클러스터-생성" class="headerlink" title="3. 쿠버네티스 클러스터 생성"></a>3. 쿠버네티스 클러스터 생성</h3><h3 id="4-DB-구축"><a href="#4-DB-구축" class="headerlink" title="4. DB 구축"></a>4. DB 구축</h3><h3 id="5-API-구축"><a href="#5-API-구축" class="headerlink" title="5. API 구축"></a>5. API 구축</h3><h3 id="6-웹-어플리케이션-구축"><a href="#6-웹-어플리케이션-구축" class="headerlink" title="6. 웹 어플리케이션 구축"></a>6. 웹 어플리케이션 구축</h3><h3 id="7-웹-어플리케이션-노출"><a href="#7-웹-어플리케이션-노출" class="headerlink" title="7. 웹 어플리케이션 노출"></a>7. 웹 어플리케이션 노출</h3><h3 id="8-클라우드없이-쿠버네티스-구축-kuberspray"><a href="#8-클라우드없이-쿠버네티스-구축-kuberspray" class="headerlink" title="8. * 클라우드없이 쿠버네티스 구축 (kuberspray)"></a>8. * 클라우드없이 쿠버네티스 구축 (kuberspray)</h3><h3 id=""><a href="#" class="headerlink" title=""></a></h3><h2 id="Kubernetes-사용법"><a href="#Kubernetes-사용법" class="headerlink" title="Kubernetes 사용법"></a>Kubernetes 사용법</h2><h3 id="1"><a href="#1" class="headerlink" title="1."></a>1.</h3><h2 id="Vue-템플릿-사용"><a href="#Vue-템플릿-사용" class="headerlink" title="Vue 템플릿 사용"></a>Vue 템플릿 사용</h2><h3 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm i -g @vue/cli</span><br><span class="line"></span><br><span class="line">npm update -g @vue/cli</span><br></pre></td></tr></table></figure>
+
+<h3 id="프로젝트-생성"><a href="#프로젝트-생성" class="headerlink" title="프로젝트 생성"></a>프로젝트 생성</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vue create vue-pwa-template</span><br></pre></td></tr></table></figure>
+
+<h4 id="Result-생성-내-모듈-리스트"><a href="#Result-생성-내-모듈-리스트" class="headerlink" title="Result: 생성 내 모듈 리스트"></a>Result: 생성 내 모듈 리스트</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">&quot;dependencies&quot;: &#123;</span><br><span class="line">    &quot;core-js&quot;: &quot;^3.4.3&quot;,</span><br><span class="line">    &quot;register-service-worker&quot;: &quot;^1.6.2&quot;,</span><br><span class="line">    &quot;vue&quot;: &quot;^2.6.10&quot;,</span><br><span class="line">    &quot;vue-router&quot;: &quot;^3.1.3&quot;,</span><br><span class="line">    &quot;vuex&quot;: &quot;^3.1.2&quot;</span><br><span class="line">  &#125;,</span><br><span class="line">&quot;devDependencies&quot;: &#123;</span><br><span class="line">    &quot;@vue/cli-plugin-babel&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-plugin-e2e-cypress&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-plugin-eslint&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-plugin-pwa&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-plugin-router&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-plugin-unit-mocha&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-plugin-vuex&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/cli-service&quot;: &quot;^4.1.0&quot;,</span><br><span class="line">    &quot;@vue/eslint-config-airbnb&quot;: &quot;^4.0.0&quot;,</span><br><span class="line">    &quot;@vue/test-utils&quot;: &quot;1.0.0-beta.29&quot;,</span><br><span class="line">    &quot;babel-eslint&quot;: &quot;^10.0.3&quot;,</span><br><span class="line">    &quot;chai&quot;: &quot;^4.1.2&quot;,</span><br><span class="line">    &quot;eslint&quot;: &quot;^5.16.0&quot;,</span><br><span class="line">    &quot;eslint-plugin-vue&quot;: &quot;^5.0.0&quot;,</span><br><span class="line">    &quot;node-sass&quot;: &quot;^4.12.0&quot;,</span><br><span class="line">    &quot;sass-loader&quot;: &quot;^8.0.0&quot;,</span><br><span class="line">    &quot;vue-template-compiler&quot;: &quot;^2.6.10&quot;</span><br><span class="line">&#125;,</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Vue-js-Nginx-Dockerfile-작성"><a href="#Vue-js-Nginx-Dockerfile-작성" class="headerlink" title="Vue.js + Nginx Dockerfile 작성"></a>Vue.js + Nginx Dockerfile 작성</h2><h3 id="설치-1"><a href="#설치-1" class="headerlink" title="설치"></a>설치</h3><p><a target="_blank" rel="noopener" href="https://hub.docker.com/">https://hub.docker.com/</a> 공식 홈페이지 참고</p>
+<h4 id="DockerFile-작성"><a href="#DockerFile-작성" class="headerlink" title="DockerFile 작성"></a>DockerFile 작성</h4><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Build</span></span><br><span class="line"><span class="keyword">FROM</span> node:lts-alpine as build-stage</span><br><span class="line"><span class="keyword">WORKDIR</span><span class="bash"> /vue-pwa-project</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> package*.json ./</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm install</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> . .</span></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> npm run build</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Production</span></span><br><span class="line"><span class="keyword">FROM</span> nginx:stable-alpine as production-stage</span><br><span class="line"></span><br><span class="line"><span class="keyword">RUN</span><span class="bash"> rm /etc/nginx/conf.d/default.conf</span></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> ./docker/nginx.conf /etc/nginx/conf.d/nginx.conf</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">COPY</span><span class="bash"> --from=build-stage ./vue-pwa-project/dist /usr/share/nginx/html</span></span><br><span class="line"><span class="keyword">EXPOSE</span> <span class="number">80</span></span><br><span class="line"><span class="keyword">CMD</span><span class="bash"> [<span class="string">&quot;nginx&quot;</span>, <span class="string">&quot;-g&quot;</span>, <span class="string">&quot;daemon off;&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="별도-nginx-conf"><a href="#별도-nginx-conf" class="headerlink" title="*별도 nginx.conf"></a>*별도 nginx.conf</h4><figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">    <span class="attribute">location</span> / &#123;</span><br><span class="line">        <span class="attribute">alias</span> /usr/share/nginx/html/;</span><br><span class="line">        <span class="attribute">try_files</span> <span class="variable">$uri</span> <span class="variable">$uri</span>/ /index.html;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="docker-build"><a href="#docker-build" class="headerlink" title="docker build"></a>docker build</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t kangtaeuk/vue-template .</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -it -p 8080:80 --rm kangtaeuk/vue-template</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="Jenkins-환경-구축"><a href="#Jenkins-환경-구축" class="headerlink" title="Jenkins 환경 구축"></a>Jenkins 환경 구축</h2><h3 id="도커로-표준-젠킨스-서버-생성"><a href="#도커로-표준-젠킨스-서버-생성" class="headerlink" title="도커로 표준 젠킨스 서버 생성"></a>도커로 표준 젠킨스 서버 생성</h3><p>목표: <a target="_blank" rel="noopener" href="https://hub.docker.com/r/jenkins/jenkins">jenkins/jenkins 이미지</a>를 이용하여 컨테이너 생성 및 실행</p>
+<h4 id="1-젠킨스-도커-이미지-가져오기"><a href="#1-젠킨스-도커-이미지-가져오기" class="headerlink" title="1. 젠킨스 도커 이미지 가져오기"></a>1. 젠킨스 도커 이미지 가져오기</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker pull jenkins/jenkins</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">docker pull jenkins/jenkins:&lt;tag&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-도커-볼륨-생성"><a href="#2-도커-볼륨-생성" class="headerlink" title="2. 도커 볼륨 생성"></a>2. 도커 볼륨 생성</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker volume create jenkins_home_classic</span><br></pre></td></tr></table></figure>
+
+<p>이후, 볼륨이 생성됬는지 확인하기</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">docker volume ls</span><br><span class="line"></span><br><span class="line">docker volume inspect jenkins_home_classic</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-도커-실행"><a href="#3-도커-실행" class="headerlink" title="3. 도커 실행"></a>3. 도커 실행</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name jenkins_classic \</span><br><span class="line">-p 8081:8080 -p 50001:50000 \</span><br><span class="line">-v jenkins_home_classic:/var/jenkins_home \</span><br><span class="line">jenkins/jenkins</span><br></pre></td></tr></table></figure>
+
+<h4 id="4-브라우저-접속"><a href="#4-브라우저-접속" class="headerlink" title="4. 브라우저 접속"></a>4. 브라우저 접속</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">http:&#x2F;&#x2F;&lt;docker IP&gt;:8081</span><br></pre></td></tr></table></figure>
+
+<p>블루오션이 없는 최신 버전 표준 젠킨스가 실행이 된다.</p>
+<blockquote>
+<ul>
+<li>번외: VSCODE에서 Docker 플러그인을 사용하면 더 편하게 설치가 가능하다.</li>
+</ul>
+</blockquote>
+<h3 id="기존-젠킨스에-블루오션-설정하기"><a href="#기존-젠킨스에-블루오션-설정하기" class="headerlink" title="기존 젠킨스에 블루오션 설정하기"></a>기존 젠킨스에 블루오션 설정하기</h3><h4 id="1-Jenkins-관리-gt-플러그인-관리-gt-설치-가능에서-블루오션-설치"><a href="#1-Jenkins-관리-gt-플러그인-관리-gt-설치-가능에서-블루오션-설치" class="headerlink" title="1. Jenkins 관리 &gt; 플러그인 관리 &gt; 설치 가능에서 블루오션 설치"></a>1. <code>Jenkins 관리 &gt; 플러그인 관리 &gt; 설치 가능</code>에서 블루오션 설치</h4><p><img src="https://user-images.githubusercontent.com/26294469/71563747-e36b0b80-2ad7-11ea-96e3-500b58632875.png" alt="1577658451063"></p>
+<p><code>재시작 없이 설치하기</code> 클릭</p>
+<h4 id="Tip-젠킨스-재시작법"><a href="#Tip-젠킨스-재시작법" class="headerlink" title="Tip. 젠킨스 재시작법"></a>Tip. 젠킨스 재시작법</h4><p><code>http://&lt;젠킨스 URL:PORT&gt;/restart</code>를 들어가면 재시작된다.</p>
+<h4 id="Result"><a href="#Result" class="headerlink" title="Result"></a>Result</h4><p><img src="https://user-images.githubusercontent.com/26294469/71563749-e403a200-2ad7-11ea-8d79-a9a29f5f6762.png" alt="1577658800703"></p>
+<h3 id="젠킨스-Ngnix-구성하기"><a href="#젠킨스-Ngnix-구성하기" class="headerlink" title="젠킨스 Ngnix 구성하기"></a>젠킨스 Ngnix 구성하기</h3><h4 id="배경"><a href="#배경" class="headerlink" title="배경"></a>배경</h4><p> 젠킨스는 Ngnix 또는 Apache 같은 리버스 프록시 서버에서 운영하는 것이 일반적이다.</p>
+<ol>
+<li>젠킨스 스레드를 차단하지 않고도 느린 클라이언트에 정적 파일을 전송 가능</li>
+<li>젠킨스의 부하를 낮추기위해 정적 파일 캐싱, 서빙 수행 가능</li>
+<li>Ngnix는 SSL 자원에 매우 효율적, 기본 제공되는 윈스턴 서블릿 컨테이너보다 더 좋음</li>
+</ol>
+<h4 id="실행법"><a href="#실행법" class="headerlink" title="실행법"></a>실행법</h4><h5 id="1-proxy-pass를-젠킨스의-IP와-포트로-직접-연결"><a href="#1-proxy-pass를-젠킨스의-IP와-포트로-직접-연결" class="headerlink" title="1. proxy_pass를 젠킨스의 IP와 포트로 직접 연결"></a>1. proxy_pass를 젠킨스의 IP와 포트로 직접 연결</h5><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br></pre></td><td class="code"><pre><span class="line"># ngnix *.conf 파일</span><br><span class="line"></span><br><span class="line">upstream jenkins &#123;</span><br><span class="line">	keepalive 32;</span><br><span class="line">	server 127.0.0.1:8080;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">server &#123;</span><br><span class="line">	listen 80;</span><br><span class="line">	server_name jenkins.example.com;</span><br><span class="line">	</span><br><span class="line">	root &#x2F;var&#x2F;run&#x2F;jenkins&#x2F;war&#x2F;;</span><br><span class="line">	</span><br><span class="line">	access_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;jenkins&#x2F;access.log;</span><br><span class="line">	error_log &#x2F;var&#x2F;log&#x2F;nginx&#x2F;jenkins&#x2F;error.log;</span><br><span class="line">	ignore_invalid_headers off;	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location &#x2F;userContent &#123;</span><br><span class="line">	root &#x2F;var&#x2F;lib&#x2F;jenkins&#x2F;;</span><br><span class="line">	</span><br><span class="line">	if (!-f $request_filename) &#123;</span><br><span class="line">		rewrite (.*) &#x2F;$1 last;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	sendfile on;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location @jenkins &#123;</span><br><span class="line">	sendfile off;</span><br><span class="line">	proxy_pass http:&#x2F;&#x2F;jenkins;</span><br><span class="line">	</span><br><span class="line">	if ($request_uri ~* &quot;&#x2F;blue(&#x2F;.*)&quot;) &#123;</span><br><span class="line">		proxy_pass http:&#x2F;&#x2F;jenkins&#x2F;blue$1;</span><br><span class="line">		break;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	proxy_redirect default;</span><br><span class="line">	proxy_http_version 1.1;</span><br><span class="line">	</span><br><span class="line">	proxy_set_header Host $host;</span><br><span class="line">	proxy_set_header X-Real_IP $remote_addr;</span><br><span class="line">	proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><br><span class="line">	proxy_set_header X-Forwarded-Proto $scheme;</span><br><span class="line">	proxy_max_temp_file_size 0;</span><br><span class="line">	</span><br><span class="line">	client_max_body_size 10m;</span><br><span class="line">	client_body_buffer_size 128k;</span><br><span class="line">	</span><br><span class="line">	proxy_connect_timeout 90;</span><br><span class="line">	proxy_send_timeout 90;</span><br><span class="line">	proxy_read_timeout 90;</span><br><span class="line">	proxy_buffering off;</span><br><span class="line">	proxy_request_buffering off;</span><br><span class="line">	proxy_set_header Connection &quot;&quot;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">location &#x2F; &#123;</span><br><span class="line">	if ($http_user_agent ~* &#39;(iPhone|iPad)&#39;) &#123;</span><br><span class="line">		rewrite ^&#x2F;$ &#x2F;view&#x2F;iphone&#x2F; redirect;</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	try_files $uri @jenkins;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="Nginx에서-젠킨스-블루오션-운영하기"><a href="#Nginx에서-젠킨스-블루오션-운영하기" class="headerlink" title="Nginx에서 젠킨스 블루오션 운영하기"></a>Nginx에서 젠킨스 블루오션 운영하기</h3><h4 id="1-jenkins-컨테이너-실행"><a href="#1-jenkins-컨테이너-실행" class="headerlink" title="1. jenkins 컨테이너 실행"></a>1. jenkins 컨테이너 실행</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name jenkins -v jenkins_home:/var/jenkins_home jenkinsci/blueocean</span><br></pre></td></tr></table></figure>
+
+<p>젠킨스를 호스트 IP에 노출시키지 않음</p>
+<h4 id="2-Ngnix-도커-이미지-다운"><a href="#2-Ngnix-도커-이미지-다운" class="headerlink" title="2. Ngnix 도커 이미지 다운"></a>2. Ngnix 도커 이미지 다운</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="3-Ngnix-도커-이미지-생성"><a href="#3-Ngnix-도커-이미지-생성" class="headerlink" title="3. Ngnix 도커 이미지 생성"></a>3. Ngnix 도커 이미지 생성</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d --name nginx -p 80:80 --link jenkins nginx</span><br></pre></td></tr></table></figure>
+
+<p><code>--link</code> 옵션을 통해 nginx 컨테이너를 젠킨스 컨테이너에 연결</p>
+<h4 id="4-docker-exec-명령어-실행"><a href="#4-docker-exec-명령어-실행" class="headerlink" title="4. docker exec 명령어 실행"></a>4. docker exec 명령어 실행</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it nginx /bin/bash</span><br></pre></td></tr></table></figure>
+
+<h4 id="5-우분투-패키지-업데이트"><a href="#5-우분투-패키지-업데이트" class="headerlink" title="5. 우분투 패키지 업데이트"></a>5. 우분투 패키지 업데이트</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apt-get update</span><br></pre></td></tr></table></figure>
+
+<h4 id="6-etc-ngnix-conf-d-백업-후-수정"><a href="#6-etc-ngnix-conf-d-백업-후-수정" class="headerlink" title="6. /etc/ngnix/conf.d 백업 후 수정"></a>6. <code>/etc/ngnix/conf.d</code> 백업 후 수정</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cp etc/nginx/conf.d/default.conf etc/nginx/conf.d/default.conf.backup</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">upstream</span> jenkins &#123;</span><br><span class="line">    <span class="attribute">server</span> jenkins:<span class="number">8080</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="section">server</span> &#123;</span><br><span class="line">    <span class="attribute">listen</span> <span class="number">80</span>;</span><br><span class="line">    <span class="attribute">server_name</span> jenkins.example.com;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="attribute">location</span> / &#123;</span><br><span class="line">    <span class="attribute">proxy_pass</span> http://jenkins;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> Host <span class="variable">$host</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Real-IP <span class="variable">$remote_addr</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-For <span class="variable">$proxy_add_x_forwarded_for</span>;</span><br><span class="line">    <span class="attribute">proxy_set_header</span> X-Forwarded-Proto <span class="variable">$scheme</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="7-컨테이너-재실행"><a href="#7-컨테이너-재실행" class="headerlink" title="7. 컨테이너 재실행"></a>7. 컨테이너 재실행</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">exit</span></span><br><span class="line">docker restart nginx</span><br></pre></td></tr></table></figure>
+
+<h4 id="8-젠킨스-접속"><a href="#8-젠킨스-접속" class="headerlink" title="8. 젠킨스 접속"></a>8. 젠킨스 접속</h4><p><code>http://&lt;도커 호스트 IP&gt;</code> 로 접속 (<code>http://&lt;도커 호스트 IP&gt;:8080</code>으로 접속되선 안된다.)</p>
+<blockquote>
+<p> 기존 젠킨스 화면이 당신을 반겨준다면 성공!</p>
+</blockquote>
+<h3 id="Jenkins-Credentials-생성"><a href="#Jenkins-Credentials-생성" class="headerlink" title="Jenkins Credentials 생성"></a>Jenkins Credentials 생성</h3><h4 id="1-Jenkins-Docker-Image에-접속해서-ssh키-등록"><a href="#1-Jenkins-Docker-Image에-접속해서-ssh키-등록" class="headerlink" title="1. Jenkins Docker Image에 접속해서 ssh키 등록"></a>1. Jenkins Docker Image에 접속해서 ssh키 등록</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ssh 폴더 생성</span></span><br><span class="line">mkdir -p /var/lib/jenkins/.ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># 이동</span></span><br><span class="line"><span class="built_in">cd</span> /var/lib/jenkins/.ssh</span><br><span class="line"></span><br><span class="line"><span class="comment"># ssh key 생성</span></span><br><span class="line">ssh-keygen -t rsa -f /var/lib/jenkins/.ssh/ssh_key</span><br><span class="line"></span><br><span class="line"><span class="comment"># ssh_key.pub 복사</span></span><br><span class="line">cat ssh_key.pub</span><br></pre></td></tr></table></figure>
+
+<h4 id="2-복사한-ssh-key를-젠킨스에-등록"><a href="#2-복사한-ssh-key를-젠킨스에-등록" class="headerlink" title="2. 복사한 ssh key를 젠킨스에 등록"></a>2. 복사한 ssh key를 젠킨스에 등록</h4><p><code>Jenkins 관리 &gt; Credentials &gt; global &gt; Add Credentials</code> 버튼 클릭</p>
+<p><img src="https://user-images.githubusercontent.com/26294469/71635814-3e813780-2c6b-11ea-9cd0-2751921a07c0.png" alt="71577420-640d2480-2b37-11ea-8cfd-acfefccf25ef"></p>
+<hr>
+<h3 id="Jenkins에-Docker-플러그인-설치"><a href="#Jenkins에-Docker-플러그인-설치" class="headerlink" title="Jenkins에 Docker 플러그인 설치"></a><del>Jenkins에 Docker 플러그인 설치</del></h3><p><del><code>Jenkins 관리 &gt; 플러그인 관리 &gt; 설치 가능 </code> 에서 Docker를 검색하여 설치 <img src="https://user-images.githubusercontent.com/26294469/71635819-49d46300-2c6b-11ea-9bc5-2f9225218250.png" alt="71577552-fb727780-2b37-11ea-96cc-b033877643ac"></del></p>
+<h4 id="Docker-플러그인-설정"><a href="#Docker-플러그인-설정" class="headerlink" title="Docker 플러그인 설정"></a><del>Docker 플러그인 설정</del></h4><p><del><img src="https://user-images.githubusercontent.com/26294469/71635821-51940780-2c6b-11ea-940e-786bb5dac00a.png" alt="71577675-72a80b80-2b38-11ea-8f3f-39827d29e876"></del></p>
+<h5 id="1-Cloud-Tab에서-Docker-를-추가"><a href="#1-Cloud-Tab에서-Docker-를-추가" class="headerlink" title="1. Cloud Tab에서 Docker 를 추가"></a><del>1. Cloud Tab에서 <code>Docker</code> 를 추가</del></h5><p><del><img src="https://user-images.githubusercontent.com/26294469/71635827-5c4e9c80-2c6b-11ea-9071-6ca3eab66e10.png" alt="1577701111631"></del></p>
+<h5 id="2-Docker-Host-URI-알아내기"><a href="#2-Docker-Host-URI-알아내기" class="headerlink" title="2. Docker Host URI 알아내기"></a><del>2. Docker Host URI 알아내기</del></h5><h5 id="3-Docker-Cloud-Details-버튼을-클릭-후-설정"><a href="#3-Docker-Cloud-Details-버튼을-클릭-후-설정" class="headerlink" title="3. Docker Cloud Details 버튼을 클릭 후 설정"></a><del>3. Docker Cloud Details 버튼을 클릭 후 설정</del></h5><blockquote>
+<p>이부분에 대한 이해가 완벽하지 않다.</p>
+</blockquote>
+<hr>
+<h3 id="Jenkins-Bitbucket-연결"><a href="#Jenkins-Bitbucket-연결" class="headerlink" title="Jenkins +  Bitbucket 연결"></a>Jenkins +  Bitbucket 연결</h3><h4 id="1-블루오션-접속-후-파이프라인-생성-버튼-클릭"><a href="#1-블루오션-접속-후-파이프라인-생성-버튼-클릭" class="headerlink" title="1. 블루오션 접속 후, 파이프라인 생성 버튼 클릭"></a>1. 블루오션 접속 후, <code>파이프라인 생성</code> 버튼 클릭</h4><h4 id="2-소스관리를-BitBucket으로-설정-후-연결"><a href="#2-소스관리를-BitBucket으로-설정-후-연결" class="headerlink" title="2. 소스관리를 BitBucket으로 설정 후 연결"></a>2. 소스관리를 BitBucket으로 설정 후 연결</h4><p><img src="https://user-images.githubusercontent.com/26294469/71635840-7d16f200-2c6b-11ea-9c1a-1075e65b09ca.png" alt="71635673-c9f9c900-2c69-11ea-8f9f-180f07c87f8c"></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Kubernetes-jenkins/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    쿠버네티스 + 젠킨스 설치해보기
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Vue-study/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">잠깐 Vue.js 문법 정리</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,1068 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Helm 사용자 시나리오 | TAEUK WIKI</title><meta name="robots" content="noindex">
+    
+    
+        <meta name="keywords" content="Javascript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="ul, ol, p {     font-size: 0.75rem; } img[alt~&#x3D;&quot;center&quot;] {   display: block;   margin: 0 auto; }  header {   color: #fff;   line-height: 0%; }  table {   font-size: 0.6rem; }  pre &gt; code {   color: i">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Helm 사용자 시나리오">
+<meta property="og:url" content="https://taeuk-gang.github.io/presentation/TIL/2021/11/20/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="ul, ol, p {     font-size: 0.75rem; } img[alt~&#x3D;&quot;center&quot;] {   display: block;   margin: 0 auto; }  header {   color: #fff;   line-height: 0%; }  table {   font-size: 0.6rem; }  pre &gt; code {   color: i">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/142735881-d0ae765d-f409-486a-b7f5-5322768d2fac.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/142736328-9e42a5b0-f279-43d7-8957-e2c3567c12ff.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/142736520-489f1f42-d87c-4526-acc1-62a8db760aab.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/142742446-d6feb539-e6fe-4e97-84ef-552482248ca6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/142742623-62f7f6c4-d87b-46bb-b899-7232f44814cf.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/142742713-afdd2673-2daa-4252-aaa7-8c515c93b82f.png">
+<meta property="article:published_time" content="2022-09-23T10:58:11.430Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.430Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/142735881-d0ae765d-f409-486a-b7f5-5322768d2fac.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Helm 사용자 시나리오
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <style>
+ul, ol, p {
+    font-size: 0.75rem;
+}
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+header {
+  color: #fff;
+  line-height: 0%;
+}
+
+table {
+  font-size: 0.6rem;
+}
+
+pre > code {
+  color: initial;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h3 {
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 0.6rem;
+}
+
+h5 {
+  font-size: 0.4rem;
+}
+
+section {
+  background-size: 108% !important;
+}
+</style>
+
+<p><img src="https://user-images.githubusercontent.com/26294469/142735881-d0ae765d-f409-486a-b7f5-5322768d2fac.png" alt="w:100 center"></p>
+<h2 id="Helm-사용해보기"><a href="#Helm-사용해보기" class="headerlink" title="Helm 사용해보기"></a>Helm 사용해보기</h2><style scoped>
+h2, h3 {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  text-align: center;  
+  line-height: 0.8rem;
+  color: #000;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+strong {
+  color: #fff;
+}
+</style>
+
+<hr>
+<!-- header: 목차 -->
+<!-- footer: 참고. [Helm QuickStart](https://helm.sh/ko/docs/intro/quickstart/) -->
+
+<ol>
+<li><a href="#3">Helm이란</a></li>
+<li><a href="#5">Usage. Helm Chart 생성</a></li>
+<li><a href="#12">Usage. Helm Chart 삭제</a></li>
+<li><a href="#13">Usage. values.yaml으로 템플릿 문법 사용</a></li>
+<li><a href="#17">Usage. Release 템플릿 문법 사용</a></li>
+<li><a href="#22">Usage. 그 외 Helm 자주 사용하는 명령어</a></li>
+<li><a href="#23">Usage. values.yaml override</a></li>
+<li><a href="#28">Usage. Helm Chart 업그레이드</a></li>
+<li><a href="#31">Usage. Helm Rollback</a></li>
+</ol>
+<hr>
+<!-- header: 1. Helm이란 -->
+<!-- footer: 참고. [Helm 공식사이트](https://helm.sh/ko/)  -->
+
+<p><img src="https://user-images.githubusercontent.com/26294469/142736328-9e42a5b0-f279-43d7-8957-e2c3567c12ff.png" alt="w:800 center"></p>
+<hr>
+<blockquote>
+<p>비유를 한다면 개발자가 Docker Registry에서 검색하여 쉽게 이미 셋팅된 컨테이너 환경을 실행하듯이<br>Helm에서 검색하여 이미 셋팅된 쿠버네티스 환경을 실행한다라고 이해하면 되지 않을 듯 싶다.<br>ex. <code>Dockerhub</code>처럼 <code>ArtifactHub</code>에서 많은 템플릿이 등록되고 공유되고 있다.</p>
+</blockquote>
+<p>컨테이너 환경을 <code>Dockerfile</code>로 구성 하는 것처럼 Helm도 <code>차트</code>로 구성을 한다.</p>
+<ul>
+<li><code>차트</code> = 쿠버네티스 YAML을 템플릿으로 구성한 파일들</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/26294469/142736520-489f1f42-d87c-4526-acc1-62a8db760aab.png" alt="w:1000 center"></p>
+<hr>
+<!-- header: 2. Usage. Helm Chart 생성 -->  
+<!-- footer: 참고. [Helm 시작하기](https://helm.sh/ko/docs/chart_template_guide/getting_started/) -->
+
+<ul>
+<li><p>Helm Chart를 생성하기 위해서는 위에서 설명한 구조의 파일들을 생성할 필요가 있음</p>
+</li>
+<li><p>nginx 템플릿을 단계별로 구성하여 따라해보기</p>
+</li>
+</ul>
+<ol>
+<li><code>/templates</code> 폴더 생성하여 배포할 쿠버네티스 YAML 작성</li>
+</ol>
+<blockquote>
+<p>deployment, service YAML은 뒤에 작성</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">└── templates</span><br><span class="line">    ├── deployment.yaml</span><br><span class="line">    └── service.yaml</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="deployment-yaml"><a href="#deployment-yaml" class="headerlink" title="deployment.yaml"></a><code>deployment.yaml</code></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-test</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx-test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> <span class="string">nginx-test</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> <span class="string">nginx-test</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:latest</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="service-yaml"><a href="#service-yaml" class="headerlink" title="service.yaml"></a><code>service.yaml</code></h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">nginx-test</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">nginx-test</span></span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">80</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: 참고 링크: [Chart.yaml](https://helm.sh/ko/docs/topics/charts/)-->
+
+<ol start="2">
+<li><code>Chart.yaml</code> 작성</li>
+</ol>
+<ul>
+<li><code>Chart.yaml</code> = Helm 차트의 이름, 버전 등 메타데이터를 입력하는 파일</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v2</span> <span class="comment"># 차트 API 버전 (필수)</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">nginx-test</span> <span class="comment"># 차트명 (필수)</span></span><br><span class="line"><span class="attr">version:</span> <span class="number">0.0</span><span class="number">.1</span> <span class="comment"># SemVer 2 버전 (필수)</span></span><br></pre></td></tr></table></figure>
+
+<p>현재 파일 구성</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Chart.yaml</span><br><span class="line">└── templates</span><br><span class="line">    ├── deployment.yaml</span><br><span class="line">    └── service.yaml</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: 참고. [values.yaml](https://helm.sh/ko/docs/chart_template_guide/values_files/)-->
+
+<ol start="3">
+<li><code>values.yaml</code> 작성</li>
+</ol>
+<ul>
+<li><code>values.yaml</code> = <code>/templates</code> 내부에 쿠버네티스 YAML에 있는 값을 동적으로 지정할 때 사용하는 파일</li>
+<li>일단은 파일이 비어있는 상태로도 설치가 가능하기 때문에 파일만 생성<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touch values.yaml</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Chart.yaml</span><br><span class="line">├── templates</span><br><span class="line">│   ├── deployment.yaml</span><br><span class="line">│   └── service.yaml</span><br><span class="line">└── values.yaml</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: 참고. [Helm Install](https://helm.sh/ko/docs/helm/helm_install/) -->
+
+<ol start="4">
+<li>Helm Chart 설치</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install &lt;이름&gt; &lt;차트_경로&gt; -n &lt;네임스페이스&gt;</span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># helm install nginx-test . -n test</span></span><br><span class="line"></span><br><span class="line">NAME: nginx-test</span><br><span class="line">LAST DEPLOYED: Sun Nov 21 05:41:08 2021</span><br><span class="line">NAMESPACE: <span class="built_in">test</span></span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1 <span class="comment"># helm upgrade 반영 횟수</span></span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+
+<p>Helm 조회</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># helm ls -n test</span></span><br><span class="line">NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART           	APP VERSION</span><br><span class="line">nginx-test	<span class="built_in">test</span>     	1       	2021-11-21 05:41:08.564944731 +0900 KST	deployed	nginx-test-0.0.1</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>실제 쿠버네티스 배포현황 확인</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># k get deploy,svc -n test</span></span><br><span class="line">NAME                         READY   UP-TO-DATE   AVAILABLE   AGE</span><br><span class="line">deployment.apps/nginx-test   1/1     1            1           4m3s</span><br><span class="line"></span><br><span class="line">NAME                 TYPE        CLUSTER-IP      EXTERNAL-IP   PORT(S)   AGE</span><br><span class="line">service/nginx-test   ClusterIP   10.100.29.142   &lt;none&gt;        80/TCP    4m3s</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- header: 3. Usage. Helm Chart 삭제 -->
+
+<h3 id="차트-삭제"><a href="#차트-삭제" class="headerlink" title="차트 삭제"></a>차트 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm delete &lt;릴리즈된_차트명&gt; -n &lt;네임스페이스&gt;</span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># helm delete nginx-test -n test</span></span><br><span class="line"></span><br><span class="line">release <span class="string">&quot;nginx-test&quot;</span> uninstalled</span><br></pre></td></tr></table></figure>
+
+<p>이후, <code>helm ls -n test</code> 명령어 실행시 차트가 삭제된 것을 확인할 수 있음</p>
+<hr>
+<!-- header: 4. Usage. values.yaml으로 템플릿 문법 사용 -->
+<!-- footer: 참고. [values.yaml](https://helm.sh/ko/docs/chart_template_guide/values_files/) -->
+
+<blockquote>
+<p><a href="#13">p13.</a>에서 “values.yaml = /templates 내부에 쿠버네티스 YAML에 있는 값을 동적으로 지정할 때 사용하는 파일” 라고 이야기된 단계에 관한 설명</p>
+</blockquote>
+<ul>
+<li>위 과정을 하기 위해서는 <a target="_blank" rel="noopener" href="https://helm.sh/ko/docs/chart_template_guide/values_files/">템플릿 문법</a>을 사용해야함</li>
+<li>예시로 <code>/templates</code> 내에 <code>deployment.yaml</code>에서 이미지 버전이 현재 <code>latest</code>로 되어있는 것을 외부에서 바꿀 수 있게 변경을 진행</li>
+</ul>
+<hr>
+<ol>
+<li><code>/templates/*.yaml</code> 수정</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">...</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">nginx</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">nginx:&#123;&#123;</span> <span class="string">.Values.version</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">ports:</span></span><br><span class="line">        <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">80</span></span><br></pre></td></tr></table></figure>
+
+<ol start="2">
+<li><code>values.yaml</code> 수정</li>
+</ol>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">stable</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: '' -->
+
+<ol start="3">
+<li>Helm Chart 설치</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install nginx-values-test .</span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NAME: nginx-values-test</span><br><span class="line">LAST DEPLOYED: Sun Nov 21 06:11:26 2021</span><br><span class="line">NAMESPACE: <span class="built_in">test</span></span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+
+<p>배포 확인: 아래처럼 image version tag가 바뀐 것을 확인할 수 있다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k get deploy nginx-test -o yaml</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">...</span><br><span class="line">      - image: nginx:stable</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Helm-Chart로-공개된-오픈소스-문법-참고"><a href="#Helm-Chart로-공개된-오픈소스-문법-참고" class="headerlink" title="Helm Chart로 공개된 오픈소스 문법 참고"></a>Helm Chart로 공개된 오픈소스 문법 참고</h3><ul>
+<li><a target="_blank" rel="noopener" href="https://artifacthub.io/packages/helm/bitnami/nginx">Nginx</a></li>
+<li><a target="_blank" rel="noopener" href="https://artifacthub.io/packages/helm/prometheus-community/prometheus">Prometheus</a></li>
+<li><a target="_blank" rel="noopener" href="https://artifacthub.io/packages/helm/grafana/grafana">Grafana</a></li>
+</ul>
+<hr>
+<!-- header: 5. Usage. Release 템플릿 문법 사용 -->
+<!-- footer: 참고. [빌트인 객체](https://helm.sh/ko/docs/chart_template_guide/builtin_objects/) -->
+
+<p>기존 <code>.Values</code> 템플릿 문법으로는 <code>helm install &lt;차트명&gt;</code>에서 입력되는 <code>차트명</code>까지는 가져오지 못한다.<br>이러한 문제를 해결해주기 위한 템플릿 문법으로 <code>.Release</code>가 있다.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1. /templates/deployment.yaml 릴리즈 템플릿 적용</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">apps/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Deployment</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> &#123;&#123; <span class="string">.Release.Name</span> &#125;&#125;</span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> &#123;&#123; <span class="string">.Release.Name</span> &#125;&#125;</span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">replicas:</span> <span class="number">1</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">matchLabels:</span></span><br><span class="line">      <span class="attr">app:</span> &#123;&#123; <span class="string">.Release.Name</span> &#125;&#125;</span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">metadata:</span></span><br><span class="line">      <span class="attr">labels:</span></span><br><span class="line">        <span class="attr">app:</span> &#123;&#123; <span class="string">.Release.Name</span> &#125;&#125;</span><br><span class="line"><span class="string">...</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 2. /templates/service.yaml 릴리즈 템플릿 적용</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Service</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> &#123;&#123; <span class="string">.Release.Name</span> &#125;&#125;</span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">selector:</span></span><br><span class="line">    <span class="attr">app:</span> &#123;&#123; <span class="string">.Release.Name</span> &#125;&#125;</span><br><span class="line">  <span class="attr">ports:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">port:</span> <span class="number">80</span></span><br><span class="line">    <span class="attr">targetPort:</span> <span class="number">80</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">ClusterIP</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>Helm Chart 설치 (<code>.Release</code> 문법 적용)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install nginx-rename-test . -n <span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># helm install nginx-rename-test . -n test</span></span><br><span class="line">NAME: nginx-rename-test</span><br><span class="line">LAST DEPLOYED: Sun Nov 21 06:48:04 2021</span><br><span class="line">NAMESPACE: <span class="built_in">test</span></span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br><span class="line"><span class="comment"># helm ls -n test</span></span><br><span class="line">NAME             	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART           	APP VERSION</span><br><span class="line">nginx-rename-test	<span class="built_in">test</span>     	1       	2021-11-21 06:48:04.719317331 +0900 KST	deployed	nginx-test-0.0.1	           </span><br><span class="line">nginx-values-test	<span class="built_in">test</span>     	1       	2021-11-21 06:11:26.928779655 +0900 KST	deployed	nginx-test-0.0.1</span><br></pre></td></tr></table></figure>
+<hr>
+<blockquote>
+<p>아래 명령을 실행하면, Helm이 최종적으로 어떤 정보로 릴리즈를 했는지 알 수 있다.</p>
+</blockquote>
+<p>Helm 명명된 릴리스에 대한 모든 정보 조회</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm get all &lt;RELEASE_NAME&gt;</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># helm get all nginx-rename-test</span></span><br><span class="line">NAME: nginx-rename-test</span><br><span class="line">LAST DEPLOYED: Sun Nov 21 06:48:04 2021</span><br><span class="line">NAMESPACE: <span class="built_in">test</span></span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br><span class="line">USER-SUPPLIED VALUES:</span><br><span class="line">null</span><br><span class="line"></span><br><span class="line">COMPUTED VALUES:</span><br><span class="line">version: stable</span><br><span class="line"></span><br><span class="line">HOOKS:</span><br><span class="line">MANIFEST:</span><br><span class="line">---</span><br><span class="line"><span class="comment"># Source: nginx-test/templates/service.yaml</span></span><br><span class="line">apiVersion: v1</span><br><span class="line">kind: Service</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-rename-test</span><br><span class="line">spec:</span><br><span class="line">  selector:</span><br><span class="line">    app: nginx-rename-test</span><br><span class="line">  ports:</span><br><span class="line">  - port: 80</span><br><span class="line">    targetPort: 80</span><br><span class="line">  <span class="built_in">type</span>: ClusterIP</span><br><span class="line">---</span><br><span class="line"><span class="comment"># Source: nginx-test/templates/deployment.yaml</span></span><br><span class="line">apiVersion: apps/v1</span><br><span class="line">kind: Deployment</span><br><span class="line">metadata:</span><br><span class="line">  name: nginx-rename-test</span><br><span class="line">  labels:</span><br><span class="line">    app: nginx-rename-test</span><br><span class="line">spec:</span><br><span class="line">  replicas: 1</span><br><span class="line">  selector:</span><br><span class="line">    matchLabels:</span><br><span class="line">      app: nginx-rename-test</span><br><span class="line">  template:</span><br><span class="line">    metadata:</span><br><span class="line">      labels:</span><br><span class="line">        app: nginx-rename-test</span><br><span class="line">    spec:</span><br><span class="line">      containers:</span><br><span class="line">      - name: nginx</span><br><span class="line">        image: nginx:stable</span><br><span class="line">        ports:</span><br><span class="line">        - containerPort: 80</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- header: 6. Usage. 그 외 Helm 자주 사용하는 명령어 -->
+<!-- footer: 참고. [Helm 명령어](https://helm.sh/ko/docs/helm/helm_upgrade/) -->
+
+<ul>
+<li><p>릴리스 히스토리를 가져오기, 업그레이드 내역(revision) 확인 등 유용</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm <span class="built_in">history</span> &lt;릴리즈_차트명&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Helm Chart 문법 검사</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm lint &lt;차트_경로&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Helm <code>/templates</code> + <code>values.yaml</code> 최종 결과를 보여준다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm template &lt;차트명&gt; &lt;차트_경로&gt;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>Helm 차트 릴리즈 업그레이드</p>
+<blockquote>
+<p>추후 과정에서 더 자세히 설명</p>
+</blockquote>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm upgrade &lt;릴리즈_차트명&gt; &lt;차트_경로&gt;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<!-- header: 7. Usage. values.yaml override -->
+<!-- footer: 참고. [values.yaml](https://helm.sh/ko/docs/chart_template_guide/values_files/) -->
+
+<ul>
+<li>보통의 경우에는 <code>values.yaml</code>을 직접 작성하지 않고, 남이 작성한 파일을 가져오기 때문에 override(덮어쓰기)하여 사용이 된다. </li>
+<li>아래의 2가지 방법이 있다.<ul>
+<li><code>--set</code> 인자 사용</li>
+<li><code>-f</code> 옵션으로 파일을 작성</li>
+</ul>
+</li>
+</ul>
+<hr>
+<ol>
+<li><code>--set</code> 인자 사용</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install --<span class="built_in">set</span> version=1.21.4 -n <span class="built_in">test</span> nginx-set-test .</span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NAME: nginx-set-test</span><br><span class="line">LAST DEPLOYED: Sun Nov 21 07:09:41 2021</span><br><span class="line">NAMESPACE: <span class="built_in">test</span></span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+
+<p>배포 결과 (<code>values.yaml</code> <code>version</code> 값이 <code>stable</code>이지만 1.21.4로 된 것을 알 수 있음)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># k get deploy -n test nginx-set-test -o yaml | grep image</span></span><br><span class="line">...</span><br><span class="line">      - image: nginx:1.21.4</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ol start="2">
+<li><code>-f</code> 옵션으로 파일을 작성</li>
+</ol>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install -f &lt;파일경로&gt; -n <span class="built_in">test</span> nginx-file-test .</span><br></pre></td></tr></table></figure>
+
+<p>2-1. <code>override_values.yaml</code> 파일을 아래와 같이 작성</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">version: stable-alpine</span><br></pre></td></tr></table></figure>
+
+<p>차트 파일 구성</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── Chart.yaml</span><br><span class="line">├── override_values.yaml <span class="comment"># 추가됨</span></span><br><span class="line">├── templates</span><br><span class="line">│   ├── deployment.yaml</span><br><span class="line">│   └── service.yaml</span><br><span class="line">└── values.yaml</span><br><span class="line"></span><br><span class="line">1 directory, 5 files</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>2-2. <code>-f</code> 옵션으로 Helm Chart 설치</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install -f override_values.yaml -n <span class="built_in">test</span> nginx-file-test .</span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">NAME: nginx-file-test</span><br><span class="line">LAST DEPLOYED: Sun Nov 21 07:16:31 2021</span><br><span class="line">NAMESPACE: <span class="built_in">test</span></span><br><span class="line">STATUS: deployed</span><br><span class="line">REVISION: 1</span><br><span class="line">TEST SUITE: None</span><br></pre></td></tr></table></figure>
+
+<p>배포 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># k get deploy -n test nginx-file-test -o yaml | grep image</span></span><br><span class="line">...</span><br><span class="line">      - image: nginx:stable-alpine</span><br></pre></td></tr></table></figure>
+
+<hr>
+<!-- footer: 참고. [nginx configuration](https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/#configuration) -->
+
+<ul>
+<li>실제 override 할 때는 각 차트의 <code>configuration</code> 항목을 참조하여 변경 필요한 값만 지정하여 설치</li>
+<li>예제. <a target="_blank" rel="noopener" href="https://docs.nginx.com/nginx-ingress-controller/installation/installation-with-helm/#configuration">nginx chart</a></li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/26294469/142742446-d6feb539-e6fe-4e97-84ef-552482248ca6.png" alt="bg fit right"></p>
+<hr>
+<!-- header: 8. Usage. Helm Chart 업그레이드 -->
+<!-- footer: 참고. [Helm 업그레이드](https://helm.sh/ko/docs/helm/helm_upgrade/) -->
+
+<ul>
+<li>기존 릴리즈된 차트 내용을 변경 요구시 사용</li>
+<li>이력 관리를 위해 사용</li>
+</ul>
+<ol>
+<li>Helm Chart 기본 설치<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm install -n <span class="built_in">test</span> nginx-test .</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li>결과 확인 (revision)<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm get all nginx-test</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<p><img src="https://user-images.githubusercontent.com/26294469/142742623-62f7f6c4-d87b-46bb-b899-7232f44814cf.png" alt="bg fit right 70%"></p>
+<hr>
+<ol start="2">
+<li>Helm Chart 업그레이드<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm upgrade --<span class="built_in">set</span> version=stable-alpine -n <span class="built_in">test</span> nginx-test .</span><br></pre></td></tr></table></figure>
+
+</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/26294469/142742713-afdd2673-2daa-4252-aaa7-8c515c93b82f.png" alt="image"></p>
+<ul>
+<li><code>REVISION</code>이 올라가고 이미지 배포 버전이 바뀐 것을 알 수 있음</li>
+<li><code>values.yaml</code>을 변경하고 업그레이드를 진행하여도 변경이 됨</li>
+</ul>
+<hr>
+<h3 id="업그레이드시-주의사항"><a href="#업그레이드시-주의사항" class="headerlink" title="업그레이드시 주의사항"></a>업그레이드시 주의사항</h3><ul>
+<li>Helm 업그레이드시 Pod가 재기동됨(RollingUpdate)</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1</span></span><br><span class="line">helm upgrade --<span class="built_in">set</span> version=stable-alpine -n <span class="built_in">test</span> nginx-test .</span><br><span class="line"></span><br><span class="line"><span class="comment"># 2</span></span><br><span class="line">helm upgrade -n <span class="built_in">test</span> nginx-test .</span><br></pre></td></tr></table></figure>
+<p>위 과정을 진행하면, helm 버전에 따라 <code>values.yaml</code>참고가 다르다.</p>
+<ul>
+<li>version3: 이전 <code>revision</code>을 그대로 따라 버전을 유지</li>
+<li>version2: 이전 <code>revision</code> 버전을 유지하지 않는다. (첫 설치 <code>values.yaml</code>)</li>
+</ul>
+<hr>
+<!-- header: 9. Helm Rollback -->
+<!-- footer: 참고. [Helm Rollback](https://helm.sh/ko/docs/helm/helm_rollback/) -->
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">helm rollback &lt;릴리즈_차트명&gt; &lt;REVISION&gt;</span><br></pre></td></tr></table></figure>
+
+<p>실행 결과</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@acc-master nginx-chart]<span class="comment"># helm rollback -n test nginx-test 1</span></span><br><span class="line">Rollback was a success! Happy Helming!</span><br><span class="line">[root@acc-master nginx-chart]<span class="comment"># helm ls</span></span><br><span class="line">NAME      	NAMESPACE	REVISION	UPDATED                                	STATUS  	CHART           	APP VERSION</span><br><span class="line">nginx-test	<span class="built_in">test</span>     	3       	2021-11-21 07:47:41.211560477 +0900 KST	deployed	nginx-test-0.0.1	           </span><br><span class="line">[root@acc-master nginx-chart]<span class="comment"># k get deploy -n test nginx-test -o yaml | grep image</span></span><br><span class="line">                f:image: &#123;&#125;</span><br><span class="line">                f:imagePullPolicy: &#123;&#125;</span><br><span class="line">      - image: nginx:stable</span><br><span class="line">        imagePullPolicy: IfNotPresent</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>롤백은 한다고 해도 <code>revision</code>은 이력관리를 위해 증가한다.</li>
+<li>버전이 최초 설치와 동일한 <code>stable</code>로 변경된 것을 알 수 있다.</li>
+</ul>
+<!-- flag of hidden posts -->
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

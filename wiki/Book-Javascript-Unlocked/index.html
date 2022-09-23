@@ -1,0 +1,869 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>자바스크립트 언락 도서 요약 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Book" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="자바스크립트 언락 (2017년 발행)새롭게 알게된 사실들조건부 호출조건문 간략하게 작성 123const age &#x3D; 20age &gt;&#x3D; 18 &amp;&amp; console.log(&#96;나이가 18세 이상이구나!&#96;)age &gt;&#x3D; 18 || console.log(&#96;나이가 18세 미만이구나...&#96;)  함수 호출 단축 조건 123456789101112funct">
+<meta property="og:type" content="article">
+<meta property="og:title" content="자바스크립트 언락 도서 요약">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Book-Javascript-Unlocked/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="자바스크립트 언락 (2017년 발행)새롭게 알게된 사실들조건부 호출조건문 간략하게 작성 123const age &#x3D; 20age &gt;&#x3D; 18 &amp;&amp; console.log(&#96;나이가 18세 이상이구나!&#96;)age &gt;&#x3D; 18 || console.log(&#96;나이가 18세 미만이구나...&#96;)  함수 호출 단축 조건 123456789101112funct">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2019-07-22T05:28:21.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.376Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Book">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Book-Javascript-Unlocked" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Book/">Book</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Book/" rel="tag">Book</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Book-Javascript-Unlocked/">
+            <time datetime="2019-07-22T05:28:21.000Z" itemprop="datePublished">2019-07-22</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Book-Javascript-Unlocked.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Book-Javascript-Unlocked.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Book-Javascript-Unlocked.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            자바스크립트 언락 도서 요약
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EC%96%B8%EB%9D%BD-2017%EB%85%84-%EB%B0%9C%ED%96%89"><span class="toc-number">1.</span> <span class="toc-text">자바스크립트 언락 (2017년 발행)</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%83%88%EB%A1%AD%EA%B2%8C-%EC%95%8C%EA%B2%8C%EB%90%9C-%EC%82%AC%EC%8B%A4%EB%93%A4"><span class="toc-number">1.1.</span> <span class="toc-text">새롭게 알게된 사실들</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A1%B0%EA%B1%B4%EB%B6%80-%ED%98%B8%EC%B6%9C"><span class="toc-number">1.1.1.</span> <span class="toc-text">조건부 호출</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%82%98%EB%A8%B8%EC%A7%80-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.1.2.</span> <span class="toc-text">나머지 연산자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8E%BC%EC%B9%A8-%EC%97%B0%EC%82%B0%EC%9E%90"><span class="toc-number">1.1.3.</span> <span class="toc-text">펼침 연산자</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-%EC%BB%AC%EB%A0%89%EC%85%98"><span class="toc-number">1.1.4.</span> <span class="toc-text">ES6 컬렉션</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Map-vs-Set"><span class="toc-number">1.1.5.</span> <span class="toc-text">Map vs Set</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#getter-setter-%EC%95%8C%EB%A0%A4%EC%A7%84-%EC%86%8D%EC%84%B1%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A0%91%EA%B7%BC%EC%A0%9C%EC%96%B4"><span class="toc-number">1.1.6.</span> <span class="toc-text">getter&#x2F;setter (알려진 속성에 대한 접근제어)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#proxy-%EC%9E%84%EC%9D%98-%EC%86%8D%EC%84%B1%EC%97%90-%EB%8C%80%ED%95%9C-%EC%A0%91%EA%B7%BC-%EC%A0%9C%EC%96%B4"><span class="toc-number">1.1.7.</span> <span class="toc-text">proxy (임의 속성에 대한 접근 제어)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#NodeList%EC%97%90-%EA%B4%80%ED%95%98%EC%97%AC"><span class="toc-number">1.1.8.</span> <span class="toc-text">NodeList에 관하여</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM-%EC%9D%B4%EB%B2%A4%ED%8A%B8-%ED%95%B8%EB%93%A4%EB%A7%81"><span class="toc-number">1.1.9.</span> <span class="toc-text">DOM 이벤트 핸들링</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#XHR-vs-Axios"><span class="toc-number">1.1.10.</span> <span class="toc-text">XHR vs Axios</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9B%B9-%EC%8A%A4%ED%86%A0%EB%A6%AC%EC%A7%80-API"><span class="toc-number">1.1.11.</span> <span class="toc-text">웹 스토리지 API</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Web-Storage-%EC%98%88%EC%A0%9C-%EC%87%BC%ED%95%91%EC%B9%B4%ED%8A%B8"><span class="toc-number">1.2.</span> <span class="toc-text">Web Storage 예제 (쇼핑카트)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9D%B8%EB%8D%B1%EC%8A%A4-DB-%EC%98%88%EC%A0%9C"><span class="toc-number">1.3.</span> <span class="toc-text">인덱스 DB 예제</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%8C%8C%EC%9D%BC-%EC%8B%9C%EC%8A%A4%ED%85%9C-API-%EC%98%88%EC%A0%9C"><span class="toc-number">1.4.</span> <span class="toc-text">파일 시스템 API 예제</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9B%B9-%EC%9B%8C%EC%BB%A4-%EB%A9%80%ED%8B%B0%EC%8A%A4%EB%A0%88%EB%93%9C-%EC%98%88%EC%A0%9C"><span class="toc-number">1.5.</span> <span class="toc-text">웹 워커 멀티스레드 예제</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%84%9C%EB%B2%84-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%EA%B0%84-%ED%86%B5%EC%8B%A0-%EC%B1%84%EB%84%90-%EC%98%88%EC%A0%9C"><span class="toc-number">1.6.</span> <span class="toc-text">서버 - 브라우저 간 통신 채널 예제</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9B%B9%EC%86%8C%EC%BC%93-%EC%98%88%EC%A0%9C"><span class="toc-number">1.7.</span> <span class="toc-text">웹소켓 예제</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%EB%94%94%EC%9E%90%EC%9D%B8-%ED%8C%A8%ED%84%B4"><span class="toc-number">1.8.</span> <span class="toc-text">자바스크립트 디자인 패턴</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%94%94%EB%B2%84%EA%B9%85"><span class="toc-number">1.9.</span> <span class="toc-text">디버깅</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B0%B8%EA%B3%A0%ED%8C%8C%EC%9D%BC"><span class="toc-number">1.10.</span> <span class="toc-text">참고파일</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="자바스크립트-언락-2017년-발행"><a href="#자바스크립트-언락-2017년-발행" class="headerlink" title="자바스크립트 언락 (2017년 발행)"></a>자바스크립트 언락 (2017년 발행)</h1><h2 id="새롭게-알게된-사실들"><a href="#새롭게-알게된-사실들" class="headerlink" title="새롭게 알게된 사실들"></a>새롭게 알게된 사실들</h2><h3 id="조건부-호출"><a href="#조건부-호출" class="headerlink" title="조건부 호출"></a><strong>조건부 호출</strong></h3><p>조건문 간략하게 작성</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> age = <span class="number">20</span></span><br><span class="line">age &gt;= <span class="number">18</span> &amp;&amp; <span class="built_in">console</span>.log(<span class="string">`나이가 18세 이상이구나!`</span>)</span><br><span class="line">age &gt;= <span class="number">18</span> || <span class="built_in">console</span>.log(<span class="string">`나이가 18세 미만이구나...`</span>)</span><br></pre></td></tr></table></figure>
+
+<p>함수 호출 단축 조건</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fn</span>(<span class="params">cb</span>) </span>&#123;</span><br><span class="line">    cb &amp;&amp; cb()</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 또는</span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">AbstractFoo</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">       <span class="comment">// init 메서드가 있을경우에만 호출 </span></span><br><span class="line">        <span class="built_in">this</span>.init &amp;&amp; <span class="built_in">this</span>.init()</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="나머지-연산자"><a href="#나머지-연산자" class="headerlink" title="나머지 연산자"></a><strong>나머지 연산자</strong></h3><p>ES5는 작성하지 않음(<code>[].slice.call(arguments)</code> 찾아보아요)</p>
+<p>ES6</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cb = (foo, bar, ...args) =&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(foo, bar, args)</span><br><span class="line">&#125;</span><br><span class="line">cb(<span class="string">`foo`</span>, <span class="string">`bar`</span>, <span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>) <span class="comment">// foo bar [1,2,3]</span></span><br></pre></td></tr></table></figure>
+
+<p>변수 나머지 연산(선언이 특이하네)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [bar, ...others] = [<span class="string">`bar`</span>, <span class="string">`foo`</span>, <span class="string">`baz`</span>, <span class="string">`qux`</span>]</span><br><span class="line"><span class="built_in">console</span>.log([bar, others]) <span class="comment">// [`bar`, [`foo`, `baz`, `qux`]]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="펼침-연산자"><a href="#펼침-연산자" class="headerlink" title="펼침 연산자"></a><strong>펼침 연산자</strong></h3><p>배열 요소를 인수로 확산</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> args = [<span class="number">2015</span>, <span class="number">6</span>, <span class="number">17</span>]</span><br><span class="line"><span class="keyword">let</span> relDate = <span class="keyword">new</span> <span class="built_in">Date</span>(...args)</span><br><span class="line"><span class="built_in">console</span>.log(relDate.toString()) <span class="comment">// Fri Jul 17 2015 00:00:00 GMT+0900 (한국 표준시)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="ES6-컬렉션"><a href="#ES6-컬렉션" class="headerlink" title="ES6 컬렉션"></a><strong>ES6 컬렉션</strong></h3><p>객체 중복없이 넣기</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> foo = <span class="keyword">new</span> <span class="built_in">Set</span>()</span><br><span class="line">foo.add(<span class="number">1</span>)</span><br><span class="line">foo.add(<span class="number">1</span>)</span><br><span class="line">foo.add(<span class="number">2</span>)</span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Array</span>.from(foo)) <span class="comment">// [1, 2]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="Map-vs-Set"><a href="#Map-vs-Set" class="headerlink" title="Map vs Set"></a><strong>Map vs Set</strong></h3><p>비교<br><code>Objects</code>의 키는 <code>Strings</code>이며, <code>Map</code>은 모든 값을 가질 수 있음<br><code>Objects</code>의 사이즈는 수동으로 체크해야하지만, <code>Map</code>은 쉽게 얻을 수 있음<br><code>Map</code>은 삽입된 순서대로 반복됨</p>
+<p>사용팁<br>실행시까지, 키를 알 수 없고 모든 키·값이 동일한 타입이면 <code>Map</code>을 사용<br>각 개별 요소에 대한 적용이 있을 경우는 <code>Object</code>를 사용</p>
+<p>참고자료<br><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Guide/Keyed_collections">MDN</a><br><a target="_blank" rel="noopener" href="http://javascript.info/map-set">Javascript Info</a></p>
+<h3 id="getter-setter-알려진-속성에-대한-접근제어"><a href="#getter-setter-알려진-속성에-대한-접근제어" class="headerlink" title="getter/setter (알려진 속성에 대한 접근제어)"></a><strong>getter/setter (알려진 속성에 대한 접근제어)</strong></h3><p>SyntaxError 객체가 흥미롭네</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Bar</span> </span>&#123;</span><br><span class="line">    <span class="keyword">constructor</span>() &#123;</span><br><span class="line">        <span class="built_in">this</span>.arr = [<span class="number">1</span>, <span class="number">2</span>]</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">get</span> <span class="title">length</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.arr.length</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">set</span> <span class="title">length</span>(<span class="params">val</span>) &#123;</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">SyntaxError</span>(<span class="string">`Cannot assign to read only property &#x27;length&#x27;`</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="proxy-임의-속성에-대한-접근-제어"><a href="#proxy-임의-속성에-대한-접근-제어" class="headerlink" title="proxy (임의 속성에 대한 접근 제어)"></a><strong>proxy (임의 속성에 대한 접근 제어)</strong></h3><p>오오… proxy, IE11 적용법 찾긴 해야되는데…<br>아직 이해도가 낮은 것 같다.(★★★)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> myStorage = &#123;</span><br><span class="line">    data: &#123;&#125;,</span><br><span class="line">    </span><br><span class="line">    getItem(key) &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.data[key]</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    setItem(key, val) &#123;</span><br><span class="line">        <span class="built_in">this</span>.data[key] = val</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> storage = <span class="keyword">new</span> <span class="built_in">Proxy</span>(myStorage, &#123;</span><br><span class="line">    get(storage, key) &#123;</span><br><span class="line">        <span class="keyword">return</span> storage.getItem(key)</span><br><span class="line">    &#125;,</span><br><span class="line">    </span><br><span class="line">    set(storage, key, val) &#123;</span><br><span class="line">    	<span class="keyword">return</span> storage.setItem(key, val)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line">storage.bar = <span class="string">`bar`</span></span><br><span class="line"><span class="built_in">console</span>.log(myStorage.getItem(<span class="string">`bar`</span>))</span><br><span class="line">myStorage.setItem(<span class="string">`bar`</span>, <span class="string">`baz`</span>)</span><br><span class="line"><span class="built_in">console</span>.log(storage.bar)</span><br></pre></td></tr></table></figure>
+
+<h3 id="NodeList에-관하여"><a href="#NodeList에-관하여" class="headerlink" title="NodeList에 관하여"></a><strong>NodeList에 관하여</strong></h3><p>라이브 콜렉션으로 상당한 비싼 자원(DOM이 <code>reflow</code>될때마다 갱신)<br>그러므로, 라이브일 필요가 없을 경우는 배열로 변환</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> li = <span class="built_in">document</span>.querySelectorAll(<span class="string">`li`</span>)</span><br><span class="line"><span class="built_in">console</span>.log(li.slice.call(li)) <span class="comment">// ES5 방식</span></span><br><span class="line"><span class="built_in">console</span>.log([...li]) <span class="comment">// ES6 방식</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="DOM-이벤트-핸들링"><a href="#DOM-이벤트-핸들링" class="headerlink" title="DOM 이벤트 핸들링"></a><strong>DOM 이벤트 핸들링</strong></h3><p>Event 객체 상세사항</p>
+<p><code>event.type</code>: 이벤트 이름</p>
+<p><code>event.target</code>: 발생한 이벤트 타겟</p>
+<p><code>event.currentTarget</code>: 리스너가 부착된 타겟</p>
+<p><code>event.eventPhase</code> : 이벤트 단계 (<code>none</code>, <code>capturing</code>, <code>at target</code>, <code>bublling</code>)</p>
+<p><code>event.bublles</code>: 이벤트 버블 여부</p>
+<p><code>event.cancelable</code>: 이벤트 디폴트 동작 방지 여부</p>
+<p><code>event.timeStamp</code>: 이벤트 시간 지정</p>
+<p><strong>메서드</strong></p>
+<p><code>event.stopPropagation()</code>: 추가전파 중지</p>
+<p><code>event.stopImmediatePropagation()</code>: 다른 이벤트 호출X</p>
+<p><code>event.preventDefault()</code>: 디폴트 동작 방지 (ex. submit)</p>
+<h3 id="XHR-vs-Axios"><a href="#XHR-vs-Axios" class="headerlink" title="XHR vs Axios"></a><strong>XHR vs Axios</strong></h3><p>fetch는 취소 불가, 다른 브라우저 호환성, 인코딩 문제(★)로 별로 쓰고싶지 않다.</p>
+<p><a target="_blank" rel="noopener" href="https://flaviocopes.com/fetch-api/">Fetch API</a>보다 Axios가 더 좋은 장점은 아래와 같습니다.(<a target="_blank" rel="noopener" href="https://tuhbm.github.io/2019/03/21/axios/">출저</a>)</p>
+<ol>
+<li>구형브라우저를 지원합니다.(Fetch API의 경우는 <a target="_blank" rel="noopener" href="http://hacks.mozilla.or.kr/2014/12/an-easier-way-of-using-polyfills/">폴리필</a>이 필요합니다.)</li>
+<li>요청을 중단시킬 수 있습니다.</li>
+<li>응답 시간 초과를 설정하는 방법이 있습니다.</li>
+<li><a target="_blank" rel="noopener" href="https://laravel.kr/docs/5.5/csrf">CSRF</a> 보호 기능이 내장되어있다.</li>
+<li>JSON 데이터 자동변환</li>
+<li>Node.js에서의 사용</li>
+</ol>
+<h3 id="웹-스토리지-API"><a href="#웹-스토리지-API" class="headerlink" title="웹 스토리지 API"></a><strong>웹 스토리지 API</strong></h3><p>쿠키의 단점으로 생겨남.</p>
+<p>​    단점1. 최대크기 4KB</p>
+<p>​    단점2. <code>Cross-site-scripting-acttack</code>에 취약함</p>
+<p>웹 스토리지 API는 5~25MB를 저장, HTTP 요청헤더에 어떠한 데이터도 추가하지 않음</p>
+<p>​    종류1. <code>localStorage</code> : 다른 탭과 공유, 영구히 유지</p>
+<p>​    종류2. <code>sessionStorage</code> : 하나의 탭, 세션 동안에만 유지</p>
+<p>사용 예제</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useStorage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">localStorage</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> storage = <span class="built_in">localStorage</span></span><br><span class="line">    storage.setItem(<span class="string">`foo`</span>, <span class="string">`Foo`</span>)</span><br><span class="line">    <span class="built_in">console</span>.log(storage.getItem(<span class="string">`foo`</span>))</span><br><span class="line">    storage.removeItem(<span class="string">`foo`</span>)</span><br><span class="line">&#125;</span><br><span class="line">useStorage()</span><br></pre></td></tr></table></figure>
+
+<p>또는 (getter/setter 사용)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">useStorage</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (!<span class="built_in">localStorage</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">let</span> storage = <span class="built_in">localStorage</span></span><br><span class="line">    storage.foo = <span class="string">`food`</span></span><br><span class="line">    <span class="built_in">console</span>.log(storage.foo)</span><br><span class="line">    <span class="keyword">delete</span> storage.foo</span><br><span class="line">&#125;</span><br><span class="line">useStorage()</span><br></pre></td></tr></table></figure>
+
+<p>반복문 사용시</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> len = storage.length</span><br><span class="line"><span class="keyword">let</span> key</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span> ;i &lt; len; i++) &#123;</span><br><span class="line">    key = storage.key(i)</span><br><span class="line">    <span class="built_in">console</span>.log(storage.key)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<p><em>여기서부터 정리안됨, 이후 다시 책봐서 정리…</em></p>
+<h2 id="Web-Storage-예제-쇼핑카트"><a href="#Web-Storage-예제-쇼핑카트" class="headerlink" title="Web Storage 예제 (쇼핑카트)"></a>Web Storage 예제 (쇼핑카트)</h2><details>
+<summary>접기/펼치기 버튼</summary>
+<div markdown="1">
+
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Web Storage<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">div</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">data-bind</span>=<span class="string">&quot;btn&quot;</span>&gt;</span>Add to cart<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">button</span> <span class="attr">data-bind</span>=<span class="string">&quot;reset&quot;</span>&gt;</span>Reset<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">output</span> <span class="attr">data-bind</span>=<span class="string">&quot;output&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">output</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="keyword">var</span> output = <span class="built_in">document</span>.querySelector( <span class="string">&quot;[data-bind=\&quot;output\&quot;]&quot;</span> ),</span></span><br><span class="line"><span class="javascript">        btn = <span class="built_in">document</span>.querySelector( <span class="string">&quot;[data-bind=\&quot;btn\&quot;]&quot;</span> ),</span></span><br><span class="line"><span class="javascript">        reset = <span class="built_in">document</span>.querySelector( <span class="string">&quot;[data-bind=\&quot;reset\&quot;]&quot;</span> ),</span></span><br><span class="line"><span class="javascript">        storage = <span class="built_in">localStorage</span>,</span></span><br><span class="line">       /**</span><br><span class="line"><span class="javascript">        * Read <span class="keyword">from</span> the storage</span></span><br><span class="line"><span class="javascript">        * @<span class="keyword">return</span> &#123;Arrays&#125;</span></span><br><span class="line">        */</span><br><span class="line"><span class="javascript">        get = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">           <span class="keyword">return</span> <span class="built_in">JSON</span>.parse( storage.getItem( <span class="string">&quot;cart&quot;</span> ) ) || [];</span></span><br><span class="line">        &#125;,</span><br><span class="line">        /**</span><br><span class="line">         * Append an item to the cart</span><br><span class="line"><span class="javascript">         * @param &#123;<span class="built_in">Object</span>&#125; product</span></span><br><span class="line">         */</span><br><span class="line"><span class="javascript">        append = <span class="function"><span class="keyword">function</span>(<span class="params"> product </span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">var</span> data = get();</span></span><br><span class="line">          data.push( product );</span><br><span class="line"><span class="javascript">          storage.setItem( <span class="string">&quot;cart&quot;</span>, <span class="built_in">JSON</span>.stringify( data ) );</span></span><br><span class="line">        &#125;,</span><br><span class="line">        /** Re-render list of items */</span><br><span class="line"><span class="javascript">        updateView = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">var</span> data = get();</span></span><br><span class="line"><span class="javascript">          output.innerHTML = <span class="string">&quot;&quot;</span>;</span></span><br><span class="line"><span class="javascript">          data &amp;&amp; data.forEach(<span class="function"><span class="keyword">function</span>(<span class="params"> item </span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">            output.innerHTML += [ <span class="string">&quot;id: &quot;</span>, item.id, <span class="string">&quot;&lt;br /&gt;&quot;</span> ].join( <span class="string">&quot;&quot;</span> );</span></span><br><span class="line">          &#125;);</span><br><span class="line">        &#125;;</span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="built_in">this</span>.btn.addEventListener( <span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line"><span class="javascript">      append(&#123; <span class="attr">id</span>: <span class="built_in">Math</span>.floor(( <span class="built_in">Math</span>.random() * <span class="number">100</span> ) + <span class="number">1</span> ) &#125;);</span></span><br><span class="line">      updateView();</span><br><span class="line"><span class="javascript">    &#125;, <span class="literal">false</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="built_in">this</span>.reset.addEventListener( <span class="string">&quot;click&quot;</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span></span><br><span class="line">      storage.clear();</span><br><span class="line">      updateView();</span><br><span class="line"><span class="javascript">    &#125;, <span class="literal">false</span> );</span></span><br><span class="line"></span><br><span class="line"><span class="javascript">    <span class="comment">// Update item list when a new item is added in another window/tab</span></span></span><br><span class="line"><span class="javascript">    <span class="built_in">window</span>.addEventListener( <span class="string">&quot;storage&quot;</span>, updateView, <span class="literal">false</span> );</span></span><br><span class="line"></span><br><span class="line">    updateView();</span><br><span class="line"></span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+</div>
+</details>
+
+<h2 id="인덱스-DB-예제"><a href="#인덱스-DB-예제" class="headerlink" title="인덱스 DB 예제"></a>인덱스 DB 예제</h2><details>
+<summary>접기/펼치기 버튼</summary>
+<div markdown="1">
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * IndexDB usage example</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@type <span class="type">&#123;IDBOpenDBRequest&#125;</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> request = indexedDB.open( <span class="string">&quot;Cem&quot;</span>, <span class="number">2</span> );</span><br><span class="line"></span><br><span class="line"><span class="comment">/** Report error */</span></span><br><span class="line">request.onerror = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  alert( <span class="string">&quot;Opps, something went wrong&quot;</span> );</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Create DB</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Event&#125;</span> <span class="variable">e</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">request.onupgradeneeded = <span class="function"><span class="keyword">function</span> (<span class="params"> e </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> objectStore;</span><br><span class="line">  <span class="keyword">if</span> ( e.oldVersion ) &#123;</span><br><span class="line">    <span class="keyword">return</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="comment">// define schema</span></span><br><span class="line">  objectStore = e.currentTarget.result.createObjectStore( <span class="string">&quot;employees&quot;</span>, &#123; <span class="attr">keyPath</span>: <span class="string">&quot;email&quot;</span> &#125;);</span><br><span class="line">  objectStore.createIndex( <span class="string">&quot;name&quot;</span>, <span class="string">&quot;name&quot;</span>, &#123; <span class="attr">unique</span>: <span class="literal">false</span> &#125; );</span><br><span class="line">   <span class="comment">// Populate objectStore with test data</span></span><br><span class="line">  objectStore.add(&#123; <span class="attr">name</span>: <span class="string">&quot;John Dow&quot;</span>, <span class="attr">email</span>: <span class="string">&quot;john@company.com&quot;</span> &#125;);</span><br><span class="line">  objectStore.add(&#123; <span class="attr">name</span>: <span class="string">&quot;Don Dow&quot;</span>, <span class="attr">email</span>: <span class="string">&quot;don@company.com&quot;</span> &#125;);</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Find a row from the DB</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param <span class="type">&#123;Event&#125;</span> <span class="variable">e</span></span></span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line">request.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params"> e </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> db = e.target.result,</span><br><span class="line">      req = db.transaction([ <span class="string">&quot;employees&quot;</span> ]).objectStore( <span class="string">&quot;employees&quot;</span> ).get( <span class="string">&quot;don@company.com&quot;</span> );</span><br><span class="line"></span><br><span class="line">  req.onsuccess = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">&quot;Employee matching `don@company.com` is `&quot;</span> + req.result.name + <span class="string">&quot;`&quot;</span> );</span><br><span class="line">  &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+</div>
+</details>
+
+<hr>
+<details>
+<summary>접기/펼치기 버튼</summary>
+<div markdown="1">
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * IndexDB with Dexie </span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="keyword">var</span> db = <span class="keyword">new</span> Dexie( <span class="string">&quot;Cem&quot;</span> );</span><br><span class="line"><span class="comment">// Define DB</span></span><br><span class="line">db.version( <span class="number">3</span> )</span><br><span class="line">  .stores(&#123; <span class="attr">employees</span>: <span class="string">&quot;name, email&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Open the database</span></span><br><span class="line">db.open().catch(<span class="function"><span class="keyword">function</span>(<span class="params"> err </span>)</span>&#123;</span><br><span class="line">  alert( <span class="string">&quot;Opps, something went wrong: &quot;</span> + err );</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Populate objectStore with test data</span></span><br><span class="line">db.employees.add(&#123; <span class="attr">name</span>: <span class="string">&quot;John Dow&quot;</span>, <span class="attr">email</span>: <span class="string">&quot;john@company.com&quot;</span> &#125;);</span><br><span class="line">db.employees.add(&#123; <span class="attr">name</span>: <span class="string">&quot;Don Dow&quot;</span>, <span class="attr">email</span>: <span class="string">&quot;don@company.com&quot;</span> &#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Find an employee by email</span></span><br><span class="line">db.employees</span><br><span class="line">  .where( <span class="string">&quot;email&quot;</span> )</span><br><span class="line">  .equals( <span class="string">&quot;don@company.com&quot;</span> )</span><br><span class="line">  .each(<span class="function"><span class="keyword">function</span>(<span class="params"> employee </span>)</span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( <span class="string">&quot;Employee matching `don@company.com` is `&quot;</span> + employee.name + <span class="string">&quot;`&quot;</span> );</span><br><span class="line">  &#125;);</span><br></pre></td></tr></table></figure>
+
+</div>
+</details>
+
+
+<h2 id="파일-시스템-API-예제"><a href="#파일-시스템-API-예제" class="headerlink" title="파일 시스템 API 예제"></a>파일 시스템 API 예제</h2><details>
+<summary>접기/펼치기 버튼</summary>
+<div markdown="1">
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * FileSystem API usage example</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="built_in">window</span>.requestFileSystem  = <span class="built_in">window</span>.requestFileSystem || <span class="built_in">window</span>.webkitRequestFileSystem;</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Read file from a given FileSystem</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;DOMFileSystem&#125;</span> <span class="variable">fs</span></span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;String&#125;</span> <span class="variable">file</span></span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line"><span class="keyword">var</span> readFile = <span class="function"><span class="keyword">function</span>(<span class="params"> fs, file </span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">&quot;Reading file &quot;</span> + file );</span><br><span class="line">      <span class="comment">// Obtain FileEntry object</span></span><br><span class="line">      fs.root.getFile( file, &#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params"> fileEntry </span>) </span>&#123;</span><br><span class="line">        fileEntry.file(<span class="function"><span class="keyword">function</span>(<span class="params"> file </span>)</span>&#123;</span><br><span class="line">           <span class="comment">// Create FileReader</span></span><br><span class="line">           <span class="keyword">var</span> reader = <span class="keyword">new</span> FileReader();</span><br><span class="line">           reader.onloadend = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">             <span class="built_in">console</span>.log( <span class="string">&quot;Fetched content: &quot;</span>, <span class="built_in">this</span>.result );</span><br><span class="line">           &#125;;</span><br><span class="line">           <span class="comment">// Read file</span></span><br><span class="line">           reader.readAsText( file );</span><br><span class="line">        &#125;, <span class="built_in">console</span>.error );</span><br><span class="line">      &#125;, <span class="built_in">console</span>.error );</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Save file into a given FileSystem and run onDone when ready</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;DOMFileSystem&#125;</span> <span class="variable">fs</span></span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;String&#125;</span> <span class="variable">file</span></span></span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;Function&#125;</span> <span class="variable">onDone</span></span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    saveFile = <span class="function"><span class="keyword">function</span>(<span class="params"> fs, file, onDone </span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">&quot;Writing file &quot;</span> + file );</span><br><span class="line">      <span class="comment">// Obtain FileEntry object</span></span><br><span class="line">      fs.root.getFile( file, &#123; <span class="attr">create</span>: <span class="literal">true</span> &#125;, <span class="function"><span class="keyword">function</span>(<span class="params"> fileEntry </span>) </span>&#123;</span><br><span class="line">        <span class="comment">// Create a FileWriter object for the FileEntry</span></span><br><span class="line">        fileEntry.createWriter(<span class="function"><span class="keyword">function</span>(<span class="params"> fileWriter </span>) </span>&#123;</span><br><span class="line">          <span class="keyword">var</span> blob;</span><br><span class="line">          fileWriter.onwriteend = onDone;</span><br><span class="line">          fileWriter.onerror = <span class="function"><span class="keyword">function</span>(<span class="params">e</span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.error( <span class="string">&quot;Writing error: &quot;</span> + e.toString() );</span><br><span class="line">          &#125;;</span><br><span class="line">          <span class="comment">// Create a new Blob out of the text we want into the file.</span></span><br><span class="line">          blob = <span class="keyword">new</span> Blob([ <span class="string">&quot;Lorem Ipsum&quot;</span> ], &#123; <span class="attr">type</span>: <span class="string">&quot;text/plain&quot;</span> &#125;);</span><br><span class="line">          <span class="comment">// Write into the file</span></span><br><span class="line">          fileWriter.write( blob );</span><br><span class="line">        &#125;, <span class="built_in">console</span>.error );</span><br><span class="line">      &#125;, <span class="built_in">console</span>.error );</span><br><span class="line">    &#125;,</span><br><span class="line">    <span class="comment">/**</span></span><br><span class="line"><span class="comment">     * Run when FileSystem initialized</span></span><br><span class="line"><span class="comment">     * <span class="doctag">@param <span class="type">&#123;DOMFileSystem&#125;</span> <span class="variable">fs</span></span></span></span><br><span class="line"><span class="comment">     */</span></span><br><span class="line">    onInitFs = <span class="function"><span class="keyword">function</span> (<span class="params"> fs </span>) </span>&#123;</span><br><span class="line">      <span class="keyword">const</span> FILENAME = <span class="string">&quot;log.txt&quot;</span>;</span><br><span class="line">      <span class="built_in">console</span>.log( <span class="string">&quot;Opening file system: &quot;</span> + fs.name );</span><br><span class="line">      saveFile( fs, FILENAME, <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        readFile( fs, FILENAME );</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.requestFileSystem( <span class="built_in">window</span>.TEMPORARY, <span class="number">5</span>*<span class="number">1024</span>*<span class="number">1024</span> <span class="comment">/*5MB*/</span>, onInitFs, <span class="built_in">console</span>.error );</span><br></pre></td></tr></table></figure>
+
+
+
+</div>
+</details>
+
+
+
+<hr>
+<p><em>참고파일 참조</em></p>
+<h2 id="웹-워커-멀티스레드-예제"><a href="#웹-워커-멀티스레드-예제" class="headerlink" title="웹 워커 멀티스레드 예제"></a>웹 워커 멀티스레드 예제</h2><h2 id="서버-브라우저-간-통신-채널-예제"><a href="#서버-브라우저-간-통신-채널-예제" class="headerlink" title="서버 - 브라우저 간 통신 채널 예제"></a>서버 - 브라우저 간 통신 채널 예제</h2><h2 id="웹소켓-예제"><a href="#웹소켓-예제" class="headerlink" title="웹소켓 예제"></a>웹소켓 예제</h2><p><strong>비동기 자바스크립트(나중에)</strong></p>
+<h2 id="자바스크립트-디자인-패턴"><a href="#자바스크립트-디자인-패턴" class="headerlink" title="자바스크립트 디자인 패턴"></a>자바스크립트 디자인 패턴</h2><p><strong>NW.js, 폰갭 생략</strong></p>
+<h2 id="디버깅"><a href="#디버깅" class="headerlink" title="디버깅"></a>디버깅</h2><h2 id="참고파일"><a href="#참고파일" class="headerlink" title="참고파일"></a>참고파일</h2>
+<a href ='/assets/JavaScript Unlocked_code.zip' download>예제 코드 Download</a>
+
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Project-one-page-layout/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    레이아웃 엔진 만들기 일지
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Git-Commit/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Git Commit 메세지 분류</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

@@ -1,0 +1,868 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Quick Start Typescript ~ 6장 정리 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Typescript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성했습니다.  6장 함수 목차 사용법 (Js vs Ts 비교) 매개변수 초기값 지정 ...rest 매개변수 선택 매개변수 지정 오버로드   익명 함수 화살표 함수 타입 선언 콜백 함수    📝p151. 함수 (Js vs Ts 비교)js의 경우12">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quick Start Typescript ~ 6장 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성했습니다.  6장 함수 목차 사용법 (Js vs Ts 비교) 매개변수 초기값 지정 ...rest 매개변수 선택 매개변수 지정 오버로드   익명 함수 화살표 함수 타입 선언 콜백 함수    📝p151. 함수 (Js vs Ts 비교)js의 경우12">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323073951872.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323073806380.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323074303810.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323074341475.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323075104117.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323075122656.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323080049535.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323081631307.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323081744796.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323110341117.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323082731982.png">
+<meta property="article:published_time" content="2020-03-22T11:39:05.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.385Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323073951872.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file active"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Typescript quick start -6장" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">
+            <time datetime="2020-03-22T11:39:05.000Z" itemprop="datePublished">2020-03-22</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start -6장.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start -6장.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start -6장.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Quick Start Typescript ~ 6장 정리
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#6%EC%9E%A5-%ED%95%A8%EC%88%98-%EB%AA%A9%EC%B0%A8"><span class="toc-number">1.</span> <span class="toc-text">6장 함수 목차</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp151-%ED%95%A8%EC%88%98-Js-vs-Ts-%EB%B9%84%EA%B5%90"><span class="toc-number">2.</span> <span class="toc-text">📝p151. 함수 (Js vs Ts 비교)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#js%EC%9D%98-%EA%B2%BD%EC%9A%B0"><span class="toc-number">2.1.</span> <span class="toc-text">js의 경우</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B2%B0%EA%B3%BC"><span class="toc-number">2.1.1.</span> <span class="toc-text">결과</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ts%EC%9D%98-%EA%B2%BD%EC%9A%B0"><span class="toc-number">2.2.</span> <span class="toc-text">ts의 경우</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B2%B0%EA%B3%BC-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">결과</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp156-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-%EC%B4%88%EA%B8%B0%EA%B0%92"><span class="toc-number">3.</span> <span class="toc-text">📝p156. 매개변수 초기값</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-%EC%9D%B4%EC%A0%84"><span class="toc-number">3.1.</span> <span class="toc-text">ES6 이전</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-%EC%9D%B4%ED%9B%84"><span class="toc-number">3.2.</span> <span class="toc-text">ES6 이후</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp159-%EB%82%98%EB%A8%B8%EC%A7%80-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98"><span class="toc-number">4.</span> <span class="toc-text">📝p159. 나머지 매개변수</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-%EC%9D%B4%EC%A0%84-1"><span class="toc-number">4.1.</span> <span class="toc-text">ES6 이전</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ES6-%EC%9D%B4%ED%9B%84-1"><span class="toc-number">4.2.</span> <span class="toc-text">ES6 이후</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%82%98%EB%A8%B8%EC%A7%80-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98-%ED%83%80%EC%9E%85-%EC%A7%80%EC%A0%95%EB%B2%95"><span class="toc-number">4.3.</span> <span class="toc-text">나머지 매개변수 타입 지정법</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp162-%EC%84%A0%ED%83%9D-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98"><span class="toc-number">5.</span> <span class="toc-text">📝p162. 선택 매개변수</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#js%EC%9D%98-%EA%B2%BD%EC%9A%B0-1"><span class="toc-number">5.1.</span> <span class="toc-text">js의 경우</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ts"><span class="toc-number">5.2.</span> <span class="toc-text">ts</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp164-%ED%95%A8%EC%88%98-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%93%9C"><span class="toc-number">6.</span> <span class="toc-text">📝p164. 함수 오버로드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp170-%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98-%EC%9C%A0%EC%9D%98%EC%A0%90"><span class="toc-number">7.</span> <span class="toc-text">📝p170. 화살표 함수 유의점</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp171-filter-reduce"><span class="toc-number">8.</span> <span class="toc-text">📝p171. filter, reduce</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp173-%EA%B0%9D%EC%B2%B4-%EB%A6%AC%ED%84%B0%EB%9F%B4-%EC%84%A0%EC%96%B8"><span class="toc-number">9.</span> <span class="toc-text">📝p173. 객체 리터럴 선언</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Typescript%EC%97%90%EC%84%9C-this-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8"><span class="toc-number">9.1.</span> <span class="toc-text">Typescript에서 this 타입 선언</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp177-type-%EB%AA%85%EB%AA%85%EB%B2%95"><span class="toc-number">10.</span> <span class="toc-text">📝p177. type 명명법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp179-jquery-gt-VanillaJS"><span class="toc-number">11.</span> <span class="toc-text">📝p179. jquery -&gt; VanillaJS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Jquery"><span class="toc-number">11.1.</span> <span class="toc-text">Jquery</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#js"><span class="toc-number">11.2.</span> <span class="toc-text">js</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D-180-%EC%BD%9C%EB%B0%B1%ED%95%A8%EC%88%98%EC%9D%98-%EB%8B%A4%EB%A5%B8-%EC%98%88%EC%8B%9C-ex-Chrome-API"><span class="toc-number">12.</span> <span class="toc-text">📝 180. 콜백함수의 다른 예시(ex. Chrome API)</span></a></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성했습니다.</p>
+</blockquote>
+<h2 id="6장-함수-목차"><a href="#6장-함수-목차" class="headerlink" title="6장 함수 목차"></a>6장 함수 목차</h2><ol>
+<li>사용법 (Js vs Ts 비교)</li>
+<li>매개변수<ol>
+<li>초기값 지정</li>
+<li><code>...rest</code> 매개변수</li>
+<li>선택 매개변수 지정</li>
+<li>오버로드</li>
+</ol>
+</li>
+<li>익명 함수<ol>
+<li>화살표 함수</li>
+<li>타입 선언</li>
+<li>콜백 함수</li>
+</ol>
+</li>
+</ol>
+<h2 id="📝p151-함수-Js-vs-Ts-비교"><a href="#📝p151-함수-Js-vs-Ts-비교" class="headerlink" title="📝p151. 함수 (Js vs Ts 비교)"></a>📝p151. 함수 (Js vs Ts 비교)</h2><h3 id="js의-경우"><a href="#js의-경우" class="headerlink" title="js의 경우"></a>js의 경우</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">max</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &gt; y ? x : y;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">max(<span class="number">1</span>, <span class="number">10</span>);	<span class="comment">// 10</span></span><br><span class="line">max(<span class="number">1</span>, <span class="number">10</span>, <span class="number">12</span>);	<span class="comment">// 10, 이후 인자값은 무시당함</span></span><br><span class="line">max(<span class="string">`a`</span>, <span class="string">`b`</span>);	<span class="comment">// `b`</span></span><br><span class="line">max(<span class="string">`c`</span>, <span class="string">`aaa`</span>);	<span class="comment">//`c`, 으음... 문자열 첫번째값의 아스키 코드값인가?</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="결과"><a href="#결과" class="headerlink" title="결과"></a>결과</h4><p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323073951872.png" alt="이미지"></p>
+<h3 id="ts의-경우"><a href="#ts의-경우" class="headerlink" title="ts의 경우"></a>ts의 경우</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">max</span>(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> x &gt; y ? x : y;</span><br><span class="line">&#125;</span><br><span class="line">max(<span class="number">1</span>, <span class="number">10</span>);	<span class="comment">// 10</span></span><br><span class="line">max(<span class="number">1</span>, <span class="number">10</span>, <span class="number">12</span>);	<span class="comment">// Error: 인자 개수 에러</span></span><br><span class="line">max(<span class="string">`a`</span>, <span class="string">`b`</span>);	<span class="comment">// Error: 인자 타입 에러</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="결과-1"><a href="#결과-1" class="headerlink" title="결과"></a>결과</h4><p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323073806380.png" alt="이미지"></p>
+<h2 id="📝p156-매개변수-초기값"><a href="#📝p156-매개변수-초기값" class="headerlink" title="📝p156. 매개변수 초기값"></a>📝p156. 매개변수 초기값</h2><p>ES6부터 매개변수의 값을 지정 받지 않아도, 초기값으로 값을 지정해줄 수 있게됨</p>
+<p>코드도 간결해지고 complexity도 낮아짐</p>
+<h3 id="ES6-이전"><a href="#ES6-이전" class="headerlink" title="ES6 이전"></a>ES6 이전</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">param</span>) </span>&#123;</span><br><span class="line">    param = param || <span class="string">`초기값`</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(param);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323074303810.png" alt="이미지"></p>
+<h3 id="ES6-이후"><a href="#ES6-이후" class="headerlink" title="ES6 이후"></a>ES6 이후</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">param = <span class="string">`초기값`</span></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(param);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323074341475.png" alt="이미지"></p>
+<h2 id="📝p159-나머지-매개변수"><a href="#📝p159-나머지-매개변수" class="headerlink" title="📝p159. 나머지 매개변수"></a>📝p159. 나머지 매개변수</h2><p>ES6부터 생긴 기능, 정의되지 않은 매개변수를 받기 편해짐</p>
+<h3 id="ES6-이전-1"><a href="#ES6-이전-1" class="headerlink" title="ES6 이전"></a>ES6 이전</h3><p><code>arguments</code>는 잘 사용하지 않는 방식으로 알려짐 (보안)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323075104117.png" alt="이미지"></p>
+<h3 id="ES6-이후-1"><a href="#ES6-이후-1" class="headerlink" title="ES6 이후"></a>ES6 이후</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">test</span>(<span class="params">...args</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(args);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323075122656.png" alt="이미지"></p>
+<h3 id="나머지-매개변수-타입-지정법"><a href="#나머지-매개변수-타입-지정법" class="headerlink" title="나머지 매개변수 타입 지정법"></a>나머지 매개변수 타입 지정법</h3><blockquote>
+<p>나머지 매개변수도 타입 지정이 가능한 것을 처음 알았다</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 처음 1개 값을 지정하면, concat()같이 아무것도 받지않았을 때는 유효하지않음</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">concat</span>(<span class="params">a: <span class="built_in">string</span>, ...restStr: <span class="built_in">string</span>[]</span>): <span class="title">string</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;a&#125;</span> <span class="subst">$&#123;restStr.join(<span class="string">` `</span>)&#125;</span>`</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p162-선택-매개변수"><a href="#📝p162-선택-매개변수" class="headerlink" title="📝p162. 선택 매개변수"></a>📝p162. 선택 매개변수</h2><h3 id="js의-경우-1"><a href="#js의-경우-1" class="headerlink" title="js의 경우"></a>js의 경우</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a, b</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="built_in">arguments</span>);</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>);	<span class="comment">// NaN</span></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>);	<span class="comment">// 3</span></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)	<span class="comment">// 3, 이후 파라미터를 사용되진 않지만, 받음</span></span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323080049535.png" alt="이미지"></p>
+<h3 id="ts"><a href="#ts" class="headerlink" title="ts"></a>ts</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sum</span>(<span class="params">a: <span class="built_in">number</span>, b?: <span class="built_in">number</span></span>): <span class="title">number</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">sum(<span class="number">1</span>);	<span class="comment">// NaN, js와 결과는 동일</span></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>);	<span class="comment">// 3</span></span><br><span class="line">sum(<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>)	<span class="comment">// Error 인자 초과</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p164-함수-오버로드"><a href="#📝p164-함수-오버로드" class="headerlink" title="📝p164. 함수 오버로드"></a>📝p164. 함수 오버로드</h2><blockquote>
+<p>잘 몰랐던 부분</p>
+</blockquote>
+<p>함수명은 같지만, 매개변수와 반환 타입이 다른 여러개의 함수를 선언 가능, 런타임 비용이 별도 추가되지 않음</p>
+<p>가장 일반적인 타입을 가장 아래에 선언(ex. <code>any</code>가 가장 아래), 위일 수록 구체적 (순서 중요!)</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params">a: string, b: string</span>);</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">add</span>(<span class="params">a: number, b: number</span>);</span></span><br><span class="line"><span class="function"><span class="title">function</span> <span class="title">add</span>(<span class="params">a: any, b: any</span>): <span class="title">any</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> a + b;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="number">1</span>, <span class="number">2</span>));	<span class="comment">// 3</span></span><br><span class="line"><span class="built_in">console</span>.log(add(<span class="string">`test1`</span>, <span class="string">`test2`</span>));	<span class="comment">// test1test2</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p170-화살표-함수-유의점"><a href="#📝p170-화살표-함수-유의점" class="headerlink" title="📝p170. 화살표 함수 유의점"></a>📝p170. 화살표 함수 유의점</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// bad case</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="function"><span class="params">x</span> =&gt;</span> &#123; x; &#125;;	<span class="comment">// block&#123;&#125;을 사용할 경우, 무조건 return이 필요함!</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// good case</span></span><br><span class="line"><span class="keyword">const</span> test = <span class="function"><span class="params">x</span> =&gt;</span> &#123; <span class="keyword">return</span> x; &#125;;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p171-filter-reduce"><a href="#📝p171-filter-reduce" class="headerlink" title="📝p171. filter, reduce"></a>📝p171. filter, reduce</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/filter">filter MDN</a></li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Array/Reduce">reduce MDN</a></li>
+</ul>
+<h2 id="📝p173-객체-리터럴-선언"><a href="#📝p173-객체-리터럴-선언" class="headerlink" title="📝p173. 객체 리터럴 선언"></a>📝p173. 객체 리터럴 선언</h2><blockquote>
+<p>개인적으로 객체 지향적으로 짤 때 좋은 코딩 스타일이라고 생각되는 문법</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> person = &#123;</span><br><span class="line">    name: <span class="string">`Taeuk`</span>,</span><br><span class="line">    hello: <span class="function"><span class="keyword">function</span> (<span class="params">yourName</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`Hello <span class="subst">$&#123;yourName&#125;</span>, I&#x27;m <span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">person.hello(<span class="string">`minsu`</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323081631307.png" alt="이미지"></p>
+<p><strong>주의사항</strong></p>
+<p><code>function</code>을 사용했기 때문에 <code>this.name</code>을 사용할 수 있었던 부분</p>
+<p>만약 화살표 함수를 사용한다면 이렇게 뜰 것 이다. (현재는 this값이 window(최상위)로 잡은 케이스)</p>
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323081744796.png" alt="이미지"></p>
+<h3 id="Typescript에서-this-타입-선언"><a href="#Typescript에서-this-타입-선언" class="headerlink" title="Typescript에서 this 타입 선언"></a>Typescript에서 <code>this</code> 타입 선언</h3><blockquote>
+<p>잘 몰랐던 부분</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> PersonType &#123;</span><br><span class="line">    name: <span class="built_in">string</span>;</span><br><span class="line">    hello(<span class="built_in">this</span>: PersonType, yourName: <span class="built_in">string</span>): <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p177-type-명명법"><a href="#📝p177-type-명명법" class="headerlink" title="📝p177. type 명명법"></a>📝p177. <code>type</code> 명명법</h2><blockquote>
+<p> <code>type</code>는 대문자로 시작, 책은 소문자로 시작되서 이상해서 레퍼런스를 찾아봄</p>
+<p>대문자로 시작하는게 표준 케이스인 것 같음</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">type</span> calcType = <span class="function">(<span class="params">a: <span class="built_in">number</span>, b: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">number</span>;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323110341117.png" alt="공식 레퍼런스"></p>
+<h2 id="📝p179-jquery-gt-VanillaJS"><a href="#📝p179-jquery-gt-VanillaJS" class="headerlink" title="📝p179. jquery -&gt; VanillaJS"></a>📝p179. jquery -&gt; VanillaJS</h2><blockquote>
+<p>음… 왜 굳이 예시를 Jquery로 들었는지 몰라서 작성</p>
+</blockquote>
+<h3 id="Jquery"><a href="#Jquery" class="headerlink" title="Jquery"></a>Jquery</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$(<span class="string">`#myButton`</span>).click(<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    alert(<span class="string">`버튼`</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="js"><a href="#js" class="headerlink" title="js"></a>js</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">document</span>.querySelector(<span class="string">`#myButton`</span>).addEventListener(<span class="string">`click`</span>, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">   <span class="built_in">window</span>.alert(<span class="string">`버튼`</span>); </span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝-180-콜백함수의-다른-예시-ex-Chrome-API"><a href="#📝-180-콜백함수의-다른-예시-ex-Chrome-API" class="headerlink" title="📝 180. 콜백함수의 다른 예시(ex. Chrome API)"></a>📝 180. 콜백함수의 다른 예시(ex. Chrome API)</h2><blockquote>
+<p>Promise, async/ await 으로 바뀌는 추세이지만, 아직도 많은 부분에 callback 함수가 남아있다.</p>
+</blockquote>
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200323082731982.png" alt="image-20200323082731982"></p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Quick Start Typescript ~ 7장 정리
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Quick Start Typescript ~ 5장 정리</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

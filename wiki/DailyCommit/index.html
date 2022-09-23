@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>일일 커밋 알람 어플 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Projects" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="일일 커밋 알림 어플기획 키워드 타겟: 일일 커밋을 목표로 하는 개발자 &#x3D; 승민이와 나, 개발자의 자기관리 오늘 커밋이 없으면, 1시간(옵션 조절 가능)마다 알림 메세지 발송 위젯 넣어서, 하루 커밋 개수 확인  개발 키워드 리액트 네이티브  레이아웃https:&#x2F;&#x2F;xd.adobe.com&#x2F;view&#x2F;95d7530f-77a4-496a-638a-c9f49a1301">
+<meta property="og:type" content="article">
+<meta property="og:title" content="일일 커밋 알람 어플">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/DailyCommit/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="일일 커밋 알림 어플기획 키워드 타겟: 일일 커밋을 목표로 하는 개발자 &#x3D; 승민이와 나, 개발자의 자기관리 오늘 커밋이 없으면, 1시간(옵션 조절 가능)마다 알림 메세지 발송 위젯 넣어서, 하루 커밋 개수 확인  개발 키워드 리액트 네이티브  레이아웃https:&#x2F;&#x2F;xd.adobe.com&#x2F;view&#x2F;95d7530f-77a4-496a-638a-c9f49a1301">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://i.loli.net/2020/10/22/dEr2MVx7iCquyL4.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/22/VKJnSxg2FyGz3iR.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/22/cCWZXs29bl5pwrP.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/23/8dOPGC2MWDJYm4f.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/23/JgV6KYhyeNQx2dT.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/23/5Bn1x8e4zikOGbJ.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/23/RsHJri1mzt7PADZ.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/27/6W8j7zVoIChpZiK.png">
+<meta property="og:image" content="https://i.loli.net/2020/10/27/BRkx9vblatnZADU.png">
+<meta property="article:published_time" content="2020-11-01T13:22:05.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.380Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Projects">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/10/22/dEr2MVx7iCquyL4.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-DailyCommit" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Projects/">Projects</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Projects/Daily-Commit-App/">Daily-Commit App</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Projects/" rel="tag">Projects</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/DailyCommit/">
+            <time datetime="2020-11-01T13:22:05.000Z" itemprop="datePublished">2020-11-01</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/DailyCommit.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/DailyCommit.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/DailyCommit.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            일일 커밋 알람 어플
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%9D%BC%EC%9D%BC-%EC%BB%A4%EB%B0%8B-%EC%95%8C%EB%A6%BC-%EC%96%B4%ED%94%8C"><span class="toc-number">1.</span> <span class="toc-text">일일 커밋 알림 어플</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%9A%8D-%ED%82%A4%EC%9B%8C%EB%93%9C"><span class="toc-number">1.1.</span> <span class="toc-text">기획 키워드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B0%9C%EB%B0%9C-%ED%82%A4%EC%9B%8C%EB%93%9C"><span class="toc-number">1.2.</span> <span class="toc-text">개발 키워드</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83"><span class="toc-number">1.3.</span> <span class="toc-text">레이아웃</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#expo-gt-react-native-cli-%EB%A1%9C-%EB%84%98%EC%96%B4%EA%B0%80%EA%B8%B0"><span class="toc-number">1.4.</span> <span class="toc-text">expo -&gt; react-native-cli 로 넘어가기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#typescript-template-%EC%82%AC%EC%9A%A9%ED%95%A0-%EB%95%8C-%EB%B2%84%EA%B7%B8-%EB%B0%9C%EC%83%9D"><span class="toc-number">1.5.</span> <span class="toc-text">typescript template 사용할 때 버그 발생</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#eslint-auto-fix"><span class="toc-number">1.6.</span> <span class="toc-text">eslint auto fix</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B0%B1%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%82%BD%EC%9E%85-%EC%8A%A4%ED%94%8C%EB%9E%98%EC%8B%9C"><span class="toc-number">1.7.</span> <span class="toc-text">백그라운드 이미지 삽입 (스플래시)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-native-firebase-%ED%99%98%EA%B2%BD%EC%84%A4%EC%A0%95"><span class="toc-number">1.8.</span> <span class="toc-text">React-native-firebase 환경설정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mac-%EC%95%88%EB%93%9C%EB%A1%9C%EC%9D%B4%EB%93%9C-%EC%97%90%EB%AE%AC%EB%A0%88%EC%9D%B4%ED%84%B0%EC%97%90%EC%84%9C-%EC%9D%B8%ED%84%B0%EB%84%B7%EC%9D%B4-%EC%95%88%EB%90%A0%EB%95%8C"><span class="toc-number">1.9.</span> <span class="toc-text">Mac 안드로이드 에뮬레이터에서 인터넷이 안될때</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ios-google-service-json-%EC%B6%94%EA%B0%80-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.10.</span> <span class="toc-text">ios google-service.json 추가 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-native-firebaseui-%EC%84%A4%EC%B9%98"><span class="toc-number">1.11.</span> <span class="toc-text">React-native-firebaseui 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-native-firebaseui-auth-%EC%82%AC%EC%9A%A9"><span class="toc-number">1.12.</span> <span class="toc-text">React-native-firebaseui-auth 사용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A9%80%ED%8B%B0%EC%9D%B8%EB%8D%B1%EC%8A%A4-%EC%97%90%EB%9F%AC-%EC%9D%B4%EC%8A%88"><span class="toc-number">1.12.1.</span> <span class="toc-text">멀티인덱스 에러 이슈</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GitHub"><span class="toc-number">1.13.</span> <span class="toc-text">GitHub</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Authorization-callback-URL-amp-Redirect-URL"><span class="toc-number">1.14.</span> <span class="toc-text">Authorization callback URL &amp; Redirect URL</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#dev"><span class="toc-number">1.14.1.</span> <span class="toc-text">dev</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#prod"><span class="toc-number">1.14.2.</span> <span class="toc-text">prod</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#accessToken-%EC%96%BB%EA%B8%B0"><span class="toc-number">1.15.</span> <span class="toc-text">accessToken 얻기</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%9D%BC%EC%9A%B0%ED%84%B0-%EA%B5%AC%ED%98%84"><span class="toc-number">1.16.</span> <span class="toc-text">라우터 구현</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#react-native-folder-structure"><span class="toc-number">1.17.</span> <span class="toc-text">react-native folder structure</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Header-%EC%A0%9C%EA%B1%B0"><span class="toc-number">1.18.</span> <span class="toc-text">Header 제거</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#React-native-http%ED%86%B5%EC%8B%A0-useEffect"><span class="toc-number">1.19.</span> <span class="toc-text">React-native http통신 + useEffect</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-Typescript"><span class="toc-number">1.20.</span> <span class="toc-text">Redux + Typescript</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%B0%B8%EA%B3%A0-%EB%A7%81%ED%81%AC"><span class="toc-number">1.20.1.</span> <span class="toc-text">참고 링크</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux%EB%8A%94-%EC%84%A0%ED%83%9D%EC%82%AC%ED%95%AD-%EC%9D%B4%EB%9D%BC%EB%8A%94-%EA%B8%80%EC%9D%84-%EC%9D%BD%EA%B3%A0%E2%80%A6"><span class="toc-number">1.21.</span> <span class="toc-text">Redux는 선택사항 이라는 글을 읽고…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Redux-Action-axios"><span class="toc-number">1.22.</span> <span class="toc-text">Redux Action + axios</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debugger"><span class="toc-number">1.23.</span> <span class="toc-text">Debugger</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Router-Hook"><span class="toc-number">1.24.</span> <span class="toc-text">Router Hook</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B9%84%EC%9C%A8"><span class="toc-number">1.25.</span> <span class="toc-text">비율</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%98%A4%EB%8A%98-%EC%BB%A4%EB%B0%8B-%EA%B0%9C%EC%88%98-%EA%B5%AC%ED%95%98%EA%B8%B0"><span class="toc-number">1.26.</span> <span class="toc-text">오늘 커밋 개수 구하기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#owner"><span class="toc-number">1.26.1.</span> <span class="toc-text">:owner</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#repo"><span class="toc-number">1.26.2.</span> <span class="toc-text">:repo</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#commit-history"><span class="toc-number">1.27.</span> <span class="toc-text">commit history</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="일일-커밋-알림-어플"><a href="#일일-커밋-알림-어플" class="headerlink" title="일일 커밋 알림 어플"></a>일일 커밋 알림 어플</h1><h2 id="기획-키워드"><a href="#기획-키워드" class="headerlink" title="기획 키워드"></a>기획 키워드</h2><ul>
+<li>타겟: 일일 커밋을 목표로 하는 개발자 = 승민이와 나, 개발자의 자기관리</li>
+<li>오늘 커밋이 없으면, 1시간(옵션 조절 가능)마다 알림 메세지 발송</li>
+<li>위젯 넣어서, 하루 커밋 개수 확인</li>
+</ul>
+<h2 id="개발-키워드"><a href="#개발-키워드" class="headerlink" title="개발 키워드"></a>개발 키워드</h2><ul>
+<li>리액트 네이티브</li>
+</ul>
+<h2 id="레이아웃"><a href="#레이아웃" class="headerlink" title="레이아웃"></a>레이아웃</h2><p><a target="_blank" rel="noopener" href="https://xd.adobe.com/view/95d7530f-77a4-496a-638a-c9f49a13014a-e3e6/">https://xd.adobe.com/view/95d7530f-77a4-496a-638a-c9f49a13014a-e3e6/</a></p>
+<p><img src="https://i.loli.net/2020/10/22/dEr2MVx7iCquyL4.png" alt="image-20201022061001705"></p>
+<h2 id="expo-gt-react-native-cli-로-넘어가기"><a href="#expo-gt-react-native-cli-로-넘어가기" class="headerlink" title="expo -&gt; react-native-cli 로 넘어가기"></a>expo -&gt; react-native-cli 로 넘어가기</h2><p><code>expo</code> 를 사용하면, 네이티브 라이브러리 사용에 제한이 되는 것을 알 수 있었음</p>
+<p><a target="_blank" rel="noopener" href="https://reactnative.dev/docs/0.60/getting-started">https://reactnative.dev/docs/0.60/getting-started</a> 여길 참고하여 셋팅</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npx react-native init daily-github --template react-native-template-typescript</span><br><span class="line"></span><br><span class="line">npx react-native run-ios</span><br><span class="line"></span><br><span class="line">npx react-native run-android</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="typescript-template-사용할-때-버그-발생"><a href="#typescript-template-사용할-때-버그-발생" class="headerlink" title="typescript template 사용할 때 버그 발생"></a>typescript template 사용할 때 버그 발생</h2><p><a target="_blank" rel="noopener" href="https://github.com/react-native-community/react-native-template-typescript">공식 깃허브</a> 에도 있는 known issue이고,</p>
+<p><a target="_blank" rel="noopener" href="https://kimck.tistory.com/entry/%EB%A6%AC%EC%95%A1%ED%8A%B8-%EB%84%A4%EC%9D%B4%ED%8B%B0%EB%B8%8CReact-Native-TypeScript-%ED%85%9C%ED%94%8C%EB%A6%BF-%EC%82%AC%EC%9A%A9%EC%8B%9C-%EC%97%90%EB%9F%AC">같은 버그가 발생한 사람</a> 이 있어서, 이 글을 참고하여 해결</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall -g react-native-cli</span><br><span class="line"></span><br><span class="line">yarn global add @react-native-community/cli</span><br><span class="line"></span><br><span class="line">npx react-native init MyApp --template react-native-template-typescript</span><br></pre></td></tr></table></figure>
+
+<p>그리고 MyApp처럼 카멜케이스로 입력해야함 <code>-</code> 가 들어가면 에러가 뜸</p>
+<p>해당 에러</p>
+<p><img src="https://i.loli.net/2020/10/22/VKJnSxg2FyGz3iR.png" alt="image-20201023005651603"></p>
+<p>정상 설치시 뜨는 화면</p>
+<p><img src="https://i.loli.net/2020/10/22/cCWZXs29bl5pwrP.png" alt="image-20201023005733123"></p>
+<p>Fast Debug 및 시뮬레이터 둘다 뜨는 것 확인</p>
+<p><img src="https://i.loli.net/2020/10/23/8dOPGC2MWDJYm4f.png" alt="image-20201023010127345"></p>
+<h2 id="eslint-auto-fix"><a href="#eslint-auto-fix" class="headerlink" title="eslint auto fix"></a>eslint auto fix</h2><p>workspace setting.json에 설정</p>
+<p>[해당링크](<a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-">https://www.digitalocean.com/community/tutorials/linting-and-formatting-with-eslint-in-vs-</a> code) 참조</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&quot;editor.codeActionsOnSave&quot;: &#123;</span><br><span class="line">  &quot;source.fixAll.eslint&quot;: true</span><br><span class="line">&#125;,</span><br><span class="line">&quot;eslint.validate&quot;: [&quot;javascript&quot;]</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="백그라운드-이미지-삽입-스플래시"><a href="#백그라운드-이미지-삽입-스플래시" class="headerlink" title="백그라운드 이미지 삽입 (스플래시)"></a>백그라운드 이미지 삽입 (스플래시)</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">import &#123;ImageBackground&#125; from &#39;react-native&#39;;</span><br><span class="line"></span><br><span class="line">const image &#x3D; require(&#39;.&#x2F;assets&#x2F;img&#x2F;logo-og.png&#39;);</span><br><span class="line"></span><br><span class="line">&lt;ImageBackground source&#x3D;&#123;image&#125; style&#x3D;&#123;styles.image&#125;&gt;</span><br><span class="line">  &lt;Text style&#x3D;&#123;styles.text&#125;&gt;백그라운드 이미지&lt;&#x2F;Text&gt;</span><br><span class="line">&lt;&#x2F;ImageBackground&gt;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/10/23/JgV6KYhyeNQx2dT.png" alt="image-20201023021115627"></p>
+<p>resizemode가 제대로 적용이 안됬는데..?</p>
+<p>아니… react-native 공식 다큐먼트가 잘못 작성함</p>
+<p>style에 들어가는 것이 아닌, prop에 들어가야 적용이 됨.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;ImageBackground resizeMode&#x3D;&quot;contain&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="React-native-firebase-환경설정"><a href="#React-native-firebase-환경설정" class="headerlink" title="React-native-firebase 환경설정"></a>React-native-firebase 환경설정</h2><p><a target="_blank" rel="noopener" href="https://rnfirebase.io/">https://rnfirebase.io/</a> 참고</p>
+<p>흐음… 어째 코르도바랑 하는 일은 똑같네</p>
+<h2 id="Mac-안드로이드-에뮬레이터에서-인터넷이-안될때"><a href="#Mac-안드로이드-에뮬레이터에서-인터넷이-안될때" class="headerlink" title="Mac 안드로이드 에뮬레이터에서 인터넷이 안될때"></a>Mac 안드로이드 에뮬레이터에서 인터넷이 안될때</h2><p><img src="https://i.loli.net/2020/10/23/5Bn1x8e4zikOGbJ.png" alt="image-20201023033028119"></p>
+<h2 id="ios-google-service-json-추가-방법"><a href="#ios-google-service-json-추가-방법" class="headerlink" title="ios google-service.json 추가 방법"></a>ios google-service.json 추가 방법</h2><p>폴더에 넣는 것만으로는 절대! 안되며, 이런 형식으로 프로젝트에 추가해줘야함</p>
+<p><img src="https://i.loli.net/2020/10/23/RsHJri1mzt7PADZ.png" alt="image-20201023041210230"></p>
+<h2 id="React-native-firebaseui-설치"><a href="#React-native-firebaseui-설치" class="headerlink" title="React-native-firebaseui 설치"></a><del>React-native-firebaseui 설치</del></h2><p> <del>깃허브 로그인(oauth) 만들기 목적</del></p>
+<ul>
+<li><del>설치</del></li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">yarn add @react-native-firebase/app</span><br><span class="line"></span><br><span class="line">yarn add @react-native-firebase/auth</span><br><span class="line"></span><br><span class="line"><span class="built_in">cd</span> ios/ &amp;&amp; pod install</span><br><span class="line"></span><br><span class="line">npm install react-native-firebaseui --save</span><br><span class="line"></span><br><span class="line">react-native link react-native-firebaseui</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><del>podfile 설정</del></li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pod &#39;SDWebImage&#39;, &#39;~&gt; 4.0&#39;</span><br></pre></td></tr></table></figure>
+
+<p>auth에 관한 것이 아니었음</p>
+<h2 id="React-native-firebaseui-auth-사용"><a href="#React-native-firebaseui-auth-사용" class="headerlink" title="React-native-firebaseui-auth 사용"></a><del>React-native-firebaseui-auth 사용</del></h2><p><del><a target="_blank" rel="noopener" href="https://github.com/oijusti/react-native-firebaseui-auth">https://github.com/oijusti/react-native-firebaseui-auth</a>  이걸 사용해보기로함</del></p>
+<h3 id="멀티인덱스-에러-이슈"><a href="#멀티인덱스-에러-이슈" class="headerlink" title="멀티인덱스 에러 이슈"></a><del>멀티인덱스 에러 이슈</del></h3><ul>
+<li><del><a target="_blank" rel="noopener" href="https://stackoverflow.com/questions/50199565/react-native-build-error-while-merging-dex-archives">https://stackoverflow.com/questions/50199565/react-native-build-error-while-merging-dex-archives</a> 참고하여 해결</del></li>
+</ul>
+<p>안됨 =&gt; expo에서 깃허브로 로그인을 구현한 사례가 있어서 이동</p>
+<hr>
+<h2 id="GitHub"><a href="#GitHub" class="headerlink" title="GitHub"></a><del>GitHub</del></h2><p><del><a target="_blank" rel="noopener" href="https://blog.expo.io/firebase-github-authentication-with-react-native-2543e32697b4">https://blog.expo.io/firebase-github-authentication-with-react-native-2543e32697b4</a></del></p>
+<p><del>여기를 참고하여, 따라가보기</del></p>
+<p>expo-auth-session이 독립되면서 많이 바뀐 듯함</p>
+<p><a target="_blank" rel="noopener" href="https://docs.expo.io/guides/authentication/#github">공식 docs</a> 여기를 참고하는 것이 좋아보임</p>
+<h2 id="Authorization-callback-URL-amp-Redirect-URL"><a href="#Authorization-callback-URL-amp-Redirect-URL" class="headerlink" title="Authorization callback URL &amp; Redirect URL"></a>Authorization callback URL &amp; Redirect URL</h2><p>development모드에서는 exp:// 을 사용하고, 배포시에는 scheme://를 사용</p>
+<h3 id="dev"><a href="#dev" class="headerlink" title="dev"></a>dev</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">exp:&#x2F;&#x2F;127.0.0.1:19000&#x2F;--&#x2F;expo-auth-session</span><br></pre></td></tr></table></figure>
+
+<h3 id="prod"><a href="#prod" class="headerlink" title="prod"></a>prod</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">comdailycommit:&#x2F;&#x2F;redirect</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+<h2 id="accessToken-얻기"><a href="#accessToken-얻기" class="headerlink" title="accessToken 얻기"></a>accessToken 얻기</h2><p><a target="_blank" rel="noopener" href="https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/">https://developer.github.com/apps/building-oauth-apps/authorizing-oauth-apps/</a></p>
+<p>accessToken 발급 확인 완료</p>
+<h2 id="라우터-구현"><a href="#라우터-구현" class="headerlink" title="라우터 구현"></a>라우터 구현</h2><p><a target="_blank" rel="noopener" href="https://docs.expo.io/guides/routing-and-navigation/">https://docs.expo.io/guides/routing-and-navigation/</a> - 공식 docs의 예제가 오래된 것인지 작동하지 않는다.</p>
+<p><a target="_blank" rel="noopener" href="https://wordbe.tistory.com/entry/React-Native-5-React-Navigation-%EC%84%A4%EC%A0%95">~~https://wordbe.tistory.com/entry/React-Native-5-React-Navigation-%EC%84%A4%EC%A0%95</a>~~</p>
+<p><del>음. 이걸 따라해보지 뭐…</del>  deprecated된 패키지</p>
+<p><a target="_blank" rel="noopener" href="https://reactnavigation.org/docs/getting-started">공식 문서</a> 를 참고하여 따라해봄</p>
+<p><a target="_blank" rel="noopener" href="https://snack.expo.io/?platform=android&name=Hello%20React%20Navigation%20%7C%20React%20Navigation&dependencies=@react-native-community/masked-view@%5E0.1.7,@react-navigation/bottom-tabs@%5E5.8.0,@react-navigation/drawer@%5E5.9.0,@react-navigation/material-bottom-tabs@%5E5.2.16,@react-navigation/material-top-tabs@%5E5.2.16,@react-navigation/native@%5E5.7.3,@react-navigation/stack@%5E5.9.0,react-native-paper@%5E4.0.1,react-native-reanimated@%5E1.7.0,react-native-safe-area-context@%5E3.0.2,react-native-screens@%5E2.9.0,react-native-tab-view@%5E2.15.1&sourceUrl=https://reactnavigation.org/examples/5.x/new-screen.js">참고 예제</a> 따라하면 될 듯</p>
+<h2 id="react-native-folder-structure"><a href="#react-native-folder-structure" class="headerlink" title="react-native folder structure"></a>react-native folder structure</h2><p><img src="https://i.loli.net/2020/10/27/6W8j7zVoIChpZiK.png" alt="image-20201027191721516"></p>
+<p><a target="_blank" rel="noopener" href="https://github.com/pcofilada/simple-react-native-starter">https://github.com/pcofilada/simple-react-native-starter</a></p>
+<h2 id="Header-제거"><a href="#Header-제거" class="headerlink" title="Header 제거"></a>Header 제거</h2><p><img src="https://i.loli.net/2020/10/27/BRkx9vblatnZADU.png" alt="image-20201027193122335"></p>
+<p><a target="_blank" rel="noopener" href="https://reactnavigation.org/docs/stack-navigator/#headershown">https://reactnavigation.org/docs/stack-navigator/#headershown</a> 여기 참고</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Stack.Navigator initialRouteName&#x3D;&quot;Home&quot; headerMode&#x3D;&quot;none&quot;&gt;</span><br></pre></td></tr></table></figure>
+
+<p>headerMode 설정과 관련이 있음</p>
+<h2 id="React-native-http통신-useEffect"><a href="#React-native-http통신-useEffect" class="headerlink" title="React-native http통신 + useEffect"></a>React-native http통신 + useEffect</h2><p><a target="_blank" rel="noopener" href="https://ko.reactjs.org/docs/hooks-effect.html">https://ko.reactjs.org/docs/hooks-effect.html</a></p>
+<p><a target="_blank" rel="noopener" href="https://loy124.tistory.com/238">https://loy124.tistory.com/238</a></p>
+<h2 id="Redux-Typescript"><a href="#Redux-Typescript" class="headerlink" title="Redux + Typescript"></a>Redux + Typescript</h2><p>뭐쓰지? redux? mobx? redux가 함수형에 가까우므로, 오랜만에 사용해보자</p>
+<h3 id="참고-링크"><a href="#참고-링크" class="headerlink" title="참고 링크"></a>참고 링크</h3><ul>
+<li><p><a target="_blank" rel="noopener" href="https://www.digitalocean.com/community/tutorials/react-react-native-redux">https://www.digitalocean.com/community/tutorials/react-react-native-redux</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://chaewonkong.github.io/posts/react-native-redux.html">https://chaewonkong.github.io/posts/react-native-redux.html</a> </p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://react.vlpt.us/using-typescript/05-ts-redux.html#">https://react.vlpt.us/using-typescript/05-ts-redux.html#</a></p>
+</li>
+</ul>
+<h2 id="Redux는-선택사항-이라는-글을-읽고…"><a href="#Redux는-선택사항-이라는-글을-읽고…" class="headerlink" title="Redux는 선택사항 이라는 글을 읽고…"></a>Redux는 선택사항 이라는 글을 읽고…</h2><p><code>useState</code>를 사용하면서, redux의 필요성에 관해 의문이 들어 자료 조사</p>
+<p><a target="_blank" rel="noopener" href="https://delivan.dev/react/stop-asking-if-react-hooks-replace-redux-kr/">https://delivan.dev/react/stop-asking-if-react-hooks-replace-redux-kr/</a></p>
+<h2 id="Redux-Action-axios"><a href="#Redux-Action-axios" class="headerlink" title="Redux Action + axios"></a>Redux Action + axios</h2><p><a target="_blank" rel="noopener" href="https://velog.io/@secho/React-13-%EB%A6%AC%EB%8D%95%EC%8A%A4-Axios%EB%A1%9C-%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0">https://velog.io/@secho/React-13-%EB%A6%AC%EB%8D%95%EC%8A%A4-Axios%EB%A1%9C-%EC%83%81%ED%83%9C%EA%B4%80%EB%A6%AC%ED%95%98%EA%B8%B0</a></p>
+<p><code>createAsyncAction</code> : <a target="_blank" rel="noopener" href="https://github.com/piotrwitek/typesafe-actions#createasyncaction">https://github.com/piotrwitek/typesafe-actions#createasyncaction</a></p>
+<p>흠… 앱의 규모에 맞지않게 기술 스택이 너무 깊어지는데? 학습 목적이라고 생각을 해야하나…</p>
+<p>기존의 간단한 코드로 가능한 사항들이 복잡도가 올라가고 있어서 불편</p>
+<h2 id="Debugger"><a href="#Debugger" class="headerlink" title="Debugger"></a>Debugger</h2><p><a target="_blank" rel="noopener" href="https://medium.com/duckuism/react-native-%EB%94%94%EB%B2%84%EA%B9%85-%ED%99%98%EA%B2%BD-%EB%A7%8C%EB%93%A4%EA%B8%B0-7e46bfe89f6">https://medium.com/duckuism/react-native-%EB%94%94%EB%B2%84%EA%B9%85-%ED%99%98%EA%B2%BD-%EB%A7%8C%EB%93%A4%EA%B8%B0-7e46bfe89f6</a></p>
+<p>아래 링크로 접속해야함</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">rndebugger:&#x2F;&#x2F;set-debugger-loc?host&#x3D;localhost&amp;port&#x3D;19001</span><br></pre></td></tr></table></figure>
+
+
+
+
+
+<h2 id="Router-Hook"><a href="#Router-Hook" class="headerlink" title="Router Hook"></a>Router Hook</h2><p><a target="_blank" rel="noopener" href="https://reactrouter.com/web/api/Hooks">https://reactrouter.com/web/api/Hooks</a></p>
+<h2 id="비율"><a href="#비율" class="headerlink" title="비율"></a>비율</h2><p>전체 높이: 100%</p>
+<ol>
+<li>헤더 10%</li>
+<li>오늘 커밋 15%</li>
+<li>첫 커밋 내용 10%</li>
+<li>전체 커밋 현황 25%</li>
+<li>셋팅 30% </li>
+<li>로그아웃 10%</li>
+</ol>
+<h2 id="오늘-커밋-개수-구하기"><a href="#오늘-커밋-개수-구하기" class="headerlink" title="오늘 커밋 개수 구하기"></a>오늘 커밋 개수 구하기</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;api.github.com&#x2F;repos&#x2F;&#123;owner&#125;&#x2F;&#123;repo&#125;&#x2F;stats&#x2F;commit_activity</span><br></pre></td></tr></table></figure>
+
+<p>owner, repo 필요함</p>
+<ul>
+<li>owner: 이미 access_token으로 가지고있음 + organzation 도 포함해야할듯<ul>
+<li>organization List의 경우, 하나하나 사용자가 클릭해서 허락해줘야하는 번거로움이 있어 퍼블릭 올거니제이션만 포함</li>
+</ul>
+</li>
+<li>repo: repo list에서 반복 돌려야할듯</li>
+</ul>
+<h3 id="owner"><a href="#owner" class="headerlink" title=":owner"></a>:owner</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;api.github.com&#x2F;users&#x2F;taeuk-gang&#x2F;orgs</span><br></pre></td></tr></table></figure>
+
+<p><code>+</code> login(유저 고유아이디)</p>
+<h3 id="repo"><a href="#repo" class="headerlink" title=":repo"></a>:repo</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;api.github.com&#x2F;user&#x2F;repos</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https:&#x2F;&#x2F;api.github.com&#x2F;orgs&#x2F;:org&#x2F;repos</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="commit-history"><a href="#commit-history" class="headerlink" title="commit history"></a>commit history</h2><p>개인 레포</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;user&#x2F;repos</span><br></pre></td></tr></table></figure>
+
+<p>올거니제이션 레포</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;repos&#x2F;&#123;owner&#125;&#x2F;&#123;repo&#125;&#x2F;commits</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/k8s_3_pod/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    3장 파드 - 쿠버네티스에서 컨테이너 실행
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Typescript%20quick%20start_12/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Quick Start Typescript ~ 12장 정리</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

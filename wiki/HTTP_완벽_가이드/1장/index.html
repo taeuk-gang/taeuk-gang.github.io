@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>HTTP 완벽 가이드 1장 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="HTTP 완벽 가이드" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="HTTP 완벽 가이드 1장: HTTP 개관  목차마다 무엇을 알아야하는지 정리  목차 1장 키워드들   HTTP 웹 리소스 MIME 타입 URI, URL, URN HTTP 메시지 Request(시작줄, 헤더, 본문) Response(상태줄, 헤더, 본문) 메서드, 상태코드   TCP 커넥션 프로토콜 버전 웹 구성요소 프록시, 캐시, 게이트웨이, 터널,">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HTTP 완벽 가이드 1장">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="HTTP 완벽 가이드 1장: HTTP 개관  목차마다 무엇을 알아야하는지 정리  목차 1장 키워드들   HTTP 웹 리소스 MIME 타입 URI, URL, URN HTTP 메시지 Request(시작줄, 헤더, 본문) Response(상태줄, 헤더, 본문) 메서드, 상태코드   TCP 커넥션 프로토콜 버전 웹 구성요소 프록시, 캐시, 게이트웨이, 터널,">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/74609919-04dc9100-5132-11ea-8c79-d4ff79d5bfde.gif">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/202209200224305.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/202209200329747.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/202209200742214.png">
+<meta property="article:published_time" content="2022-09-17T06:45:20.000Z">
+<meta property="article:modified_time" content="2022-09-23T11:14:42.733Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="HTTP 완벽 가이드">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/74609919-04dc9100-5132-11ea-8c79-d4ff79d5bfde.gif">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-HTTP_완벽_가이드/1장" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/HTTP-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C/">HTTP 완벽 가이드</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/HTTP-%EC%99%84%EB%B2%BD-%EA%B0%80%EC%9D%B4%EB%93%9C/" rel="tag">HTTP 완벽 가이드</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">
+            <time datetime="2022-09-17T06:45:20.000Z" itemprop="datePublished">2022-09-17</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/HTTP_완벽_가이드/1장.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/HTTP_완벽_가이드/1장.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/HTTP_완벽_가이드/1장.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            HTTP 완벽 가이드 1장
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <iframe src="/presentation/HTTP_완벽_가이드/1장"></iframe>
+
+<h1 id="HTTP-완벽-가이드-1장-HTTP-개관"><a href="#HTTP-완벽-가이드-1장-HTTP-개관" class="headerlink" title="HTTP 완벽 가이드 1장: HTTP 개관"></a>HTTP 완벽 가이드 1장: HTTP 개관</h1><p><img src="https://user-images.githubusercontent.com/26294469/74609919-04dc9100-5132-11ea-8c79-d4ff79d5bfde.gif" alt="bg w:300 right center"></p>
+<blockquote>
+<p>목차마다 무엇을 알아야하는지 정리</p>
+</blockquote>
+<h2 id="목차"><a href="#목차" class="headerlink" title="목차"></a>목차</h2><blockquote>
+<p>1장 키워드들</p>
+</blockquote>
+<ol>
+<li>HTTP</li>
+<li>웹 리소스</li>
+<li>MIME 타입</li>
+<li>URI, URL, URN</li>
+<li>HTTP 메시지<ul>
+<li>Request(시작줄, 헤더, 본문)</li>
+<li>Response(상태줄, 헤더, 본문)</li>
+<li>메서드, 상태코드</li>
+</ul>
+</li>
+<li>TCP 커넥션</li>
+<li>프로토콜 버전</li>
+<li>웹 구성요소<ul>
+<li>프록시, 캐시, 게이트웨이, 터널, 에이전트</li>
+</ul>
+</li>
+</ol>
+<h2 id="1-HTTP"><a href="#1-HTTP" class="headerlink" title="1. HTTP"></a>1. HTTP</h2><blockquote>
+<p>📝3-4p, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP">HTTP MDN</a><br>HTTP에 대해서 대략적으로 설명할 수 있으면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<p>HTTP(HyperText Transfer Protocol) = 하이퍼미디어 문서를 전송하기위한 애플리케이션 레이어 프로토콜, 서버와 클라이언트 사이간의 메시지 통신 규약</p>
+<ul>
+<li>웹 브라우저와 웹 서버간의 커뮤니케이션을위해 디자인되었지만, 다른 목적으로도 사용가능</li>
+<li>HTTP는 클라이언트가 요청을 생성하기 위한 연결을 연다음 응답을 받을때 까지 대기하는 전통적인 <a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Client%E2%80%93server_model">클라이언트-서버 모델</a>을 따름</li>
+</ul>
+<h2 id="2-웹-리소스"><a href="#2-웹-리소스" class="headerlink" title="2. 웹 리소스"></a>2. 웹 리소스</h2><blockquote>
+<p>📝5p, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web">MIME_Types MDN</a><br>‘웹 리소스’에 대해서 대략적으로 설명할 수 있으면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<p>웹 리소스 = HTTP 요청 대상</p>
+<ul>
+<li>리소스의 특성은 더 이상 정의되지 않음(어떤 컨텐츠 등 가능)<ul>
+<li>정적 리소스(ex. text, html, word, pdf 등)</li>
+<li>동적 리소스(ex. 게이트웨이)도 포함</li>
+</ul>
+</li>
+</ul>
+<h2 id="3-MIME-타입"><a href="#3-MIME-타입" class="headerlink" title="3. MIME 타입"></a>3. MIME 타입</h2><blockquote>
+<p>📝6p. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/MIME_Types">MIME 타입 MDN</a>, 뒷장에서 더 설명되서 자세한 내용은 생략<br>‘MIME 타입’에 대해서 대략적으로 설명할 수 있으면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<p>MIME(Multipurpose Internet Mail Extensions) = 클라이언트에게 전송된 문서의 다양성을 알려주기 위한 메커니즘</p>
+<ul>
+<li>웹에서 파일의 확장자는 별 의미가 없음<ul>
+<li>각 문서와 함께 올바른 MIME 타입을 전송하도록, 서버가 정확히 설정하는 것이 중요</li>
+<li>브라우저들은 리소스를 내려받았을 때 해야 할 기본 동작이 무엇인지를 결정하기 위해 사용</li>
+</ul>
+</li>
+<li>주 타입(Prmiary object type)/부 타입(Specific subtype)으로 구성<ul>
+<li>ex. text/html, image/jpeg, audio/mpeg, video/mpeg, application/pdf</li>
+</ul>
+</li>
+<li>MIME 타입 전체 목록은 📝부록D 혹은 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types">MIME 전체목록 MDN</a>를 참고</li>
+<li>MIME 타입은 대소문자를 구분하지는 않지만 전통적으로 소문자로 쓰여짐</li>
+</ul>
+<h2 id="4-URI-vs-URL"><a href="#4-URI-vs-URL" class="headerlink" title="4. URI vs URL"></a>4. URI vs URL</h2><blockquote>
+<p>📝7-8p, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Identifying_resources_on_the_Web#url%EA%B3%BC_urn">URL과 URN MDN</a><br>‘URI’, ‘URL’, ‘URN’에 대해서 관하여 설명할 수 있으면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<ul>
+<li><p>URI(Uniform Resource Identifier) = 하나의 리소스를 가리키는 문자열</p>
+</li>
+<li><p>가장 흔한 URI는 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Glossary/URL">URL</a>로, 웹 상에서의 위치로 리소스를 식별</p>
+</li>
+</ul>
+<blockquote>
+<p>식별(URI)과 위치(URL)의 차이라고 보면 되지 않을까 싶네요…<br>MDN문서에서도 굳이 이 차이에 대해서 설명하지 않고 있어, 이 부분은 생략하겠습니다.</p>
+</blockquote>
+<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/URN">URN</a>은 주어진 이름공간 안의 이름으로 리소스를 식별<ul>
+<li>ex <code>urn:isbn:0451450523</code></li>
+<li>책에서는 아직 널리 채택되지않은 기술이라고 언급하고 있지만, 현재는 <a target="_blank" rel="noopener" href="https://www.ietf.org/rfc/rfc3986.txt">rfc3986</a>에서 확인한 결과 <code>INTERNET STANDARD</code> 상태이다.</li>
+<li>주소가 바뀌는 것과 상관없이 사용할 수 있는 것이 특성</li>
+</ul>
+</li>
+</ul>
+<h2 id="5-HTTP-메시지"><a href="#5-HTTP-메시지" class="headerlink" title="5. HTTP 메시지"></a>5. HTTP 메시지</h2><blockquote>
+<p>📝9-13p, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Messages">HTTP 메시지 MDN</a><br>HTTP 메시지 구성 및 방식에 대해서 설명할 수 있으면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<ul>
+<li>클라이언트와 서버는 HTTP 메시지를 주고받음</li>
+<li>HTTP 메시지 = HTTP 메시지는 서버와 클라이언트 간에 데이터가 교환되는 방식</li>
+<li>메시지 타입은 두 가지<ul>
+<li>요청(request) = 클라이언트가 서버로 전달해서 서버의 액션이 일어나게끔 하는 메시지</li>
+<li>응답(response) = 요청에 대한 서버의 답변</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP-요청"><a href="#HTTP-요청" class="headerlink" title="HTTP 요청"></a>HTTP 요청</h3><ul>
+<li>HTTP 요청은 시작줄, 헤더, 본문으로 구성</li>
+</ul>
+<h4 id="시작줄-start-line"><a href="#시작줄-start-line" class="headerlink" title="시작줄(start-line)"></a>시작줄(start-line)</h4><ul>
+<li>첫번째로 오는 것은 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Methods"><code>HTTP 메서드</code></a>로, 영어 동사(GET, PUT,POST) 혹은 명사(HEAD, OPTIONS)를 사용해 서버가 수행해야 할 동작 표시</li>
+<li>두번째로 오는 요청 타겟은 주로 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Glossary/URL">URL</a><ol>
+<li>origin 형식: 끝에 <code>&#39;?&#39;</code>와 쿼리 문자열이 붙는 절대 경로<ul>
+<li>ex. <code>GET /background.png HTTP/1.0</code></li>
+</ul>
+</li>
+<li>absolute 형식: 완전한 URL 형식<ul>
+<li>프록시에 연결하는 경우 대부분 GET과 함께 사용</li>
+<li>ex. <code>GET http://developer.mozilla.org/ HTTP/1.1</code></li>
+</ul>
+</li>
+</ol>
+</li>
+<li>…<ol start="3">
+<li>authority 형식: 도메인 이름 및 옵션 포트(‘:’가 앞에 붙음)로 이루어진 URL의 authority component<ul>
+<li>HTTP 터널을 구축하는 경우에만 CONNECT와 함께 사용</li>
+<li>ex. <code>CONNECT developer.mozilla.org:80 HTTP/1.1</code></li>
+</ul>
+</li>
+<li>asterisk 형식: OPTIONS와 함께 별표(‘*’) 하나로 간단하게 서버 전체를 표시<ul>
+<li>ex. OPTIONS * HTTP/1.1</li>
+</ul>
+</li>
+</ol>
+</li>
+<li>마지막으로 ​​​​HTTP 버전을 표시<ul>
+<li>ex. <code>HTTP/1.1</code></li>
+</ul>
+</li>
+</ul>
+<h4 id="헤더-header"><a href="#헤더-header" class="headerlink" title="헤더(header)"></a>헤더(header)</h4><ul>
+<li>요청에 들어가는 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers">HTTP 헤더</a>는 HTTP 헤더의 기본 구조를 따름</li>
+<li>대소문자 구분없는 문자열 다음에 콜론(‘:’)이 붙음</li>
+<li>다양한 종류의 요청 헤더<ul>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/General_header">General 헤더</a>: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Via"><code>Via</code></a>와 같은 <em>헤더는</em> 메시지 전체에 적용</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Request_header">Request 헤더</a>: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/User-Agent"><code>User-Agent</code></a> 또는 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Accept"><code>Accept</code></a>와 같은 헤더</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Glossary/Representation_header">Representation 헤더</a>: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Content-Type"><code>Content-Type</code></a>와 같은 헤더</li>
+</ul>
+</li>
+</ul>
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/202209200224305.png" alt="bg fit right"></p>
+<h4 id="본문-body"><a href="#본문-body" class="headerlink" title="본문(body)"></a>본문(body)</h4><ul>
+<li>모든 요청에 본문이 들어가지는 않음<ul>
+<li><code>GET</code>, <code>HEAD</code>, <code>DELETE</code> , <code>OPTIONS</code> 리소스를 가져오는 요청은 보통 본문이 필요없음</li>
+<li>넓게 보면 본문은 두가지 종류<ul>
+<li>단일-리소스 본문(single-resource bodies): 헤더 두 개(<a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Content-Type"><code>Content-Type</code></a>와 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Content-Length"><code>Content-Length</code></a>)로 정의된 단일 파일로 구성</li>
+<li>다중-리소스 본문(multiple-resource bodies): 멀티파트 본문으로 구성되는 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#multipartform-data">다중 리소스 본문</a>에서는 파트마다 다른 정보를 지니게 됩니다. 보통 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Learn/Forms">HTML 폼</a>과 관련<ul>
+<li><a target="_blank" rel="noopener" href="https://velog.io/@shin6403/HTTP-multipartform-data-%EB%9E%80">다중 리소스 참고블로그</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h3 id="HTTP-응답"><a href="#HTTP-응답" class="headerlink" title="HTTP 응답"></a>HTTP 응답</h3><h4 id="상태줄-Status-Line"><a href="#상태줄-Status-Line" class="headerlink" title="상태줄(Status Line)"></a>상태줄(Status Line)</h4><ul>
+<li>HTTP 응답의 시작 줄은 상태 줄(status line)이라고 불림<ol>
+<li>프로토콜 버전: ex. <code>HTTP/1.1</code></li>
+<li>상태 코드: 요청의 성공 여부</li>
+<li>상태 텍스트: 짧고 간결하게 상태 코드에 대한 설명을 글로 나타내어 사람들이 HTTP 메시지를 이해할 때 도움<ul>
+<li>HTTP 2부터는 사유 구절(reason phrase)이 제거됨</li>
+</ul>
+</li>
+</ol>
+<ul>
+<li>ex. <code>HTTP/1.1 404 Not Found</code></li>
+</ul>
+<ol start="4">
+<li>시작줄과 다른 점은 요청타겟 대신 상태코드가 3자리 숫자로 구성되어 표시 (<a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Status">전체목록 참조</a>)<ul>
+<li>1xx: 정보 응답</li>
+<li>2xx: 성공</li>
+<li>3xx: 리다이렉션</li>
+<li>4xx: 클라이언트 오류</li>
+<li>5xx: 서버 오류</li>
+</ul>
+</li>
+</ol>
+</li>
+</ul>
+<h4 id="헤더-header-Request-Header와-동일"><a href="#헤더-header-Request-Header와-동일" class="headerlink" title="헤더(header): Request Header와 동일"></a>헤더(header): Request Header와 동일</h4><h4 id="본문-body-1"><a href="#본문-body-1" class="headerlink" title="본문(body)"></a>본문(body)</h4><ul>
+<li>모든 응답에 본문이 들어가지는 않음( <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Status/201"><code>201</code></a>, <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Status/204"><code>204</code></a>과 같은 상태 코드를 가진 응답에는 보통 본문이 없음)</li>
+<li>넓게 3가지 종류로 구분<ol>
+<li>이미 길이가 알려진 단일 파일로 구성된 단일-리소스 본문: 헤더 두개(<a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Content-Type"><code>Content-Type</code></a>와 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Content-Length"><code>Content-Length</code></a>)로 정의</li>
+<li>길이를 모르는 단일 파일로 구성된 단일-리소스 본문: <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Transfer-Encoding"><code>Transfer-Encoding</code></a>가 <code>chunked</code>로 설정되어 있으며, 파일은 청크로 나뉘어 인코딩</li>
+<li>서로 다른 정보를 담고 있는 멀티파트로 이루어진 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#multipartform-data">다중 리소스 본문</a></li>
+</ol>
+</li>
+</ul>
+<blockquote>
+<p>책 내용 외 추가작성. chrome 개발자도구에서는 HTTP Raw Message를 확인할 수 없다. 그렇다면 어떻게 확인할 수 있을까?</p>
+</blockquote>
+<ol>
+<li><p>네트워크 패널에서 확인하고 싶은 요청의 curl을 복사(copy)</p>
+</li>
+<li><p>터미널을 열고 <code>nc -l 8080(임의포트)</code> 실행<br>(요즘은 <code>telnet</code>대신 <code>nc</code>를 사용하는 추세)</p>
+<ul>
+<li>Netcat(ornc)은 TCP 또는 UDP 프로토콜을 사용하여 네트워크 연결을 통해 데이터를 읽고 쓰는 명령줄 유틸리티</li>
+<li>일반적으로 상대 서버의 포트가 열렸는지 확인하거나, 직접 서버가 되어 원격 서버에서(클라이언트) 접속이 가능하지 확인하는 용도로 사용</li>
+</ul>
+</li>
+<li><p>복사한 curl을 붙여넣기(paste)하고 <code>--raw -i</code> 옵션을 추가하여 실행</p>
+</li>
+<li><p><code>nc</code>가 실행된 터미널에서 HTTP 메시지 확인 가능</p>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/202209200329747.png" alt="bg fit right"></p>
+<h2 id="6-TCP-커넥션"><a href="#6-TCP-커넥션" class="headerlink" title="6. TCP 커넥션"></a>6. TCP 커넥션</h2><blockquote>
+<p>📝13-18p.<br>HTTP 어플리케이션 계층과 TCP 데이터 전송 계층을 이해했다면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<ul>
+<li>HTTP는 애플리케이션 계층 프로토콜로 네트워크 통신 핵심적인 세부적인 사항에 대해서 처리를 하지는 않음</li>
+<li>대신 대중적이고 신뢰성 있는 TCP/IP에게 그 역할을 맡김<ul>
+<li>이 책에서 설명하는 TCP 특징<ul>
+<li>오류 없는 데이터 전송(신뢰성)</li>
+<li>언제나 보낸 순서대로 도착</li>
+<li>언제든 어떤 크기로든 보낼 수 있음</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>HTTP 프로토콜 5계층<ul>
+<li>HTTP (어플리케이션 계층)</li>
+<li>TCP (전송 계층)</li>
+<li>IP (네트워크 계층)</li>
+<li>Ethernet (네트워크 인터페이스 계층)</li>
+<li>물리 계층</li>
+</ul>
+</li>
+</ul>
+<ul>
+<li>네트워크를 설명할 때 넘어갈 수 없는 것이 OSI 7계층, OSI 자체는 현재 사용되진 않지만 참조 모델로 주로 사용<ul>
+<li>1계층 물리 계층: 전기적, 기계적, 기능적인 특성을 이용해 데이터를 전송</li>
+<li>2계층 데이터 링크 계층: 물리 계층을 통해 송수신되는 정보의 오류와 흐름을 관리</li>
+<li>3계층 네트워크 계층: 네트워크 통신 경로 선택</li>
+<li>4계층 전송 계층: 네트워크 통신 관리</li>
+<li>5계층 세션 계층: 통신 시작과 종료 순서</li>
+<li>6계층 표현 계층: 데이터의 표현 방법을 정의 </li>
+<li>7계층 응용 계층: 사용자의 요구를 만족시키는 응용 서비스를 제공</li>
+</ul>
+</li>
+<li>TCP/IP를 설명할 때는 보통 4계층으로 묶어서 설명<br>애플리케이션(5-7계층), 전송(4계층)<br>네트워크(3계층), 링크 계층(1-2계층)</li>
+</ul>
+<h2 id="7-프로토콜-버전"><a href="#7-프로토콜-버전" class="headerlink" title="7. 프로토콜 버전"></a>7. 프로토콜 버전</h2><blockquote>
+<p>📝18-19p. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP">HTTP의 진화 MDN</a><br>HTTP 버전간의 차이를 설명할 수 있다면 이 장을 생략</p>
+</blockquote>
+<ul>
+<li>HTTP 초기 버전에는 버전 번호가 없었음</li>
+<li>0.9부터 버전 관리를 시작</li>
+</ul>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http0.9_%E2%80%93_%EC%9B%90-%EB%9D%BC%EC%9D%B8_%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C">HTTP/0.9 – 원-라인 프로토콜</a><ul>
+<li>요청은 단일 라인으로 구성</li>
+<li>가능한 메서드는 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Methods/GET"><code>GET</code></a>이 유일</li>
+<li>HTTP 헤더가 없었는데 이는 HTML 파일만 전송될 수 있으며 다른 유형의 문서는 전송될 수 없음을 의미</li>
+<li>문제가 발생한 경우, 특정 HTML 파일이 사람이 처리할 수 있도록, 해당 파일 내부에 문제에 대한 설명과 함께 되돌려 보내짐</li>
+</ul>
+</li>
+</ol>
+<ol start="2">
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http1.0_%E2%80%93_%ED%99%95%EC%9E%A5%EC%84%B1_%EB%A7%8C%EB%93%A4%EA%B8%B0">HTTP/1.0 – 확장성 만들기</a> - <a target="_blank" rel="noopener" href="https://datatracker.ietf.org/doc/html/rfc1945">RFC 1945</a>에 공개<ul>
+<li>버전 정보가 각 요청 사이내로 전송 ex. <code>GET HTTP/1.0</code></li>
+<li>상태 코드 라인 또한 응답의 시작 부분에 붙어 전송 (브라우저가 요청에 대한 성공과 실패를 알 수 있음)</li>
+<li>HTTP 헤더 개념은 요청과 응답 모두를 위해 도입</li>
+</ul>
+</li>
+</ol>
+<p>일반적인 요청 예시</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">GET &#x2F;mypage.html HTTP&#x2F;1.0</span><br><span class="line">User-Agent: NCSA_Mosaic&#x2F;2.0 (Windows 3.1)</span><br><span class="line"></span><br><span class="line">200 OK</span><br><span class="line">Date: Tue, 15 Nov 1994 08:12:31 GMT</span><br><span class="line">Server: CERN&#x2F;3.0 libwww&#x2F;2.17</span><br><span class="line">Content-Type: text&#x2F;html</span><br><span class="line">&lt;HTML&gt;</span><br><span class="line">A page with an image</span><br><span class="line">  &lt;IMG SRC&#x3D;&quot;&#x2F;myimage.gif&quot;&gt;</span><br><span class="line">&lt;&#x2F;HTML&gt;</span><br></pre></td></tr></table></figure>
+
+
+<ol start="3">
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http1.1_%E2%80%93_%ED%91%9C%EC%A4%80_%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C">HTTP/1.1 – 표준 프로토콜</a></li>
+</ol>
+<ul>
+<li>현재 가장 널리 사용되는 HTTP 버전</li>
+<li>커넥션이 재사용 가능 (keep-alive: Three-shake 오버헤드를 줄임)</li>
+<li>파이프라이닝을 추가(첫번째 요청에 대한 응답이 완전히 전송되기 이전에 두번째 요청 전송을 가능케 하여, 커뮤니케이션 레이턴시를 낮춤)</li>
+<li>청크된 응답 또한 지원</li>
+<li>추가적인 캐시 제어 메커니즘이 도입<ul>
+<li>캐시 제어 메커니즘에 대한 내용은 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Caching">이곳</a>에서 확인 가능</li>
+</ul>
+</li>
+<li>언어, 인코딩 혹은 타입을 포함한 컨텐츠 협상이 도입</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Headers/Host"><code>Host</code></a> 헤더 덕분에, 동일 IP 주소에 다른 도메인을 호스트하는 기능이 서버 <code>collocation</code>을 가능</li>
+</ul>
+<ol start="4">
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Basics_of_HTTP/Evolution_of_HTTP#http2_%E2%80%93_%EB%8D%94_%EB%82%98%EC%9D%80_%EC%84%B1%EB%8A%A5%EC%9D%84_%EC%9C%84%ED%95%9C_%ED%94%84%EB%A1%9C%ED%86%A0%EC%BD%9C">HTTP/2 – 더 나은 성능을 위한 프로토콜</a>  <ul>
+<li>텍스트 프로토콜이라기 보다는 이진 프로토콜 (더 이상 읽을 수도 없고 수작업을 만들어낼 수 없음)</li>
+<li>병렬 요청이 동일한 커넥션 상에서 다루어질 수 있는 다중화 프로토콜<br>(순서를 제거해주고 HTTP/1.x 프로토콜의 제약사항을 막음)</li>
+<li>전송된 데이터의 분명한 중복과 그런 데이터로부터 유발된 불필요한 오버헤드를 제거<br>(연속된 요청 사이의 매우 유사한 내용으로 존재하는 헤더들을 압축)</li>
+<li>서버로 하여금 사전에 클라이언트 캐시를 서버 푸쉬라고 불리는 메커니즘, 필요한 데이터 채우기 허용</li>
+<li><a target="_blank" rel="noopener" href="https://w3techs.com/technologies/details/ce-http2">HTTP2 사용현황</a> - 2022. 09 기준 44% 사용 </li>
+</ul>
+</li>
+</ol>
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/202209200742214.png" alt="bg w:500 right"></p>
+<h2 id="8-웹-구성요소"><a href="#8-웹-구성요소" class="headerlink" title="8. 웹 구성요소"></a>8. 웹 구성요소</h2><blockquote>
+<p>📝19-22p. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Glossary/Proxy_server">프록시 서버 MDN</a><br>프록시, 캐시, 게이트웨이, 터널, 에이전트에 대해서 설명할 수 있다면 이 섹션을 건너뛰어도 좋습니다.</p>
+</blockquote>
+<h3 id="프록시"><a href="#프록시" class="headerlink" title="프록시"></a>프록시</h3><ul>
+<li>클라이언트와 서버 사이에 위치하여 클라이언트의 요청을 받아 서버에 전달하고, 서버의 응답을 받아 클라이언트에 전달하는 역할을 하는 중간 서버</li>
+<li><a target="_blank" rel="noopener" href="https://valuefactory.tistory.com/165">웹 보안</a>, 어플리케이션 통합, 성능 최적화 등의 목적으로 사용</li>
+<li>일반적으로 크게 주로 2가지 종류의 프록시 서버가 존재<ul>
+<li>포워드 프록시(forward proxy)는 인터넷 상에서 어디로든지 리퀘스트를 전송해주는 프록시<ul>
+<li>주로 캐싱, IP 우회 , 접근 제한 등 으로 사용</li>
+</ul>
+</li>
+<li>리버스 프록시(reverse proxy)는 인터넷에서 리퀘스트를 받으면, 내부망 내의 서버로 전송<ul>
+<li>주로 로드밸런싱, 보안 등 으로 사용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<dl><dt>vpn과 forward proxy의 차이?</dt><dd>개인 생각으로는 데이터 암호화로, forward proxy가 vpn을 포함하는 더 큰 범주라고 생각</dd></dl></blockquote>
+<blockquote>
+<p>📝19-22p. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Caching">HTTP 캐싱 MDN</a></p>
+</blockquote>
+<h3 id="캐시"><a href="#캐시" class="headerlink" title="캐시"></a>캐시</h3><ul>
+<li>웹 캐시와 캐시 프록시는 자신을 거쳐 가는 리소스 중 자주 찾는 것의 사본을 저장하는 특별한 HTTP 프록시 라고 책에서 설명되고 있음 (7장에서 더 자세하게 설명)<ul>
+<li>클라이언트는 멀리 떨어진 웹 서버보다 근처의 캐시에서 더 빨리 문서를 받을 수 있음<br>(웹 캐시는 레이턴시와 네트워크 트래픽을 줄여줌)</li>
+<li>캐시 큰 종류는 설(private) 혹은 공유(shared) 캐시 두 가지 부류로 분류<ul>
+<li>공유 캐시는 한 명 이상의 사용자가 재사용할 수 있도록 응답을 저장하는 캐시</li>
+<li>사설 캐시는 한 명의 사용자만 사용하는 캐시</li>
+<li>그 외 게이트웨이 캐시, CDN, 리버스 프록시 캐시 그리고 로드 밸랜서 등이 있지만 현재 장에서 생략</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="브라우저-캐시-Private-Cache"><a href="#브라우저-캐시-Private-Cache" class="headerlink" title="브라우저 캐시(Private Cache)"></a>브라우저 캐시(Private Cache)</h4><ul>
+<li>사설 캐시는 단일 사용자가 전용으로 사용</li>
+<li>사용자에 의하여 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP">HTTP</a>를 통해 다운로드된 모든 문서들을 가지고 있음</li>
+<li>서버에 대한 추가적인 요청 없이 뒤로 가기나 앞으로 가기, 저장, 소스로 보기 등을 위해 방문했던 문서들을 사용</li>
+</ul>
+<h4 id="프록시-캐시-Shared-Cache"><a href="#프록시-캐시-Shared-Cache" class="headerlink" title="프록시 캐시(Shared Cache)"></a>프록시 캐시(Shared Cache)</h4><ul>
+<li>공유 캐시는 한 명 이상의 사용자에 의해 재사용되는 응답을 저장하는 캐시</li>
+<li>회사의 ISP는 많은 사용자들을 서비스하기 위해 지역 네트워크 기반의 일부분으로서 웹 프록시를 설치가 가능</li>
+<li>덕분에 조회가 많이 되는 리소스들은 몇 번이고 재사용되어 네트워크 트래픽과 레이턴시를 줄여줌</li>
+</ul>
+<p>위 내용 제어를 원한다면 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/HTTP/Caching#%EC%BA%90%EC%8B%B1_%EC%A0%9C%EC%96%B4"><code>cache-control</code></a> 헤더를 사용</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Cache-Control: private <span class="comment"># 단일 사용자만을 위한 것이며 공유 캐시에 의해 저장되어서는 안됨</span></span><br><span class="line">Cache-Control: public <span class="comment"># 응답이 어떤 캐시에 의해서든 캐시되어도 좋음</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>📝19-22p. <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Proxy_servers_and_tunneling">Proxy servers and tunneling MDN</a></p>
+</blockquote>
+<h3 id="게이트웨이"><a href="#게이트웨이" class="headerlink" title="게이트웨이"></a>게이트웨이</h3><ul>
+<li>다른 서버들의 중개자로 동작하는 특별한 서버</li>
+<li>책에서는 주로 HTTP 트래픽을 다른 프로토콜로 변환하기위해 사용된다고 설명 (ex. HTTP/FTP)</li>
+</ul>
+<blockquote>
+<p>게이트웨이와 프록시에 대한 차이는 모호하긴 하지만, 목적에 대한 차이가 있음</p>
+<ul>
+<li>게이트웨이는 서로 다른 서버를 연결해주는데 주 목적 (보통 2개 이상의 서버)</li>
+<li>프록시는 필터링, 보안, 최적화에 등 목적을 갖고 다른 사이트를 대신하며 우회하는데 주 목적 (보통 1개의 서버)</li>
+</ul>
+</blockquote>
+<h3 id="HTTP-터널"><a href="#HTTP-터널" class="headerlink" title="HTTP 터널"></a>HTTP 터널</h3><ul>
+<li>터널은 두 커넥션 사이에서 raw 데이터를 그대로 전달해주는 HTTP 애플리케이션</li>
+<li>예시로 HTTP/SSL 터널링이 있음</li>
+</ul>
+<h3 id="에이전트"><a href="#에이전트" class="headerlink" title="에이전트"></a>에이전트</h3><ul>
+<li>HTTP 요청을 만들어주는 클라이언트 프로그램(보통 웹 브라우저), 추가로 자동화 스파이더, 웹로봇이 존재 (9장 설명)</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    아키텍처 변천사 간략한 정리
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/k8s/1.22_1.23_k8s_update/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">k8s 1.22 -&gt; 1.23 변경사항 정리</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

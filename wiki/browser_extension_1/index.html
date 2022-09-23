@@ -1,0 +1,839 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>브라우저 확장 프로그램 개발 시작하기 | TAEUK WIKI</title><meta name="robots" content="noindex">
+    
+    
+        <meta name="keywords" content="Browser_Extension" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="브라우저 확장 프로그램 개발 시작하기  글쓰기에 앞서…남에게 도움을 되는 글을 쓰기 이전에, 제가 도움이 줄 수 있는 것이 어떤게 있을까 곰곰히 생각해봤습니다. 제가 학부생 시절에 출시한 프로젝트 중에 웨일 확장 프로그램으로 PDFasT, 네이버 증권 확장앱, 나만의 즐겨찾기 등 출시한 경험이 있고 국내에 이것에 관한 도서나 글이 별로 없다는 생각이 들어">
+<meta property="og:type" content="article">
+<meta property="og:title" content="브라우저 확장 프로그램 개발 시작하기">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/browser_extension_1/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="브라우저 확장 프로그램 개발 시작하기  글쓰기에 앞서…남에게 도움을 되는 글을 쓰기 이전에, 제가 도움이 줄 수 있는 것이 어떤게 있을까 곰곰히 생각해봤습니다. 제가 학부생 시절에 출시한 프로젝트 중에 웨일 확장 프로그램으로 PDFasT, 네이버 증권 확장앱, 나만의 즐겨찾기 등 출시한 경험이 있고 국내에 이것에 관한 도서나 글이 별로 없다는 생각이 들어">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://i.loli.net/2021/01/31/7zYgsq9xyUhNw1M.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/31/e1SpMhv9nWZAoaY.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/31/eHuYpcP2gMhAl9t.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/31/31wzSMHYIGCiVPZ.png">
+<meta property="og:image" content="https://i.loli.net/2021/01/31/4tNSndY8Tc96roI.png">
+<meta property="article:published_time" content="2021-01-31T10:43:18.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.387Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Browser_Extension">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2021/01/31/7zYgsq9xyUhNw1M.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-browser_extension_1" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/browser_extension_1/">
+            <time datetime="2021-01-31T10:43:18.000Z" itemprop="datePublished">2021-01-31</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/browser_extension_1.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/browser_extension_1.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/browser_extension_1.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            브라우저 확장 프로그램 개발 시작하기
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-%ED%99%95%EC%9E%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%A8-%EA%B0%9C%EB%B0%9C-%EC%8B%9C%EC%9E%91%ED%95%98%EA%B8%B0"><span class="toc-number">1.</span> <span class="toc-text">브라우저 확장 프로그램 개발 시작하기</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%80%EC%93%B0%EA%B8%B0%EC%97%90-%EC%95%9E%EC%84%9C%E2%80%A6"><span class="toc-number">1.1.</span> <span class="toc-text">글쓰기에 앞서…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%80-%EC%9E%91%EC%84%B1-%ED%95%AD%EB%AA%A9%EC%9C%BC%EB%A1%9C-%EC%98%88%EC%A0%95%EC%A4%91%EC%9D%B8-%EC%82%AC%ED%95%AD"><span class="toc-number">1.2.</span> <span class="toc-text">글 작성 항목으로 예정중인 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%80-%EC%9E%91%EC%84%B1-%EB%B0%A9%EC%8B%9D%EC%97%90-%EA%B4%80%ED%95%9C-%EC%83%9D%EA%B0%81"><span class="toc-number">1.3.</span> <span class="toc-text">글 작성 방식에 관한 생각</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1%EC%A3%BC%EC%B0%A8-%EC%9D%BC%EB%B0%98-%EC%9B%B9-%EA%B0%9C%EB%B0%9C%EA%B3%BC%EC%9D%98-%EC%B0%A8%EC%9D%B4%EC%A0%90"><span class="toc-number">1.4.</span> <span class="toc-text">1주차: 일반 웹 개발과의 차이점</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%B0%A8%EC%9D%B4%EC%A0%901-%EB%B8%8C%EB%9D%BC%EC%9A%B0%EC%A0%80-API"><span class="toc-number">1.4.1.</span> <span class="toc-text">차이점1. 브라우저 API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%B0%A8%EC%9D%B4%EC%A0%902-%EB%A7%A4%EB%8B%88%ED%8E%98%EC%8A%A4%ED%8A%B8"><span class="toc-number">1.4.2.</span> <span class="toc-text">차이점2. 매니페스트</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%B0%A8%EC%9D%B4%EC%A0%903-%EC%BD%98%ED%85%90%EC%B8%A0-lt-gt-%EB%B0%B1%EA%B7%B8%EB%9D%BC%EC%9A%B4%EB%93%9C-%ED%86%B5%EC%8B%A0"><span class="toc-number">1.4.3.</span> <span class="toc-text">차이점3. 콘텐츠 &lt;&gt; 백그라운드 통신</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%A7%88%EC%A7%80%EB%A7%89%EC%9C%BC%EB%A1%9C%E2%80%A6"><span class="toc-number">1.5.</span> <span class="toc-text">마지막으로…</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%8F%84%EC%9B%80%EC%9D%B4-%EB%90%98%EB%8A%94-%EA%B8%80%EB%93%A4"><span class="toc-number">1.6.</span> <span class="toc-text">도움이 되는 글들</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="브라우저-확장-프로그램-개발-시작하기"><a href="#브라우저-확장-프로그램-개발-시작하기" class="headerlink" title="브라우저 확장 프로그램 개발 시작하기"></a>브라우저 확장 프로그램 개발 시작하기</h1><p><img src="https://i.loli.net/2021/01/31/7zYgsq9xyUhNw1M.png" alt="크롬 스토어"></p>
+<p><img src="https://i.loli.net/2021/01/31/e1SpMhv9nWZAoaY.png" alt="웨일 스토어"></p>
+<h2 id="글쓰기에-앞서…"><a href="#글쓰기에-앞서…" class="headerlink" title="글쓰기에 앞서…"></a>글쓰기에 앞서…</h2><p>남에게 도움을 되는 글을 쓰기 이전에, 제가 도움이 줄 수 있는 것이 어떤게 있을까 곰곰히 생각해봤습니다. 제가 학부생 시절에 출시한 프로젝트 중에 웨일 확장 프로그램으로 PDFasT, 네이버 증권 확장앱, 나만의 즐겨찾기 등 출시한 경험이 있고 국내에 이것에 관한 도서나 글이 별로 없다는 생각이 들어 확장앱 개발에 관한 글을 작성해보려고 합니다.</p>
+<p>한번에 전부 작성할 생각은 없고 일주일에 1편씩 간단하게 작성해보려고 합니다.</p>
+<h2 id="글-작성-항목으로-예정중인-사항"><a href="#글-작성-항목으로-예정중인-사항" class="headerlink" title="글 작성 항목으로 예정중인 사항"></a>글 작성 항목으로 예정중인 사항</h2><blockquote>
+<p>작성 예정으로 생각하고 있는 사항으로, 언제든지 변경될 수 있습니다.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>예정 사항</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1주차</td>
+<td>1주차: 일반 웹 개발과의 차이점<br />- 브라우저 API<br />- 매니페스트<br /> - 콘텐츠 &lt;&gt; 백그라운드 통신</td>
+</tr>
+<tr>
+<td>2주차</td>
+<td>환경설정 (+ Typescript)<br />- 프레임워크(종속성X) 없이 구현할 예정입니다.</td>
+</tr>
+<tr>
+<td>3주차</td>
+<td>템플릿 만들어보기</td>
+</tr>
+<tr>
+<td>4주차</td>
+<td>확장앱의 종류 3가지</td>
+</tr>
+<tr>
+<td>5주차</td>
+<td>매니페스트 설정<br />- 필수적으로 알아아할 설정<br />- 부가적인 설정은 부록으로 빼기</td>
+</tr>
+<tr>
+<td>6주차</td>
+<td>개발 영역<br />- 콘텐츠 스크립트<br />- 백그라운드 스크립트<br />- 확장앱 페이지</td>
+</tr>
+<tr>
+<td>7주차 ~ 11주차</td>
+<td>필수적으로 알아야할 브라우저 API<br />- 브라우저 액션<br />- 이벤트<br />- 익스텐션<br />- i18n - 다국처리<br />- 페이지 액션<br />- 권한<br />- 런타임<br />- 스토리지<br />- 탭 <br />- 윈도우</td>
+</tr>
+<tr>
+<td>8 ~ 12주차</td>
+<td>선택적으로 알면 좋은 브라우저 API<br />- 알람<br />- 북마크<br />- 단축키<br />- 컨텍스트 메뉴<br />- 쿠키 제어<br />- 캡처<br />- 인터넷 사용기록<br />- 콘텐츠 제어<br />- 다운로드<br />- 히스토리<br />- 알람<br />- 주소창<br />- 북마크<br />- 웹요청 조작</td>
+</tr>
+<tr>
+<td>13주차</td>
+<td>테스트와 디버깅</td>
+</tr>
+<tr>
+<td>14주차</td>
+<td>배포하기</td>
+</tr>
+</tbody></table>
+<h2 id="글-작성-방식에-관한-생각"><a href="#글-작성-방식에-관한-생각" class="headerlink" title="글 작성 방식에 관한 생각"></a>글 작성 방식에 관한 생각</h2><p>저는 모든 개발에서 가장 중요한 것은 DEMO라고 생각합니다. DEMO가 없으면, 이 사람이 정말로 구현하고 있는지에 대한 의심이 들기 시작하고 그것은 글에 대한 의심으로 이어질 것입니다. 그래서 각 작성항목마다 DEMO로 ZIP 파일을 올리려고 생각 중입니다. </p>
+<p>일반 웹 개발 형태였으면, URL제공이었겠지만 확장앱으로 일반적인 설치는 ZIP으로 이루어집니다.<br>실제 배포 스크립트도 버전 업데이트와 함께 ZIP 파일을 생성하기도 하고요.</p>
+<h2 id="1주차-일반-웹-개발과의-차이점"><a href="#1주차-일반-웹-개발과의-차이점" class="headerlink" title="1주차: 일반 웹 개발과의 차이점"></a>1주차: 일반 웹 개발과의 차이점</h2><blockquote>
+<p>확장앱이 무엇인지 아는 사람들은 안읽으셔도 됩니다.</p>
+</blockquote>
+<p>확장앱은 브라우저에 설치하여 기능을 확장하는 개념의 애플리케이션입니다. 일반 웹 개발과 기술 스택은 동일하지만, 사용자가 권한을 허락한다면 브라우저 API를 이용하여 일반적인 웹에서 못하는 것들을 할 수 있다는 점이 있습니다.</p>
+<p>예를 들면, 사람들이 많이 애용하는 광고차단 확장앱 AdBlock의 경우는 콘텐츠 스크립트 조작을 통해 사용자가 현재 보고있는 웹 페이지에서 광고를 제거합니다.</p>
+<p>이런 사용자 화면만이 아닌 백그라운드에서 웹요청을 조작하는 Allow CORS, Postman 등, 또는 행아웃처럼 백그라운드에서 채팅을 할 수 있는 확장앱, Redux DevTools처럼 개발자 도구의 기능을 추가하는 등 다양한 확장앱들이 많습니다.</p>
+<p>또한, 확장앱 개발 영역 중 콘텐츠 스크립트는 사용자가 현재 보고있는 페이지내의 조작을 할 수 있습니다. 확장앱을 무분별하게 설치시에 보안 우려가 되는 사항이기도 합니다. 예를 들면, 마우스 우클릭 해제 확장앱인척 사용자의 비밀번호를 가로챌 수도 있을 가능성도 있습니다. 일반적인 웹의 경우 HTTPS 보안 연결 및 도메인 검사로 안전한 사이트인지 검사할 수 있는 반면, 확장앱은 더 할 수 있는 범위가 넓기 때문에 사용자의 정보의 위험도가 더 큽니다.</p>
+<p>대표적으로, 크롬 확장앱이 정상적인 기능을 하다가, 업데이트를 하고 나서 아래의 이미지를 띄우면서, 크롬 보안 업데이트를 하는 척하는 악성 프로그램이 많습니다.</p>
+<p><img src="https://i.loli.net/2021/01/31/eHuYpcP2gMhAl9t.png" alt="image-20210131210950904"></p>
+<p>기타 주의점으로는, 브라우저에서 표시한 호환성이 다를 수 있습니다. 예를 들면, customElements API가 Chrome 54부터 추가되어 Polyfill없이 사용할 수 있을 것 같지만 Polyfill이 필요합니다.</p>
+<p>일반 웹개발과 다른 점을 크게 나누자면 아래의 3가지가 있습니다.</p>
+<h3 id="차이점1-브라우저-API"><a href="#차이점1-브라우저-API" class="headerlink" title="차이점1. 브라우저 API"></a>차이점1. 브라우저 API</h3><blockquote>
+<p><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/extensions/reference/">크롬 브라우저 API</a> 에 접속하면, 브라우저 확장 기능으로 제공되는 API를 볼 수 있습니다.</p>
+</blockquote>
+<p>위의 링크를 참고하여 일반적인 웹 API가 아닌 브라우저 API만의 기능을 확인하고 어떤 것을 추가적으로 개발할 수 있는지 확인을 권장합니다. 그리고 브라우저 API를 이용하기전에 API Docs를 참고하여 필요 권한이 무엇인지 파악하고, 매니페스트 파일에 추가 하는 것이 중요합니다. 권한은 설치시에 명시됩니다.</p>
+<p><img src="https://i.loli.net/2021/01/31/31wzSMHYIGCiVPZ.png" alt="1. 필요 권한 파악하기"></p>
+<h3 id="차이점2-매니페스트"><a href="#차이점2-매니페스트" class="headerlink" title="차이점2. 매니페스트"></a>차이점2. 매니페스트</h3><blockquote>
+<p>해당 [Chrome Developer](<a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/extensions/mv2/g">https://developer.chrome.com/docs/extensions/mv2/g</a> etstarted/) 에서 관련사항을 확인할 수 있습니다.</p>
+</blockquote>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="comment">// 필수사항</span></span><br><span class="line">    <span class="attr">&quot;manifest_version&quot;</span>: <span class="number">2</span>,</span><br><span class="line">    <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;__APP_NAME__&quot;</span>,</span><br><span class="line">    <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.0.0&quot;</span>,</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 확장앱의 종류를 아래 옵션 중 하나만 선택하여 설정 가능</span></span><br><span class="line">    &quot;browser_action&quot;: &#123;...&#125;,</span><br><span class="line">    &quot;page_action&quot;: &#123;...&#125;,</span><br><span class="line">  </span><br><span class="line">    <span class="comment">// 추천 작성사항</span></span><br><span class="line">    &quot;description&quot;: &quot;__APP_DESCRIPTION__&quot;,</span><br><span class="line">    &quot;icons&quot;: &#123;...&#125;,</span><br><span class="line">    &quot;default_locale&quot;: &quot;ko&quot;,</span><br><span class="line">    &quot;background&quot;: &#123;</span><br><span class="line">        &quot;scripts&quot;: [...],</span><br><span class="line">        &quot;page&quot;: &quot;...&quot;</span><br><span class="line">    &#125;,</span><br><span class="line">    &quot;content_scripts&quot;: [...],</span><br><span class="line">    &quot;permissions&quot;: [...],</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>매니페스트 파일은 확장앱 개발시에 가장 먼저 확인되는 사항으로 내용이 올바르지 않으면 확장앱 실행이 되지 않습니다. 앱의 기본적인 정보, 확장앱의 종류, 아이콘, 스크립트 파일, 권한 등을 명시합니다.</p>
+<p><code>__APP_NAME__</code>, <code>__APP_DESCRIPTION__</code> 같은 사항은 i18n 브라우저 API를 이용한 다국어 처리 사항으로, ko.json, en.json 파일에 따라 입력이 됩니다. 이것은 매니페스트 파일뿐만이 아닌 애플리케이션 내 파일에서도 적용할 수 있습니다.</p>
+<h3 id="차이점3-콘텐츠-lt-gt-백그라운드-통신"><a href="#차이점3-콘텐츠-lt-gt-백그라운드-통신" class="headerlink" title="차이점3. 콘텐츠 &lt;&gt; 백그라운드 통신"></a>차이점3. 콘텐츠 &lt;&gt; 백그라운드 통신</h3><blockquote>
+<p>해당 관련 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/Content_scripts#communicating_with_background_scripts">MDN</a> 에서 관련사항을 확인할 수 있습니다.</p>
+</blockquote>
+<p>확장앱 개발은 아래의 3가지로 개발 영역이 나뉩니다.</p>
+<ol>
+<li>콘텐츠 스크립트</li>
+<li>백그라운드 스크립트</li>
+<li>확장앱 페이지 (index.html)</li>
+</ol>
+<p>그리고 콘텐츠 스크립트에서는 브라우저 API가 제한됩니다. </p>
+<p><img src="https://i.loli.net/2021/01/31/4tNSndY8Tc96roI.png" alt="출처: Whale Developer"></p>
+<p>콘텐츠 스크립트 개발시의 주의사항은 실제 웹페이지 로드시에 불러들이기 때문에 성능에 영향을 줄 수 있습니다. 무분별한 확장앱 설치가 브라우저 성능 감소의 원인이 되기도 합니다.</p>
+<p>예를 들어, 콘텐츠 스크립트를 조작하는데 Jquery를 썼고 모든 페이지의 권한을 주었다고 한다면, 이제부터 모든 웹페이지를 접속할때마다 Jquery를 불러오게 됩니다.</p>
+<p>그래서, 콘텐츠 스크립트 개발시에는 가벼운 작업을 권장하고 필요하다고 하다면 백그라운드 스크립트에서 작업 후, 통신을 통해 콘텐츠 스크립트에 반영되게 구현을 하는 것이 좋습니다.</p>
+<p>통신에 관한 자세한 개발 사항은 다음 문서에서 작성하기로 하겠습니다.</p>
+<h2 id="마지막으로…"><a href="#마지막으로…" class="headerlink" title="마지막으로…"></a>마지막으로…</h2><p>처음 글을 작성하여 상당히 두서없이 작성하게 되었는데 피드백 남겨주시면 적극 반영하겠습니다.</p>
+<p>그리고 다음 문서부터는 실제 개발과 함께 글을 작성해보려고 합니다.</p>
+<h2 id="도움이-되는-글들"><a href="#도움이-되는-글들" class="headerlink" title="도움이 되는 글들"></a>도움이 되는 글들</h2><ul>
+<li><p><a target="_blank" rel="noopener" href="https://developer.chrome.com/docs/extensions/mv3/getstarted/">Chrome Developer</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developers.whale.naver.com/getting_started/">Whale Developer</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Mozilla/Gecko/Chrome/API/Browser_API">Browser API MDN</a></p>
+</li>
+</ul>
+<!-- flag of hidden posts -->
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

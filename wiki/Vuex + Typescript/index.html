@@ -1,0 +1,806 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Vuex + Typescript 구성 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Typescript,Vue,Vuex" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="이 문서는 “타입스크립트, AWS 서버리스로 들어올리다” 책을 기반으로 작성되었습니다.  개요vuex는 vue 애플리케이션 상태관리 패턴 라이브러리이다. 부모 &lt;&gt; 자식 간 컴포넌트 통신(props, emit)으로, 모든 것을 처리하기에는 힘들기 때문에 만들어졌다.  구조 용어 설명 state: 변수 조회 getter: 변수 조회 (comput">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Vuex + Typescript 구성">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Vuex%20+%20Typescript/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="이 문서는 “타입스크립트, AWS 서버리스로 들어올리다” 책을 기반으로 작성되었습니다.  개요vuex는 vue 애플리케이션 상태관리 패턴 라이브러리이다. 부모 &lt;&gt; 자식 간 컴포넌트 통신(props, emit)으로, 모든 것을 처리하기에는 힘들기 때문에 만들어졌다.  구조 용어 설명 state: 변수 조회 getter: 변수 조회 (comput">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/74972784-b434a300-5465-11ea-8c50-879ca073b788.png">
+<meta property="article:published_time" content="2020-02-20T17:04:47.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.387Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Typescript">
+<meta property="article:tag" content="Vue">
+<meta property="article:tag" content="Vuex">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/74972784-b434a300-5465-11ea-8c50-879ca073b788.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Vuex + Typescript" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Vue/">Vue</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Vue/Vuex/">Vuex</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>, <a class="tag-link-link" href="/tags/Vue/" rel="tag">Vue</a>, <a class="tag-link-link" href="/tags/Vuex/" rel="tag">Vuex</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Vuex%20+%20Typescript/">
+            <time datetime="2020-02-20T17:04:47.000Z" itemprop="datePublished">2020-02-21</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Vuex + Typescript.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Vuex + Typescript.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Vuex + Typescript.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Vuex + Typescript 구성
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B0%9C%EC%9A%94"><span class="toc-number">1.</span> <span class="toc-text">개요</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%EC%A1%B0"><span class="toc-number">2.</span> <span class="toc-text">구조</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9A%A9%EC%96%B4-%EC%84%A4%EB%AA%85"><span class="toc-number">2.1.</span> <span class="toc-text">용어 설명</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Example-Code"><span class="toc-number">3.</span> <span class="toc-text">Example Code</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-store-Counter-ts"><span class="toc-number">3.1.</span> <span class="toc-text">src&#x2F;store&#x2F;Counter.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#src-store-ts"><span class="toc-number">3.2.</span> <span class="toc-text">src&#x2F;store.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#src-App-html-%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-Template-%EB%B6%80%EB%B6%84"><span class="toc-number">3.3.</span> <span class="toc-text">src&#x2F;App.html (컴포넌트 - Template 부분)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#state-%EB%B0%94%EB%A1%9C-%EC%A0%91%EA%B7%BC%EB%B2%95"><span class="toc-number">3.3.1.</span> <span class="toc-text">state 바로 접근법</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#getters-%ED%98%B8%EC%B6%9C"><span class="toc-number">3.3.2.</span> <span class="toc-text">getters 호출</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#commit-mutations-%ED%98%B8%EC%B6%9C"><span class="toc-number">3.3.3.</span> <span class="toc-text">commit (mutations 호출)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#dispatch-actions-%ED%98%B8%EC%B6%9C"><span class="toc-number">3.3.4.</span> <span class="toc-text">dispatch (actions 호출)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mapper"><span class="toc-number">4.</span> <span class="toc-text">mapper</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#src-App-ts"><span class="toc-number">4.1.</span> <span class="toc-text">src&#x2F;App.ts</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#src-App-html"><span class="toc-number">4.2.</span> <span class="toc-text">src&#x2F;App.html</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mapper-%EC%9E%A5%EB%8B%A8%EC%A0%90"><span class="toc-number">4.3.</span> <span class="toc-text">mapper 장단점</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#vue-property-decorators%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EC%82%AC%EC%9A%A9"><span class="toc-number">5.</span> <span class="toc-text">vue-property-decorators를 이용한 사용</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%84%A4%EC%B9%98"><span class="toc-number">5.1.</span> <span class="toc-text">설치</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#src-store-Counter-ts-1"><span class="toc-number">5.2.</span> <span class="toc-text">src&#x2F;store&#x2F;Counter.ts</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>이 문서는 “타입스크립트, AWS 서버리스로 들어올리다” 책을 기반으로 작성되었습니다.</p>
+</blockquote>
+<h2 id="개요"><a href="#개요" class="headerlink" title="개요"></a>개요</h2><p><code>vuex</code>는 vue 애플리케이션 상태관리 패턴 라이브러리이다.</p>
+<p>부모 &lt;&gt; 자식 간 컴포넌트 통신(<code>props</code>, <code>emit</code>)으로, 모든 것을 처리하기에는 힘들기 때문에 만들어졌다. </p>
+<h2 id="구조"><a href="#구조" class="headerlink" title="구조"></a>구조</h2><p><img src="https://user-images.githubusercontent.com/26294469/74972784-b434a300-5465-11ea-8c50-879ca073b788.png" alt="image"></p>
+<h3 id="용어-설명"><a href="#용어-설명" class="headerlink" title="용어 설명"></a>용어 설명</h3><ul>
+<li><code>state</code>: 변수 조회</li>
+<li><code>getter</code>: 변수 조회 (<code>computed</code>적 역할을 함)</li>
+<li><code>action</code>: 변수 내용 변경, <code>async</code>같은 비동기적 처리가 가능</li>
+<li><code>mutation</code>: 변수 내용 변경, 동기적으로 이루어짐, <code>state</code>는 <code>mutate</code>를 통해서만 변경될 수 있다.</li>
+</ul>
+<ul>
+<li><code>dispatch</code>: <code>action</code> 실행</li>
+<li><code>commit</code>:  <code>mutate</code> 실행</li>
+<li><code>mutate</code>:  <code>state</code> 변경</li>
+<li><code>render</code>:  컴포넌트 View 수정</li>
+</ul>
+<h2 id="Example-Code"><a href="#Example-Code" class="headerlink" title="Example Code"></a>Example Code</h2><h3 id="src-store-Counter-ts"><a href="#src-store-Counter-ts" class="headerlink" title="src/store/Counter.ts"></a>src/store/Counter.ts</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Module, GetterTree, MutationTree, ActionTree, ActionContext &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// state로 사용할 클래스</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">class</span> Counter &#123;</span><br><span class="line">    <span class="keyword">public</span> count: <span class="built_in">number</span> = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// state를 출력하면서, 표시를 다르게 하기위해 설정(state를 동시에 컴포넌트 이용시)</span></span><br><span class="line"><span class="keyword">const</span> getters: GetterTree&lt;Counter, <span class="built_in">any</span>&gt; = &#123;</span><br><span class="line">    doubleCount(state: Counter): <span class="built_in">number</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> state.count;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// state를 바로 변경할 수 없게함. 꼭 mutate를 통해 변경 가능</span></span><br><span class="line"><span class="keyword">const</span> mutations: MutationTree&lt;Counter&gt; = &#123;</span><br><span class="line">    increment(state: Counter, step: <span class="built_in">number</span>) &#123;</span><br><span class="line">        state.count = state.count + step;</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// action은 지연된 상태 변경이 가능하다(비동기적 처리)</span></span><br><span class="line"><span class="keyword">const</span> actions: ActionTree&lt;Counter, <span class="built_in">any</span>&gt; = &#123;</span><br><span class="line">    inc(state: ActionContext&lt;Counter, <span class="built_in">any</span>&gt;, step: <span class="built_in">number</span>) &#123;</span><br><span class="line">        state.commit(<span class="string">`increment`</span>, step);</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// module간 state, getters, mutations, actions 따로 관리 가능하다.</span></span><br><span class="line"><span class="keyword">const</span> Counter: Module&lt;Counter, <span class="built_in">any</span>&gt; = &#123;</span><br><span class="line">    namespaced: <span class="literal">true</span>, <span class="comment">// &lt;- false일 경우, getters, mutations, actions의 이름을 공용으로 사용</span></span><br><span class="line">    state: <span class="keyword">new</span> Counter(),</span><br><span class="line">    getters,</span><br><span class="line">    mutations,</span><br><span class="line">    actions,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Counter;</span><br></pre></td></tr></table></figure>
+
+<h3 id="src-store-ts"><a href="#src-store-ts" class="headerlink" title="src/store.ts"></a>src/store.ts</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Vuex, &#123; Module &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> Counter <span class="keyword">from</span> <span class="string">&#x27;./store/Counter&#x27;</span>;	<span class="comment">// &lt;- module import</span></span><br><span class="line"></span><br><span class="line">Vue.use(Vuex);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> store = <span class="keyword">new</span> Vuex.Store(&#123;</span><br><span class="line">    state: &#123;&#125;,</span><br><span class="line">    modules: &#123;	<span class="comment">// &lt;- module 등록</span></span><br><span class="line">        Counter,</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> store;</span><br></pre></td></tr></table></figure>
+
+<h3 id="src-App-html-컴포넌트-Template-부분"><a href="#src-App-html-컴포넌트-Template-부분" class="headerlink" title="src/App.html (컴포넌트 - Template 부분)"></a>src/App.html (컴포넌트 - <code>Template</code> 부분)</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h1</span>&gt;</span>Counter<span class="tag">&lt;/<span class="name">h1</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; $store.state.Counter.count &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; $store.getters[`Counter/doubleCount`] &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> </span></span><br><span class="line"><span class="tag">           @<span class="attr">click</span>=<span class="string">&quot;$store.commit(&#x27;Counter/increment&#x27;, 1)&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">value</span>=<span class="string">&quot;+1 증가(Mutate)&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span></span></span><br><span class="line"><span class="tag">           @<span class="attr">click</span>=<span class="string">&quot;$store.dispatch(&#x27;Counter/inc&#x27;, 2)&quot;</span></span></span><br><span class="line"><span class="tag">           <span class="attr">value</span></span></span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<p><code>vuex</code>는 <code>$store</code>을 통해 전역 사용</p>
+<h4 id="state-바로-접근법"><a href="#state-바로-접근법" class="headerlink" title="state 바로 접근법"></a>state 바로 접근법</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$store.state.Counter.count</span><br></pre></td></tr></table></figure>
+
+<h4 id="getters-호출"><a href="#getters-호출" class="headerlink" title="getters 호출"></a>getters 호출</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$store.getters[&#96;Counter&#x2F;doubleCount&#96;]</span><br></pre></td></tr></table></figure>
+
+<p><code>namepsaced</code>가 설정되어있기 때문에, <code>&lt;모듈이름&gt;/&lt;뮤테이션이름&gt;</code>으로 구분한다.</p>
+<h4 id="commit-mutations-호출"><a href="#commit-mutations-호출" class="headerlink" title="commit (mutations 호출)"></a>commit (mutations 호출)</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$store.commit(<span class="string">`Counter/increment`</span>, &#123;name: <span class="string">`Kang`</span>, age: <span class="number">26</span>&#125;);</span><br></pre></td></tr></table></figure>
+
+<p><code>commit</code> 을 통해 <code>mutations</code> 호출</p>
+<h4 id="dispatch-actions-호출"><a href="#dispatch-actions-호출" class="headerlink" title="dispatch (actions 호출)"></a>dispatch (actions 호출)</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$store.dispatch(<span class="string">`Counter/inc`</span>, <span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+
+
+
+<hr>
+<h2 id="mapper"><a href="#mapper" class="headerlink" title="mapper"></a>mapper</h2><p>컴포넌트에서 <code>vuex</code>가 많이 사용될 경우, 축약해서 사용할 수 있는 방법</p>
+<p>그래도 위의 기본은 알고가자</p>
+<h3 id="src-App-ts"><a href="#src-App-ts" class="headerlink" title="src/App.ts"></a>src/App.ts</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> Vue <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> Component <span class="keyword">from</span> <span class="string">&#x27;vue-class-component&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> WithRender <span class="keyword">from</span> <span class="string">&#x27;./App.html&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; mapState, mapGetters, mapMutations, mapActions &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./App.scss&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@WithRender</span></span><br><span class="line"><span class="meta">@Component</span>(&#123;</span><br><span class="line">    computed: &#123; <span class="comment">// &lt;- state, gettes 등록</span></span><br><span class="line">        ...mapState(&#123;</span><br><span class="line">            count: <span class="function">(<span class="params">state: <span class="built_in">any</span></span>) =&gt;</span> state.Counter.count,</span><br><span class="line">        &#125;),</span><br><span class="line">        ...mapGettes(&#123;</span><br><span class="line">            doubleCount: <span class="string">`Counter/doubleCount`</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    &#125;,</span><br><span class="line">    methods: &#123; <span class="comment">// &lt;- mutations, actions 등록</span></span><br><span class="line">        ...mapMuations(&#123;</span><br><span class="line">            increment: <span class="string">`Counter/increment`</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">        ...mapActions(&#123;</span><br><span class="line">            inc: <span class="string">`Counter/inc`</span>,</span><br><span class="line">        &#125;),</span><br><span class="line">    &#125;,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Class App <span class="keyword">extends</span> Vue &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="src-App-html"><a href="#src-App-html" class="headerlink" title="src/App.html"></a>src/App.html</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">h2</span>&gt;</span>Mapper<span class="tag">&lt;/<span class="name">h2</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; count &#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span>&#123;&#123; doubleCount&#125;&#125;<span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;increment(1)&quot;</span> <span class="attr">value</span>=<span class="string">&quot;+1 증가(mutation)&quot;</span> /&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">p</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">p</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">input</span> <span class="attr">type</span>=<span class="string">&quot;button&quot;</span> @<span class="attr">click</span>=<span class="string">&quot;inc(2)&quot;</span> <span class="attr">value</span>=<span class="string">&quot;+2 증가(action)&quot;</span></span></span><br><span class="line">&lt;/p&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="mapper-장단점"><a href="#mapper-장단점" class="headerlink" title="mapper 장단점"></a>mapper 장단점</h3><p><code>vuex</code>를 간략하게 사용할 수 있지만, 직접적인 호출이 아니기 때문에 모르는 사람이 본다면 가독성, 이해도가 떨어질 수 있다. (고인물 생성)</p>
+<hr>
+<h2 id="vue-property-decorators를-이용한-사용"><a href="#vue-property-decorators를-이용한-사용" class="headerlink" title="vue-property-decorators를 이용한 사용"></a>vue-property-decorators를 이용한 사용</h2><h3 id="설치"><a href="#설치" class="headerlink" title="설치"></a>설치</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i vuex-module-decorators</span><br></pre></td></tr></table></figure>
+
+<h3 id="src-store-Counter-ts-1"><a href="#src-store-Counter-ts-1" class="headerlink" title="src/store/Counter.ts"></a>src/store/Counter.ts</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; VuexModlue, Module, Mutation, Action &#125; <span class="keyword">from</span> <span class="string">&#x27;vuex-module-decorators&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">@Module</span>(&#123;	<span class="comment">// &lt;- Module 데코레이터, 이 클래스 vuex 모듈로 사용가능</span></span><br><span class="line">    namespaced: <span class="literal">true</span>,</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Counter <span class="keyword">extends</span> VuexModule &#123;	<span class="comment">// &lt;- VuexModule 상속</span></span><br><span class="line">    <span class="keyword">public</span> count: <span class="built_in">number</span> = <span class="number">0</span>;	<span class="comment">// &lt;- state로 매핑</span></span><br><span class="line"></span><br><span class="line">	get doubleCount(): <span class="built_in">number</span> &#123;	<span class="comment">// &lt;- getters로 매핑</span></span><br><span class="line">    	<span class="keyword">return</span> <span class="built_in">this</span>.count + <span class="number">2</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Muation</span>	<span class="comment">// &lt;- mutation</span></span><br><span class="line">    <span class="keyword">public</span> increment(step: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.count += step;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="meta">@Action</span>		<span class="comment">// &lt;- action</span></span><br><span class="line">    <span class="keyword">public</span> inc(step: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="keyword">return</span> step;	<span class="comment">// &lt;- return값을 commit을 통해 전달함</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> Counter;</span><br></pre></td></tr></table></figure>
+
+<p>이것 또한 데코레이터를 다 외워야 함은 있지만, mapper보다 훨씬 가독성이 뛰어난 편으로 보여 사용성이 좋아보인다.</p>
+<p><code>Action</code> 부분이 특이한데, return 값이 <code>payload</code>로  자동으로 <code>commit</code>으로 전달된다.</p>
+<p><code>Action</code>내에서 다른 <code>mutation</code> 실행법</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">this</span>.context.commit(<span class="string">`increment`</span>, step);</span><br></pre></td></tr></table></figure>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Typora 신기능 - 이미지 자동 업로드
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">VS Code에서 서버 내 파일 작업하기</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

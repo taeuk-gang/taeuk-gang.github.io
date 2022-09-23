@@ -1,0 +1,970 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>TIL 10월 10일 (일) | TAEUK WIKI</title><meta name="robots" content="noindex">
+    
+    
+        <meta name="keywords" content="Javascript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="ul, ol, p {     font-size: 0.75rem; } img[alt~&#x3D;&quot;center&quot;] {   display: block;   margin: 0 auto; }  header {   color: #fff; }  table {   font-size: 0.6rem; }  pre &gt; code {   color: initial; }  h1 {   f">
+<meta property="og:type" content="website">
+<meta property="og:title" content="TIL 10월 10일 (일)">
+<meta property="og:url" content="https://taeuk-gang.github.io/presentation/TIL/2021/10/10/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="ul, ol, p {     font-size: 0.75rem; } img[alt~&#x3D;&quot;center&quot;] {   display: block;   margin: 0 auto; }  header {   color: #fff; }  table {   font-size: 0.6rem; }  pre &gt; code {   color: initial; }  h1 {   f">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/136702969-67e508db-7f14-45d9-8e8d-ce26703a3f29.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/136706790-cefe0b29-ee01-44f0-adb7-8e41f4d9b1fc.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/136707142-66c43158-3f0d-41fc-8fe9-cdf44eb0818b.png">
+<meta property="article:published_time" content="2022-09-23T10:58:11.428Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.428Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Javascript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="page-" class="article article-type-page" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            TIL 10월 10일 (일)
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+        
+        
+            <style>
+ul, ol, p {
+    font-size: 0.75rem;
+}
+img[alt~="center"] {
+  display: block;
+  margin: 0 auto;
+}
+
+header {
+  color: #fff;
+}
+
+table {
+  font-size: 0.6rem;
+}
+
+pre > code {
+  color: initial;
+}
+
+h1 {
+  font-size: 1.2rem;
+}
+
+h2 {
+    font-size: 1rem;
+}
+
+h3 {
+  font-size: 0.8rem;
+}
+
+h4 {
+  font-size: 0.6rem;
+}
+
+h5 {
+  font-size: 0.4rem;
+}
+</style>
+
+<h2 id="TIL-10월-10일-일"><a href="#TIL-10월-10일-일" class="headerlink" title="TIL: 10월 10일 (일)"></a>TIL: 10월 10일 (일)</h2><p><img src="https://user-images.githubusercontent.com/26294469/136711516-d933a81d-6b83-4bdb-a0b3-bb46c76c2a4b.gif" alt="w:300 center"></p>
+<style scoped>
+h2, h3 {
+  /* display: flex;
+  justify-content: center;
+  align-items: center; */
+  text-align: center;  
+  line-height: 0.8rem;
+  color: #000;
+}
+
+h2 {
+  font-size: 1.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+strong {
+  color: #fff;
+}
+
+p {
+  color: #fff;
+}
+</style>
+
+<hr>
+<h3 id="1-impersonation에-대해서-잘-몰라서-정리"><a href="#1-impersonation에-대해서-잘-몰라서-정리" class="headerlink" title="1. impersonation에 대해서 잘 몰라서 정리"></a>1. impersonation에 대해서 잘 몰라서 정리</h3><style scoped>
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 1rem;
+}
+</style>
+
+
+<hr>
+<blockquote>
+<p>임퍼스네이션에 대해서 잘 몰라서 정리<br>참고자료: <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation">https://kubernetes.io/docs/reference/access-authn-authz/authentication/#user-impersonation</a></p>
+</blockquote>
+<h2 id="User-impersonation"><a href="#User-impersonation" class="headerlink" title="User impersonation"></a>User impersonation</h2><ul>
+<li>임퍼스네이션 헤더를 통해 다른 사용자 역할을 수행 가능</li>
+<li>authenticates을 override를 하여 재정의</li>
+<li>예를 들면, admin이 디버그를 위해 임시적으로 다른 유저를 가장함</li>
+</ul>
+<h3 id="동작-순서"><a href="#동작-순서" class="headerlink" title="동작 순서"></a>동작 순서</h3><ul>
+<li>credentials과 impersonation headers과 함께 API 요청</li>
+<li>API 서버는 사용자를 인증 (Impersonation 권한을 체크함)</li>
+</ul>
+<hr>
+<h3 id="HTTP-헤더"><a href="#HTTP-헤더" class="headerlink" title="HTTP 헤더"></a>HTTP 헤더</h3><ul>
+<li><code>Impersonate-User</code>: 유저명</li>
+<li><code>Impersonate-Group</code>: 유저 그룹, 여러개 가능.</li>
+<li><code>Impersonate-Extra-( extra name )</code>: 추가 커스텀 헤더</li>
+<li><code>Impersonate-Uid</code>: UID, k8s 1.22.0 버전 이상에서 지원</li>
+</ul>
+<h3 id="사용-예시"><a href="#사용-예시" class="headerlink" title="사용 예시"></a>사용 예시</h3><p>일반</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl drain mynode</span><br></pre></td></tr></table></figure>
+
+<p>Impersonation 사용 예시</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl drain mynode --as=superman --as-group=system:masters</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="사용-조건"><a href="#사용-조건" class="headerlink" title="사용 조건"></a>사용 조건</h3><p><code>ClusterRole</code>에 <code>impersonate</code> verbs 필요</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">impersonator</span></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">apiGroups:</span> [<span class="string">&quot;&quot;</span>]</span><br><span class="line">  <span class="attr">resources:</span> [<span class="string">&quot;users&quot;</span>, <span class="string">&quot;groups&quot;</span>, <span class="string">&quot;serviceaccounts&quot;</span>]</span><br><span class="line">  <span class="attr">verbs:</span> [<span class="string">&quot;impersonate&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>다양한 예시</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">rbac.authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">ClusterRole</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">limited-impersonator</span></span><br><span class="line"><span class="attr">rules:</span></span><br><span class="line"><span class="comment"># Can impersonate the user &quot;jane.doe@example.com&quot;</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">apiGroups:</span> [<span class="string">&quot;&quot;</span>]</span><br><span class="line">  <span class="attr">resources:</span> [<span class="string">&quot;users&quot;</span>]</span><br><span class="line">  <span class="attr">verbs:</span> [<span class="string">&quot;impersonate&quot;</span>]</span><br><span class="line">  <span class="attr">resourceNames:</span> [<span class="string">&quot;jane.doe@example.com&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Can impersonate the groups &quot;developers&quot; and &quot;admins&quot;</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">apiGroups:</span> [<span class="string">&quot;&quot;</span>]</span><br><span class="line">  <span class="attr">resources:</span> [<span class="string">&quot;groups&quot;</span>]</span><br><span class="line">  <span class="attr">verbs:</span> [<span class="string">&quot;impersonate&quot;</span>]</span><br><span class="line">  <span class="attr">resourceNames:</span> [<span class="string">&quot;developers&quot;</span>,<span class="string">&quot;admins&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Can impersonate the extras field &quot;scopes&quot; with the values &quot;view&quot; and &quot;development&quot;</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">apiGroups:</span> [<span class="string">&quot;authentication.k8s.io&quot;</span>]</span><br><span class="line">  <span class="attr">resources:</span> [<span class="string">&quot;userextras/scopes&quot;</span>]</span><br><span class="line">  <span class="attr">verbs:</span> [<span class="string">&quot;impersonate&quot;</span>]</span><br><span class="line">  <span class="attr">resourceNames:</span> [<span class="string">&quot;view&quot;</span>, <span class="string">&quot;development&quot;</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment"># Can impersonate the uid &quot;06f6ce97-e2c5-4ab8-7ba5-7654dd08d52b&quot;</span></span><br><span class="line"><span class="bullet">-</span> <span class="attr">apiGroups:</span> [<span class="string">&quot;authentication.k8s.io&quot;</span>]</span><br><span class="line">  <span class="attr">resources:</span> [<span class="string">&quot;uids&quot;</span>]</span><br><span class="line">  <span class="attr">verbs:</span> [<span class="string">&quot;impersonate&quot;</span>]</span><br><span class="line">  <span class="attr">resourceNames:</span> [<span class="string">&quot;06f6ce97-e2c5-4ab8-7ba5-7654dd08d52b&quot;</span>]</span><br></pre></td></tr></table></figure>
+
+<style scoped>
+  pre {
+    font-size: 0.5rem;
+  }
+</style>
+
+<hr>
+<p>API 접근 확인</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl auth can-i create deployments --namespace dev</span><br></pre></td></tr></table></figure>
+<p>결과는 다음과 같이 출력</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yes</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>kubectl은 API 인증 계층을 신속하게 쿼리하기 위한 “auth can-i” 하위 명령어를 제공</li>
+<li>이 명령은 현재 사용자가 지정된 작업을 수행할 수 있는지 여부를 알아내기 위해 SelfSubjectAccessReview API를 사용</li>
+<li>사용되는 인가 모드에 관계없이 작동</li>
+</ul>
+<p>관리자는 이를 사용자 가장(impersonation)과 병행하여 다른 사용자가 수행할 수 있는 작업을 결정 가능</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl auth can-i list secrets --namespace dev --as dave</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li><p>SelfSubjectAccessReview는 authorization.k8s.io API 그룹의 일부로서 API 서버 인가를 외부 서비스에 노출</p>
+</li>
+<li><p>이 그룹의 기타 리소스에는 다음이 포함</p>
+<ul>
+<li><code>SubjectAccessReview</code><ul>
+<li>현재 사용자뿐만 아니라 모든 사용자에 대한 접근 검토</li>
+<li>API 서버에 인가 결정을 위임하는 데 유용</li>
+<li>예를 들어, kubelet 및 확장(extension) API 서버는 자신의 API에 대한 사용자 접근을 결정하기 위해 해당 리소스를 사용</li>
+</ul>
+</li>
+<li><code>LocalSubjectAccessReview</code><ul>
+<li>SubjectAccessReview와 비슷하지만 특정 네임스페이스로 제한</li>
+</ul>
+</li>
+<li><code>SelfSubjectRulesReview</code><ul>
+<li>사용자가 네임스페이스 안에서 수행할 수 있는 작업 집합을 반환하는 검토</li>
+<li>사용자가 자신의 접근을 빠르게 요약해서 보거나 UI가 작업을 숨기거나 표시하는 데 유용</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<hr>
+<p>이러한 API는 반환된 오브젝트의 응답 “status” 필드가 쿼리의 결과인 일반 쿠버네티스 리소스를 생성하여 쿼리 가능</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">kubectl</span> <span class="string">create</span> <span class="string">-f</span> <span class="bullet">-</span> <span class="string">-o</span> <span class="string">yaml</span> <span class="string">&lt;&lt;</span> <span class="string">EOF</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">SelfSubjectAccessReview</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">resourceAttributes:</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">apps</span></span><br><span class="line">    <span class="attr">resource:</span> <span class="string">deployments</span></span><br><span class="line">    <span class="attr">verb:</span> <span class="string">create</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">dev</span></span><br><span class="line"><span class="string">EOF</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>다음 페이지 계속</p>
+</blockquote>
+<hr>
+<p>생성된 SelfSubjectAccessReview 는 다음과 같다.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">authorization.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">SelfSubjectAccessReview</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">creationTimestamp:</span> <span class="literal">null</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">resourceAttributes:</span></span><br><span class="line">    <span class="attr">group:</span> <span class="string">apps</span></span><br><span class="line">    <span class="attr">resource:</span> <span class="string">deployments</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">dev</span></span><br><span class="line">    <span class="attr">verb:</span> <span class="string">create</span></span><br><span class="line"><span class="attr">status:</span></span><br><span class="line">  <span class="attr">allowed:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">denied:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>음… <code>can-i</code> 명령을 이용하여 모든 리소스 권한을 알 수는 없을까?</p>
+<p>아래의 명령을 이용하면 가능</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl auth can-i --list</span><br></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/26294469/136702969-67e508db-7f14-45d9-8e8d-ce26703a3f29.png" alt="bg fit right"></p>
+<hr>
+<h3 id="2-쿠버네티스-API-헬스-엔드포인트-readyz"><a href="#2-쿠버네티스-API-헬스-엔드포인트-readyz" class="headerlink" title="2. 쿠버네티스 API 헬스 엔드포인트 (/readyz)"></a>2. 쿠버네티스 API 헬스 엔드포인트 (/readyz)</h3><style scoped>
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 1rem;
+}
+</style>
+
+<hr>
+<p>쿠버네티스 API 서버는 현재 상태를 나타내는 세 가지 API 엔드포인트(healthz, livez 와 readyz)를 제공</p>
+<ul>
+<li><p>healthz 엔드포인트는 사용 중단(deprecated)됨 (쿠버네티스 v1.16 버전 이후)</p>
+</li>
+<li><p>-&gt; 대신 보다 구체적인 livez 와 readyz 엔드포인트를 사용</p>
+</li>
+<li><p><code>livez</code></p>
+<ul>
+<li>livez 엔드포인트는 –livez-grace-period 플래그 옵션을 사용하여 시작 대기 시간을 지정 가능</li>
+</ul>
+</li>
+<li><p><code>readyz</code></p>
+<ul>
+<li>/readyz 엔드포인트는 –shutdown-delay-duration 플래그 옵션을 사용하여 정상적(graceful)으로 셧다운 가능</li>
+</ul>
+</li>
+<li><p>API 서버의 health/livez/readyz 를 사용하는 머신은 HTTP 상태 코드에 의존</p>
+</li>
+<li><p>모든 엔드포인트는 <code>verbose</code> 파라미터를 사용하여 검사 항목과 상태를 출력 가능<br>(API 서버의 현재 상태를 디버깅하는데 유용)</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -k https:&#x2F;&#x2F;localhost:6443&#x2F;livez?verbose</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<hr>
+<ul>
+<li>인증을 사용하는 원격 호스트에서 사용할 경우에는 다음과 같이 수행<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get --raw&#x3D;&#39;&#x2F;readyz?verbose&#39;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">[+]ping ok</span><br><span class="line">[+]log ok</span><br><span class="line">[+]etcd ok</span><br><span class="line">[+]poststarthook&#x2F;start-kube-apiserver-admission-initializer ok</span><br><span class="line">[+]poststarthook&#x2F;generic-apiserver-start-informers ok</span><br><span class="line">[+]poststarthook&#x2F;start-apiextensions-informers ok</span><br><span class="line">[+]poststarthook&#x2F;start-apiextensions-controllers ok</span><br><span class="line">[+]poststarthook&#x2F;crd-informer-synced ok</span><br><span class="line">[+]poststarthook&#x2F;bootstrap-controller ok</span><br><span class="line">...</span><br><span class="line">[+]poststarthook&#x2F;apiservice-openapi-controller ok</span><br><span class="line">healthz check passed</span><br></pre></td></tr></table></figure>
+
+<hr>
+<ul>
+<li>또한 쿠버네티스 API 서버는 특정 체크를 제외 가능<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -k &#39;https:&#x2F;&#x2F;localhost:6443&#x2F;readyz?verbose&amp;exclude&#x3D;etcd&#39;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="string">+</span>]<span class="string">ping</span> <span class="string">ok</span></span><br><span class="line">[<span class="string">+</span>]<span class="string">log</span> <span class="string">ok</span></span><br><span class="line"><span class="string">...</span></span><br><span class="line">[<span class="string">+</span>]<span class="attr">etcd excluded:</span> <span class="string">ok</span></span><br><span class="line"><span class="string">healthz</span> <span class="string">check</span> <span class="string">passed</span></span><br></pre></td></tr></table></figure>
+
+<style scoped>
+  pre [class*="hljs-"]:nth-child(n+8):nth-child(-n+10) {
+    background-color: yellow;
+  }
+</style>
+
+<hr>
+<h2 id="개별-헬스-체크-FEATURE-STATE-Kubernetes-v1-22-alpha"><a href="#개별-헬스-체크-FEATURE-STATE-Kubernetes-v1-22-alpha" class="headerlink" title="개별 헬스 체크 (FEATURE STATE: Kubernetes v1.22 [alpha])"></a>개별 헬스 체크 (<code>FEATURE STATE: Kubernetes v1.22 [alpha]</code>)</h2><ul>
+<li>각 개별 헬스 체크는 HTTP 엔드포인트를 노출하고 개별적으로 체크가 가능</li>
+<li>개별 체크를 위한 스키마는 <code>/livez/&lt;healthcheck-name&gt;</code></li>
+<li>livez 와 readyz 는 API 서버의 활성 상태 또는 준비 상태인지를 확인할 때 사용</li>
+<li><code>&lt;healthcheck-name&gt;</code> 경로 위에서 설명한 verbose 플래그를 사용</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl -k https:&#x2F;&#x2F;localhost:6443&#x2F;livez&#x2F;etcd</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="3-파라렐즈-리눅스-외부에서도-접속-가능하게-하기"><a href="#3-파라렐즈-리눅스-외부에서도-접속-가능하게-하기" class="headerlink" title="3. 파라렐즈 리눅스 외부에서도 접속 가능하게 하기"></a>3. 파라렐즈 리눅스 외부에서도 접속 가능하게 하기</h3><style scoped>
+section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+h3 {
+    font-size: 1rem;
+}
+</style>
+
+<hr>
+<blockquote>
+<p>참고자료: <a target="_blank" rel="noopener" href="https://khmirage.tistory.com/382">https://khmirage.tistory.com/382</a></p>
+</blockquote>
+<h3 id="원인"><a href="#원인" class="headerlink" title="원인"></a>원인</h3><ul>
+<li>Parallels를 이용해서 운영체제를 설치하게되면 기본적으로 네트워크가 NAT모드로 설정되어서 Guest OS의 IP 대역이 10.x.x.x로 잡히게 됨</li>
+</ul>
+<p>10.x.x.x 대역으로 IP가 설정이 되버리면 Parallels가 설치되어있는 컴퓨터가 아닌 공유기 아래의 다른 컴퓨터에서는 저 가상머신에 접근할수가 없게 됨</p>
+<hr>
+<h3 id="해결"><a href="#해결" class="headerlink" title="해결"></a>해결</h3><ol>
+<li>Parallels의 VM설정에서 Hardware -&gt; Network1 에서 Type을 Shared Network에서 Bridge 모드의 Default Adapter를 선택<br><img src="https://user-images.githubusercontent.com/26294469/136706790-cefe0b29-ee01-44f0-adb7-8e41f4d9b1fc.png" alt="bg fit right"></li>
+</ol>
+<hr>
+<ol start="2">
+<li>Ubuntu Server를 재부팅<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">shutdown -h now</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ul>
+<li>IP 변경됬는지 확인<br><img src="https://user-images.githubusercontent.com/26294469/136707142-66c43158-3f0d-41fc-8fe9-cdf44eb0818b.png" alt="bg fit right"></li>
+<li>이후 ssh 연결시 정상 접속되는 것을 확인</li>
+<li>공유기 설정을 통해 공인IP까지 맞추면 외부 접속 가능할 듯?</li>
+</ul>
+<!-- flag of hidden posts -->
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

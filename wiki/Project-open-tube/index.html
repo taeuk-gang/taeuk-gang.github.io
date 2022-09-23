@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>오픈 튜브 프로젝트 일지 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Projects,open-tube" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1차 작업 일지요약1차 레이아웃 작업 내용 ㅇㅅㅇ 구현사항 SCSS + Autoprefixer 추가 로그인 페이지 &#x2F; 메인 페이지 구현 로그인 구현 (firebase Auth - Apache 2.0 이용) 폴더구조 변경 상세사항은 아래에 작성   크로스 플랫폼 고려 (모바일 환경 고려) 상세사항은 아래에 작성   IE 지원 X 그리드 자동배치, 파이어베이스">
+<meta property="og:type" content="article">
+<meta property="og:title" content="오픈 튜브 프로젝트 일지">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Project-open-tube/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="1차 작업 일지요약1차 레이아웃 작업 내용 ㅇㅅㅇ 구현사항 SCSS + Autoprefixer 추가 로그인 페이지 &#x2F; 메인 페이지 구현 로그인 구현 (firebase Auth - Apache 2.0 이용) 폴더구조 변경 상세사항은 아래에 작성   크로스 플랫폼 고려 (모바일 환경 고려) 상세사항은 아래에 작성   IE 지원 X 그리드 자동배치, 파이어베이스">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62824505-1caee780-bbda-11e9-82d4-cec9e0fa2536.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62629569-5c6e9880-b968-11e9-95da-584c6a83b9de.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62824603-87acee00-bbdb-11e9-9cd1-497ddb86bdf0.gif">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62828631-28280000-bc26-11e9-87d8-810868335c3d.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62828579-26aa0800-bc25-11e9-936c-0a5301870de6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62915236-868fe280-bdce-11e9-835b-2723e81646c9.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62915282-c1921600-bdce-11e9-9435-5cc1a2ff093f.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62915304-e090a800-bdce-11e9-92c0-996b42b8d44b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62915332-01f19400-bdcf-11e9-8410-293bef55f359.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63513039-2876a400-c520-11e9-9c2a-bdc5e7c241fd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63512896-cf0e7500-c51f-11e9-8dd4-b8c412267867.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63513076-40e6be80-c520-11e9-82da-e6f7364ed3b6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63513172-71c6f380-c520-11e9-9e31-04ac0b878f96.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63513273-b783bc00-c520-11e9-8f2d-a6747c6b59cd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63513350-e6019700-c520-11e9-9673-4d9282a325c8.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/63587689-97670200-c5df-11e9-82dc-4f855a3bb452.gif">
+<meta property="article:published_time" content="2019-08-24T14:12:45.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.383Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Projects">
+<meta property="article:tag" content="open-tube">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/62824505-1caee780-bbda-11e9-82d4-cec9e0fa2536.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Project-open-tube" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Projects/">Projects</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Projects/open-tube/">open-tube</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Projects/" rel="tag">Projects</a>, <a class="tag-link-link" href="/tags/open-tube/" rel="tag">open-tube</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Project-open-tube/">
+            <time datetime="2019-08-24T14:12:45.000Z" itemprop="datePublished">2019-08-24</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Project-open-tube.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Project-open-tube.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Project-open-tube.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            오픈 튜브 프로젝트 일지
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">1.</span> <span class="toc-text">1차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD"><span class="toc-number">1.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84%EC%82%AC%ED%95%AD"><span class="toc-number">1.2.</span> <span class="toc-text">구현사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%A9%EB%B2%95"><span class="toc-number">1.3.</span> <span class="toc-text">코드 테스트 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%99%95%EC%9D%B8"><span class="toc-number">1.3.1.</span> <span class="toc-text">로그인 확인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8F%B4%EB%8D%94%EA%B5%AC%EC%A1%B0-%ED%99%95%EC%9D%B8"><span class="toc-number">1.3.2.</span> <span class="toc-text">폴더구조 확인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AA%A8%EB%B0%94%EC%9D%BC-%EC%B0%BD%EC%97%90%EC%84%9C-%ED%99%95%EC%9D%B8"><span class="toc-number">1.3.3.</span> <span class="toc-text">모바일 창에서 확인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IE-%EB%AF%B8%EC%A7%80%EC%9B%90-%ED%99%95%EC%9D%B8"><span class="toc-number">1.3.4.</span> <span class="toc-text">IE 미지원 확인</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7"><span class="toc-number">1.4.</span> <span class="toc-text">스크린샷</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80"><span class="toc-number">1.4.1.</span> <span class="toc-text">로그인 페이지</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A9%94%EC%9D%B8-%ED%8E%98%EC%9D%B4%EC%A7%80"><span class="toc-number">1.4.2.</span> <span class="toc-text">메인 페이지</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%AA%A8%EB%B0%94%EC%9D%BC-%EC%B0%BD"><span class="toc-number">1.4.3.</span> <span class="toc-text">모바일 창</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8F%B4%EB%8D%94%EA%B5%AC%EC%A1%B0-%EB%B3%80%EA%B2%BD"><span class="toc-number">1.4.4.</span> <span class="toc-text">폴더구조 변경</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80"><span class="toc-number">1.5.</span> <span class="toc-text">기타</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">2.</span> <span class="toc-text">2차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD-1"><span class="toc-number">2.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84-%EC%82%AC%ED%95%AD"><span class="toc-number">2.2.</span> <span class="toc-text">구현 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%A9%EB%B2%95-1"><span class="toc-number">2.3.</span> <span class="toc-text">코드 테스트 방법</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9C%A0%EC%A0%80-%EC%9D%B4%EB%A6%84-%ED%99%95%EC%9D%B8"><span class="toc-number">2.3.1.</span> <span class="toc-text">유저 이름 확인</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A0%88%ED%8F%AC%ED%8A%B8-%EC%9A%94%EC%B2%AD-%EB%AA%A8%EB%8B%AC%EC%B0%BD-%ED%99%95%EC%9D%B8"><span class="toc-number">2.3.2.</span> <span class="toc-text">레포트 요청 모달창 확인</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-1"><span class="toc-number">2.4.</span> <span class="toc-text">스크린샷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-1"><span class="toc-number">2.5.</span> <span class="toc-text">기타</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">3.</span> <span class="toc-text">3차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD-2"><span class="toc-number">3.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84-%EC%82%AC%ED%95%AD-1"><span class="toc-number">3.2.</span> <span class="toc-text">구현 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%A9%EB%B2%95-2"><span class="toc-number">3.3.</span> <span class="toc-text">코드 테스트 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-2"><span class="toc-number">3.4.</span> <span class="toc-text">스크린샷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-2"><span class="toc-number">3.5.</span> <span class="toc-text">기타</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">4.</span> <span class="toc-text">4차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD-3"><span class="toc-number">4.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84-%EC%82%AC%ED%95%AD-2"><span class="toc-number">4.2.</span> <span class="toc-text">구현 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%A9%EB%B2%95-3"><span class="toc-number">4.3.</span> <span class="toc-text">코드 테스트 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-3"><span class="toc-number">4.4.</span> <span class="toc-text">스크린샷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-3"><span class="toc-number">4.5.</span> <span class="toc-text">기타</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">5.</span> <span class="toc-text">5차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD-4"><span class="toc-number">5.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84-%EC%82%AC%ED%95%AD-3"><span class="toc-number">5.2.</span> <span class="toc-text">구현 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%A9%EB%B2%95-4"><span class="toc-number">5.3.</span> <span class="toc-text">코드 테스트 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-4"><span class="toc-number">5.4.</span> <span class="toc-text">스크린샷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%8A%B9%EC%9D%B4-%EC%82%AC%ED%95%AD"><span class="toc-number">5.5.</span> <span class="toc-text">특이 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-4"><span class="toc-number">5.6.</span> <span class="toc-text">기타</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">6.</span> <span class="toc-text">6차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD-5"><span class="toc-number">6.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B5%AC%ED%98%84-%EC%82%AC%ED%95%AD-4"><span class="toc-number">6.2.</span> <span class="toc-text">구현 사항</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%BD%94%EB%93%9C-%ED%85%8C%EC%8A%A4%ED%8A%B8-%EB%B0%A9%EB%B2%95-5"><span class="toc-number">6.3.</span> <span class="toc-text">코드 테스트 방법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%8A%A4%ED%81%AC%EB%A6%B0%EC%83%B7-5"><span class="toc-number">6.4.</span> <span class="toc-text">스크린샷</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-5"><span class="toc-number">6.5.</span> <span class="toc-text">기타</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#7%EC%B0%A8-%EC%9E%91%EC%97%85-%EC%9D%BC%EC%A7%80"><span class="toc-number">7.</span> <span class="toc-text">7차 작업 일지</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9A%94%EC%95%BD-6"><span class="toc-number">7.1.</span> <span class="toc-text">요약</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-6"><span class="toc-number">7.2.</span> <span class="toc-text">기타</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="1차-작업-일지"><a href="#1차-작업-일지" class="headerlink" title="1차 작업 일지"></a>1차 작업 일지</h1><h2 id="요약"><a href="#요약" class="headerlink" title="요약"></a>요약</h2><p>1차 레이아웃 작업 내용 ㅇㅅㅇ</p>
+<h2 id="구현사항"><a href="#구현사항" class="headerlink" title="구현사항"></a>구현사항</h2><ul>
+<li>SCSS + Autoprefixer 추가</li>
+<li>로그인 페이지 / 메인 페이지 구현</li>
+<li>로그인 구현 (firebase Auth - Apache 2.0 이용)</li>
+<li>폴더구조 변경<ul>
+<li>상세사항은 아래에 작성</li>
+</ul>
+</li>
+<li>크로스 플랫폼 고려 (모바일 환경 고려)<ul>
+<li>상세사항은 아래에 작성</li>
+</ul>
+</li>
+<li>IE 지원 X<ul>
+<li>그리드 자동배치, 파이어베이스 미지원으로 인하여 지원 종료</li>
+</ul>
+</li>
+<li>Shadow DOM 제거 - <a target="_blank" rel="noopener" href="https://www.google.com/search?ei=mfFOXb6vBITemAWm-oKADQ&q=FOUC&oq=FOUC&gs_l=psy-ab.3..35i39j0i67j0l8.1084500.1085562..1085738...1.0..0.147.593.0j5....3..0....1..gws-wiz.....10..0i10.lzSwpNONsTA&ved=0ahUKEwj-3_ev3fjjAhUEL6YKHSa9ANAQ4dUDCAo&uact=5">FOUC</a> 현상으로 인하여 제거</li>
+</ul>
+<h2 id="코드-테스트-방법"><a href="#코드-테스트-방법" class="headerlink" title="코드 테스트 방법"></a>코드 테스트 방법</h2><h3 id="로그인-확인"><a href="#로그인-확인" class="headerlink" title="로그인 확인"></a>로그인 확인</h3><ol>
+<li>구글 로그인 여부 확인</li>
+<li>라우팅 처리 잘 되어있는지 확인<br>비로그인시 <code>/report </code> 라우팅 접속 불가</li>
+</ol>
+<h3 id="폴더구조-확인"><a href="#폴더구조-확인" class="headerlink" title="폴더구조 확인"></a>폴더구조 확인</h3><ul>
+<li>삭제된 파일 및 이동된 폴더 검사</li>
+</ul>
+<h3 id="모바일-창에서-확인"><a href="#모바일-창에서-확인" class="headerlink" title="모바일 창에서 확인"></a>모바일 창에서 확인</h3><ul>
+<li>브라우저 크기를 작게하여 확인</li>
+</ul>
+<h3 id="IE-미지원-확인"><a href="#IE-미지원-확인" class="headerlink" title="IE 미지원 확인"></a>IE 미지원 확인</h3><ul>
+<li>IE 에서 접속시, 해당 브라우저는 지원되지 않습니다. 문구 표시</li>
+</ul>
+<h2 id="스크린샷"><a href="#스크린샷" class="headerlink" title="스크린샷"></a>스크린샷</h2><h3 id="로그인-페이지"><a href="#로그인-페이지" class="headerlink" title="로그인 페이지"></a>로그인 페이지</h3><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>로그인</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62824505-1caee780-bbda-11e9-82d4-cec9e0fa2536.png" alt="image"></td>
+</tr>
+</tbody></table>
+<h3 id="메인-페이지"><a href="#메인-페이지" class="headerlink" title="메인 페이지"></a>메인 페이지</h3><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>메인</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62629569-5c6e9880-b968-11e9-95da-584c6a83b9de.png" alt="image"></td>
+</tr>
+</tbody></table>
+<h3 id="모바일-창"><a href="#모바일-창" class="headerlink" title="모바일 창"></a>모바일 창</h3><ul>
+<li>GIF 캡쳐 프로그램 오류로, 색 변조 존재함…. (하늘색 무시해줘용)</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>로그인</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62824603-87acee00-bbdb-11e9-9cd1-497ddb86bdf0.gif" alt="image"></td>
+</tr>
+</tbody></table>
+<h3 id="폴더구조-변경"><a href="#폴더구조-변경" class="headerlink" title="폴더구조 변경"></a>폴더구조 변경</h3><p>📦client<br> ┣ 📂.storybook<br> ┃ ┗ 📜config.js<br> ┣ 📂functions<br> ┃ ┣ 📜.eslintrc.json<br> ┃ ┣ 📜.gitignore<br> ┃ ┣ 📜index.js<br> ┃ ┣ 📜package-lock.json<br> ┃ ┗ 📜package.json<br> ┣ 📂public<br> ┃ ┣ 📂src<br> ┃ ┃ ┗ 📂css<br> ┃ ┃ ┃ ┣ 📜foundation.min.css<br> ┃ ┃ ┃ ┗ 📜style.css                        # 추가 - SCSS 번들링 파일<br> ┃ ┣ 📜index.css<br> ┃ ┗ 📜index.html<br> ┣ 📂src<br> ┃ ┣ 📂components<br> ┃ ┃ ┣ 📜app-footer.js<br> ┃ ┃ ┣ 📜filter-list.js<br> ┃ ┃ ┣ 📜nav-top.js<br> ┃ ┃ ┗ 📜report-list.js<br> ┃ ┣ 📂libs                                        # 삭제 - LitRender 파일 삭제<br> ┃ ┃ ┣ 📜actions.js<br> ┃ ┃ ┣ 📜i18n.js<br> ┃ ┃ ┣ 📜redux-zero.js<br> ┃ ┃ ┗ 📜store.js<br> ┃ ┣ 📂pages                                    # 추가 - 페이지별 JS파일 별도 관리<br> ┃ ┃ ┣ 📜page-login.js<br> ┃ ┃ ┗ 📜page-reports.js<br> ┃ ┣ 📂scss                                        # 추가 - SCSS 파일 모음<br> ┃ ┃ ┣ 📂components<br> ┃ ┃ ┃ ┣ 📜app-footer.scss<br> ┃ ┃ ┃ ┣ 📜filter-list.scss<br> ┃ ┃ ┃ ┣ 📜nav-top.scss<br> ┃ ┃ ┃ ┗ 📜report-list.scss<br> ┃ ┃ ┣ 📂pages<br> ┃ ┃ ┃ ┣ 📜page-login.scss<br> ┃ ┃ ┃ ┣ 📜page-reports.scss<br> ┃ ┃ ┃ ┗ 📜vars.scss<br> ┃ ┃ ┗ 📜main.scss<br> ┃ ┣ 📂stories<br> ┃ ┃ ┗ 📜index.stories.js<br> ┃ ┣ 📂_locale                                    # 추가 - 언어리소스 모음<br> ┃ ┃ ┗ 📜ko.js<br> ┃ ┗ 📜main.js<br> ┣ 📂test<br> ┃ ┗ 📜index.html<br> ┣ 📜.babelrc<br> ┣ 📜.codebeatignore<br> ┣ 📜.eslintignore<br> ┣ 📜.eslintrc.js<br> ┣ 📜.firebaserc<br> ┣ 📜.gitignore<br> ┣ 📜.travis.yml<br> ┣ 📜database.rules.json<br> ┣ 📜firebase.json<br> ┣ 📜firestore.indexes.json<br> ┣ 📜firestore.rules<br> ┣ 📜package-lock.json<br> ┣ 📜package.json<br> ┣ 📜postcss.config.js<br> ┣ 📜README.md<br> ┣ 📜storage.rules<br> ┣ 📜wct.conf.json<br> ┗ 📜webpack.config.js</p>
+<h2 id="기타"><a href="#기타" class="headerlink" title="기타"></a>기타</h2><hr>
+<h1 id="2차-작업-일지"><a href="#2차-작업-일지" class="headerlink" title="2차 작업 일지"></a>2차 작업 일지</h1><h2 id="요약-1"><a href="#요약-1" class="headerlink" title="요약"></a>요약</h2><ul>
+<li>일반 유저와 관리자를 <code>uid</code>를 통해 구분하는 코드를 작성했으며, 사용자가 우리 서비스에 레포트를 요청할 수 있는 모달창을 구현했습니다.</li>
+</ul>
+<h2 id="구현-사항"><a href="#구현-사항" class="headerlink" title="구현 사항"></a>구현 사항</h2><ul>
+<li><p><code>firebase.auth ~ uid</code>를 통해, 관리자ID 구별 (서버리스 함수로 구현)</p>
+</li>
+<li><p>CSS duplicate 되던 버그 수정</p>
+</li>
+<li><p>쉬운 아이콘 사용을 위해 Foundation-icon 모듈 추가 <a target="_blank" rel="noopener" href="https://zurb.com/playground/foundation-icon-fonts-3">(자세한 사항</a>]</p>
+</li>
+<li><p>레포트 요청 모달창 구현 (아래의 스크린샷 첨부)</p>
+</li>
+</ul>
+<h2 id="코드-테스트-방법-1"><a href="#코드-테스트-방법-1" class="headerlink" title="코드 테스트 방법"></a>코드 테스트 방법</h2><h3 id="유저-이름-확인"><a href="#유저-이름-확인" class="headerlink" title="유저 이름 확인"></a>유저 이름 확인</h3><ul>
+<li>로그인 페이지에서 로그인을 하여, 메인 페이지 상단바의 사용자 이름이 뜨는지 확인</li>
+</ul>
+<h3 id="레포트-요청-모달창-확인"><a href="#레포트-요청-모달창-확인" class="headerlink" title="레포트 요청 모달창 확인"></a>레포트 요청 모달창 확인</h3><ul>
+<li>메인 페이지에서 레포트 요청 버튼을 클릭하여 정상 표시되는지 확인</li>
+</ul>
+<h2 id="스크린샷-1"><a href="#스크린샷-1" class="headerlink" title="스크린샷"></a>스크린샷</h2><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>사용자 이름</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62828631-28280000-bc26-11e9-87d8-810868335c3d.png" alt="image"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>모달창</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62828579-26aa0800-bc25-11e9-936c-0a5301870de6.png" alt="image"></td>
+</tr>
+</tbody></table>
+<h2 id="기타-1"><a href="#기타-1" class="headerlink" title="기타"></a>기타</h2><hr>
+<h1 id="3차-작업-일지"><a href="#3차-작업-일지" class="headerlink" title="3차 작업 일지"></a>3차 작업 일지</h1><h2 id="요약-2"><a href="#요약-2" class="headerlink" title="요약"></a>요약</h2><ul>
+<li>더미 API를 받고, 레포트를 불러오는 기능과 레포트 모달창 구현</li>
+</ul>
+<h2 id="구현-사항-1"><a href="#구현-사항-1" class="headerlink" title="구현 사항"></a>구현 사항</h2><ul>
+<li><input checked="" disabled="" type="checkbox"> 더미 API 작성(레포트 상태, 영상제목, URL)</li>
+<li><input checked="" disabled="" type="checkbox"> 레포트 UI 추가</li>
+<li><input checked="" disabled="" type="checkbox"> 레포트 Router 추가</li>
+</ul>
+<h2 id="코드-테스트-방법-2"><a href="#코드-테스트-방법-2" class="headerlink" title="코드 테스트 방법"></a>코드 테스트 방법</h2><ol>
+<li>구글 open.tube.service 계정으로 로그인 (슬랙: info에 ID/PW 있음)</li>
+<li>레포트가 정상적으로 받아오는지 확인</li>
+<li>레포트를 클릭하여 모달창 뜨는지 확인</li>
+</ol>
+<h2 id="스크린샷-2"><a href="#스크린샷-2" class="headerlink" title="스크린샷"></a>스크린샷</h2><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>더미 DB</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62915236-868fe280-bdce-11e9-835b-2723e81646c9.png" alt="image"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>더미 API</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62915282-c1921600-bdce-11e9-9435-5cc1a2ff093f.png" alt="image"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>메인 페이지</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62915304-e090a800-bdce-11e9-92c0-996b42b8d44b.png" alt="image"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>메인 페이지</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/62915332-01f19400-bdcf-11e9-8410-293bef55f359.png" alt="image"></td>
+</tr>
+</tbody></table>
+<h2 id="기타-2"><a href="#기타-2" class="headerlink" title="기타"></a>기타</h2><ul>
+<li>close #44 </li>
+</ul>
+<hr>
+<h1 id="4차-작업-일지"><a href="#4차-작업-일지" class="headerlink" title="4차 작업 일지"></a>4차 작업 일지</h1><h2 id="요약-3"><a href="#요약-3" class="headerlink" title="요약"></a>요약</h2><ul>
+<li>웹팩 번들링 파일 분석을 위한 모듈 추가 및 라우팅 최적화</li>
+</ul>
+<h2 id="구현-사항-2"><a href="#구현-사항-2" class="headerlink" title="구현 사항"></a>구현 사항</h2><ul>
+<li><code>webpack-stylish</code>, <code>webpack-visualizer-plugin</code> 모듈 추가<blockquote>
+<p>기능 설명: 각 모듈의 파일 사이즈, 번들링 시간 등을 파악</p>
+</blockquote>
+</li>
+<li>라우팅 최적화</li>
+<li><code>firebaseui</code> cdn -&gt; 로컬로 변경, 네트워크에서 느리게 받아오는 것을 확인하여 변경</li>
+</ul>
+<h2 id="코드-테스트-방법-3"><a href="#코드-테스트-방법-3" class="headerlink" title="코드 테스트 방법"></a>코드 테스트 방법</h2><ul>
+<li>각 리뷰어가 확인할 사항 없음</li>
+</ul>
+<h2 id="스크린샷-3"><a href="#스크린샷-3" class="headerlink" title="스크린샷"></a>스크린샷</h2><ul>
+<li>No ScreenShot</li>
+</ul>
+<h2 id="기타-3"><a href="#기타-3" class="headerlink" title="기타"></a>기타</h2><hr>
+<h1 id="5차-작업-일지"><a href="#5차-작업-일지" class="headerlink" title="5차 작업 일지"></a>5차 작업 일지</h1><h2 id="요약-4"><a href="#요약-4" class="headerlink" title="요약"></a>요약</h2><ul>
+<li>레포트 페이지 구현 및 CSS 테마1 적용</li>
+</ul>
+<h2 id="구현-사항-3"><a href="#구현-사항-3" class="headerlink" title="구현 사항"></a>구현 사항</h2><ul>
+<li>레포트 - 영상 삽입 (동적 이용을 위해 Youtube Iframe API 사용)</li>
+<li>레포트 - 영상 기본 정보</li>
+<li>레포트 - 얼굴 인식</li>
+<li>레포트 - 댓글 분석</li>
+<li>레포트 - 키워드 분석</li>
+</ul>
+<h2 id="코드-테스트-방법-4"><a href="#코드-테스트-방법-4" class="headerlink" title="코드 테스트 방법"></a>코드 테스트 방법</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://open-tube.web.app/">https://open-tube.web.app</a> 접속</p>
+</li>
+<li><p>open.tube.service 구글 ID 로그인</p>
+</li>
+<li><p>ID의 부여된 4개의 레포트 테스팅</p>
+</li>
+</ol>
+<h2 id="스크린샷-4"><a href="#스크린샷-4" class="headerlink" title="스크린샷"></a>스크린샷</h2><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>로그인 페이지</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63513039-2876a400-c520-11e9-9c2a-bdc5e7c241fd.png" alt="image"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>메인 페이지</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63512896-cf0e7500-c51f-11e9-8dd4-b8c412267867.png" alt="image"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>요청 페이지</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63513076-40e6be80-c520-11e9-82da-e6f7364ed3b6.png" alt="image"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>History API 수정 전으로, 아직 API 연결 안함 (아직 Status 분류가 되어있지 않음)</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>영상정보 및 얼굴인식</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63513172-71c6f380-c520-11e9-9e31-04ac0b878f96.png" alt="image"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>Seconds Link 클릭시, 그 시간대로 영상 재생</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>댓글 분석</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63513273-b783bc00-c520-11e9-8f2d-a6747c6b59cd.png" alt="image"></td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>각 항목별 오른차순·내림차순 정렬 가능</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>키워드분석</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63513350-e6019700-c520-11e9-9673-4d9282a325c8.png" alt="image"></td>
+</tr>
+</tbody></table>
+<h2 id="특이-사항"><a href="#특이-사항" class="headerlink" title="특이 사항"></a>특이 사항</h2><ul>
+<li>Youtube Iframe API 사용</li>
+<li>Word-Cloud 오픈소스(MIT) 사용</li>
+</ul>
+<h2 id="기타-4"><a href="#기타-4" class="headerlink" title="기타"></a>기타</h2><ul>
+<li>closed issue #58 </li>
+</ul>
+<hr>
+<h1 id="6차-작업-일지"><a href="#6차-작업-일지" class="headerlink" title="6차 작업 일지"></a>6차 작업 일지</h1><h2 id="요약-5"><a href="#요약-5" class="headerlink" title="요약"></a>요약</h2><p>레포트 상태 분류 / API 연결 / GIF 설명 삽입</p>
+<h2 id="구현-사항-4"><a href="#구현-사항-4" class="headerlink" title="구현 사항"></a>구현 사항</h2><ul>
+<li>레포트 - 상태 분류 표시 (대기/ 분석/ 완료)</li>
+<li>모달 메세지 컴포넌트 추가</li>
+<li>레포트 요청 API 연결</li>
+<li>로그인 GIF 설명 추가</li>
+</ul>
+<h2 id="코드-테스트-방법-5"><a href="#코드-테스트-방법-5" class="headerlink" title="코드 테스트 방법"></a>코드 테스트 방법</h2><ol>
+<li><p><a target="_blank" rel="noopener" href="https://open-tube.web.app/">https://open-tube.web.app</a> 접속</p>
+</li>
+<li><p>open.tube.service 구글 ID 로그인</p>
+</li>
+<li><p>ID의 부여된 4개의 레포트 테스팅</p>
+</li>
+</ol>
+<h2 id="스크린샷-5"><a href="#스크린샷-5" class="headerlink" title="스크린샷"></a>스크린샷</h2><table>
+<thead>
+<tr>
+<th>이름</th>
+<th>이미지</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>최종상태</td>
+<td><img src="https://user-images.githubusercontent.com/26294469/63587689-97670200-c5df-11e9-82dc-4f855a3bb452.gif" alt="ezgif-3-1a5ed28f0577"></td>
+</tr>
+</tbody></table>
+<h2 id="기타-5"><a href="#기타-5" class="headerlink" title="기타"></a>기타</h2><hr>
+<h1 id="7차-작업-일지"><a href="#7차-작업-일지" class="headerlink" title="7차 작업 일지"></a>7차 작업 일지</h1><h2 id="요약-6"><a href="#요약-6" class="headerlink" title="요약"></a>요약</h2><ul>
+<li>자잘한 버그 수정</li>
+</ul>
+<h2 id="기타-6"><a href="#기타-6" class="headerlink" title="기타"></a>기타</h2>
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Git-template/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Git 이슈·PR 템플릿 등록
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Book-tell-javascript-2/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">자바스크립트를 말하다 (2)</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

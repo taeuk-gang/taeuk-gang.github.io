@@ -1,0 +1,936 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Kubernetes 학습 기록 (1) - Docker | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Kubernetes,Server" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="“Kubernetes in Action” 책으로 학습한 내용입니다. Docker 설치CentOs 7에서 도커 설치 Hello World 컨테이너 실행1docker run busybox echo &quot;Hello world&quot;       결과 화면       간단한 Node.js 앱 만들기컨테이너 이미지 버전 실행법1docker run &lt;im">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Kubernetes 학습 기록 (1) - Docker">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Server-kubernetes/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="“Kubernetes in Action” 책으로 학습한 내용입니다. Docker 설치CentOs 7에서 도커 설치 Hello World 컨테이너 실행1docker run busybox echo &quot;Hello world&quot;       결과 화면       간단한 Node.js 앱 만들기컨테이너 이미지 버전 실행법1docker run &lt;im">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62409937-8dbe3000-b619-11e9-88aa-1e77ea39dd68.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62410381-ab8e9380-b61f-11e9-8cd8-39d84f7ab3f8.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62410407-de388c00-b61f-11e9-99f9-59298c60e1ad.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62410660-a3d0ee00-b623-11e9-969b-502c682a2ea6.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62410679-2063cc80-b624-11e9-81a9-d70e8df81cfd.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62410692-72a4ed80-b624-11e9-8a9e-ca913d689aeb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62410711-f363e980-b624-11e9-8feb-71160aad3abb.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62412446-8f99ea80-b63d-11e9-97bf-c3412b203c7b.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62422249-4b185880-b6ea-11e9-8783-64df3b25e365.png">
+<meta property="og:image" content="https://user-images.githubusercontent.com/26294469/62422260-66836380-b6ea-11e9-9013-5f12310c82a1.png">
+<meta property="article:published_time" content="2019-08-03T10:51:32.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.384Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Kubernetes">
+<meta property="article:tag" content="Server">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://user-images.githubusercontent.com/26294469/62409937-8dbe3000-b619-11e9-88aa-1e77ea39dd68.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file active"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Server-kubernetes" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Server/">Server</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/Server/Kubernetes/">Kubernetes</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a>, <a class="tag-link-link" href="/tags/Server/" rel="tag">Server</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Server-kubernetes/">
+            <time datetime="2019-08-03T10:51:32.000Z" itemprop="datePublished">2019-08-03</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Server-kubernetes.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Server-kubernetes.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Server-kubernetes.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Kubernetes 학습 기록 (1) - Docker
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker-%EC%84%A4%EC%B9%98"><span class="toc-number">1.</span> <span class="toc-text">Docker 설치</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-World-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%8B%A4%ED%96%89"><span class="toc-number">2.</span> <span class="toc-text">Hello World 컨테이너 실행</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EA%B0%84%EB%8B%A8%ED%95%9C-Node-js-%EC%95%B1-%EB%A7%8C%EB%93%A4%EA%B8%B0"><span class="toc-number">3.</span> <span class="toc-text">간단한 Node.js 앱 만들기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%B2%84%EC%A0%84-%EC%8B%A4%ED%96%89%EB%B2%95"><span class="toc-number">3.1.</span> <span class="toc-text">컨테이너 이미지 버전 실행법</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#app-js-%ED%8C%8C%EC%9D%BC-%EC%83%9D%EC%84%B1%EC%9C%BC%EB%A1%9C-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EC%83%9D%EC%84%B1"><span class="toc-number">3.2.</span> <span class="toc-text">app.js 파일 생성으로 애플리케이션 생성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B4%EB%AF%B8%EC%A7%80%EC%9A%A9-%EB%8F%84%EC%BB%A4-%ED%8C%8C%EC%9D%BC-%EB%A7%8C%EB%93%A4%EA%B8%B0"><span class="toc-number">3.3.</span> <span class="toc-text">이미지용 도커 파일 만들기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A7%8C%EB%93%A4%EA%B8%B0"><span class="toc-number">3.4.</span> <span class="toc-text">컨테이너 이미지 만들기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B9%8C%EB%93%9C-%ED%94%84%EB%A1%9C%EC%84%B8%EC%8A%A4%EA%B0%80-%EC%99%84%EB%A3%8C%EB%90%98%EB%A9%B4-%EC%83%88-%EC%9D%B4%EB%AF%B8%EC%A7%80%EA%B0%80-%EB%A1%9C%EC%BB%AC%EC%97%90-%EC%A0%80%EC%9E%A5%EB%90%A8"><span class="toc-number">3.5.</span> <span class="toc-text">빌드 프로세스가 완료되면, 새 이미지가 로컬에 저장됨</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%8F%84%EC%BB%A4-%EC%9D%B4%EB%AF%B8%EC%A7%80-%EC%8B%A4%ED%96%89"><span class="toc-number">3.6.</span> <span class="toc-text">도커 이미지 실행</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B4%EC%8A%88-%EC%9D%B4%EB%AF%B8-%EC%82%AC%EC%9A%A9%EB%90%9C-%ED%8F%AC%ED%8A%B8%EC%9D%BC-%EA%B2%BD%EC%9A%B0-exist-%EC%83%81%ED%83%9C%EC%9D%B4%EC%A7%80%EB%A7%8C-running%EC%9D%80-%EC%95%84%EB%8B%88%EB%9D%BC%EC%84%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EA%B0%80-docker-ps-%EB%AA%85%EB%A0%B9%EC%96%B4%EC%97%90%EB%8F%84-%EB%9C%A8%EC%A7%80-%EC%95%8A%EB%8A%94%EB%8B%A4"><span class="toc-number">3.7.</span> <span class="toc-text">(이슈) 이미 사용된 포트일 경우, exist 상태이지만, running은 아니라서 컨테이너가 docker ps 명령어에도 뜨지 않는다.</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A0%9C%EB%8C%80%EB%A1%9C-%EC%9E%91%EB%8F%99%ED%95%98%EA%B3%A0-%EC%9E%88%EB%8A%94%EC%A7%80-%ED%99%95%EC%9D%B8-curl-localhost-port"><span class="toc-number">3.8.</span> <span class="toc-text">제대로 작동하고 있는지 확인, curl localhost:port</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%8B%A4%ED%96%89-%EC%A4%91%EC%9D%B8-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EB%82%B4%EB%B6%80-%ED%83%90%EC%83%89"><span class="toc-number">3.9.</span> <span class="toc-text">실행 중인 컨테이너 내부 탐색</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%A4%91%EC%A7%80-%EB%B0%8F-%EC%A0%9C%EA%B1%B0"><span class="toc-number">3.10.</span> <span class="toc-text">컨테이너 중지 및 제거</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B4%EB%AF%B8%EC%A7%80-%EB%A0%88%EC%A7%80%EC%8A%A4%ED%8A%B8%EB%A6%AC%EB%A1%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80-%ED%91%B8%EC%8B%9C"><span class="toc-number">3.11.</span> <span class="toc-text">이미지 레지스트리로 이미지 푸시</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%9D%B4%ED%9B%84-%EB%8B%A4%EB%A5%B8-%EB%A8%B8%EC%8B%A0%EC%97%90%EC%84%9C-%EC%9D%B4%EB%AF%B8%EC%A7%80%EB%A5%BC-%EC%8B%A4%ED%96%89"><span class="toc-number">3.11.1.</span> <span class="toc-text">이후, 다른 머신에서 이미지를 실행</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Docker%EC%9D%98-%EC%9E%A5%EC%A0%90"><span class="toc-number">4.</span> <span class="toc-text">Docker의 장점</span></a></li></ol>
+                </div>
+            
+        
+        
+            <p>“Kubernetes in Action” 책으로 학습한 내용입니다.</p>
+<h2 id="Docker-설치"><a href="#Docker-설치" class="headerlink" title="Docker 설치"></a>Docker 설치</h2><p><a target="_blank" rel="noopener" href="https://niceman.tistory.com/36">CentOs 7에서 도커 설치</a></p>
+<h2 id="Hello-World-컨테이너-실행"><a href="#Hello-World-컨테이너-실행" class="headerlink" title="Hello World 컨테이너 실행"></a>Hello World 컨테이너 실행</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run busybox <span class="built_in">echo</span> <span class="string">&quot;Hello world&quot;</span></span><br></pre></td></tr></table></figure>
+
+<br />
+
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62409937-8dbe3000-b619-11e9-88aa-1e77ea39dd68.png"></td>
+</tr>
+</tbody></table>
+<h2 id="간단한-Node-js-앱-만들기"><a href="#간단한-Node-js-앱-만들기" class="headerlink" title="간단한 Node.js 앱 만들기"></a>간단한 Node.js 앱 만들기</h2><h3 id="컨테이너-이미지-버전-실행법"><a href="#컨테이너-이미지-버전-실행법" class="headerlink" title="컨테이너 이미지 버전 실행법"></a>컨테이너 이미지 버전 실행법</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run &lt;image&gt;:&lt;tag&gt;</span><br></pre></td></tr></table></figure>
+
+<h3 id="app-js-파일-생성으로-애플리케이션-생성"><a href="#app-js-파일-생성으로-애플리케이션-생성" class="headerlink" title="app.js 파일 생성으로 애플리케이션 생성"></a><code>app.js</code> 파일 생성으로 애플리케이션 생성</h3><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// app.js 파일</span></span><br><span class="line"><span class="keyword">const</span> http = <span class="built_in">require</span>(<span class="string">`http`</span>)</span><br><span class="line"><span class="keyword">const</span> os = <span class="built_in">require</span>(<span class="string">`os`</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`Kubia server starting...`</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> handler = <span class="function">(<span class="params">req, res</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Received request from <span class="subst">$&#123;req.connection.remoteAddress&#125;</span>`</span>)</span><br><span class="line">    res.writeHead(<span class="number">200</span>)</span><br><span class="line">    res.end(<span class="string">`You&#x27;ve hit <span class="subst">$&#123;os.hostname()&#125;</span>`</span>)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> www = http.createServer(handler)</span><br><span class="line">www.listen(<span class="number">8080</span>)</span><br></pre></td></tr></table></figure>
+
+<h3 id="이미지용-도커-파일-만들기"><a href="#이미지용-도커-파일-만들기" class="headerlink" title="이미지용 도커 파일 만들기"></a>이미지용 도커 파일 만들기</h3><p>이미지에 패키징하려면 <code>도커 파일</code> 필요</p>
+<p><code>도커 파일</code>에는 도커가 수행할 지시 사항 목록이 들어있다.</p>
+<p><code>도커 파일</code>은 동일한 디렉토리에 위치할 것!</p>
+<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">FROM</span> node:<span class="number">10</span></span><br><span class="line"><span class="keyword">ADD</span><span class="bash"> app.js /app.js</span></span><br><span class="line"><span class="keyword">ENTRYPOINT</span><span class="bash"> [<span class="string">&quot;node&quot;</span>, <span class="string">&quot;app.js&quot;</span>]</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="컨테이너-이미지-만들기"><a href="#컨테이너-이미지-만들기" class="headerlink" title="컨테이너 이미지 만들기"></a>컨테이너 이미지 만들기</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker build -t taeuk-test .</span><br></pre></td></tr></table></figure>
+
+<p>도커에게 현재 디렉터리의 내용을 <code>taeuk-test</code>라는 이미지로 빌드하라는 요청</p>
+<p>도커파일을 찾고 설정에 따라 이미지 빌드</p>
+<p>(대문자는 되지않음)</p>
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62410381-ab8e9380-b61f-11e9-8cd8-39d84f7ab3f8.png"></td>
+</tr>
+</tbody></table>
+<h3 id="빌드-프로세스가-완료되면-새-이미지가-로컬에-저장됨"><a href="#빌드-프로세스가-완료되면-새-이미지가-로컬에-저장됨" class="headerlink" title="빌드 프로세스가 완료되면, 새 이미지가 로컬에 저장됨"></a>빌드 프로세스가 완료되면, 새 이미지가 로컬에 저장됨</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker images</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62410407-de388c00-b61f-11e9-99f9-59298c60e1ad.png"></td>
+</tr>
+</tbody></table>
+<h3 id="도커-이미지-실행"><a href="#도커-이미지-실행" class="headerlink" title="도커 이미지 실행"></a>도커 이미지 실행</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run --name taeuk-container -p 9381:8080 -d taeuk-test</span><br></pre></td></tr></table></figure>
+
+<p>컨테이너는 콘솔에서 분리된다. (백그라운드에서 실행)</p>
+<p><code>-p 8080:8080</code> 로컬 컴퓨터의 8080은 컨테이너 내부 포트 8080에 매핑<br>이후, <a href="http://localhost:8080을">http://localhost:8080을</a> 통해 접속이 가능하다.</p>
+<ul>
+<li>도커 데몬이 아닌 경우(Mac or Window는 VM 내부에서 데몬실행), VM의 호스트 네임이나 IP를 사용</li>
+</ul>
+<h3 id="이슈-이미-사용된-포트일-경우-exist-상태이지만-running은-아니라서-컨테이너가-docker-ps-명령어에도-뜨지-않는다"><a href="#이슈-이미-사용된-포트일-경우-exist-상태이지만-running은-아니라서-컨테이너가-docker-ps-명령어에도-뜨지-않는다" class="headerlink" title="(이슈) 이미 사용된 포트일 경우, exist 상태이지만, running은 아니라서 컨테이너가 docker ps 명령어에도 뜨지 않는다."></a>(이슈) 이미 사용된 포트일 경우, exist 상태이지만, running은 아니라서 컨테이너가 <code>docker ps</code> 명령어에도 뜨지 않는다.</h3><table>
+<thead>
+<tr>
+<th align="center">이미 사용중인 포트라고 해서, 다시 로컬 포트를 바꿨지만 이미 생성되있다고 뜬다</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62410660-a3d0ee00-b623-11e9-969b-502c682a2ea6.png"></td>
+</tr>
+</tbody></table>
+<p><code>docker kill</code>을 실행 중이 아니라고 지워지지 않는다.</p>
+<p>그러므로, <code>docker rm</code>을 하여 지운 후 다시 <code>docker run</code></p>
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62410679-2063cc80-b624-11e9-81a9-d70e8df81cfd.png"></td>
+</tr>
+</tbody></table>
+<h3 id="제대로-작동하고-있는지-확인-curl-localhost-port"><a href="#제대로-작동하고-있는지-확인-curl-localhost-port" class="headerlink" title="제대로 작동하고 있는지 확인, curl localhost:port"></a>제대로 작동하고 있는지 확인, <code>curl localhost:port</code></h3><table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62410692-72a4ed80-b624-11e9-8a9e-ca913d689aeb.png"></td>
+</tr>
+</tbody></table>
+<p><code>hit</code>가 뜬다면 정상</p>
+<p>만약 <code>curl: (56) Recv failure: Connection reset by peer</code>가 뜬다면,<br>포트(외부포트:컨테이너내부포트 둘중 하나가 맞지 않다는 뜻이다)</p>
+<p>또는 <code>docker inspect taeuk-container</code> 를 쳐서 확인</p>
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62410711-f363e980-b624-11e9-8feb-71160aad3abb.png"></td>
+</tr>
+</tbody></table>
+<p>이후, 터널링</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -l 9381:127.0.0.1:9381 root@101.101.164.175</span><br></pre></td></tr></table></figure>
+
+<p>명령어 친후, 내 컴퓨터에서 <code>localhost:9381</code>로 접속하여 확인</p>
+<h3 id="실행-중인-컨테이너-내부-탐색"><a href="#실행-중인-컨테이너-내부-탐색" class="headerlink" title="실행 중인 컨테이너 내부 탐색"></a>실행 중인 컨테이너 내부 탐색</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker <span class="built_in">exec</span> -it taeuk-container bash</span><br></pre></td></tr></table></figure>
+
+<p><code>-i</code>:  stdin을 오픈상태로 유지, 셸에 명령 입력시 필요</p>
+<p><code>-t</code>: pseudo 터미널(TTY)을 할당한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ps aux</span><br></pre></td></tr></table></figure>
+
+<p>컨테이너 내부 프로세스 나열하기</p>
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+</table>
+<p>컨테이너 내부 프로세스와 호스트내부 프로세스 ID가 다르다.</p>
+<p>컨테이너는 자체 PID 리눅스 네임스페이스를 사용</p>
+<p>고유 시퀀스 번호를 갖는 완전히 분리된 프로세스 트리를 소유한다.</p>
+<h3 id="컨테이너-중지-및-제거"><a href="#컨테이너-중지-및-제거" class="headerlink" title="컨테이너 중지 및 제거"></a>컨테이너 중지 및 제거</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker stop taeuk-container</span><br></pre></td></tr></table></figure>
+
+<p>실행중인 기본 프로세스 중지, 컨테이너 중지</p>
+<p>컨테이너 자체는 <code>docker ps -a</code> 명령어를 통해 확인 가능</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker rm taeuk-container</span><br></pre></td></tr></table></figure>
+
+<p>컨테이너가 삭제되고, 모든 내용이 제거되면 다시 시작할 수 없다.</p>
+<h3 id="이미지-레지스트리로-이미지-푸시"><a href="#이미지-레지스트리로-이미지-푸시" class="headerlink" title="이미지 레지스트리로 이미지 푸시"></a>이미지 레지스트리로 이미지 푸시</h3><p>지금까지 한 작업은 로컬에서만 사용가능하다. 다른 컴퓨터에서 빌드한 이미지를 실행하려면, 외부 이미지 레지스트리로 푸시해야한다. 공개적으로 이용가능한  레지스트리 중 하나인 <a target="_blank" rel="noopener" href="http://hub.docker.com/">도커 허브</a>에 이미지 푸시, 다른 것으로는 <code>Quay.io</code>, <code>구글 컨테이너 레지스트리</code>가 있다.</p>
+<p>이미지 푸시 전에, 도커 허브 RULE에 따라 이미지 태그부터 지정해야한다.<br>도커 허브는 이미지의 소티리지 이름이 도커 허브 ID로 시작하면 이미지를 푸시할 수 있다.<br>도커 허브 ID는 도커허브에서 등록하여 만든다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker tag taeuk-test kangtaeuk/taeuk-test</span><br></pre></td></tr></table></figure>
+
+<p>이후, <code>docker images | head</code> 명령어로 태그가 생성된 것을 확인할 수 있다.</p>
+<table>
+<thead>
+<tr>
+<th align="center">결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62412446-8f99ea80-b63d-11e9-97bf-c3412b203c7b.png"></td>
+</tr>
+</tbody></table>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker login</span><br></pre></td></tr></table></figure>
+
+<p>도커에 푸시하기전에, 로그인을 먼저 한다.</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker push kangtaeuk/taeuk-test</span><br></pre></td></tr></table></figure>
+
+<p>도커에 이미지 푸시</p>
+<table>
+<thead>
+<tr>
+<th align="center">터미널 - 결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62422249-4b185880-b6ea-11e9-8783-64df3b25e365.png"></td>
+</tr>
+</tbody></table>
+<table>
+<thead>
+<tr>
+<th align="center">도커사이트 - 결과 화면</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center"><img src="https://user-images.githubusercontent.com/26294469/62422260-66836380-b6ea-11e9-9013-5f12310c82a1.png"></td>
+</tr>
+</tbody></table>
+<h4 id="이후-다른-머신에서-이미지를-실행"><a href="#이후-다른-머신에서-이미지를-실행" class="headerlink" title="이후, 다른 머신에서 이미지를 실행"></a>이후, 다른 머신에서 이미지를 실행</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -p 9381:8080 -d kangtaeuk/taeuk-test</span><br></pre></td></tr></table></figure>
+
+<h2 id="Docker의-장점"><a href="#Docker의-장점" class="headerlink" title="Docker의 장점"></a>Docker의 장점</h2><p>애플리케이션이이 언제 어디서나 동일한 환경을 유지한다는 것이다.</p>
+<p>모든 컴퓨터 안 리눅스에서 정상 실행이 되기 때문에, 호스트 시스템에 <code>node.js</code>가 있는지는 걱정할 필요가 없어진다.</p>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Server-kubernetes-2/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Kubernetes 학습 기록 (2) - Kubernetes
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/SERVER-naver-cloud/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">처음 써보는 네이버 클라우드 이용기</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

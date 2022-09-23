@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>3장 파드 - 쿠버네티스에서 컨테이너 실행 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Kubernetes" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="개인이 “쿠버네티스 인 액션” 책을 읽고 학습한 내용으로, 틀린 내용이 있을 수 있습니다.  3장 파드: 쿠버네티스에서 컨테이너 실행 주요 내용  파드 생성, 실행, 정지 파드, 다른 리소스를 라벨로 조직화 특정 라벨을 가진 모든 파드에서 작업 수행 네임스페이스로 파드 나누기 특정 형식을 가진 워커노드에 파드 배치   3.1 파드 소개Q: 파드가 뭔가요?">
+<meta property="og:type" content="article">
+<meta property="og:title" content="3장 파드 - 쿠버네티스에서 컨테이너 실행">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/k8s_3_pod/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="개인이 “쿠버네티스 인 액션” 책을 읽고 학습한 내용으로, 틀린 내용이 있을 수 있습니다.  3장 파드: 쿠버네티스에서 컨테이너 실행 주요 내용  파드 생성, 실행, 정지 파드, 다른 리소스를 라벨로 조직화 특정 라벨을 가진 모든 파드에서 작업 수행 네임스페이스로 파드 나누기 특정 형식을 가진 워커노드에 파드 배치   3.1 파드 소개Q: 파드가 뭔가요?">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/wtCPd6khueFbqms.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/ZGXSAFoVjTndCkJ.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/1LTtx5UHuV4Qj8E.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/5umetJ6CElbP1Qq.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/wltGNscUE67zLiJ.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/rdRpCn8H2yiLWvj.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/QW8ic6l4kr13h29.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/8s5brpld2v1zc6S.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/Yht1nmSdaj9KA7l.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/S6RFvwdjXlDCgLW.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/phAWVZw8Y2oByFI.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/LFmABDTg3h2jNqn.png">
+<meta property="og:image" content="https://i.loli.net/2020/11/08/2Yd5CRl4ZVqO163.png">
+<meta property="article:published_time" content="2020-11-08T13:33:18.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.387Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Kubernetes">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2020/11/08/wtCPd6khueFbqms.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file active"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-k8s_3_pod" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Kubernetes/">Kubernetes</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/k8s_3_pod/">
+            <time datetime="2020-11-08T13:33:18.000Z" itemprop="datePublished">2020-11-08</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/k8s_3_pod.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/k8s_3_pod.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/k8s_3_pod.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            3장 파드 - 쿠버네티스에서 컨테이너 실행
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#3%EC%9E%A5-%ED%8C%8C%EB%93%9C-%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EC%97%90%EC%84%9C-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EC%8B%A4%ED%96%89"><span class="toc-number">1.</span> <span class="toc-text">3장 파드: 쿠버네티스에서 컨테이너 실행</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#3-1-%ED%8C%8C%EB%93%9C-%EC%86%8C%EA%B0%9C"><span class="toc-number">1.1.</span> <span class="toc-text">3.1 파드 소개</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-1-%ED%8C%8C%EB%93%9C-%ED%95%84%EC%9A%94-%EC%9D%B4%EC%9C%A0"><span class="toc-number">1.1.1.</span> <span class="toc-text">3.1.1 파드 필요 이유</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-2-%ED%8C%8C%EB%93%9C-%EC%9D%B4%ED%95%B4"><span class="toc-number">1.1.2.</span> <span class="toc-text">3.1.2 파드 이해</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-3-%ED%8C%8C%EB%93%9C%EC%99%80-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88-%EA%B5%AC%EC%84%B1"><span class="toc-number">1.1.3.</span> <span class="toc-text">3.1.3 파드와 컨테이너 구성</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-2-YAML-%EB%98%90%EB%8A%94-JSON%EC%9C%BC%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EC%83%9D%EC%84%B1"><span class="toc-number">1.2.</span> <span class="toc-text">3.2 YAML 또는 JSON으로 파드 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-1-%EA%B8%B0%EC%A1%B4-%ED%8C%8C%EB%93%9C-YAML-%EC%82%B4%ED%8E%B4%EB%B3%B4%EA%B8%B0"><span class="toc-number">1.2.1.</span> <span class="toc-text">3.2.1 기존 파드 YAML 살펴보기</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-2-%ED%8C%8C%EB%93%9C-%EC%A0%95%EC%9D%98-YAML-%EC%9E%91%EC%84%B1"><span class="toc-number">1.2.2.</span> <span class="toc-text">3.2.2 파드 정의 YAML 작성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B8%B0%ED%83%80-%EC%9C%A0%EC%9A%A9%ED%95%9C-%EB%AA%85%EB%A0%B9%EC%96%B4-kubucetl-explain"><span class="toc-number">1.2.3.</span> <span class="toc-text">기타: 유용한 명령어 kubucetl explain</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-3-kubectl-create"><span class="toc-number">1.2.4.</span> <span class="toc-text">3.2.3 kubectl create</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%83%9D%EC%84%B1"><span class="toc-number">1.2.4.1.</span> <span class="toc-text">생성</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%83%9D%EC%84%B1-%ED%99%95%EC%9D%B8"><span class="toc-number">1.2.4.2.</span> <span class="toc-text">생성 확인</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-4-%EC%95%A0%ED%94%8C%EB%A6%AC%EC%BC%80%EC%9D%B4%EC%85%98-%EB%A1%9C%EA%B7%B8-%EB%B3%B4%EA%B8%B0"><span class="toc-number">1.2.5.</span> <span class="toc-text">3.2.4 애플리케이션 로그 보기</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%A3%BC%EC%9D%98-%EC%82%AC%ED%95%AD"><span class="toc-number">1.2.5.1.</span> <span class="toc-text">주의 사항</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%97%AC%EB%9F%AC-%EC%BB%A8%ED%85%8C%EC%9D%B4%EB%84%88%EB%A5%BC-%EA%B0%80%EC%A7%84-%ED%8C%8C%EB%93%9C%EC%9D%98-%EB%A1%9C%EA%B7%B8-%ED%99%95%EC%9D%B8"><span class="toc-number">1.2.5.2.</span> <span class="toc-text">여러 컨테이너를 가진 파드의 로그 확인</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-5-%ED%8C%8C%EB%93%9C%EC%97%90-%EC%9A%94%EC%B2%AD-%EB%B3%B4%EB%82%B4%EA%B8%B0"><span class="toc-number">1.2.6.</span> <span class="toc-text">3.2.5 파드에 요청 보내기</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-3-%EB%9D%BC%EB%B2%A8%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-%ED%8C%8C%EB%93%9C-%EA%B5%AC%EC%84%B1"><span class="toc-number">1.3.</span> <span class="toc-text">3.3 라벨을 이용한 파드 구성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-1-%EB%9D%BC%EB%B2%A8-%EC%86%8C%EA%B0%9C"><span class="toc-number">1.3.1.</span> <span class="toc-text">3.3.1 라벨 소개</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-2-%ED%8C%8C%EB%93%9C-%EC%83%9D%EC%84%B1%EC%8B%9C-%EB%9D%BC%EB%B2%A8-%EC%A7%80%EC%A0%95"><span class="toc-number">1.3.2.</span> <span class="toc-text">3.3.2 파드 생성시 라벨 지정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%8C%8C%EB%93%9C-%EB%9D%BC%EB%B2%A8-%EB%B3%B4%EA%B8%B0"><span class="toc-number">1.3.2.1.</span> <span class="toc-text">파드 라벨 보기</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%8C%8C%EB%93%9C-%ED%8A%B9%EC%A0%95-%EB%9D%BC%EB%B2%A8%EB%A7%8C-%EB%B3%B4%EA%B8%B0"><span class="toc-number">1.3.2.2.</span> <span class="toc-text">파드 특정 라벨만 보기</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-3-%EA%B8%B0%EC%A1%B4-%ED%8C%8C%EB%93%9C-%EB%9D%BC%EB%B2%A8-%EC%88%98%EC%A0%95"><span class="toc-number">1.3.3.</span> <span class="toc-text">3.3.3 기존 파드 라벨 수정</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%8C%8C%EB%93%9C%EC%97%90-%EC%83%88%EB%A1%9C%EC%9A%B4-%EB%9D%BC%EB%B2%A8-%EC%B6%94%EA%B0%80"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">파드에 새로운 라벨 추가</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%8C%8C%EB%93%9C%EC%97%90-%EA%B8%B0%EC%A1%B4-%EB%9D%BC%EB%B2%A8-%EC%88%98%EC%A0%95"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">파드에 기존 라벨 수정</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-4-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EB%B6%80%EB%B6%84-%EC%A7%91%ED%95%A9-%EB%82%98%EC%97%B4"><span class="toc-number">1.4.</span> <span class="toc-text">3.4 라벨 셀렉터로 파드 부분 집합 나열</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-1-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EB%82%98%EC%97%B4"><span class="toc-number">1.4.1.</span> <span class="toc-text">3.4.1 라벨 셀렉터로 파드 나열</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%8A%B9%EC%A0%95-%ED%82%A4%EC%99%80-%EA%B0%92-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0-%EC%A1%B0%EA%B1%B4"><span class="toc-number">1.4.1.1.</span> <span class="toc-text">특정 키와 값 라벨 셀렉터 조건</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B0%92%EC%9D%80-%EC%83%81%EA%B4%80%ED%95%98%EC%A7%80%EC%95%8A%EB%8A%94-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0-%EC%A1%B0%EA%B1%B4"><span class="toc-number">1.4.1.2.</span> <span class="toc-text">값은 상관하지않는 라벨 셀렉터 조건</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B0%92%EC%9D%84-%EA%B0%80%EC%A7%80%EA%B3%A0%EC%9E%88%EC%A7%80-%EC%95%8A%EB%8A%94-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0-%EC%A1%B0%EA%B1%B4"><span class="toc-number">1.4.1.3.</span> <span class="toc-text">값을 가지고있지 않는 라벨 셀렉터 조건</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B0%92%EC%9D%B4-%EC%95%84%EB%8B%8C-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0-%EC%A1%B0%EA%B1%B4"><span class="toc-number">1.4.1.4.</span> <span class="toc-text">값이 아닌 라벨 셀렉터 조건</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B0%92%EC%9D%B4-A-%EB%98%90%EB%8A%94-B-%EC%9D%B8-%EC%A1%B0%EA%B1%B4"><span class="toc-number">1.4.1.5.</span> <span class="toc-text">값이 A 또는 B 인 조건</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B0%92%EC%9D%B4-%EB%91%98%EB%8B%A4-%EC%95%84%EB%8B%8C-%EA%B2%83"><span class="toc-number">1.4.1.6.</span> <span class="toc-text">값이 둘다 아닌 것</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-4-2-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0%EC%97%90%EC%84%9C-%EC%A1%B0%EA%B1%B4-%EC%82%AC%EC%9A%A9"><span class="toc-number">1.4.2.</span> <span class="toc-text">3.4.2 라벨 셀렉터에서 조건 사용</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-5-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81"><span class="toc-number">1.5.</span> <span class="toc-text">3.5 라벨 셀렉터로 파드 스케줄링</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-1-%EC%9B%8C%EC%BB%A4-%EB%85%B8%EB%93%9C-%EB%B6%84%EB%A5%98%EC%97%90-%EB%9D%BC%EB%B2%A8-%EC%82%AC%EC%9A%A9"><span class="toc-number">1.5.1.</span> <span class="toc-text">3.5.1 워커 노드 분류에 라벨 사용</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-2-%ED%8A%B9%EC%A0%95-%EB%85%B8%EB%93%9C%EC%97%90-%ED%8C%8C%EB%93%9C-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81"><span class="toc-number">1.5.2.</span> <span class="toc-text">3.5.2 특정 노드에 파드 스케줄링</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-5-3-%ED%95%98%EB%82%98%EC%9D%98-%ED%8A%B9%EC%A0%95-%EB%85%B8%EB%93%9C%EB%A1%9C-%EC%8A%A4%EC%BC%80%EC%A4%84%EB%A7%81"><span class="toc-number">1.5.3.</span> <span class="toc-text">3.5.3 하나의 특정 노드로 스케줄링</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-6-%ED%8C%8C%EB%93%9C%EC%97%90-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98-%EB%8B%AC%EA%B8%B0"><span class="toc-number">1.6.</span> <span class="toc-text">3.6 파드에 어노테이션 달기</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-1-%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98-%EC%A1%B0%ED%9A%8C"><span class="toc-number">1.6.1.</span> <span class="toc-text">3.6.1 오브젝트 어노테이션 조회</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-6-2-%EC%96%B4%EB%85%B8%ED%85%8C%EC%9D%B4%EC%85%98-%EC%B6%94%EA%B0%80-%EB%B0%8F-%EC%88%98%EC%A0%95"><span class="toc-number">1.6.2.</span> <span class="toc-text">3.6.2 어노테이션 추가 및 수정</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-7-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A1%9C-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EA%B7%B8%EB%A3%B9%ED%99%94"><span class="toc-number">1.7.</span> <span class="toc-text">3.7 네임스페이스로 리소스 그룹화</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-1-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%ED%95%84%EC%9A%94%EC%84%B1"><span class="toc-number">1.7.1.</span> <span class="toc-text">3.7.1 네임스페이스 필요성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-2-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%A1%B0%ED%9A%8C"><span class="toc-number">1.7.2.</span> <span class="toc-text">3.7.2 네임스페이스 조회</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-3-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%83%9D%EC%84%B1"><span class="toc-number">1.7.3.</span> <span class="toc-text">3.7.3 네임스페이스 생성</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Yaml%EB%A1%9C-%EC%83%9D%EC%84%B1"><span class="toc-number">1.7.3.1.</span> <span class="toc-text">Yaml로 생성</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%AA%85%EB%A0%B9%EC%96%B4%EB%A1%9C-%EC%83%9D%EC%84%B1"><span class="toc-number">1.7.3.2.</span> <span class="toc-text">명령어로 생성</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-4-%EB%8B%A4%EB%A5%B8-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%98%A4%EB%B8%8C%EC%A0%9D%ED%8A%B8-%EA%B4%80%EB%A6%AC"><span class="toc-number">1.7.4.</span> <span class="toc-text">3.7.4 다른 네임스페이스 오브젝트 관리</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%98%84%EC%9E%AC-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%B9%A0%EB%A5%B4%EA%B2%8C-%EB%B3%80%EA%B2%BD%ED%95%98%EB%8A%94-alias"><span class="toc-number">1.7.4.1.</span> <span class="toc-text">현재 네임스페이스 빠르게 변경하는 alias</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-7-5-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EA%B2%A9%EB%A6%AC-%EC%9D%B4%ED%95%B4"><span class="toc-number">1.7.5.</span> <span class="toc-text">3.7.5 네임스페이스 격리 이해</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-8-%ED%8C%8C%EB%93%9C-%EC%A4%91%EC%A7%80-%EC%A0%9C%EA%B1%B0"><span class="toc-number">1.8.</span> <span class="toc-text">3.8 파드 중지 제거</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-1-%EC%9D%B4%EB%A6%84%EC%9C%BC%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EC%82%AD%EC%A0%9C"><span class="toc-number">1.8.1.</span> <span class="toc-text">3.8.1 이름으로 파드 삭제</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-2-%EB%9D%BC%EB%B2%A8-%EC%85%80%EB%A0%89%ED%84%B0%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EC%82%AD%EC%A0%9C"><span class="toc-number">1.8.2.</span> <span class="toc-text">3.8.2 라벨 셀렉터로 파드 삭제</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-3-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A1%9C-%ED%8C%8C%EB%93%9C-%EC%A0%9C%EA%B1%B0"><span class="toc-number">1.8.3.</span> <span class="toc-text">3.8.3 네임스페이스로 파드 제거</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-4-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EC%9C%A0%EC%A7%80%ED%95%98%EB%A9%B4%EC%84%9C-%EC%95%88%EC%97%90-%EB%AA%A8%EB%93%A0-%ED%8C%8C%EB%93%9C-%EC%82%AD%EC%A0%9C"><span class="toc-number">1.8.4.</span> <span class="toc-text">3.8.4 네임스페이스 유지하면서 안에 모든 파드 삭제</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-8-5-%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%AA%A8%EB%93%A0-%EB%A6%AC%EC%86%8C%EC%8A%A4-%EC%82%AD%EC%A0%9C"><span class="toc-number">1.8.5.</span> <span class="toc-text">3.8.5 네임스페이스 모든 리소스 삭제</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-9-%EC%9A%94%EC%95%BD"><span class="toc-number">1.9.</span> <span class="toc-text">3.9 요약</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>개인이 “쿠버네티스 인 액션” 책을 읽고 학습한 내용으로, 틀린 내용이 있을 수 있습니다.</p>
+</blockquote>
+<h1 id="3장-파드-쿠버네티스에서-컨테이너-실행"><a href="#3장-파드-쿠버네티스에서-컨테이너-실행" class="headerlink" title="3장 파드: 쿠버네티스에서 컨테이너 실행"></a>3장 파드: 쿠버네티스에서 컨테이너 실행</h1><blockquote>
+<p>주요 내용</p>
+<ul>
+<li>파드 생성, 실행, 정지</li>
+<li>파드, 다른 리소스를 라벨로 조직화</li>
+<li>특정 라벨을 가진 모든 파드에서 작업 수행</li>
+<li>네임스페이스로 파드 나누기</li>
+<li>특정 형식을 가진 워커노드에 파드 배치</li>
+</ul>
+</blockquote>
+<h2 id="3-1-파드-소개"><a href="#3-1-파드-소개" class="headerlink" title="3.1 파드 소개"></a>3.1 파드 소개</h2><p>Q: 파드가 뭔가요?</p>
+<p>A: 쿠버네티스의 기본 단위로, <strong>컨테이너를 개별적으로 배포하기보다</strong> 일반적으로 한개의 <strong>컨테이너를 가진 파드를 배포</strong>하여 운영합니다. 특정 상황에서는 두개 이상이 될 수도 있겠지만, 일반적으로 하나의 컨테이너만 포함한 상태로 배포를 합니다.<br>중요한 것은 <strong>항상 하나의 워커 노드에서 실행</strong>이 된다는 것입니다.</p>
+<h3 id="3-1-1-파드-필요-이유"><a href="#3-1-1-파드-필요-이유" class="headerlink" title="3.1.1 파드 필요 이유"></a>3.1.1 파드 필요 이유</h3><p>Q: 왜 파드가 필요한가요?<br>or 컨테이너를 왜 직접 사용하지 않나요?<br>or 왜 일반적으로 여러 컨테이너를 같이 실행하지 않나요?<br>or 모든 프로세스를 단일 컨테이너에 넣으면 안되나요?</p>
+<p>A: 컨테이너는 단일 프로세스를 실행하는 것을 목적으로 설계되었고, 그 이유는 관련 없는 다른 프로세스들 을 모두 집어넣었을 경우, 동일한 표준 출력으로 로그를 기록하기 때문에 <strong>각 로그가 누가 남긴 로그인지 분별하기 힘들다</strong>.</p>
+<blockquote>
+<p>단일 책임 원칙과 비슷한 원리로 이해됨, 상세 이유는 그 뒷장에서 소개됨</p>
+<p>간단히 더 이야기하면, 컨테이너 그룹(파드)를 쪼갤 수록 노드의 파드들을 균형있게 분배할 수 있으며, 한쪽으로 자원이 넘쳐 실행되지 않을 것이다.</p>
+</blockquote>
+<h3 id="3-1-2-파드-이해"><a href="#3-1-2-파드-이해" class="headerlink" title="3.1.2 파드 이해"></a>3.1.2 파드 이해</h3><p>(질문 이어서)</p>
+<p>A: <strong>여러 프로세스를 단일 컨테이너로 묶지 않기 때문에</strong>, 컨테이너를 묶을 단위가 필요하여 나타난게 <strong>파드</strong>이다.</p>
+<p>쿠버네티스는 파드 안에 모든 컨테이너가 네임스페이스가 아닌 동일한 리눅스 네임스페이스를 공유하도록 도커를 설정함</p>
+<p>Q: 설정 내용이 뭐가 있나요?</p>
+<p>A: 파드 내의 컨테이너들은 같은 호스트이름과 네트워크 인터페이스를 공유하고 IPC를 통해 서로 통신합니다.<br>그래서 파드 내 컨테이너는 동일한 IP주소와 포트를 공유합니다.</p>
+<p>Q: 그럼 부분 격리라고 하였는데, 현재 공유되는 내용만 이야기되었는데 격리되는 내용은 무엇인가요?</p>
+<p>A: 기본값으로 파일시스템은 다른 컨테이너와 완전히 분리됩니다. 볼륨에서 설정을 통해야만 파일을 공유할 수 있습니다.</p>
+<p>Q: 파드간 네트워크 IP주소와 포트는 다르다는 이야기로 들리는데, 파드간에는 어떻게 통신하나요?</p>
+<p>A: 파드간 다른 IP주소를 통해 접근을 하지만, 둘 사이에는 NAT(network address translation)이 없어서, LAN간 통신처럼 통신할 수 있습니다. 이것을 플랫 네트워크라고 표현합니다. 이는 소프트웨어 네트워크 계층으로 이루어져있습니다.</p>
+<h3 id="3-1-3-파드와-컨테이너-구성"><a href="#3-1-3-파드와-컨테이너-구성" class="headerlink" title="3.1.3 파드와 컨테이너 구성"></a>3.1.3 파드와 컨테이너 구성</h3><p>Q: 프론트 서버와 백엔드(DB) 컨테이너를 어떻게 구성하면 좋을까요?</p>
+<p>A: 앞에 이야기한 내용에서 일반적으로 한개의 컨테이너당 하나의 파드로 분할하여 실행시키는 것이 좋습니다. 만약 둘이 하나의 파드로 묶여 관리된다면 둘은 항상 같은 노드에서 실행되어야하며, 만약 두개의 노드가 있다면 1개는 유휴 상태가 될 것 입니다.</p>
+<p>A2: 또한 두 컨테이너를 하나의 파드에서 관리하면 안되는 이유로는 스케일링 입니다. 파드가 스케일링의 기본 최소 단위이기 때문에 쿠버네티스는 개별 컨테이너를 수평으로 확장하지 못합니다. 그래서 전체 파드를 수평으로 확장해야합니다. 그런데 프론트와 백엔드는 서로 다른 스케일링 요구사항을 가지고있기 때문에 나누는 것이 좋습니다.</p>
+<p>Q: 그럼에도 불구하고, 예외적으로 하나의 파드에서 여러 컨테이너를 사용해야하는 경우가 있을까요?</p>
+<p>A: 여러 컨테이너를 단일 파드에 넣는 주요 경우는 (주 컨테이너 + 보조 컨테이너들) 을 이루는 경우인데요.</p>
+<p>예를 들어,<br>주 컨테이너 = 웹 서버<br>보조 컨테이너 = 주기적으로 컨텐츠를 웹서버 디렉토리에 저장<br>혹은 로그 수집, 데이터 프로세서, 통신 어댑터 등등</p>
+<p>을 사유로하는 컨테이너들이 함께 실행되야하는 경우입니다.</p>
+<p>그래서 여러 컨테이너를 단일 파드에서 실행해야한다면 다음과 같은 조건을 생각해야합니다.</p>
+<ol>
+<li>컨테이너를 함께 실행시켜야하는가?</li>
+<li>여러 컨테이너가 결국 하나의 구성요소인가?</li>
+<li>컨테이너가 함께 스케일링 되어야하는가?</li>
+</ol>
+<h2 id="3-2-YAML-또는-JSON으로-파드-생성"><a href="#3-2-YAML-또는-JSON으로-파드-생성" class="headerlink" title="3.2 YAML 또는 JSON으로 파드 생성"></a>3.2 YAML 또는 JSON으로 파드 생성</h2><p>Q: YAML으로 작성하면 장점이 무엇이 있나요?</p>
+<p>A: <code>kubectl run</code>으로 간단하게 리소소를 생성 가능하지만, 제한된 속성만 생성할 수 있으며, YAML을 사용할 경우 <strong>버전 관리가 가능</strong>해지는 장점이 있습니다.</p>
+<p>YAML의 작성은 <a target="_blank" rel="noopener" href="https://v1-18.docs.kubernetes.io/docs/reference/generated/kubernetes-api/v1.18/">해당 링크</a>를 참조하면 됩니다. (하루종일 보고 사는 링크…;;)</p>
+<h3 id="3-2-1-기존-파드-YAML-살펴보기"><a href="#3-2-1-기존-파드-YAML-살펴보기" class="headerlink" title="3.2.1 기존 파드 YAML 살펴보기"></a>3.2.1 기존 파드 YAML 살펴보기</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod &lt;파드명&gt; -o yaml</span><br></pre></td></tr></table></figure>
+
+<p>위의 명령어를 입력하면 YAML 정의를 볼 수 있다.</p>
+<p>막상 보면 너무 긴 내용이 있을텐데, 주요 파트는 3개이다.</p>
+<ul>
+<li>metadata: 이름, 네임스페이스, 라벨, 파드에 관한 정보</li>
+<li>Spec: 파드 컨테이너, 볼륨, 파드 실제 명세 정보</li>
+<li>status: 파드 상태, 각 컨테이너 설명, 상태, 파드 내부IP 등 현재 실행중인 파드 정보<br>파드를 생성할 때는 작성할 필요없는 항목</li>
+</ul>
+<h3 id="3-2-2-파드-정의-YAML-작성"><a href="#3-2-2-파드-정의-YAML-작성" class="headerlink" title="3.2.2 파드 정의 YAML 작성"></a>3.2.2 파드 정의 YAML 작성</h3><p>kubia-manual.yaml</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">	<span class="attr">name:</span> <span class="string">kubia-menual</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">luksa/kubia</span></span><br><span class="line">  	<span class="attr">name:</span> <span class="string">kubia</span></span><br><span class="line">  	<span class="attr">ports:</span></span><br><span class="line">  	<span class="string">-</span>	<span class="attr">containerPort:</span> <span class="number">8080</span></span><br><span class="line">  		<span class="attr">protocol:</span> <span class="string">TCP</span></span><br></pre></td></tr></table></figure>
+
+<p>포트를 지정해둔 것은 단지 정보에 불과, 이를 생략해도 다른 클라이언트에서 포트를 통해 파드에 연결할 수 있는지에 영향 미치지 않음. 0.0.0.0 주소에 열어둔 포트를 통해 접속을 허용시에 파드 스펙과 별개로 항상 해당 파드에 접속이 가능하기 때문</p>
+<p>Q: 그럼 왜 명시하나요?</p>
+<p>A: 포트를 명시적으로 정의하면, 클러스터를 사용하는 모든 사람이 볼 수 있고, 포트에 이름을 지정해 편리하게 사용 가능</p>
+<h3 id="기타-유용한-명령어-kubucetl-explain"><a href="#기타-유용한-명령어-kubucetl-explain" class="headerlink" title="기타: 유용한 명령어 kubucetl explain"></a>기타: 유용한 명령어 <code>kubucetl explain</code></h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl explain pods</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/wtCPd6khueFbqms.png" alt="image-20201108175732508"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl explain pod.spec</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/ZGXSAFoVjTndCkJ.png" alt="image-20201108175825146"></p>
+<h3 id="3-2-3-kubectl-create"><a href="#3-2-3-kubectl-create" class="headerlink" title="3.2.3 kubectl create"></a>3.2.3 <code>kubectl create</code></h3><p>음… 리소스를 만들기 전에 현재 어느 네임스페이스에서 만드는지는 확인하는 것이 좋다</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">k config get-contexts</span><br><span class="line"><span class="comment"># or</span></span><br><span class="line">k config view --minify | grep namespace:</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/1LTtx5UHuV4Qj8E.png" alt="image-20201108180326200"></p>
+<p>클러스터 c201에서 test2 네임스페이스를 사용하는 것을 확인할 수 있음</p>
+<h4 id="생성"><a href="#생성" class="headerlink" title="생성"></a>생성</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k create -f kubia-manual.yaml -o yaml</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/5umetJ6CElbP1Qq.png" alt="image-20201108180852090"></p>
+<h4 id="생성-확인"><a href="#생성-확인" class="headerlink" title="생성 확인"></a>생성 확인</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k get pods</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/wltGNscUE67zLiJ.png" alt="image-20201108181004010"></p>
+<h3 id="3-2-4-애플리케이션-로그-보기"><a href="#3-2-4-애플리케이션-로그-보기" class="headerlink" title="3.2.4 애플리케이션 로그 보기"></a>3.2.4 애플리케이션 로그 보기</h3><p>컨테이너의 애플리케이션은 보통 로그를 파일에 쓰기보다는 표준 출력과 표준 에러에 로그를 남기는 것이 일반적</p>
+<p>컨테이너 런타임(ex. 도커)는 이러한 스트림을 파일로 전달하고 다음 명령을 통해 로그를 가져옴</p>
+<p>쿠버네티스를 사용하지 않았다면, ssh로 파드가 실행 중인 노드에 접속해 <code>docker logs &lt;컨테이너ID&gt;</code>를 치겠지만,</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl logs kubia-manual</span><br></pre></td></tr></table></figure>
+
+<p>쿠버네티스는 해당 명령을 제공한다.</p>
+<p><img src="https://i.loli.net/2020/11/08/rdRpCn8H2yiLWvj.png" alt="image-20201108181515961"></p>
+<h4 id="주의-사항"><a href="#주의-사항" class="headerlink" title="주의 사항"></a>주의 사항</h4><p><strong>컨테이너 로그는 하루 단위 또는 로그 파일이 10MB에 도달할 때마다 순환함</strong></p>
+<p><strong>kubectl logs는 마지막으로 순환된 로그만 보여줌</strong></p>
+<p><strong>또한 파드가 삭제되면 로그도 삭제됨</strong></p>
+<p><strong>파드가 삭제되도 로그를 확인하고 싶다면 클러스터 전체의 중앙집중식 로깅을 설정해야함(17장)</strong></p>
+<h4 id="여러-컨테이너를-가진-파드의-로그-확인"><a href="#여러-컨테이너를-가진-파드의-로그-확인" class="headerlink" title="여러 컨테이너를 가진 파드의 로그 확인"></a>여러 컨테이너를 가진 파드의 로그 확인</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kubectl logs &lt;파드명&gt; -c &lt;컨테이너명&gt;</span></span><br><span class="line">kubectl logs kubia-manual -c kubia</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-2-5-파드에-요청-보내기"><a href="#3-2-5-파드에-요청-보내기" class="headerlink" title="3.2.5 파드에 요청 보내기"></a>3.2.5 파드에 요청 보내기</h3><p>파드의 실제 동작을 보는 방법 (<code>kubectl expose</code>를 사용하지 않고)</p>
+<p>파드에 테스트와 디버깅 목적으로 사용, 포트포워딩</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl port-forward kubia-manual 8888:8080</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/QW8ic6l4kr13h29.png" alt="image-20201108182156830"></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl localhost:8888</span><br></pre></td></tr></table></figure>
+
+<p><code>curl</code>을 통해 접근이 가능</p>
+<p><img src="https://i.loli.net/2020/11/08/8s5brpld2v1zc6S.png" alt="image-20201108182422839"></p>
+<h2 id="3-3-라벨을-이용한-파드-구성"><a href="#3-3-라벨을-이용한-파드-구성" class="headerlink" title="3.3 라벨을 이용한 파드 구성"></a>3.3 라벨을 이용한 파드 구성</h2><p>실제 애플리케이션들이 배포된 클러스터 내에는 매우 많은 파드들이 존재, 그러므로 파드를 정리하는 매커니즘이 필요</p>
+<h3 id="3-3-1-라벨-소개"><a href="#3-3-1-라벨-소개" class="headerlink" title="3.3.1 라벨 소개"></a>3.3.1 라벨 소개</h3><p>위의 이유로 라벨은 리소스에 키-값으로 첨부할 수 있다. 해당 리소스내에서 고유하다면, 원하는 만큼 추가할 수 있다.</p>
+<p>예를 들면, <code>app=ui</code>, <code>app=as</code>, <code>app=pc</code> 등으로 애플리케이션 라벨을 붙이고, <code>rel=stable</code>, <code>rel=beta</code>, <code>rel=alpha</code>로 버전을 관리할 수 있다.</p>
+<h3 id="3-3-2-파드-생성시-라벨-지정"><a href="#3-3-2-파드-생성시-라벨-지정" class="headerlink" title="3.3.2 파드 생성시 라벨 지정"></a>3.3.2 파드 생성시 라벨 지정</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">kubia-menual</span></span><br><span class="line">  <span class="attr">labels:</span></span><br><span class="line">    <span class="attr">app:</span> <span class="string">test</span></span><br><span class="line">    <span class="attr">rel:</span> <span class="string">beta</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">luksa/kubia</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">kubia</span></span><br><span class="line">    <span class="attr">ports:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">containerPort:</span> <span class="number">8080</span></span><br><span class="line">      <span class="attr">protocol:</span> <span class="string">TCP</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="파드-라벨-보기"><a href="#파드-라벨-보기" class="headerlink" title="파드 라벨 보기"></a>파드 라벨 보기</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod --show-labels</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/Yht1nmSdaj9KA7l.png" alt="image-20201108184538134"></p>
+<h4 id="파드-특정-라벨만-보기"><a href="#파드-특정-라벨만-보기" class="headerlink" title="파드 특정 라벨만 보기"></a>파드 특정 라벨만 보기</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get pod -L app</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/S6RFvwdjXlDCgLW.png" alt="image-20201108184629324"></p>
+<h3 id="3-3-3-기존-파드-라벨-수정"><a href="#3-3-3-기존-파드-라벨-수정" class="headerlink" title="3.3.3 기존 파드 라벨 수정"></a>3.3.3 기존 파드 라벨 수정</h3><h4 id="파드에-새로운-라벨-추가"><a href="#파드에-새로운-라벨-추가" class="headerlink" title="파드에 새로운 라벨 추가"></a>파드에 새로운 라벨 추가</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label po kubia-manual added_label=0</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/phAWVZw8Y2oByFI.png" alt="image-20201108185237231"></p>
+<h4 id="파드에-기존-라벨-수정"><a href="#파드에-기존-라벨-수정" class="headerlink" title="파드에 기존 라벨 수정"></a>파드에 기존 라벨 수정</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label po kubia-manual added_label=1</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/LFmABDTg3h2jNqn.png" alt="image-20201108185303697"></p>
+<h2 id="3-4-라벨-셀렉터로-파드-부분-집합-나열"><a href="#3-4-라벨-셀렉터로-파드-부분-집합-나열" class="headerlink" title="3.4 라벨 셀렉터로 파드 부분 집합 나열"></a>3.4 라벨 셀렉터로 파드 부분 집합 나열</h2><p>라벨의 중요성은 라벨 셀렉터를 함께 사용할때 알 수 있음</p>
+<p>예를 들어,</p>
+<ul>
+<li>특정 키를 포함하거나 포함하지않는 라벨의 리소스</li>
+<li>특정 키와 값을 가진 라벨의 리소스</li>
+<li>특정 키를 가지고있지만, 다른 값을 라벨의 리소스</li>
+</ul>
+<h3 id="3-4-1-라벨-셀렉터로-파드-나열"><a href="#3-4-1-라벨-셀렉터로-파드-나열" class="headerlink" title="3.4.1 라벨 셀렉터로 파드 나열"></a>3.4.1 라벨 셀렉터로 파드 나열</h3><h4 id="특정-키와-값-라벨-셀렉터-조건"><a href="#특정-키와-값-라벨-셀렉터-조건" class="headerlink" title="특정 키와 값 라벨 셀렉터 조건"></a>특정 키와 값 라벨 셀렉터 조건</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -l app=<span class="built_in">test</span> -L app</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2020/11/08/2Yd5CRl4ZVqO163.png" alt="image-20201108185938590"></p>
+<h4 id="값은-상관하지않는-라벨-셀렉터-조건"><a href="#값은-상관하지않는-라벨-셀렉터-조건" class="headerlink" title="값은 상관하지않는 라벨 셀렉터 조건"></a>값은 상관하지않는 라벨 셀렉터 조건</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -l app -L app</span><br></pre></td></tr></table></figure>
+
+<h4 id="값을-가지고있지-않는-라벨-셀렉터-조건"><a href="#값을-가지고있지-않는-라벨-셀렉터-조건" class="headerlink" title="값을 가지고있지 않는 라벨 셀렉터 조건"></a>값을 가지고있지 않는 라벨 셀렉터 조건</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -l <span class="string">&#x27;!app&#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="값이-아닌-라벨-셀렉터-조건"><a href="#값이-아닌-라벨-셀렉터-조건" class="headerlink" title="값이 아닌 라벨 셀렉터 조건"></a>값이 아닌 라벨 셀렉터 조건</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -l app!=<span class="built_in">test</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="값이-A-또는-B-인-조건"><a href="#값이-A-또는-B-인-조건" class="headerlink" title="값이 A 또는 B 인 조건"></a>값이 A 또는 B 인 조건</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -l env <span class="keyword">in</span> (<span class="built_in">test</span>, rel)</span><br></pre></td></tr></table></figure>
+
+<h4 id="값이-둘다-아닌-것"><a href="#값이-둘다-아닌-것" class="headerlink" title="값이 둘다 아닌 것"></a>값이 둘다 아닌 것</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl get po -l env notin (<span class="built_in">test</span>, rel)</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="3-4-2-라벨-셀렉터에서-조건-사용"><a href="#3-4-2-라벨-셀렉터에서-조건-사용" class="headerlink" title="3.4.2 라벨 셀렉터에서 조건 사용"></a>3.4.2 라벨 셀렉터에서 조건 사용</h3><p>책에 자세한 내용 X</p>
+<blockquote>
+<p><a target="_blank" rel="noopener" href="https://kubernetes.io/ko/docs/concepts/overview/working-with-objects/labels/">해당 링크</a> 참조</p>
+</blockquote>
+<h2 id="3-5-라벨-셀렉터로-파드-스케줄링"><a href="#3-5-라벨-셀렉터로-파드-스케줄링" class="headerlink" title="3.5 라벨 셀렉터로 파드 스케줄링"></a>3.5 라벨 셀렉터로 파드 스케줄링</h2><p>쿠버네티스는 기본적으로 무작위로 워커 노드에 스케줄링한다. 모든 노드를 하나의 대규모 배포 플랫폼으로 생각하고 어떤 노드에 스케줄링은 중요하지 않기 때문이다.</p>
+<p>그러나, 하드웨어 인프라가 동일하지 않은 상황일 경우, ex- 워커 노드 중 일부는 ssd, 다른 일부는 hdd, 거나 GPU 가속 제한 등은 특정 파드를 스케줄링 해주어야 할 것이다.</p>
+<p>정확한 노드를 지정하는 대신, 노드의 필요 요구사항을 기술하고 만족하는 노드를 선택하도록 한다.<br>이를 노드 라벨과 라벨 셀렉터를 통해 할 수 있다.</p>
+<h3 id="3-5-1-워커-노드-분류에-라벨-사용"><a href="#3-5-1-워커-노드-분류에-라벨-사용" class="headerlink" title="3.5.1 워커 노드 분류에 라벨 사용"></a>3.5.1 워커 노드 분류에 라벨 사용</h3><p>라벨은 모든 리소스에 적용 가능</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl label node &lt;노드명&gt; gpu=<span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-5-2-특정-노드에-파드-스케줄링"><a href="#3-5-2-특정-노드에-파드-스케줄링" class="headerlink" title="3.5.2 특정 노드에 파드 스케줄링"></a>3.5.2 특정 노드에 파드 스케줄링</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">kubia-gpu</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">nodeSelector:</span></span><br><span class="line">    <span class="attr">gpu:</span> <span class="string">&quot;true&quot;</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="attr">image:</span> <span class="string">luksa/kubia</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">kubia</span></span><br></pre></td></tr></table></figure>
+
+<p>spec.nodeSelector를 사용하여 파드 스케줄링</p>
+<h3 id="3-5-3-하나의-특정-노드로-스케줄링"><a href="#3-5-3-하나의-특정-노드로-스케줄링" class="headerlink" title="3.5.3 하나의 특정 노드로 스케줄링"></a>3.5.3 하나의 특정 노드로 스케줄링</h3><p>각 노드에는 <code>kubernetes.io/hostname=&lt;호트트네임&gt;</code>으로 고유 라벨이 존재하기 때문에 특정 하나의 노드로 스케줄링이 가능하다.</p>
+<p>그러나, 해당 노드가 오프라인일 경우, 스케줄링이 되지 않을 수 있다.</p>
+<h2 id="3-6-파드에-어노테이션-달기"><a href="#3-6-파드에-어노테이션-달기" class="headerlink" title="3.6 파드에 어노테이션 달기"></a>3.6 파드에 어노테이션 달기</h2><p>어노테이션 또한 라벨처럼 모든 리로스에 추가할 수 있다. 그러나 차이점으로, 식별 정보를 가지고 있지 않다.(셀렉터가 없음)</p>
+<p>그러면 어디다 쓰지? 라벨보다 많은 정보를 가질 수 있다. (256kb까지 허용) </p>
+<p>주로 쿠버네티스의 새기능이 추가하기 전에 어노테이션에서 시험적으로 적용되고, 이후 결정되면 필드로 도입된다.</p>
+<p>유용하게 사용되는 경우는 오브젝트를 만든 사람을 어노테이션으로 지정해두면, 협업자들이 더 쉽게 알 수 있다.</p>
+<h3 id="3-6-1-오브젝트-어노테이션-조회"><a href="#3-6-1-오브젝트-어노테이션-조회" class="headerlink" title="3.6.1 오브젝트 어노테이션 조회"></a>3.6.1 오브젝트 어노테이션 조회</h3><p><code>k describe</code> or <code>k get po -o json</code> 으로 조회</p>
+<h3 id="3-6-2-어노테이션-추가-및-수정"><a href="#3-6-2-어노테이션-추가-및-수정" class="headerlink" title="3.6.2 어노테이션 추가 및 수정"></a>3.6.2 어노테이션 추가 및 수정</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl annotate pod kubia-manual company.com/annotation=<span class="string">&quot;test data&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>어노테이션의 경우 <code>--overwrite</code>없이 덮어쓰기 때문에 위의 형식처럼 입력된다.</p>
+<h2 id="3-7-네임스페이스로-리소스-그룹화"><a href="#3-7-네임스페이스로-리소스-그룹화" class="headerlink" title="3.7 네임스페이스로 리소스 그룹화"></a>3.7 네임스페이스로 리소스 그룹화</h2><p><strong>쿠버네티스 네임스페이스</strong>는 프로세스를 격리하는데 사용하는 <strong>리눅스 네임스페이스</strong>와는 다르다.</p>
+<p>오브젝트 그룹이 서로 겹칠 수 있기 때문에 한번에 하나의 그룹에서만 작업하고 싶을 때 사용</p>
+<h3 id="3-7-1-네임스페이스-필요성"><a href="#3-7-1-네임스페이스-필요성" class="headerlink" title="3.7.1 네임스페이스 필요성"></a>3.7.1 네임스페이스 필요성</h3><p>여러 네임스페이스를 사용하면, 멀티테넌트 환경처럼 리소스를 분리하는데 사용된다. (다른 네임스페이스 간에는 동일한 리소스명을 가질 수 있다)</p>
+<p>예를 들어, 프로덕션, 개발, QA 환경 등으로 나누어 사용할 수 있다.</p>
+<p>또한 네임스페이스는 리소스를 격리하는 것외에도 특정 사용자가 지정된 리소스에만 접근할 수 있도록 하고, 컴퓨팅 리소스르 ㄹ제한하는데도 사용된다.</p>
+<h3 id="3-7-2-네임스페이스-조회"><a href="#3-7-2-네임스페이스-조회" class="headerlink" title="3.7.2 네임스페이스 조회"></a>3.7.2 네임스페이스 조회</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 네임스페이스 목록 조회</span></span><br><span class="line">kubectl get ns</span><br><span class="line"></span><br><span class="line"><span class="comment"># 특정 네임스페이스에 속한 파드 목록 조회</span></span><br><span class="line">kubectl get po -n kube-system</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-7-3-네임스페이스-생성"><a href="#3-7-3-네임스페이스-생성" class="headerlink" title="3.7.3 네임스페이스 생성"></a>3.7.3 네임스페이스 생성</h3><h4 id="Yaml로-생성"><a href="#Yaml로-생성" class="headerlink" title="Yaml로 생성"></a>Yaml로 생성</h4><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Namespace</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">custom-ns</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">k create -f create-ns.yaml</span><br></pre></td></tr></table></figure>
+
+
+
+<h4 id="명령어로-생성"><a href="#명령어로-생성" class="headerlink" title="명령어로 생성"></a>명령어로 생성</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create ns custom-ns</span><br></pre></td></tr></table></figure>
+
+<p>대부분의 오브젝트는 RFC1035 규칙 - 문자, 숫자, 대시, 점을 표현할 수 있지만, 네임스페이스의 경우 점(.)을 포함하지 못한다.</p>
+<h3 id="3-7-4-다른-네임스페이스-오브젝트-관리"><a href="#3-7-4-다른-네임스페이스-오브젝트-관리" class="headerlink" title="3.7.4 다른 네임스페이스 오브젝트 관리"></a>3.7.4 다른 네임스페이스 오브젝트 관리</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl create -f &lt;YAML파일명&gt;.yaml -n &lt;파드를 생성할 네임스페이스명&gt;</span><br></pre></td></tr></table></figure>
+
+<h4 id="현재-네임스페이스-빠르게-변경하는-alias"><a href="#현재-네임스페이스-빠르게-변경하는-alias" class="headerlink" title="현재 네임스페이스 빠르게 변경하는 alias"></a>현재 네임스페이스 빠르게 변경하는 alias</h4><p><code>~/.bashrc</code>에 추가</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">alias</span> kcd=<span class="string">&#x27;kubectl config set-context $(kubectl config current-context) --namespace &#x27;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="3-7-5-네임스페이스-격리-이해"><a href="#3-7-5-네임스페이스-격리-이해" class="headerlink" title="3.7.5 네임스페이스 격리 이해"></a>3.7.5 네임스페이스 격리 이해</h3><p>네임스페이스를 사용하면 오브젝트를 별도 그룹으로 분리해 작업할 수 있게 하지만, 실행 중인 오브젝트에 대한 격리는 제공하지 않는다.</p>
+<p>예를 들어, 다른 사용자들이 서로 다른 네임스페이스에 파드를 배포할 때 해당 파드가 서로 격리되어 통신할 수 없는 것이 반드시 이루어지지는 않는다. 해당 쿠버네티스 네트워킹 솔루션에 따라 다르다.</p>
+<h2 id="3-8-파드-중지-제거"><a href="#3-8-파드-중지-제거" class="headerlink" title="3.8 파드 중지 제거"></a>3.8 파드 중지 제거</h2><h3 id="3-8-1-이름으로-파드-삭제"><a href="#3-8-1-이름으로-파드-삭제" class="headerlink" title="3.8.1 이름으로 파드 삭제"></a>3.8.1 이름으로 파드 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># kubectl delete po &lt;삭제할 파드명&gt;</span></span><br><span class="line">kubectl delete po kubia-gpu</span><br><span class="line"></span><br><span class="line"><span class="comment"># 여러개 제거시</span></span><br><span class="line">kubectl delete po pod1 pod2</span><br></pre></td></tr></table></figure>
+
+<p>파드를 삭제하면, 해당 파드 안에 있는 모든 컨테이너를 종료하도록 지시한다. 과정은 아래와 같다.</p>
+<ol>
+<li>쿠버네티스는 프로세스에 SIGTERM 신호를 보냄 (기본값 30초 동안 기다림)</li>
+<li>종료되지 않으면 SIGKILL 신호를 통해 종료 (정상 종료는 SIGTERM)</li>
+</ol>
+<h3 id="3-8-2-라벨-셀렉터로-파드-삭제"><a href="#3-8-2-라벨-셀렉터로-파드-삭제" class="headerlink" title="3.8.2 라벨 셀렉터로 파드 삭제"></a>3.8.2 라벨 셀렉터로 파드 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete po -l rel=beta</span><br></pre></td></tr></table></figure>
+
+<p>해당 라벨에 관련된 파드가 제거됨</p>
+<h3 id="3-8-3-네임스페이스로-파드-제거"><a href="#3-8-3-네임스페이스로-파드-제거" class="headerlink" title="3.8.3 네임스페이스로 파드 제거"></a>3.8.3 네임스페이스로 파드 제거</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete ns custom-ns</span><br></pre></td></tr></table></figure>
+
+<p>네임스페이스 전체를 삭제하고, 해당 내에 파드는 자동으로 삭제된다.</p>
+<h3 id="3-8-4-네임스페이스-유지하면서-안에-모든-파드-삭제"><a href="#3-8-4-네임스페이스-유지하면서-안에-모든-파드-삭제" class="headerlink" title="3.8.4 네임스페이스 유지하면서 안에 모든 파드 삭제"></a>3.8.4 네임스페이스 유지하면서 안에 모든 파드 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete po --all</span><br></pre></td></tr></table></figure>
+
+<p>현재 네임스페이스 내의 모든 파드를 제거</p>
+<blockquote>
+<p>만약 파드를 삭제하더라도 계속 생성이 된다면, 레플리케이션컨트롤러가 계속 재생성하는 것으로 레플리케이션컨트롤러를 삭제해야한다.</p>
+</blockquote>
+<h3 id="3-8-5-네임스페이스-모든-리소스-삭제"><a href="#3-8-5-네임스페이스-모든-리소스-삭제" class="headerlink" title="3.8.5 네임스페이스 모든 리소스 삭제"></a>3.8.5 네임스페이스 모든 리소스 삭제</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kubectl delete all --all</span><br></pre></td></tr></table></figure>
+
+<p>현재 네임스페이스에 모든 리소스 제거 명령</p>
+<h2 id="3-9-요약"><a href="#3-9-요약" class="headerlink" title="3.9 요약"></a>3.9 요약</h2><p>다 읽고 할 수 있어야 하는 것들</p>
+<ul>
+<li>특정 컨테이너를 파드로 묶어야 하는지 결정</li>
+<li>파드로 여러 프로세스를 실행</li>
+<li>YAML 또는 JSON으로 파드 작성, 정의, 상태 확인</li>
+<li>라벨과 라벨 셀렉터로 파드를 그룹화하고 한번에 여러 파드를 작업</li>
+<li>노드 라벨과 셀렉터로 특정 노드에 파드를 스케줄링</li>
+<li>어노테이션을 이용하여 더 큰 데이터 파드에 달기</li>
+<li>네임스페이스로 팀들 간 동일한 클러스터를 각자 작업</li>
+<li>Kubectl explain 명령으로 리소스 정보를 찾기</li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/4_k8s_replication/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/DailyCommit/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">일일 커밋 알람 어플</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

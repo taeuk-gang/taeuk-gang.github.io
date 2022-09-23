@@ -1,0 +1,1203 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>k8s 1.22 -&gt; 1.23 변경사항 정리 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Kubernetes" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="1.23에서 stable로 변경된 문서들(변경 en:11, ko: 8)  Container Runtime Interface (CRI) IPv4&#x2F;IPv6 dual-stack IngressClass scope Generic ephemeral volumes Automatic Clean-up for Finished Jobs TTL mechanism for fini">
+<meta property="og:type" content="article">
+<meta property="og:title" content="k8s 1.22 -&gt; 1.23 변경사항 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/k8s/1.22_1.23_k8s_update/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="1.23에서 stable로 변경된 문서들(변경 en:11, ko: 8)  Container Runtime Interface (CRI) IPv4&#x2F;IPv6 dual-stack IngressClass scope Generic ephemeral volumes Automatic Clean-up for Finished Jobs TTL mechanism for fini">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2022-09-04T15:00:00.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.387Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Kubernetes">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file active"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-k8s/1.22_1.23_k8s_update" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Kubernetes/">Kubernetes</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Kubernetes/" rel="tag">Kubernetes</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/k8s/1.22_1.23_k8s_update/">
+            <time datetime="2022-09-04T15:00:00.000Z" itemprop="datePublished">2022-09-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/k8s/1.22_1.23_k8s_update.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/k8s/1.22_1.23_k8s_update.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/k8s/1.22_1.23_k8s_update.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            k8s 1.22 -&gt; 1.23 변경사항 정리
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-23%EC%97%90%EC%84%9C-stable%EB%A1%9C-%EB%B3%80%EA%B2%BD%EB%90%9C-%EB%AC%B8%EC%84%9C%EB%93%A4"><span class="toc-number">1.</span> <span class="toc-text">1.23에서 stable로 변경된 문서들</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-Container-Runtime-Interface-CRI"><span class="toc-number">1.1.</span> <span class="toc-text">1. Container Runtime Interface (CRI)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-IPv4-IPv6-dual-stack"><span class="toc-number">1.2.</span> <span class="toc-text">2. IPv4&#x2F;IPv6 dual-stack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-IngressClass-scope"><span class="toc-number">1.3.</span> <span class="toc-text">3. IngressClass scope</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0"><span class="toc-number">1.3.1.</span> <span class="toc-text">클러스터</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%84%A4%EC%9E%84%EC%8A%A4%ED%8E%98%EC%9D%B4%EC%8A%A4"><span class="toc-number">1.3.2.</span> <span class="toc-text">네임스페이스</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-Generic-ephemeral-volumes"><span class="toc-number">1.4.</span> <span class="toc-text">4. Generic ephemeral volumes</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-Automatic-Clean-up-for-Finished-Jobs"><span class="toc-number">1.5.</span> <span class="toc-text">5. Automatic Clean-up for Finished Jobs</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%99%84%EB%A3%8C-%EC%9D%B4%ED%9B%84-TTL-%EC%BB%A8%ED%8A%B8%EB%A1%A4%EB%9F%AC"><span class="toc-number">1.5.1.</span> <span class="toc-text">완료-이후-TTL 컨트롤러</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B2%BD%EA%B3%A0"><span class="toc-number">1.5.2.</span> <span class="toc-text">경고</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#TTL-%EC%B4%88-sec-%EC%97%85%EB%8D%B0%EC%9D%B4%ED%8A%B8"><span class="toc-number">1.5.2.1.</span> <span class="toc-text">TTL 초(sec) 업데이트</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%EC%8B%9C%EA%B0%84-%EC%B0%A8%EC%9D%B4-Skew"><span class="toc-number">1.5.2.2.</span> <span class="toc-text">시간 차이(Skew)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-TTL-mechanism-for-finished-Jobs-%EC%98%81%EB%AC%B8%EB%A7%8C-%EC%A1%B4%EC%9E%AC"><span class="toc-number">1.6.</span> <span class="toc-text">6. TTL mechanism for finished Jobs * 영문만 존재</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%B0%B8%EA%B3%A0"><span class="toc-number">1.6.1.</span> <span class="toc-text">참고</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-Dual-stack-support-with-kubeadm"><span class="toc-number">1.7.</span> <span class="toc-text">7. Dual-stack support with kubeadm</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Configure-volume-permission-and-ownership-change-policy-for-Pods-%EC%98%81%EB%AC%B8%EB%A7%8C-%EC%A1%B4%EC%9E%AC"><span class="toc-number">1.8.</span> <span class="toc-text">Configure volume permission and ownership change policy for Pods * 영문만 존재</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#fsGroupChangePolicy"><span class="toc-number">1.8.1.</span> <span class="toc-text">fsGroupChangePolicy</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#9-Horizontal-Pod-Autoscaling"><span class="toc-number">1.9.</span> <span class="toc-text">9. Horizontal Pod Autoscaling</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%82%AC%EC%9A%A9%EC%9E%90-%EC%A0%95%EC%9D%98-%EB%A9%94%ED%8A%B8%EB%A6%AD%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EB%8A%94-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81"><span class="toc-number">1.9.1.</span> <span class="toc-text">사용자 정의 메트릭을 이용하는 스케일링</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%B3%B5%EC%88%98%EC%9D%98-%EB%A9%94%ED%8A%B8%EB%A6%AD%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%98%EB%8A%94-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81"><span class="toc-number">1.10.</span> <span class="toc-text">복수의 메트릭을 이용하는 스케일링</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B5%AC%EC%84%B1%EA%B0%80%EB%8A%A5%ED%95%9C-%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81-%EB%8F%99%EC%9E%91"><span class="toc-number">1.11.</span> <span class="toc-text">구성가능한 스케일링 동작</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%8A%A4%EC%BC%80%EC%9D%BC%EB%A7%81-%EC%A0%95%EC%B1%85"><span class="toc-number">1.11.1.</span> <span class="toc-text">스케일링 정책</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#stabilizationWindow"><span class="toc-number">1.12.</span> <span class="toc-text">stabilizationWindow</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EA%B8%B0%EB%B3%B8-%EB%8F%99%EC%9E%91"><span class="toc-number">1.12.1.</span> <span class="toc-text">기본 동작</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%98%88%EC%8B%9C-%EB%8B%A4%EC%9A%B4%EC%8A%A4%EC%BC%80%EC%9D%BC-stabilizationWindow-%EB%B3%80%EA%B2%BD"><span class="toc-number">1.12.2.</span> <span class="toc-text">예시: 다운스케일 stabilizationWindow 변경</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%98%88%EC%8B%9C-%EC%8A%A4%EC%BC%80%EC%9D%BC-%EB%8B%A4%EC%9A%B4-%EC%86%8D%EB%8F%84-%EC%A0%9C%ED%95%9C"><span class="toc-number">1.12.3.</span> <span class="toc-text">예시: 스케일 다운 속도 제한</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%98%88%EC%8B%9C-%EC%8A%A4%EC%BC%80%EC%9D%BC-%EB%8B%A4%EC%9A%B4-%EB%B9%84%ED%99%9C%EC%84%B1%ED%99%94"><span class="toc-number">1.12.4.</span> <span class="toc-text">예시: 스케일 다운 비활성화</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-23-%EB%B2%84%EC%A0%84-%EB%B3%80%EA%B2%BD%EB%90%9C-%EB%A6%AC%EC%86%8C%EC%8A%A4"><span class="toc-number">2.</span> <span class="toc-text">1.23 버전 변경된 리소스</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#1-23-%EB%B2%84%EC%A0%84-%EB%B3%80%EA%B2%BD%EB%90%9C-k8s-apiserver"><span class="toc-number">3.</span> <span class="toc-text">1.23 버전 변경된 k8s-apiserver</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h2 id="1-23에서-stable로-변경된-문서들"><a href="#1-23에서-stable로-변경된-문서들" class="headerlink" title="1.23에서 stable로 변경된 문서들"></a>1.23에서 stable로 변경된 문서들</h2><p>(변경 en:11, ko: 8)</p>
+<ol>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/architecture/cri/">Container Runtime Interface (CRI)</a></li>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/services-networking/dual-stack/">IPv4/IPv6 dual-stack</a></li>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/services-networking/ingress/#%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B2%94%EC%9C%84">IngressClass scope</a></li>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes">Generic ephemeral volumes</a></li>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/ko/docs/concepts/workloads/controllers/ttlafterfinished/">Automatic Clean-up for Finished Jobs</a></li>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/">TTL mechanism for finished Jobs</a> * 영문만 존재</li>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/tasks/network/validate-dual-stack/">Dual-stack support with kubeadm</a></li>
+<li><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods">Configure volume permission and ownership change policy for Pods</a> * 영문만 존재</li>
+<li><a target="_blank" rel="noopener" href="https://kubernetes.io/ko/docs/tasks/run-application/horizontal-pod-autoscale/">Horizontal Pod Autoscaling</a><ol>
+<li>Scaling on custom metrics</li>
+<li>Scaling on multiple metrics </li>
+<li>Configurable scaling behavior </li>
+</ol>
+</li>
+</ol>
+<hr>
+<blockquote>
+<p>특별히 봐야될 것만 작성</p>
+</blockquote>
+<h3 id="1-Container-Runtime-Interface-CRI"><a href="#1-Container-Runtime-Interface-CRI" class="headerlink" title="1. Container Runtime Interface (CRI)"></a>1. <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/architecture/cri/">Container Runtime Interface (CRI)</a></h3><ul>
+<li>쿠버네티스 v1.23에서는, Kubelet은 CRI v1을 사용하는 것을 권장</li>
+<li>컨테이너 런타임이 CRI v1 버전을 지원하지 않는다면, Kubelet은 지원 가능한 이전 지원 버전으로 협상을 시도</li>
+<li>v1.23 Kubelet은 CRI v1alpha2버전도 협상할 수 있지만, 해당 버전은 사용 중단(deprecated)으로 간주</li>
+<li>Kubelet이 지원되는 CRI 버전을 협상할 수 없는 경우, Kubelet은 협상을 포기하고 노드로 등록하지 않는다.</li>
+</ul>
+<hr>
+<h3 id="2-IPv4-IPv6-dual-stack"><a href="#2-IPv4-IPv6-dual-stack" class="headerlink" title="2. IPv4/IPv6 dual-stack"></a>2. <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/tasks/network/validate-dual-stack/">IPv4/IPv6 dual-stack</a></h3><ul>
+<li>IPv4/IPv6 이중 스택 네트워킹을 사용하면 파드와 서비스에 IPv4와 IPv6 주소를 모두 할당</li>
+<li>IPv4/IPv6 이중 스택 네트워킹은 1.21부터 쿠버네티스 클러스터에 기본적으로 활성화</li>
+<li>IPv4 및 IPv6 주소를 동시에 할당 가능</li>
+</ul>
+<blockquote>
+<p>자세한 내용은 링크 참조</p>
+</blockquote>
+<hr>
+<h3 id="3-IngressClass-scope"><a href="#3-IngressClass-scope" class="headerlink" title="3. IngressClass scope"></a>3. <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/services-networking/ingress/#%EC%9D%B8%EA%B7%B8%EB%A0%88%EC%8A%A4%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%B2%94%EC%9C%84">IngressClass scope</a></h3><ul>
+<li>인그레스 컨트롤러의 종류에 따라, 클러스터 범위로 설정한 파라미터의 사용이 가능할 수도 있고, 또는 한 네임스페이스에서만 사용 가능</li>
+</ul>
+<h4 id="클러스터"><a href="#클러스터" class="headerlink" title="클러스터"></a>클러스터</h4><ul>
+<li><p>인그레스클래스 파라미터의 기본 범위는 클러스터 범위</p>
+</li>
+<li><p><code>.spec.parameters</code> 필드만 설정하고 <code>.spec.parameters.scope</code> 필드는 지정하지 않거나,</p>
+<p>  <code>.spec.parameters.scope</code> 필드를 Cluster로 지정하면, </p>
+<p>  인그레스클래스는 클러스터 범위의 리소스를 참조</p>
+</li>
+</ul>
+<p>예시</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">IngressClass</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">external-lb-1</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">controller:</span> <span class="string">example.com/ingress-controller</span></span><br><span class="line">  <span class="attr">parameters:</span></span><br><span class="line">    <span class="comment"># 이 인그레스클래스에 대한 파라미터는 &quot;external-config-1&quot; 라는</span></span><br><span class="line">    <span class="comment"># ClusterIngressParameter(API 그룹 k8s.example.net)에 기재되어 있다.</span></span><br><span class="line">    <span class="comment"># 이 정의는 쿠버네티스가 </span></span><br><span class="line">    <span class="comment"># 클러스터 범위의 파라미터 리소스를 검색하도록 한다.</span></span><br><span class="line">    <span class="attr">scope:</span> <span class="string">Cluster</span></span><br><span class="line">    <span class="attr">apiGroup:</span> <span class="string">k8s.example.net</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">ClusterIngressParameter</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">external-config-1</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="네임스페이스"><a href="#네임스페이스" class="headerlink" title="네임스페이스"></a>네임스페이스</h4><ul>
+<li><p><code>.spec.parameters</code> 필드를 설정하고 </p>
+<p>  <code>.spec.parameters.scope</code> 필드를 Namespace로 지정하면,</p>
+<p>  인그레스클래스는 네임스페이스 범위의 리소스를 참조</p>
+</li>
+<li><p>파라미터의 kind(+apiGroup)는 네임스페이스 범위의 API (예: 컨피그맵) 를 참조하며, 파라미터의 name은 namespace에 명시한 네임스페이스의 특정 리소스를 가리킴</p>
+</li>
+<li><p>네임스페이스 범위의 파라미터를 이용하여, 클러스터 운영자가 워크로드에 사용되는 환경 설정(예: 로드 밸런서 설정, API 게이트웨이 정의)에 대한 제어를 위임 가능</p>
+</li>
+<li><p>클러스터 범위의 파라미터를 사용했다면 다음 중 하나에 해당</p>
+<ul>
+<li>다른 팀의 새로운 환경 설정 변경을 적용하려고 할 때마다 클러스터 운영 팀이 매번 승인</li>
+<li>애플리케이션 팀이 클러스터 범위 파라미터 리소스를 변경할 수 있게 하는 RBAC 롤, 바인딩 등의 특별 접근 제어를 클러스터 운영자가 정의</li>
+</ul>
+</li>
+<li><p>인그레스클래스 API 자신은 항상 클러스터 범위</p>
+</li>
+<li><p>네임스페이스 범위의 파라미터를 참조하는 인그레스클래스 예시</p>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">networking.k8s.io/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">IngressClass</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">external-lb-2</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">controller:</span> <span class="string">example.com/ingress-controller</span></span><br><span class="line">  <span class="attr">parameters:</span></span><br><span class="line">    <span class="comment"># 이 인그레스클래스에 대한 파라미터는 </span></span><br><span class="line">    <span class="comment"># &quot;external-configuration&quot; 환경 설정 네임스페이스에 있는</span></span><br><span class="line">    <span class="comment"># &quot;external-config&quot; 라는 IngressParameter(API 그룹 k8s.example.com)에 기재되어 있다.</span></span><br><span class="line">    <span class="attr">scope:</span> <span class="string">Namespace</span></span><br><span class="line">    <span class="attr">apiGroup:</span> <span class="string">k8s.example.com</span></span><br><span class="line">    <span class="attr">kind:</span> <span class="string">IngressParameter</span></span><br><span class="line">    <span class="attr">namespace:</span> <span class="string">external-configuration</span></span><br><span class="line">    <span class="attr">name:</span> <span class="string">external-config</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="4-Generic-ephemeral-volumes"><a href="#4-Generic-ephemeral-volumes" class="headerlink" title="4. Generic ephemeral volumes"></a>4. <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/storage/ephemeral-volumes/#generic-ephemeral-volumes">Generic ephemeral volumes</a></h3><ul>
+<li><p>일반 임시 볼륨은 프로비저닝 후 일반적으로 비어 있는 스크래치 데이터에 대해 파드 별 디렉터리를 제공한다는 점에서 emptyDir 볼륨과 유사</p>
+</li>
+<li><p>하지만 다음과 같은 추가 기능도 제공</p>
+<ul>
+<li>스토리지는 로컬이거나 네트워크 연결형(network-attached)일 수 있음</li>
+<li>볼륨의 크기를 고정할 수 있으며 파드는 이 크기를 초과할 수 없음</li>
+<li>드라이버와 파라미터에 따라 볼륨이 초기 데이터를 가질 수 있음</li>
+<li>볼륨에 대한 일반적인 작업은 드라이버가 지원하는 범위 내에서 지원<br>(<a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/storage/volume-snapshots/">스냅샷</a>, <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/storage/volume-pvc-datasource/">복제</a>, <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/storage/persistent-volumes/#%ED%8D%BC%EC%8B%9C%EC%8A%A4%ED%84%B4%ED%8A%B8-%EB%B3%BC%EB%A5%A8-%ED%81%B4%EB%A0%88%EC%9E%84-%ED%99%95%EC%9E%A5">크기 조정</a>, 및 <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/concepts/storage/storage-capacity/">스토리지 용량 추적</a> 를 포함)</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">Pod</span></span><br><span class="line"><span class="attr">apiVersion:</span> <span class="string">v1</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">my-app</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">containers:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">my-frontend</span></span><br><span class="line">      <span class="attr">image:</span> <span class="string">busybox</span></span><br><span class="line">      <span class="attr">volumeMounts:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">mountPath:</span> <span class="string">&quot;/scratch&quot;</span></span><br><span class="line">        <span class="attr">name:</span> <span class="string">scratch-volume</span></span><br><span class="line">      <span class="attr">command:</span> [ <span class="string">&quot;sleep&quot;</span>, <span class="string">&quot;1000000&quot;</span> ]</span><br><span class="line">  <span class="attr">volumes:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">scratch-volume</span></span><br><span class="line">      <span class="attr">ephemeral:</span></span><br><span class="line">        <span class="attr">volumeClaimTemplate:</span></span><br><span class="line">          <span class="attr">metadata:</span></span><br><span class="line">            <span class="attr">labels:</span></span><br><span class="line">              <span class="attr">type:</span> <span class="string">my-frontend-volume</span></span><br><span class="line">          <span class="attr">spec:</span></span><br><span class="line">            <span class="attr">accessModes:</span> [ <span class="string">&quot;ReadWriteOnce&quot;</span> ]</span><br><span class="line">            <span class="attr">storageClassName:</span> <span class="string">&quot;scratch-storage-class&quot;</span></span><br><span class="line">            <span class="attr">resources:</span></span><br><span class="line">              <span class="attr">requests:</span></span><br><span class="line">                <span class="attr">storage:</span> <span class="string">1Gi</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="5-Automatic-Clean-up-for-Finished-Jobs"><a href="#5-Automatic-Clean-up-for-Finished-Jobs" class="headerlink" title="5. Automatic Clean-up for Finished Jobs"></a>5. <a target="_blank" rel="noopener" href="https://kubernetes.io/ko/docs/concepts/workloads/controllers/ttlafterfinished/">Automatic Clean-up for Finished Jobs</a></h3><ul>
+<li>완료-이후-TTL(TTL-after-finished) 컨트롤러는 실행이 완료된 리소스 오브젝트의 수명을 제한하는 TTL (time to live) 메커니즘을 제공</li>
+<li>TTL 컨트롤러는 잡만을 제어</li>
+</ul>
+<h4 id="완료-이후-TTL-컨트롤러"><a href="#완료-이후-TTL-컨트롤러" class="headerlink" title="완료-이후-TTL 컨트롤러"></a>완료-이후-TTL 컨트롤러</h4><ul>
+<li><p>완료-이후-TTL 컨트롤러는 잡만을 지원</p>
+</li>
+<li><p>클러스터 운영자는 예시 와 같이 <code>.spec.ttlSecondsAfterFinished</code> 필드를 명시하여 완료된 잡(완료 또는 실패)을 자동으로 정리하기 위해 이 기능을 사용가능</p>
+</li>
+<li><p>잡의 작업이 완료된 TTL 초(sec) 후 (다른 말로는, TTL이 만료되었을 때), 완료-이후-TTL 컨트롤러는 해당 잡이 정리될 수 있다고 가정</p>
+</li>
+<li><p>완료-이후-TTL 컨트롤러가 잡을 정리할때 잡을 연속적으로 삭제</p>
+<ul>
+<li>의존하는 오브젝트도 해당 잡과 함께 삭제되는 것을 의미</li>
+</ul>
+</li>
+<li><p>잡이 삭제되면 완료자(finalizers)와 같은 라이프 사이클 보증이 적용</p>
+</li>
+<li><p>TTL 초(sec)는 언제든지 설정이 가능</p>
+</li>
+<li><p>잡 필드 중 .spec.ttlSecondsAfterFinished 를 설정하는 몇 가지 예시</p>
+<ul>
+<li>작업이 완료된 다음, 일정 시간 후에 자동으로 잡이 정리될 수 있도록 잡 메니페스트에 이 필드를 지정</li>
+<li>이미 완료된 기존 잡에 이 새 기능을 적용하기 위해서 이 필드를 설정</li>
+<li>어드미션 웹후크 변형 을 사용해서 잡 생성시 이 필드를 동적으로 설정, 클러스터 관리자는 이것을 사용해서 완료된 잡에 대해 TTL 정책을 적용</li>
+<li>잡이 완료된 이후에 어드미션 웹후크 변형 을 사용해서 이 필드를 동적으로 설정, 잡의 상태, 레이블 등에 따라 다른 TTL 값을 선택</li>
+</ul>
+</li>
+</ul>
+<h4 id="경고"><a href="#경고" class="headerlink" title="경고"></a>경고</h4><h5 id="TTL-초-sec-업데이트"><a href="#TTL-초-sec-업데이트" class="headerlink" title="TTL 초(sec) 업데이트"></a>TTL 초(sec) 업데이트</h5><ul>
+<li>TTL 기간은, 예를 들어 잡의 .spec.ttlSecondsAfterFinished 필드는 잡을 생성하거나 완료한 후에 수정가능</li>
+<li>그러나, 잡을 삭제할 수 있게 되면(TTL이 만료된 경우) 시스템은 TTL을 연장하기 위한 업데이트가 성공적인 API 응답을 리턴하더라도 작업이 유지되도록 보장하지 않는다.</li>
+</ul>
+<h5 id="시간-차이-Skew"><a href="#시간-차이-Skew" class="headerlink" title="시간 차이(Skew)"></a>시간 차이(Skew)</h5><ul>
+<li>완료-이후-TTL 컨트롤러는 쿠버네티스 잡에 저장된 타임스탬프를 사용해서 TTL의 만료 여부를 결정</li>
+<li>클러스터 간의 시간 차이에 민감, 시간 차이에 의해서 완료-이후-TTL 컨트롤러가 잘못된 시간에 잡 오브젝트를 정리가 될 수 도 있음</li>
+</ul>
+<hr>
+<h3 id="6-TTL-mechanism-for-finished-Jobs-영문만-존재"><a href="#6-TTL-mechanism-for-finished-Jobs-영문만-존재" class="headerlink" title="6. TTL mechanism for finished Jobs * 영문만 존재"></a>6. <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/docs/concepts/workloads/controllers/ttlafterfinished/">TTL mechanism for finished Jobs</a> * 영문만 존재</h3><blockquote>
+<p>한글 문서 업데이트가 안되긴 했지만, 바뀐 내용 버전(beta -&gt; stable)외에 변경된 것외에 없음</p>
+</blockquote>
+<ul>
+<li><p>완료된 잡 (Complete 또는 Failed)을 자동으로 정리하는 또 다른 방법</p>
+</li>
+<li><p>잡의 .spec.ttlSecondsAfterFinished 필드를 지정해서 완료된 리소스에 대해 TTL 컨트롤러에서 제공하는 TTL 메커니즘을 사용</p>
+</li>
+<li><p>TTL 컨트롤러는 잡을 정리하면 잡을 계단식으로 삭제</p>
+</li>
+<li><p>잡과 함께 파드와 같은 종속 오브젝트를 삭제</p>
+</li>
+<li><p>잡과 함께 파드와 같은 종속 오브젝트를 삭제</p>
+</li>
+</ul>
+<p>예시</p>
+<ul>
+<li>pi-with-ttl 잡은 완료 후 100 초 이후에 자동으로 삭제</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">apiVersion:</span> <span class="string">batch/v1</span></span><br><span class="line"><span class="attr">kind:</span> <span class="string">Job</span></span><br><span class="line"><span class="attr">metadata:</span></span><br><span class="line">  <span class="attr">name:</span> <span class="string">pi-with-ttl</span></span><br><span class="line"><span class="attr">spec:</span></span><br><span class="line">  <span class="attr">ttlSecondsAfterFinished:</span> <span class="number">100</span></span><br><span class="line">  <span class="attr">template:</span></span><br><span class="line">    <span class="attr">spec:</span></span><br><span class="line">      <span class="attr">containers:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">pi</span></span><br><span class="line">        <span class="attr">image:</span> <span class="string">perl</span></span><br><span class="line">        <span class="attr">command:</span> [<span class="string">&quot;perl&quot;</span>,  <span class="string">&quot;-Mbignum=bpi&quot;</span>, <span class="string">&quot;-wle&quot;</span>, <span class="string">&quot;print bpi(2000)&quot;</span>]</span><br><span class="line">      <span class="attr">restartPolicy:</span> <span class="string">Never</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>만약 필드를 0 으로 설정하면, 잡이 완료된 직후에 자동으로 삭제되도록 할 수 있음</li>
+<li>만약 필드를 설정하지 않으면, 이 잡이 완료된 후에 TTL 컨트롤러에 의해 정리되지 않음</li>
+</ul>
+<h4 id="참고"><a href="#참고" class="headerlink" title="참고"></a>참고</h4><blockquote>
+<p>AC2-1396 이슈와 관련된 내용</p>
+</blockquote>
+<ul>
+<li>ttlSecondsAfterFinished 필드를 설정하는 것을 권장</li>
+<li>이는 관리되지 않는 잡(직접 생성한, 크론잡 등 다른 워크로드 API를 통해 간접적으로 생성하지 않은 잡)의 기본 삭제 정책이 orphanDependents(관리되지 않는 잡이 완전히 삭제되어도 해당 잡에 의해 생성된 파드를 남겨둠)이기 때문</li>
+<li>삭제된 잡의 파드가 실패하거나 완료된 뒤 컨트롤 플레인이 언젠가 가비지 콜렉션을 한다고 해도, 이렇게 남아 있는 파드는 클러스터의 성능을 저하시킴</li>
+<li>최악의 경우에는 이 성능 저하로 인해 클러스터가 중단</li>
+<li>리밋 레인지(Limit Range)와 리소스 쿼터를 사용하여 특정 네임스페이스가 사용할 수 있는 자원량을 제한하는 것도 방법</li>
+</ul>
+<hr>
+<h3 id="7-Dual-stack-support-with-kubeadm"><a href="#7-Dual-stack-support-with-kubeadm" class="headerlink" title="7. Dual-stack support with kubeadm"></a>7. <a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/ko/docs/tasks/network/validate-dual-stack/">Dual-stack support with kubeadm</a></h3><ul>
+<li>IPv4/IPv6 이중 스택이 활성화된 쿠버네티스 클러스터들을 어떻게 검증하는지 설명</li>
+<li>v1.23 이전 버전에서도 검증을 수행할 수 있지만 GA 기능으로만 제공되며, v1.23부터 공식적으로 지원</li>
+</ul>
+<blockquote>
+<p>자세한 내용은 링크 참조</p>
+</blockquote>
+<hr>
+<h3 id="Configure-volume-permission-and-ownership-change-policy-for-Pods-영문만-존재"><a href="#Configure-volume-permission-and-ownership-change-policy-for-Pods-영문만-존재" class="headerlink" title="Configure volume permission and ownership change policy for Pods * 영문만 존재"></a><a target="_blank" rel="noopener" href="https://v1-23.docs.kubernetes.io/docs/tasks/configure-pod-container/security-context/#configure-volume-permission-and-ownership-change-policy-for-pods">Configure volume permission and ownership change policy for Pods</a> * 영문만 존재</h3><ul>
+<li>Pods에 대한 볼륨 사용 권한 및 소유권 변경 정책 구성</li>
+<li>기본적으로 Kubernetes는 볼륨이 마운트될 때 각 볼륨의 컨텐츠에 대한 소유권과 사용 권한을 포드 <code>SecurityContext에</code> 지정된 <code>fsGroup</code>과 일치하도록 반복적으로 변경</li>
+<li>대규모 볼륨의 경우 소유권 및 사용 권한을 확인하고 변경하는 데 많은 시간이 소요되어 포드 시작 속도가 느려질 수 있음</li>
+<li><code>SecurityContext</code> 내에서 <code>fsGroupChangePolicy</code> 필드를 사용하여 Kubernetes가 볼륨에 대한 소유권 및 사용 권한을 확인하고 관리하는 방법을 제어가 가능</li>
+</ul>
+<h4 id="fsGroupChangePolicy"><a href="#fsGroupChangePolicy" class="headerlink" title="fsGroupChangePolicy"></a>fsGroupChangePolicy</h4><ul>
+<li><code>fsGroupChangePolicy</code>는 포드 내부에 <code>expose</code> 되기 전에 볼륨의 소유권 및 사용 권한을 변경하는 동작을 정의</li>
+<li>이 필드는 <code>fsGroup</code> 제어 소유권 및 사용 권한을 지원하는 볼륨 유형에만 적용</li>
+<li>이 필드에는 두 가지 값이 존재<ul>
+<li><code>OnRootMismatch</code>: 루트 디렉터리의 권한 및 소유권이 볼륨의 예상 권한과 일치하지 않는 경우만 변경, 이렇게 하면 볼륨의 소유권과 사용 권한을 변경하는 데 걸리는 시간을 단축가능</li>
+<li><code>Always</code>: 볼륨 마운트되면 항상 볼륨의 사용 권한 및 소유권을 변경</li>
+</ul>
+</li>
+</ul>
+<p>예시.</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">securityContext:</span></span><br><span class="line">  <span class="attr">runAsUser:</span> <span class="number">1000</span></span><br><span class="line">  <span class="attr">runAsGroup:</span> <span class="number">3000</span></span><br><span class="line">  <span class="attr">fsGroup:</span> <span class="number">2000</span></span><br><span class="line">  <span class="attr">fsGroupChangePolicy:</span> <span class="string">&quot;OnRootMismatch&quot;</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>이 필드는 secret, configMap 및 emptydir와 같은 사용 후 삭제 볼륨 유형에는 영향 X</li>
+</ul>
+<hr>
+<h3 id="9-Horizontal-Pod-Autoscaling"><a href="#9-Horizontal-Pod-Autoscaling" class="headerlink" title="9. Horizontal Pod Autoscaling"></a>9. <a target="_blank" rel="noopener" href="https://kubernetes.io/ko/docs/tasks/run-application/horizontal-pod-autoscale/">Horizontal Pod Autoscaling</a></h3><blockquote>
+<p>stable로 변경된 기능 3가지</p>
+</blockquote>
+<h4 id="사용자-정의-메트릭을-이용하는-스케일링"><a href="#사용자-정의-메트릭을-이용하는-스케일링" class="headerlink" title="사용자 정의 메트릭을 이용하는 스케일링"></a>사용자 정의 메트릭을 이용하는 스케일링</h4><ul>
+<li>이전에는 autoscaling/v2beta2 API 버전이 이 기능을 베타 기능으로 제공</li>
+<li>autoscaling/v2beta2 API 버전을 사용하는 경우, (쿠버네티스 또는 어느 쿠버네티스 구성 요소에도 포함되어 있지 않은) 커스텀 메트릭을 기반으로 스케일링을 수행하도록 HorizontalPodAutoscaler를 구성할 수 있음, 이 경우 HorizontalPodAutoscaler 컨트롤러가 이러한 커스텀 메트릭을 쿠버네티스 API로부터 조회</li>
+<li>요구 사항에 대한 정보는 <a target="_blank" rel="noopener" href="https://kubernetes.io/ko/docs/tasks/run-application/horizontal-pod-autoscale/#%EB%A9%94%ED%8A%B8%EB%A6%AD-api%EB%A5%BC-%EC%9C%84%ED%95%9C-%EC%A7%80%EC%9B%90">메트릭 API를 위한 지원</a>을 참조</li>
+</ul>
+<h3 id="복수의-메트릭을-이용하는-스케일링"><a href="#복수의-메트릭을-이용하는-스케일링" class="headerlink" title="복수의 메트릭을 이용하는 스케일링"></a>복수의 메트릭을 이용하는 스케일링</h3><ul>
+<li>이전에는 autoscaling/v2beta2 API 버전이 이 기능을 베타 기능으로 제공</li>
+<li>autoscaling/v2 API 버전을 사용하는 경우, HorizontalPodAutoscaler는 스케일링에 사용할 복수의 메트릭을 설정 가능<ul>
+<li>이 경우 HorizontalPodAutoscaler 컨트롤러가 각 메트릭을 확인하고 해당 단일 메트릭에 대한 새로운 스케일링 크기를 제안</li>
+<li>HorizontalPodAutoscaler는 새롭게 제안된 스케일링 크기 중 가장 큰 값을 선택하여 워크로드 사이즈를 조정<br>(이 값이 이전에 설정한 ‘총 최대값(overall maximum)’보다는 크지 않을 때에만)</li>
+</ul>
+</li>
+</ul>
+<h3 id="구성가능한-스케일링-동작"><a href="#구성가능한-스케일링-동작" class="headerlink" title="구성가능한 스케일링 동작"></a>구성가능한 스케일링 동작</h3><ul>
+<li>이전에는 autoscaling/v2beta2 API 버전이 이 기능을 베타 기능으로 제공</li>
+<li>v2 버전의 HorizontalPodAutoscaler API를 사용한다면, <a target="_blank" rel="noopener" href="https://kubernetes.io/docs/reference/kubernetes-api/workload-resources/horizontal-pod-autoscaler-v2/#HorizontalPodAutoscalerSpec">behavior 필드(API 레퍼런스 참고)</a>를 사용하여 스케일업 동작과 스케일다운 동작을 별도로 구성가능</li>
+<li>각 방향에 대한 동작은 behavior 필드 아래의 scaleUp / scaleDown를 설정하여 지정가능</li>
+<li><code>stabilizationWindow</code> 를 명시하여 스케일링 목적물의 레플리카 수 워크로드 스케일링의 안정성을 고려할 수 있음</li>
+</ul>
+<h4 id="스케일링-정책"><a href="#스케일링-정책" class="headerlink" title="스케일링 정책"></a>스케일링 정책</h4><ul>
+<li>스펙의 behavior 섹션에 하나 이상의 스케일링 정책을 지정</li>
+<li>정책이 여러 개 지정된 경우 가장 많은 양의 변경을 허용하는 정책이 기본적으로 선택된 폴리시</li>
+</ul>
+<p>스케일 다운 예시</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">policies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Pods</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">4</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">60</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Percent</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">60</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><p><code>periodSeconds</code> 는 폴리시가 참(true)으로 유지되어야 하는 기간을 나타냄</p>
+</li>
+<li><p>첫 번째 정책은 (파드들) 이 1분 내에 최대 4개의 레플리카를 스케일 다운할 수 있도록 허용</p>
+</li>
+<li><p>두 번째 정책은 비율 로 현재 레플리카의 최대 10%를 1분 내에 스케일 다운할 수 있도록 허용</p>
+</li>
+<li><p>기본적으로 가장 많은 변경을 허용하는 정책이 선택되기에 두 번째 정책은 파드의 레플리카 수가 40개를 초과하는 경우에만 사용</p>
+</li>
+<li><p>레플리카가 40개 이하인 경우 첫 번째 정책이 적용</p>
+</li>
+<li><p>예를 들어 80개의 레플리카가 있고 대상을 10개의 레플리카로 축소해야 하는 경우 첫 번째 단계에서 8개의 레플리카가 스케일 다운</p>
+</li>
+<li><p>레플리카의 수가 72개일 때 다음 반복에서 파드의 10%는 7.2 이지만, 숫자는 8로 올림</p>
+</li>
+<li><p>오토스케일러 컨트롤러의 각 루프에서 변경될 파드의 수는 현재 레플리카의 수에 따라 재계산</p>
+</li>
+<li><p>레플리카의 수가 40 미만으로 떨어지면 첫 번째 폴리시 (파드들) 가 적용되고 한번에 4개의 레플리카가 줄어듬</p>
+</li>
+</ul>
+<hr>
+<ul>
+<li>확장 방향에 대해 selectPolicy 필드를 확인하여 폴리시 선택을 변경 가능</li>
+<li>레플리카의 수를 최소로 변경할 수 있는 폴리시를 선택하는 최소(Min)로 값을 설정</li>
+<li>값을 Disabled 로 설정하면 해당 방향으로 스케일링이 완전히 비활성화</li>
+</ul>
+<h3 id="stabilizationWindow"><a href="#stabilizationWindow" class="headerlink" title="stabilizationWindow"></a>stabilizationWindow</h3><ul>
+<li><code>stabilizationWindow</code>는 스케일링에 사용되는 메트릭이 계속 변동할 때 레플리카 수의 안정성을 위해 사용</li>
+<li>오토스케일링 알고리즘은 이전의 목표 상태를 추론하고 워크로드 수의 원치 않는 변화를 방지하기 위해 이<code>stabilizationWindow</code>를 활용</li>
+</ul>
+<p>scaleDown에 대해 안정화 윈도우 예시</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">stabilizationWindowSeconds:</span> <span class="number">300</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>메트릭 관측 결과 스케일링 목적물이 스케일 다운 되어야 하는 경우, 알고리즘은 이전에 계산된 목표 상태를 확인하고, 해당 구간에서 계산된 값 중 가장 높은 값을 사용</li>
+<li>위의 예시에서, 이전 5분 동안의 모든 목표 상태가 고려 대상이 됨</li>
+<li>이를 통해 동적 최대값(rolling maximum)을 근사화하여, 스케일링 알고리즘이 빠른 시간 간격으로 파드를 제거하고 바로 다시 동일한 파드를 재생성하는 현상을 방지</li>
+</ul>
+<h4 id="기본-동작"><a href="#기본-동작" class="headerlink" title="기본 동작"></a>기본 동작</h4><ul>
+<li>사용자 지정 스케일링을 사용하기 위해서 모든 필드를 지정하지 않아도 됨</li>
+<li>사용자 정의가 필요한 값만 지정 가능</li>
+<li>이러한 사용자 지정 값은 기본값과 병합</li>
+<li>기본값은 HPA 알고리즘의 기존 동작과 동일</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">stabilizationWindowSeconds:</span> <span class="number">300</span></span><br><span class="line">    <span class="attr">policies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Percent</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">100</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">15</span></span><br><span class="line">  <span class="attr">scaleUp:</span></span><br><span class="line">    <span class="attr">stabilizationWindowSeconds:</span> <span class="number">0</span></span><br><span class="line">    <span class="attr">policies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Percent</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">100</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">15</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Pods</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">4</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">15</span></span><br><span class="line">    <span class="attr">selectPolicy:</span> <span class="string">Max</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>스케일링 다운의 경우 300 초 (또는 제공된 경우–horizontal-pod-autoscaler-downscale-stabilization 플래그의 값</li>
+<li>스케일링 다운에서는 현재 실행 중인 레플리카의 100%를 제거할 수 있는 단일 정책만 존재하며 이는 스케일링 대상을 최소 허용 레플리카로 축소할 수 있음을 의미</li>
+<li>스케일링 업에는 <code>stabilizationWindow</code>가 없다</li>
+<li>메트릭이 대상을 스케일 업해야 한다고 표시된다면 대상이 즉시 스케일 업을 한다.<ul>
+<li>두 가지 폴리시가 존재<ul>
+<li>HPA가 정상 상태에 도달 할 때까지 15초 마다 4개의 파드 </li>
+<li>또는 현재 실행 중인 레플리카의 100% 가 추가된다.</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h4 id="예시-다운스케일-stabilizationWindow-변경"><a href="#예시-다운스케일-stabilizationWindow-변경" class="headerlink" title="예시: 다운스케일 stabilizationWindow 변경"></a>예시: 다운스케일 stabilizationWindow 변경</h4><ul>
+<li>사용자 지정 다운스케일 안정화 윈도우를 1분 동안 제공하기 위해 다음 동작이 HPA에 추가</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">stabilizationWindowSeconds:</span> <span class="number">60</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="예시-스케일-다운-속도-제한"><a href="#예시-스케일-다운-속도-제한" class="headerlink" title="예시: 스케일 다운 속도 제한"></a>예시: 스케일 다운 속도 제한</h4><ul>
+<li>HPA에 의해 파드가 제거되는 속도를 분당 10%로 제한하기 위해 다음 동작이 HPA에 추가</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">policies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Percent</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">60</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>분당 제거되는 파드 수가 5를 넘지 않도록 하기 위해, 크기가 5로 고정된 두 번째 축소 정책을 추가하고, <code>selectPolicy</code> 를 최소로 설정</li>
+<li><code>selectPolicy</code> 를 <code>Min</code> 으로 설정하면 자동 스케일러가 가장 적은 수의 파드에 영향을 주는 정책을 선택함을 의미</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">policies:</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Percent</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">10</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">60</span></span><br><span class="line">    <span class="bullet">-</span> <span class="attr">type:</span> <span class="string">Pods</span></span><br><span class="line">      <span class="attr">value:</span> <span class="number">5</span></span><br><span class="line">      <span class="attr">periodSeconds:</span> <span class="number">60</span></span><br><span class="line">    <span class="attr">selectPolicy:</span> <span class="string">Min</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="예시-스케일-다운-비활성화"><a href="#예시-스케일-다운-비활성화" class="headerlink" title="예시: 스케일 다운 비활성화"></a>예시: 스케일 다운 비활성화</h4><ul>
+<li>selectPolicy 의 Disabled 값은 주어진 방향으로의 스케일링을 끔</li>
+<li>따라서, 다운 스케일링을 방지하기 위해 다음 폴리시가 사용</li>
+</ul>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">behavior:</span></span><br><span class="line">  <span class="attr">scaleDown:</span></span><br><span class="line">    <span class="attr">selectPolicy:</span> <span class="string">Disabled</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="1-23-버전-변경된-리소스"><a href="#1-23-버전-변경된-리소스" class="headerlink" title="1.23 버전 변경된 리소스"></a>1.23 버전 변경된 리소스</h2><ol>
+<li>추가 io.k8s.api.apps.v1.StatefulSetPersistentVolumeClaimRetentionPolicy</li>
+<li>변경 io.k8s.api.apps.v1.StatefulSetSpec<ul>
+<li>추가 persistentVolumeClaimRetentionPolicy</li>
+</ul>
+</li>
+<li>추가 io.k8s.api.autoscaling.v2.ContainerResourceMetricSource</li>
+<li>변경 io.k8s.api.batch.v1.JobStatus<ul>
+<li>추가 ready</li>
+</ul>
+</li>
+<li>추가 io.k8s.api.core.v1.GRPCAction</li>
+<li>제거 io.k8s.api.core.v1.Handler</li>
+<li>추가 io.k8s.api.core.v1.LifecycleHandler</li>
+<li>변경 io.k8s.api.core.v1.PersistentVolumeClaimStatus<ul>
+<li>추가 allocatedResources</li>
+</ul>
+</li>
+<li>추가 io.k8s.api.core.v1.PodOS</li>
+<li>추가 io.k8s.api.core.v1.PodSpec<ul>
+<li>추가 os</li>
+</ul>
+</li>
+<li>변경 io.k8s.api.core.v1.Probe<ul>
+<li>추가 grpc</li>
+</ul>
+</li>
+<li>추가 io.k8s.api.flowcontrol.v1beta2.FlowDistinguisherMethod</li>
+<li>추가 io.k8s.api.flowcontrol.v1beta2.FlowSchema</li>
+<li>제거 io.k8s.api.rbac.v1alpha1.AggregationRule</li>
+<li>제거 io.k8s.api.rbac.v1alpha1.ClusterRole</li>
+<li>제거 io.k8s.api.scheduling.v1alpha1.PriorityClass</li>
+<li>제거 io.k8s.api.storage.v1alpha1.VolumeAttachment</li>
+<li>제거 io.k8s.api.storage.v1alpha1.VolumeAttachmentList</li>
+<li>제거 io.k8s.api.storage.v1alpha1.VolumeAttachmentSource</li>
+<li>제거 io.k8s.api.storage.v1alpha1.VolumeAttachmentStatus</li>
+<li>제거 io.k8s.api.storage.v1alpha1.VolumeError</li>
+<li>추가 io.k8s.apiextensions-apiserver.pkg.apis.apiextensions.v1.ValidationRule</li>
+</ol>
+<hr>
+<h2 id="1-23-버전-변경된-k8s-apiserver"><a href="#1-23-버전-변경된-k8s-apiserver" class="headerlink" title="1.23 버전 변경된 k8s-apiserver"></a>1.23 버전 변경된 k8s-apiserver</h2><ol>
+<li>변경 <code>/api/v1/namespaces/&#123;namespace&#125;/services</code><ul>
+<li>method: delete</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/horizontalpodautoscalers</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/namespaces/&#123;namespace&#125;/horizontalpodautoscalers</code><ul>
+<li>methods: delete, get, post</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/namespaces/&#123;namespace&#125;/horizontalpodautoscalers/&#123;name&#125;</code><ul>
+<li>methods: delete, get, patch, put</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/namespaces/&#123;namespace&#125;/horizontalpodautoscalers/&#123;name&#125;/status</code><ul>
+<li>methods: get, patch, put</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/watch/horizontalpodautoscalers</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/watch/namespaces/&#123;namespace&#125;/horizontalpodautoscalers</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/autoscaling/v2/watch/namespaces/&#123;namespace&#125;/horizontalpodautoscalers/&#123;name&#125;</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/flowschemas</code><ul>
+<li>methods: delete, get, post</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/flowschemas/&#123;name&#125;</code><ul>
+<li>methods: delete, get, patch, put</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/flowschemas/&#123;name&#125;/status</code><ul>
+<li>methods: get, patch, put</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/prioritylevelconfigurations</code><ul>
+<li>methods: delete, get, post</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/prioritylevelconfigurations/&#123;name&#125;</code><ul>
+<li>methods: delete, get, patch, put</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/prioritylevelconfigurations/&#123;name&#125;/status</code><ul>
+<li>methods: get, patch, put</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/watch/flowschemas</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/watch/flowschemas/&#123;name&#125;</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/watch/prioritylevelconfigurations</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>추가 <code>/apis/flowcontrol.apiserver.k8s.io/v1beta2/watch/prioritylevelconfigurations/&#123;name&#125;</code><ul>
+<li>methods: get</li>
+</ul>
+</li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/clusterrolebindings</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/clusterrolebindings/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/clusterroles</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/clusterroles/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/namespaces/&#123;namespace&#125;/rolebindings</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/namespaces/&#123;namespace&#125;/rolebindings/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/namespaces/&#123;namespace&#125;/roles</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/namespaces/&#123;namespace&#125;/roles/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/rolebindings</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/roles</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/clusterrolebindings</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/clusterrolebindings/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/clusterroles</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/clusterroles/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/namespaces/&#123;namespace&#125;/rolebindings</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/namespaces/&#123;namespace&#125;/rolebindings/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/namespaces/&#123;namespace&#125;/roles</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/namespaces/&#123;namespace&#125;/roles/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/rolebindings</code></li>
+<li>제거 <code>/apis/rbac.authorization.k8s.io/v1alpha1/watch/roles</code></li>
+<li>제거 <code>/apis/scheduling.k8s.io/v1alpha1/</code></li>
+<li>제거 <code>/apis/scheduling.k8s.io/v1alpha1/priorityclasses</code></li>
+<li>제거 <code>/apis/scheduling.k8s.io/v1alpha1/priorityclasses/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/scheduling.k8s.io/v1alpha1/watch/priorityclasses</code></li>
+<li>제거 <code>/apis/scheduling.k8s.io/v1alpha1/watch/priorityclasses/&#123;name&#125;</code></li>
+<li>변경 <code>/apis/storage.k8s.io/v1alpha1/namespaces/&#123;namespace&#125;/csistoragecapacities/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/storage.k8s.io/v1alpha1/volumeattachments/&#123;name&#125;</code></li>
+<li>제거 <code>/apis/storage.k8s.io/v1alpha1/watch/volumeattachments</code></li>
+<li>제거 <code>/apis/storage.k8s.io/v1alpha1/watch/volumeattachments/&#123;name&#125;</code></li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    HTTP 완벽 가이드 1장
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/TIL/2021/11/20/helm/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Helm 사용해보기</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

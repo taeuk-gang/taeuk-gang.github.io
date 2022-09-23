@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>새로운 CSS 레이아웃 도서 요약 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Book" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="새로운 CSS 레이아웃 요약이전 레이아웃플롯의 문제플롯은 모든 요소의 높이가 똑같다면 괜찮은 방식임그렇지 않다면, 아래와 같이 레이아웃이 망가질 수 있음    See the Pen    플롯 - 망가진 레이아웃 by taeuk_kang (@taeuk_kang)   on CodePen.    플롯 문제 해결 현재컴포넌트 우선 디자인 새로운 레이아웃column">
+<meta property="og:type" content="article">
+<meta property="og:title" content="새로운 CSS 레이아웃 도서 요약">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Book-new-css-layout/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="새로운 CSS 레이아웃 요약이전 레이아웃플롯의 문제플롯은 모든 요소의 높이가 똑같다면 괜찮은 방식임그렇지 않다면, 아래와 같이 레이아웃이 망가질 수 있음    See the Pen    플롯 - 망가진 레이아웃 by taeuk_kang (@taeuk_kang)   on CodePen.    플롯 문제 해결 현재컴포넌트 우선 디자인 새로운 레이아웃column">
+<meta property="og:locale" content="ko_KR">
+<meta property="article:published_time" content="2019-07-23T10:19:49.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.377Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Book">
+<meta name="twitter:card" content="summary">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file active"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Book-new-css-layout" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Book/">Book</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Book/" rel="tag">Book</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Book-new-css-layout/">
+            <time datetime="2019-07-23T10:19:49.000Z" itemprop="datePublished">2019-07-23</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Book-new-css-layout.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Book-new-css-layout.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Book-new-css-layout.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            새로운 CSS 레이아웃 도서 요약
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%EC%83%88%EB%A1%9C%EC%9A%B4-CSS-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83-%EC%9A%94%EC%95%BD"><span class="toc-number">1.</span> <span class="toc-text">새로운 CSS 레이아웃 요약</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%9D%B4%EC%A0%84-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83"><span class="toc-number">1.1.</span> <span class="toc-text">이전 레이아웃</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%94%8C%EB%A1%AF%EC%9D%98-%EB%AC%B8%EC%A0%9C"><span class="toc-number">1.1.1.</span> <span class="toc-text">플롯의 문제</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%94%8C%EB%A1%AF-%EB%AC%B8%EC%A0%9C-%ED%95%B4%EA%B2%B0"><span class="toc-number">1.1.2.</span> <span class="toc-text">플롯 문제 해결</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%ED%98%84%EC%9E%AC"><span class="toc-number">1.2.</span> <span class="toc-text">현재</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%BB%B4%ED%8F%AC%EB%84%8C%ED%8A%B8-%EC%9A%B0%EC%84%A0-%EB%94%94%EC%9E%90%EC%9D%B8"><span class="toc-number">1.2.1.</span> <span class="toc-text">컴포넌트 우선 디자인</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%83%88%EB%A1%9C%EC%9A%B4-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83"><span class="toc-number">1.3.</span> <span class="toc-text">새로운 레이아웃</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#column-count-column-width"><span class="toc-number">1.3.1.</span> <span class="toc-text">column-count, column-width</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#shape-outside"><span class="toc-number">1.3.2.</span> <span class="toc-text">shape-outside</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-wrap"><span class="toc-number">1.3.3.</span> <span class="toc-text">flex-wrap</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EA%B7%B8%EB%A6%AC%EB%93%9C-%EB%A0%88%EC%9D%B4%EC%95%84%EC%9B%83"><span class="toc-number">1.3.4.</span> <span class="toc-text">그리드 레이아웃</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%82%B4%EA%B0%80-%EB%AA%B0%EB%9E%90%EB%8D%98-%EC%82%AC%EC%8B%A4"><span class="toc-number">1.3.4.1.</span> <span class="toc-text">* 내가 몰랐던 사실</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EB%B0%B0%EC%B9%98%EC%99%80-%EC%A0%95%EB%A0%AC"><span class="toc-number">1.4.</span> <span class="toc-text">배치와 정렬</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#align-content-space-between"><span class="toc-number">1.4.1.</span> <span class="toc-text">align-content: space-between;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-content-space-between"><span class="toc-number">1.4.2.</span> <span class="toc-text">justify-content: space-between;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#justify-items-justify-self"><span class="toc-number">1.4.3.</span> <span class="toc-text">justify-items ,justify-self</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%85%EB%B0%98%EC%9D%91%ED%98%95-%EB%94%94%EC%9E%90%EC%9D%B8"><span class="toc-number">1.5.</span> <span class="toc-text">★반응형 디자인</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#flex-grow-shrink-basis"><span class="toc-number">1.5.1.</span> <span class="toc-text">flex -grow, -shrink, -basis</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E2%98%85%EC%86%8C%EC%8A%A4-%EC%88%9C%EC%84%9C%EC%99%80-%ED%91%9C%ED%98%84-%EC%88%9C%EC%84%9C"><span class="toc-number">1.6.</span> <span class="toc-text">★소스 순서와 표현 순서</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#grid-auto-flow"><span class="toc-number">1.6.1.</span> <span class="toc-text">grid-auto-flow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#order"><span class="toc-number">1.6.2.</span> <span class="toc-text">order</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#display-contents"><span class="toc-number">1.6.3.</span> <span class="toc-text">display: contents</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%A4%80%EB%B9%84%ED%95%98%EB%8A%94-%EB%AF%B8%EB%9E%98"><span class="toc-number">1.7.</span> <span class="toc-text">준비하는 미래</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%95%9E%EC%9C%BC%EB%A1%9C%EC%9D%98-%EC%97%AC%EC%A0%95"><span class="toc-number">1.8.</span> <span class="toc-text">앞으로의 여정</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%EC%B0%B8%EA%B3%A0%ED%8C%8C%EC%9D%BC"><span class="toc-number">1.9.</span> <span class="toc-text">참고파일</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="새로운-CSS-레이아웃-요약"><a href="#새로운-CSS-레이아웃-요약" class="headerlink" title="새로운 CSS 레이아웃 요약"></a>새로운 CSS 레이아웃 요약</h1><h2 id="이전-레이아웃"><a href="#이전-레이아웃" class="headerlink" title="이전 레이아웃"></a>이전 레이아웃</h2><h3 id="플롯의-문제"><a href="#플롯의-문제" class="headerlink" title="플롯의 문제"></a>플롯의 문제</h3><p>플롯은 모든 요소의 높이가 똑같다면 괜찮은 방식임<br>그렇지 않다면, 아래와 같이 레이아웃이 망가질 수 있음</p>
+<p class="codepen" data-height="776" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="58220504071e1845d78a26906252de50" data-editable="true" style="height: 776px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="플롯 - 망가진 레이아웃">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/58220504071e1845d78a26906252de50/">
+  플롯 - 망가진 레이아웃</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="플롯-문제-해결"><a href="#플롯-문제-해결" class="headerlink" title="플롯 문제 해결"></a><del>플롯 문제 해결</del></h3><hr>
+<h2 id="현재"><a href="#현재" class="headerlink" title="현재"></a><del>현재</del></h2><h3 id="컴포넌트-우선-디자인"><a href="#컴포넌트-우선-디자인" class="headerlink" title="컴포넌트 우선 디자인"></a><del>컴포넌트 우선 디자인</del></h3><hr>
+<h2 id="새로운-레이아웃"><a href="#새로운-레이아웃" class="headerlink" title="새로운 레이아웃"></a>새로운 레이아웃</h2><h3 id="column-count-column-width"><a href="#column-count-column-width" class="headerlink" title="column-count, column-width"></a><code>column-count</code>, <code>column-width</code></h3><p class="codepen" data-height="429" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="36f019a92a98f5eb9ff66788ba6b9cb4" data-editable="true" style="height: 429px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="column-count">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/36f019a92a98f5eb9ff66788ba6b9cb4/">
+  column-count</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="shape-outside"><a href="#shape-outside" class="headerlink" title="shape-outside"></a><code>shape-outside</code></h3><p>신기한 방식</p>
+<p class="codepen" data-height="596" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="7381756662a5e307bddb2471d62265ac" data-editable="true" style="height: 596px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="shape-outside">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/7381756662a5e307bddb2471d62265ac/">
+  shape-outside</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+<h3 id="flex-wrap"><a href="#flex-wrap" class="headerlink" title="flex-wrap"></a><code>flex-wrap</code></h3><p>마지막 엘리먼트를 지워보고, 어떻게 영향을 끼치는지 확인하자</p>
+<p>그리고 <code>flex: 0 0 auto;</code>로 변경해보자.</p>
+<p><code>flex: 0 0 auto;</code> = <code>flex-grow</code>, <code>flex-shrink</code>, <code>flex-basis</code> 순서로 배치됨</p>
+<p>이게 <code>grid</code>와 <code>flex</code>에 가장 큰 차이라고 생각된다.</p>
+<p><code>grid</code>에서는 아무리 찾아봐도, 각 행의 길이를 다르게 하는 방법을 모르겠다… (아직 공부가 부족한가…)</p>
+<p class="codepen" data-height="700" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="0d15ea20e694774bcaf4b176c9300133" data-editable="true" style="height: 700px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-wrap">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/0d15ea20e694774bcaf4b176c9300133/">
+  flex-wrap</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="그리드-레이아웃"><a href="#그리드-레이아웃" class="headerlink" title="그리드 레이아웃"></a>그리드 레이아웃</h3><h4 id="내가-몰랐던-사실"><a href="#내가-몰랐던-사실" class="headerlink" title="* 내가 몰랐던 사실"></a>* 내가 몰랐던 사실</h4><p><code>grid-gap</code>, <code>grid-column-gap</code>, <code>grid-row-gap</code>을 <code>grid</code>를 빼고 사용이 가능하게 바뀌었다.<br>이제는 <code>gap</code>, <code>column-gap</code>, <code>row-gap</code>으로 사용 가능하다.<br>하지만, 아직 브라우저 지원률은 <code>grid</code>를 붙인 것이 높은 듯 하다.<br>IE는 확인해봐야 알 듯… (내가 알기로 폴리필을 해도 <code>grid-gap</code> 지원 안했던 것 같은데…)</p>
+<p>그리드 레이아웃 빈칸은 <code>.</code>으로 표시</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">grid-template-areas</span>:</span><br><span class="line">	&quot;<span class="selector-tag">a</span> <span class="selector-tag">a</span> <span class="selector-tag">b</span>&quot;</span><br><span class="line">	&quot;. <span class="selector-tag">d</span> <span class="selector-tag">d</span>&quot;</span><br><span class="line"> 	&quot;<span class="selector-tag">c</span> <span class="selector-tag">e</span> <span class="selector-tag">e</span>&quot;;</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="배치와-정렬"><a href="#배치와-정렬" class="headerlink" title="배치와 정렬"></a>배치와 정렬</h2><p><code>grid-align-slef</code></p>
+<p class="codepen" data-height="506" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="5b865d17d937ad09b7792d3b928d2a1e" data-editable="true" style="height: 506px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-align-self">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/5b865d17d937ad09b7792d3b928d2a1e/">
+  grid-align-self</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<h3 id="align-content-space-between"><a href="#align-content-space-between" class="headerlink" title="align-content: space-between;"></a><code>align-content: space-between;</code></h3><h3 id="justify-content-space-between"><a href="#justify-content-space-between" class="headerlink" title="justify-content: space-between;"></a><code>justify-content: space-between;</code></h3><p class="codepen" data-height="471" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="24c1872bf9b4ef548373fd2dc1994332" data-editable="true" style="height: 471px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-align-content">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/24c1872bf9b4ef548373fd2dc1994332/">
+  grid-align-content</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+<h3 id="justify-items-justify-self"><a href="#justify-items-justify-self" class="headerlink" title="justify-items ,justify-self"></a><code>justify-items</code> ,<code>justify-self</code></h3><p class="codepen" data-height="492" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="94fb288a635c102666cafcd40368d806" data-editable="true" style="height: 492px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-justify">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/94fb288a635c102666cafcd40368d806/">
+  grid-justify</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<hr>
+<h2 id="★반응형-디자인"><a href="#★반응형-디자인" class="headerlink" title="★반응형 디자인"></a>★반응형 디자인</h2><h3 id="flex-grow-shrink-basis"><a href="#flex-grow-shrink-basis" class="headerlink" title="flex -grow, -shrink, -basis"></a><code>flex</code> <code>-grow</code>, <code>-shrink</code>, <code>-basis</code></h3><p>커지는 비율, 작아지는 비율, 플렉스 아이템의 기본값(넓이·높이)</p>
+<p class="codepen" data-height="782" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="9f4d8672334918a755927b52cc9bc0d4" data-editable="true" style="height: 782px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="flex-basis">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/9f4d8672334918a755927b52cc9bc0d4/">
+  flex-basis</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<hr>
+<h2 id="★소스-순서와-표현-순서"><a href="#★소스-순서와-표현-순서" class="headerlink" title="★소스 순서와 표현 순서"></a>★소스 순서와 표현 순서</h2><h3 id="grid-auto-flow"><a href="#grid-auto-flow" class="headerlink" title="grid-auto-flow"></a><code>grid-auto-flow</code></h3><p><code>grid-auto-flow: dense</code>를 해제시켜보고 차이를 이해</p>
+<p class="codepen" data-height="711" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="4b70682cc564083bdcfa305c0877fc09" data-editable="true" style="height: 711px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="grid-auto-flow">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/4b70682cc564083bdcfa305c0877fc09/">
+  grid-auto-flow</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+<h3 id="order"><a href="#order" class="headerlink" title="order"></a><code>order</code></h3><p>그리드에서는 사용 용도가 불분명한 편, 애초에 <code>grid-area</code>로 숫자·이름 둘다 지정할 수 있기 때문에</p>
+<p class="codepen" data-height="297" data-theme-id="0" data-default-tab="css,result" data-user="taeuk_kang" data-slug-hash="73e9e390af327275d1b8982d323bcf08" data-editable="true" style="height: 297px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="layout-order">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/73e9e390af327275d1b8982d323bcf08/">
+  layout-order</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+
+<h3 id="display-contents"><a href="#display-contents" class="headerlink" title="display: contents"></a><code>display: contents</code></h3><p>인정하지 않은 자식 요소도 플렉스 또는 그리드 레이아웃의 구성요소가 될 수 있게 만듦</p>
+<p class="codepen" data-height="388" data-theme-id="0" data-default-tab="result" data-user="taeuk_kang" data-slug-hash="f176dabbeb633a1c5cd7734b4d67bfe8" data-editable="true" style="height: 388px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; border: 2px solid; margin: 1em 0; padding: 1em;" data-pen-title="display: contents">
+  <span>See the Pen <a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang/pen/f176dabbeb633a1c5cd7734b4d67bfe8/">
+  display: contents</a> by taeuk_kang (<a target="_blank" rel="noopener" href="https://codepen.io/taeuk_kang">@taeuk_kang</a>)
+  on <a target="_blank" rel="noopener" href="https://codepen.io">CodePen</a>.</span>
+</p>
+<script async src="https://static.codepen.io/assets/embed/ei.js"></script>
+
+<hr>
+<h2 id="준비하는-미래"><a href="#준비하는-미래" class="headerlink" title="준비하는 미래"></a>준비하는 미래</h2><hr>
+<p>support 문법 발견</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">supports</span> (<span class="selector-tag">display</span>: <span class="selector-tag">grid</span>) &#123;</span><br><span class="line">    <span class="comment">/* grid 지원 브라우저에만 적용됨 */</span></span><br><span class="line">    .container &#123;</span><br><span class="line">        <span class="selector-tag">display</span>: <span class="selector-tag">grid</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="앞으로의-여정"><a href="#앞으로의-여정" class="headerlink" title="앞으로의 여정"></a><del>앞으로의 여정</del></h2><h2 id="참고파일"><a href="#참고파일" class="headerlink" title="참고파일"></a>참고파일</h2>
+<a href ='/assets/new-css-layout-code-master.zip' download>예제 코드 Download</a>
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Book-css3-for-webDesigner/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    웹디자이너를 위한 CSS3 도서 요약
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Project-one-page-layout/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">레이아웃 엔진 만들기 일지</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

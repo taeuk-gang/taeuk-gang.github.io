@@ -1,0 +1,1050 @@
+<!DOCTYPE html>
+<html lang=ko>
+<head>
+    <meta charset="utf-8">
+    
+    <title>Quick Start Typescript ~ 7장 정리 | TAEUK WIKI</title>
+    
+    
+        <meta name="keywords" content="Typescript" />
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성 분량이 많아, 이미 아는 내용이나 자주 사용하는 부분은 생략함  7장 클래스와 인터페이스 목차📝183p. 타입스크립트의 객체지향 프로그래밍 지원객체지향의 목적은 코드 중복을 최소화 ES6에서 class 키워드가 추가되면서 부족한 점이 존재">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Quick Start Typescript ~ 7장 정리">
+<meta property="og:url" content="https://taeuk-gang.github.io/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/index.html">
+<meta property="og:site_name" content="TAEUK WIKI">
+<meta property="og:description" content="📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성 분량이 많아, 이미 아는 내용이나 자주 사용하는 부분은 생략함  7장 클래스와 인터페이스 목차📝183p. 타입스크립트의 객체지향 프로그래밍 지원객체지향의 목적은 코드 중복을 최소화 ES6에서 class 키워드가 추가되면서 부족한 점이 존재">
+<meta property="og:locale" content="ko_KR">
+<meta property="og:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200406023739559.png">
+<meta property="article:published_time" content="2020-04-05T04:39:05.000Z">
+<meta property="article:modified_time" content="2022-09-23T10:58:11.385Z">
+<meta property="article:author" content="Taeuk Kang">
+<meta property="article:tag" content="Typescript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200406023739559.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="TAEUK WIKI" type="application/atom+xml" />
+    
+
+    
+        <link rel="icon" href="/favicon.ico" />
+    
+
+    
+<link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+
+    
+<link rel="stylesheet" href="/libs/open-sans/styles.css">
+
+    
+<link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    
+<script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+
+    
+<script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+
+    
+    
+        
+<link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+
+    
+    
+    
+    
+
+
+    
+        <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+    
+<meta name="generator" content="Hexo 5.2.0"></head>
+
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">TAEUK WIKI</span>
+            </a>
+            <nav id="main-nav">
+                
+                    <a class="main-nav-link" href="/">Main</a>
+                
+                    <a class="main-nav-link" href="/archives">TimeLine</a>
+                
+                    <a class="main-nav-link" href="/categories">Category</a>
+                
+                    <a class="main-nav-link" href="/tags">Tag</a>
+                
+                    <a class="main-nav-link" href="/about">About</a>
+                
+                    <a class="main-nav-link" href="/schedules">Schedules</a>
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="Type something..." />
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '포스트',
+            PAGES: 'Pages',
+            CATEGORIES: '카테고리',
+            TAGS: '태그',
+            UNTITLED: '(Untitled)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+
+<script src="/js/insight.js"></script>
+
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                    <td><a class="main-nav-link" href="/">Main</a></td>
+                
+                    <td><a class="main-nav-link" href="/archives">TimeLine</a></td>
+                
+                    <td><a class="main-nav-link" href="/categories">Category</a></td>
+                
+                    <td><a class="main-nav-link" href="/tags">Tag</a></td>
+                
+                    <td><a class="main-nav-link" href="/about">About</a></td>
+                
+                    <td><a class="main-nav-link" href="/schedules">Schedules</a></td>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="검색" />
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id='categories'>
+        <h3 class="widget-title">
+            <span>카테고리</span>
+            &nbsp;
+            <a id='allExpand' href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Auth
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Login
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Keycloak%EC%9D%84%20%EC%82%AC%EC%9A%A9%ED%95%9C%20%EB%A1%9C%EA%B7%B8%EC%9D%B8/">Keycloak을 사용한 로그인 구현</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Book
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Javascript-Unlocked/">자바스크립트 언락 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-new-css-layout/">새로운 CSS 레이아웃 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-css3-for-webDesigner/">웹디자이너를 위한 CSS3 도서 요약</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript/">자바스크립트를 말하다 (1)</a></li>  <li class="file"><a href="/wiki/Book-tell-javascript-2/">자바스크립트를 말하다 (2)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            CSS
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Css-grid/">그리드 레이아웃</a></li>  <li class="file"><a href="/wiki/Css-pointer-events/">pointer-events를 이용한 클릭 방지 및 이벤트 위임</a></li>  <li class="file"><a href="/wiki/CSS-selection/">마우스 드래그시 색 조정</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Git
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Git-Commit/">Git Commit 메세지 분류</a></li>  <li class="file"><a href="/wiki/Git-template/">Git 이슈·PR 템플릿 등록</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTML
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTML-move-scroll/">링크 클릭시, 스크롤 이동 처리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            HTTP 완벽 가이드
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/HTTP_%EC%99%84%EB%B2%BD_%EA%B0%80%EC%9D%B4%EB%93%9C/1%EC%9E%A5/">HTTP 완벽 가이드 1장</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Issue
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Issue-vscode-indent/">이슈 - VScode Editor에서 탭해도 ESLint 경고 뜨는 현상</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Javascript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Js-shadow-dom/">Shadow DOM 만들기</a></li>  <li class="file"><a href="/wiki/Js-mutation-observer/">Mutation Observer 잘 쓰이는 코드 기록</a></li>  <li class="file"><a href="/wiki/Js-lit-element/">lit-element 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-lit-element-summary/">lit-element 요약본</a></li>  <li class="file"><a href="/wiki/Js-serviceWorker/">서비스 워커 학습 일지</a></li>  <li class="file"><a href="/wiki/Js-pwa-starter-kit/">PWA-Starter-Kit 요약</a></li>  <li class="file"><a href="/wiki/Javascript%20%EC%84%B1%EB%8A%A5%20%EC%B5%9C%EC%A0%81%ED%99%94/">Javascript 성능 최적화</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Helm
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/11/20/helm/">Helm 사용해보기</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/wiki/Kubernetes-jenkins/">쿠버네티스 + 젠킨스 설치해보기</a></li>  <li class="file"><a href="/wiki/k8s_3_pod/">3장 파드 - 쿠버네티스에서 컨테이너 실행</a></li>  <li class="file"><a href="/wiki/4_k8s_replication/">4장 레플리케이션과 컨트롤러 - 관리되는 파드 배포</a></li>  <li class="file"><a href="/wiki/make-kind-cluster/">kind를 이용한 클러스터 설치</a></li>  <li class="file"><a href="/wiki/k8s/1.22_1.23_k8s_update/">k8s 1.22 -> 1.23 변경사항 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Life
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%BC%80%EB%A1%9C%20%EB%B2%A0%EB%A1%9C%EB%8B%88%20%EC%9D%B4%EB%AA%A8%ED%8B%B0%EC%BD%98/">귀여운 펭귄</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            My Log
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Blog-Init/">Init Blog</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Projects
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Daily-Commit App
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/DailyCommit/">일일 커밋 알람 어플</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            One-Page
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-one-page-layout/">레이아웃 엔진 만들기 일지</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            mac-tour
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-cordova-1/">코르도바 개발 일지 (1)</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            open-tube
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Project-open-tube/">오픈 튜브 프로젝트 일지</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Server
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Cloud
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/SERVER-naver-cloud/">처음 써보는 네이버 클라우드 이용기</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Kubernetes
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Server-kubernetes/">Kubernetes 학습 기록 (1) - Docker</a></li>  <li class="file"><a href="/wiki/Server-kubernetes-2/">Kubernetes 학습 기록 (2) - Kubernetes</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vscode
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Remote%20vscode%20%EC%82%AC%EC%9A%A9/">VS Code에서 서버 내 파일 작업하기</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            TIL
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2021
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            10
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/TIL/2021/10/10/">TIL 10월 10일 (일)</a></li>  <li class="file"><a href="/wiki/TIL/2021/10/11/">TIL 10월 11일 (월)</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Typescript
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Book-Typescript-Serverless/">Typescript 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-4%EC%9E%A5/">Quick Start Typescript ~ 4장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-5%EC%9E%A5/">Quick Start Typescript ~ 5장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/">Quick Start Typescript ~ 6장 정리</a></li>  <li class="file active"><a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">Quick Start Typescript ~ 7장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-8%EC%9E%A5/">Quick Start Typescript ~ 8장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start%20-9%EC%9E%A5/">Quick Start Typescript ~ 9장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_10/">Quick Start Typescript ~ 10장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_11/">Quick Start Typescript ~ 11장 정리</a></li>  <li class="file"><a href="/wiki/Typescript%20quick%20start_12/">Quick Start Typescript ~ 12장 정리</a></li>  <li class="file"><a href="/wiki/Refactoring_typescript/">리팩토링 - Typescript</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue
+                        </a>
+                         <ul class="unstyled" id="tree" > 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vuex
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vuex%20+%20Typescript/">Vuex + Typescript 구성</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Vue.js
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Vue-study/">잠깐 Vue.js 문법 정리</a></li>  <li class="file"><a href="/wiki/Vue-PWA/">Vue.js 환경 구축 기록일지</a></li>  <li class="file"><a href="/wiki/Vue-template/">Vue Init Template 구조 파악</a></li>  <li class="file"><a href="/wiki/Vue-Router%20%EC%82%AC%EC%9A%A9/">Vue Router 사용</a></li>  <li class="file"><a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/">Vue JSX 사용법</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            문서화
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/Typora%20%EC%8B%A0%EA%B8%B0%EB%8A%A5%20-%20%EC%9D%B4%EB%AF%B8%EC%A7%80%20%EC%9E%90%EB%8F%99%20%EC%97%85%EB%A1%9C%EB%93%9C/">Typora 신기능 - 이미지 자동 업로드</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            아키텍처
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98/%EC%95%84%ED%82%A4%ED%85%8D%EC%B2%98_%ED%9D%90%EB%A6%84/">아키텍처 변천사 간략한 정리</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            즐겨찾기
+                        </a>
+                         <ul class="unstyled" id="tree" >  <li class="file"><a href="/wiki/%EC%A6%90%EA%B2%A8%EC%B0%BE%EA%B8%B0%20%EC%A0%95%EB%A6%AC/">즐겨찾기 정리 - 작성 중...</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-Typescript quick start -7장" class="article article-type-post" itemscope itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/Typescript/">Typescript</a>
+    </div>
+
+                        
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link-link" href="/tags/Typescript/" rel="tag">Typescript</a>
+    </div>
+
+                        
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/wiki/Typescript%20quick%20start%20-7%EC%9E%A5/">
+            <time datetime="2020-04-05T04:39:05.000Z" itemprop="datePublished">2020-04-05</time>
+        </a>
+    </div>
+
+
+                        
+                            <i class="fa fa-bar-chart"></i>
+                            <span id="busuanzi_container_site_pv"><span id="busuanzi_value_page_pv"></span></span>    
+                        
+                        
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/raw/writing/source/_posts/Typescript quick start -7장.md'> Source </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/edit/writing/source/_posts/Typescript quick start -7장.md'> Edit </a>
+                            </div>
+                            <div class="article-meta-button">
+                                <a target="_blank" rel="noopener" href='https://github.com/taeuk-gang/taeuk-gang.github.io/commits/writing/source/_posts/Typescript quick start -7장.md'> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Quick Start Typescript ~ 7장 정리
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">카탈로그</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#7%EC%9E%A5-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%99%80-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4-%EB%AA%A9%EC%B0%A8"><span class="toc-number">1.</span> <span class="toc-text">7장 클래스와 인터페이스 목차</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D183p-%ED%83%80%EC%9E%85%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8%EC%9D%98-%EA%B0%9D%EC%B2%B4%EC%A7%80%ED%96%A5-%ED%94%84%EB%A1%9C%EA%B7%B8%EB%9E%98%EB%B0%8D-%EC%A7%80%EC%9B%90"><span class="toc-number">1.1.</span> <span class="toc-text">📝183p. 타입스크립트의 객체지향 프로그래밍 지원</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp187-%EA%B8%B0%EC%A1%B4Js-prototype-vs-class-%EB%B9%84%EA%B5%90"><span class="toc-number">1.2.</span> <span class="toc-text">📝p187. 기존Js(prototype) vs class 비교</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp188-%EC%83%81%EC%86%8D-extends-%ED%8F%AC%ED%95%A8-2-%EA%B4%80%EA%B3%84"><span class="toc-number">1.3.</span> <span class="toc-text">📝p188. 상속(extends), 포함(2) 관계</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%8F%AC%ED%95%A8-%EA%B4%80%EA%B3%84"><span class="toc-number">1.3.1.</span> <span class="toc-text">포함 관계</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%ED%95%A9%EC%84%B1"><span class="toc-number">1.3.1.1.</span> <span class="toc-text">합성</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EC%A7%91%ED%95%A9"><span class="toc-number">1.3.1.2.</span> <span class="toc-text">집합</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp192-%EC%A0%91%EA%B7%BC-%EC%A0%9C%ED%95%9C%EC%9E%90"><span class="toc-number">1.4.</span> <span class="toc-text">📝p192. 접근 제한자</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp195-%EC%B6%95%EC%95%BD-%EC%BD%94%EB%94%A9%EA%B8%B0%EB%B2%95"><span class="toc-number">1.5.</span> <span class="toc-text">📝p195. 축약 코딩기법</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp195-%EC%A0%91%EA%B7%BC-%EC%A0%9C%ED%95%9C%EC%9E%90-%EC%84%A0%EC%96%B8-gt-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98%EA%B0%80-%EB%90%A8"><span class="toc-number">1.6.</span> <span class="toc-text">📝p195. 접근 제한자 선언 &gt; 클래스 매개변수가 됨</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp197-get-set-%EC%BD%94%EB%94%A9%EC%8A%A4%ED%83%80%EC%9D%BC"><span class="toc-number">1.7.</span> <span class="toc-text">📝p197. get&#x2F;set 코딩스타일</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp197-%EB%B6%80%EB%AA%A8-%ED%81%B4%EB%9E%98%EC%8A%A4-%EB%A9%A4%EB%B2%84-%EB%B3%80%EC%88%98-%EC%9D%B4%EC%9A%A9"><span class="toc-number">1.8.</span> <span class="toc-text">📝p197. 부모 클래스 멤버 변수 이용</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp199-%EA%B8%B0%EB%B3%B8-%EC%A0%91%EA%B7%BC-%EC%A0%9C%ED%95%9C%EC%9E%90"><span class="toc-number">1.9.</span> <span class="toc-text">📝p199. 기본 접근 제한자</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp202-%EC%B6%94%EC%83%81-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EA%B3%B5%ED%86%B5-%EA%B8%B0%EB%8A%A5-%EC%A0%95%EC%9D%98"><span class="toc-number">1.10.</span> <span class="toc-text">📝p202. 추상 클래스를 이용한 공통 기능 정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9D-p205-Interface-%EB%8B%A4%EC%A4%91-%EC%83%81%EC%86%8D"><span class="toc-number">1.11.</span> <span class="toc-text">📝 p205. Interface 다중 상속</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp212-%ED%81%B4%EB%9E%98%EC%8A%A4%EB%A5%BC-%EB%B0%B0%EC%97%B4-%EC%9A%94%EC%86%8C%EB%A1%9C-%EB%B3%B4%EA%B3%A0-%EB%B0%B0%EC%97%B4-%ED%83%80%EC%9E%85-%EC%84%A0%EC%96%B8"><span class="toc-number">1.12.</span> <span class="toc-text">📝p212. 클래스를 배열 요소로 보고 배열 타입 선언</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp215-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%97%90-%ED%95%A8%EC%88%98-%ED%83%80%EC%9E%85-%EC%A0%95%EC%9D%98"><span class="toc-number">1.13.</span> <span class="toc-text">📝p215. 인터페이스에 함수 타입 정의</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp216-%EC%98%A4%EB%B2%84%EB%9D%BC%EC%9D%B4%EB%94%A9"><span class="toc-number">1.14.</span> <span class="toc-text">📝p216. 오버라이딩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp219-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9"><span class="toc-number">1.15.</span> <span class="toc-text">📝p219. 오버로딩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp222-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EB%A5%BC-%ED%81%B4%EB%9E%98%EC%8A%A4%EC%97%90%EC%84%9C-%EA%B5%AC%ED%98%84%ED%95%98%EC%97%AC-%EC%98%A4%EB%B2%84%EB%A1%9C%EB%94%A9"><span class="toc-number">1.16.</span> <span class="toc-text">📝p222. 인터페이스를 클래스에서 구현하여 오버로딩</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp224-%EB%8B%A4%ED%98%95%EC%84%B1"><span class="toc-number">1.17.</span> <span class="toc-text">📝p224. 다형성</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%A2%85%EB%A5%98"><span class="toc-number">1.17.1.</span> <span class="toc-text">종류</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%ED%81%B4%EB%9E%98%EC%8A%A4%EC%9D%98-%EB%8B%A4%ED%98%95%EC%84%B1"><span class="toc-number">1.17.2.</span> <span class="toc-text">클래스의 다형성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4%EC%9D%98-%EB%8B%A4%ED%98%95%EC%84%B1"><span class="toc-number">1.17.3.</span> <span class="toc-text">인터페이스의 다형성</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98%EC%9D%98-%EB%8B%A4%ED%98%95%EC%84%B1-%EC%9C%A0%EB%8B%88%EC%96%B8-%ED%83%80%EC%9E%85"><span class="toc-number">1.17.4.</span> <span class="toc-text">매개변수의 다형성 (유니언 타입)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EB%AC%B8%EC%A0%9C%EC%A0%90"><span class="toc-number">1.17.4.1.</span> <span class="toc-text">문제점</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E2%98%85%E2%98%85-%EB%A7%A4%EA%B0%9C%EB%B3%80%EC%88%98%EC%9D%98-%EB%8B%A4%ED%98%95%EC%84%B1-%EC%9D%B8%ED%84%B0%ED%8E%98%EC%9D%B4%EC%8A%A4"><span class="toc-number">1.17.5.</span> <span class="toc-text">★★ 매개변수의 다형성 (인터페이스)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp236-getter-setter-%EC%82%AC%EC%9A%A9-%EC%9D%B4%EC%9C%A0"><span class="toc-number">1.18.</span> <span class="toc-text">📝p236. getter&#x2F;setter 사용 이유</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ES5-%EB%B3%80%ED%99%98%EC%8B%9C"><span class="toc-number">1.18.1.</span> <span class="toc-text">ES5 변환시</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp240-static"><span class="toc-number">1.19.</span> <span class="toc-text">📝p240. static</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp242-%EC%8B%B1%EA%B8%80%ED%86%A4-%ED%8C%A8%ED%84%B4"><span class="toc-number">1.20.</span> <span class="toc-text">📝p242. 싱글톤 패턴</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Eager-Initalization"><span class="toc-number">1.20.1.</span> <span class="toc-text">Eager Initalization</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Lazy-Initalization"><span class="toc-number">1.20.2.</span> <span class="toc-text">Lazy Initalization</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp247-readonly-vs-const"><span class="toc-number">1.21.</span> <span class="toc-text">📝p247. readonly vs const</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%F0%9F%93%9Dp250-readonly-%EC%A0%9C%EA%B1%B0%EB%90%98%EB%8A%94-%EA%B2%BD%EC%9A%B0"><span class="toc-number">1.22.</span> <span class="toc-text">📝p250. readonly 제거되는 경우</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <blockquote>
+<p>📖 Quick Start Typescript 을 읽고, 간단히 몰랐던 부분이나 중요하다고 생각되는 부분을 작성</p>
+<p>분량이 많아, 이미 아는 내용이나 자주 사용하는 부분은 생략함</p>
+</blockquote>
+<h1 id="7장-클래스와-인터페이스-목차"><a href="#7장-클래스와-인터페이스-목차" class="headerlink" title="7장 클래스와 인터페이스 목차"></a>7장 클래스와 인터페이스 목차</h1><h2 id="📝183p-타입스크립트의-객체지향-프로그래밍-지원"><a href="#📝183p-타입스크립트의-객체지향-프로그래밍-지원" class="headerlink" title="📝183p. 타입스크립트의 객체지향 프로그래밍 지원"></a>📝183p. 타입스크립트의 객체지향 프로그래밍 지원</h2><p>객체지향의 목적은 코드 중복을 최소화</p>
+<p>ES6에서 <code>class</code> 키워드가 추가되면서 부족한 점이 존재</p>
+<table>
+<thead>
+<tr>
+<th>객체지향 프로그래밍 요소</th>
+<th>Js(ES6)</th>
+<th>Ts</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>클래스</td>
+<td>class</td>
+<td>class</td>
+</tr>
+<tr>
+<td>인터페이스</td>
+<td>★지원안함</td>
+<td>interface</td>
+</tr>
+<tr>
+<td>인터페이스 구현</td>
+<td>★지원안함</td>
+<td>implements</td>
+</tr>
+<tr>
+<td>상속</td>
+<td>extends</td>
+<td>extends</td>
+</tr>
+<tr>
+<td>생성자</td>
+<td>constructor(){}</td>
+<td>constructor(){}</td>
+</tr>
+<tr>
+<td>접근 제한자</td>
+<td>★지원안함</td>
+<td>private, public, protected</td>
+</tr>
+<tr>
+<td>final 제한자</td>
+<td>★지원안함</td>
+<td>readonly(Ts 2.0부터)</td>
+</tr>
+<tr>
+<td>static 키워드</td>
+<td>static</td>
+<td>static</td>
+</tr>
+<tr>
+<td>super 키워드</td>
+<td>super</td>
+<td>super</td>
+</tr>
+</tbody></table>
+<blockquote>
+<p>제한자의 경우, 실제 Js로 변환됬을 경우, 사라지는 부분으로 개발상에서만 제한의 의미가 있는 것이 아쉽다</p>
+</blockquote>
+<h2 id="📝p187-기존Js-prototype-vs-class-비교"><a href="#📝p187-기존Js-prototype-vs-class-비교" class="headerlink" title="📝p187. 기존Js(prototype) vs class 비교"></a>📝p187. 기존Js(prototype) vs class 비교</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 기존 Js Prototype 객체지향 프로그래밍</span></span><br><span class="line"><span class="keyword">var</span> Rectangle = (<span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">Rectangle</span>(<span class="params">x, y</span>) </span>&#123;</span><br><span class="line">        <span class="built_in">this</span>.x = x;</span><br><span class="line">        <span class="built_in">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    Rectangle.prototype.getArea = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.x * <span class="built_in">this</span>.y;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="keyword">return</span> Rectangle;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> rectangle = <span class="keyword">new</span> Rectangle(<span class="number">1</span>, <span class="number">5</span>);</span><br><span class="line"><span class="keyword">var</span> area = rectangle.getArea();</span><br><span class="line"><span class="built_in">console</span>.log(area);</span><br></pre></td></tr></table></figure>
+
+<p>모듈 패턴은 클로저를 이용해 비공개된 내부 메소드를 캡슐화하여, 전역공간을 더럽히지 않는 장점 존재</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// class 객체지향 프로그래밍</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Rectangle &#123;</span><br><span class="line">    x: <span class="built_in">number</span>;</span><br><span class="line">    y: <span class="built_in">number</span>;</span><br><span class="line">    getArea(): <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Rectanlge &#123;</span><br><span class="line">    x: numberl</span><br><span class="line">    y: <span class="built_in">number</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.x = x;</span><br><span class="line">        <span class="built_in">this</span>.y = y;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    getArea(): <span class="built_in">number</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.x * <span class="built_in">this</span>.y;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p188-상속-extends-포함-2-관계"><a href="#📝p188-상속-extends-포함-2-관계" class="headerlink" title="📝p188. 상속(extends), 포함(2) 관계"></a>📝p188. 상속(extends), 포함(2) 관계</h2><p>상속 생략</p>
+<h3 id="포함-관계"><a href="#포함-관계" class="headerlink" title="포함 관계"></a>포함 관계</h3><ol>
+<li>합성(composition) - 강한관계</li>
+<li>집합(aggregation) - 약한관계</li>
+</ol>
+<h4 id="합성"><a href="#합성" class="headerlink" title="합성"></a>합성</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Engine&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> Car &#123;</span><br><span class="line">    <span class="keyword">private</span> Engine;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.engine = <span class="keyword">new</span> Engine();	<span class="comment">// 인스턴스 생성</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myCar = <span class="keyword">new</span> Car();</span><br><span class="line">myCar = <span class="literal">null</span>;	<span class="comment">// null이 되면 포함된 클래스 함께 제거</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="집합"><a href="#집합" class="headerlink" title="집합"></a>집합</h4><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Engine&#123;&#125;</span><br><span class="line"><span class="keyword">class</span> Car &#123;</span><br><span class="line">    <span class="keyword">private</span> engine: Engine;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">engine: Engine</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.engine = engine;	<span class="comment">// 인스턴스 생성</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> engine = <span class="keyword">new</span> Engine();	<span class="comment">// engine 인스턴스 별도로 선언</span></span><br><span class="line"><span class="keyword">let</span> car = <span class="keyword">new</span> Car(engine);	<span class="comment">// 인스턴스 생성시, 포함되는 클래스를 같이 전달</span></span><br></pre></td></tr></table></figure>
+
+<p>위 코드(합성)과의 차이점은 집합은 <code>car</code> 객체가 제거되더라도,<br><code>engine</code> 객체는 외부에서 선언되었기 때문에 제거되지않음 (수명주기를 함께하지 않기때문에 약한관계)</p>
+<blockquote>
+<p>실무에서는 어디에 주로 사용될까?</p>
+</blockquote>
+<h2 id="📝p192-접근-제한자"><a href="#📝p192-접근-제한자" class="headerlink" title="📝p192. 접근 제한자"></a>📝p192. 접근 제한자</h2><table>
+<thead>
+<tr>
+<th>접근 제한자</th>
+<th>특징</th>
+<th>상속 여부</th>
+<th>외부 객체 접근</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>public</td>
+<td>외부 또는 자식클래스에서 접근 가능</td>
+<td>O</td>
+<td>O</td>
+</tr>
+<tr>
+<td>protected</td>
+<td>자식 클래스에서 접근 가능</td>
+<td>O</td>
+<td>X</td>
+</tr>
+<tr>
+<td>private</td>
+<td>해당 클래스에서만 접근 가능</td>
+<td>X</td>
+<td>X</td>
+</tr>
+</tbody></table>
+<h2 id="📝p195-축약-코딩기법"><a href="#📝p195-축약-코딩기법" class="headerlink" title="📝p195. 축약 코딩기법"></a>📝p195. 축약 코딩기법</h2><p>챕터와 상관없지만, 관련 있는 변수 묶어서 선언하기 좋아보여서 기록</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> [cWidth, cLength, cHeight] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p195-접근-제한자-선언-gt-클래스-매개변수가-됨"><a href="#📝p195-접근-제한자-선언-gt-클래스-매개변수가-됨" class="headerlink" title="📝p195. 접근 제한자 선언 &gt; 클래스 매개변수가 됨"></a>📝p195. 접근 제한자 선언 &gt; 클래스 매개변수가 됨</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Cube &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> width: <span class="built_in">number</span></span>) &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    getWidth() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.width;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> cube = <span class="keyword">new</span> Cube(<span class="number">6</span>);</span><br><span class="line"><span class="built_in">console</span>.log(cube.width);	<span class="comment">// 6</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p197-get-set-코딩스타일"><a href="#📝p197-get-set-코딩스타일" class="headerlink" title="📝p197. get/set 코딩스타일"></a>📝p197. get/set 코딩스타일</h2><blockquote>
+<p>매개변수/getter/setter 한꺼번에 모아서 관리</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PC</span> </span>&#123;</span><br><span class="line">    ram = <span class="string">`0G`</span>;</span><br><span class="line">	<span class="keyword">get</span> <span class="title">ramCapcity</span>() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.ram;</span><br><span class="line">    &#125;</span><br><span class="line">	<span class="keyword">set</span> <span class="title">ramCapcity</span>(<span class="params">value</span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.ram = value;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p197-부모-클래스-멤버-변수-이용"><a href="#📝p197-부모-클래스-멤버-변수-이용" class="headerlink" title="📝p197. 부모 클래스 멤버 변수 이용"></a>📝p197. 부모 클래스 멤버 변수 이용</h2><p><code>super()</code> 키워드와 <code>this</code> 사용</p>
+<p><code>super</code>는 부모 클래스의 공개 멤버(<code>public</code>)에만 접근 가능</p>
+<p><code>this</code>는 부모에게 상속받은 멤버와 현재 클래스 모두 접근 가능</p>
+<h2 id="📝p199-기본-접근-제한자"><a href="#📝p199-기본-접근-제한자" class="headerlink" title="📝p199. 기본 접근 제한자"></a>📝p199. 기본 접근 제한자</h2><p><strong>잘못 알고 있던 사항</strong></p>
+<p>constructor 매개변수에서 접근 제한자를 설정 안할시, default가 <code>public</code>일줄 알았는데 <code>private</code> 임</p>
+<p>접근 제한자를 생략할 경우, 생성자 외부에서 매개변수에 접근할 수 없음!</p>
+<p><img src="https://raw.githubusercontent.com/taeuk-gang/save-image-repo/image/img/image-20200406023739559.png" alt="image-20200406023739559"></p>
+<h2 id="📝p202-추상-클래스를-이용한-공통-기능-정의"><a href="#📝p202-추상-클래스를-이용한-공통-기능-정의" class="headerlink" title="📝p202. 추상 클래스를 이용한 공통 기능 정의"></a>📝p202. 추상 클래스를 이용한 공통 기능 정의</h2><blockquote>
+<p>언제 사용될까? 실무에서 자주 사용되는 케이스가 궁금</p>
+</blockquote>
+<p>구현 메소드는 실제 구현 내용을 포함</p>
+<p>추상 메소드는 선언만된 메소드, 그러므로 자식 클래스에서 추상 메소드를 받아 별도 구현해야함</p>
+<p>! 추상 메서드나 추상 멤버 변수는 자식 클래스에서 사용(<code>overriding</code>)할 수 있게 <code>public</code>으로 선언해야함</p>
+<p>추상 클래스에 기반은 둔 구현 방식은 템플릿 메서드 패턴으로 많이 알려짐</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> AbstractBird &#123;</span><br><span class="line">  <span class="keyword">abstract</span> name: <span class="built_in">string</span>;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">abstract</span> flySound(sound: <span class="built_in">string</span>);</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 구현 메소드가 있어도 상관이 없나보네</span></span><br><span class="line">  fly(): <span class="built_in">void</span> &#123;        </span><br><span class="line">      <span class="built_in">this</span>.flySound(<span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span>: 파닥`</span>);</span><br><span class="line">  &#125;   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> RealBird <span class="keyword">extends</span> AbstractBird &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">      <span class="built_in">super</span>();</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 오버라이딩</span></span><br><span class="line">  flySound(sound: <span class="built_in">string</span>) &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;<span class="built_in">this</span>.name&#125;</span> 날아감`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> dogBird = <span class="keyword">new</span> RealBird(<span class="string">`새`</span>);</span><br><span class="line">dogBird.fly();	<span class="comment">// 새 날아감</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝-p205-Interface-다중-상속"><a href="#📝-p205-Interface-다중-상속" class="headerlink" title="📝 p205. Interface 다중 상속"></a>📝 p205. Interface 다중 상속</h2><blockquote>
+<p>몰랐던 부분</p>
+</blockquote>
+<p>자식 인터페이스는 여러 부모 인터페이스를 다중 상속 가능</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Car &#123; speed: <span class="built_in">number</span> &#125;</span><br><span class="line"><span class="keyword">interface</span> SportsCar &#123; acceleration: <span class="built_in">number</span> &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> MyOptimizedCar <span class="keyword">extends</span> Car, SportsCar &#123;</span><br><span class="line">    waterproof: <span class="built_in">boolean</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myCar = &lt;MyOptimizedCar&gt;&#123;&#125;;	<span class="comment">// ?? 인터페이스만으로 인스턴스를 만들 수 있는건가?</span></span><br><span class="line">myCar.speed = <span class="number">100</span>;</span><br><span class="line">myCar.acceleration = <span class="number">100</span>;</span><br><span class="line">myCar.waterproof = <span class="literal">true</span>;</span><br></pre></td></tr></table></figure>
+
+<p>! 만약 다중 상속 받을 때, 같은 이름의 메소드를 상속받으면 재정의해야함</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Dog &#123;</span><br><span class="line">    run(): <span class="built_in">void</span>;</span><br><span class="line">    getStatus(): &#123;</span><br><span class="line">        runningSpeed: <span class="built_in">number</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> Bird &#123;</span><br><span class="line">    fly(): <span class="built_in">void</span>;</span><br><span class="line">    getStatus(): &#123;</span><br><span class="line">        flightSpeed: <span class="built_in">number</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> DogBird <span class="keyword">extends</span> Dog, Bird &#123;</span><br><span class="line">    getStatus(): &#123;</span><br><span class="line">        runningSpeed: <span class="built_in">number</span>,</span><br><span class="line">        flightSpeed: <span class="built_in">number</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> NewAnimal <span class="keyword">implements</span> DogBird &#123;</span><br><span class="line">    run(): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">    fly(): <span class="built_in">void</span> &#123;&#125;</span><br><span class="line">    getStatus(): &#123; runningSpeed: <span class="built_in">number</span>, flightSpeed: <span class="built_in">number</span>; &#125; &#123;</span><br><span class="line">        <span class="keyword">return</span> &#123;</span><br><span class="line">            runningSpeed: <span class="number">10</span>,</span><br><span class="line">            flightSpeed: <span class="number">20</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p212-클래스를-배열-요소로-보고-배열-타입-선언"><a href="#📝p212-클래스를-배열-요소로-보고-배열-타입-선언" class="headerlink" title="📝p212. 클래스를 배열 요소로 보고 배열 타입 선언"></a>📝p212. 클래스를 배열 요소로 보고 배열 타입 선언</h2><blockquote>
+<p>몰랐던 부분</p>
+<p>클래스 자체를 타입 선언 부분에 넣을 수 있음</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Person &#123;</span><br><span class="line">    <span class="keyword">public</span> full: <span class="built_in">string</span>;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> name: <span class="built_in">string</span>, <span class="keyword">public</span> city: <span class="built_in">string</span></span>) &#123;</span><br><span class="line">        <span class="built_in">this</span>.full = name + <span class="string">`(<span class="subst">$&#123;city&#125;</span>)`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> personArray: Person[] = [</span><br><span class="line">	<span class="keyword">new</span> Person(<span class="string">`kim`</span>, <span class="string">`name`</span>),</span><br><span class="line">    <span class="keyword">new</span> Person(<span class="string">`kang`</span>, <span class="string">`name`</span>)</span><br><span class="line">];</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p215-인터페이스에-함수-타입-정의"><a href="#📝p215-인터페이스에-함수-타입-정의" class="headerlink" title="📝p215. 인터페이스에 함수 타입 정의"></a>📝p215. 인터페이스에 함수 타입 정의</h2><p>익명 함수에 대한 함수 타입 정의 <code>()</code>를 사용하면 정의 할 수 있음</p>
+<p>! 매개 변수 이름과 타입이 일치하지 않더라도 상관이 없음 (??? 이유가 뭘까)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> IFormat &#123;</span><br><span class="line">    (data: <span class="built_in">string</span>, toUpper?: <span class="built_in">boolean</span>): <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> format: IFormat = <span class="function"><span class="keyword">function</span> (<span class="params">data: <span class="built_in">string</span>, toUpper: <span class="built_in">boolean</span></span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br><span class="line">    </span><br><span class="line"><span class="keyword">let</span> format: IFormat = <span class="function"><span class="keyword">function</span> (<span class="params">str: <span class="built_in">string</span>, isUpper: <span class="built_in">boolean</span></span>) </span>&#123;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p216-오버라이딩"><a href="#📝p216-오버라이딩" class="headerlink" title="📝p216. 오버라이딩"></a>📝p216. 오버라이딩</h2><p>오버라이딩 = 부모에서 상속받아, 자식 클래스에서 새로 구현하는 방법</p>
+<p><strong>두 가지 조건 필요</strong></p>
+<ol>
+<li><p>조건1: 부모클래스의 매개변수 타입이 같거나 상위 타입이여야함</p>
+</li>
+<li><p>조건2: 부모클래스의 매개변수 개수가 같거나 많아야 함</p>
+</li>
+</ol>
+<h2 id="📝p219-오버로딩"><a href="#📝p219-오버로딩" class="headerlink" title="📝p219. 오버로딩"></a>📝p219. 오버로딩</h2><p>오버로딩 = 메서드의 이름은 같지만 매개변수의 타입과 개수가 다르게 정의하는 방법</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 점점 상위의 타입으로 선언</span></span><br><span class="line">typeCheck(value: <span class="built_in">number</span>);</span><br><span class="line">typeCheck(value: <span class="built_in">string</span>);</span><br><span class="line">typeCheck(value: <span class="built_in">any</span>): <span class="built_in">void</span> &#123;</span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">`number`</span>) <span class="built_in">console</span>.log(<span class="string">`this is number`</span>);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">`string`</span>) <span class="built_in">console</span>.log(<span class="string">`this is string`</span>);</span><br><span class="line">	<span class="keyword">else</span> <span class="built_in">console</span>.log(<span class="string">`nothing`</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p222-인터페이스를-클래스에서-구현하여-오버로딩"><a href="#📝p222-인터페이스를-클래스에서-구현하여-오버로딩" class="headerlink" title="📝p222. 인터페이스를 클래스에서 구현하여 오버로딩"></a>📝p222. 인터페이스를 클래스에서 구현하여 오버로딩</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> IPoint &#123;</span><br><span class="line">    getX(x: <span class="built_in">any</span>): <span class="built_in">any</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Point <span class="keyword">implements</span> IPoint &#123;</span><br><span class="line">    getX(x?: <span class="built_in">number</span> | <span class="built_in">string</span>): <span class="built_in">any</span> &#123;</span><br><span class="line">		...</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>! 인터페이스를 이용하면 선언과 구현을 분리하고 구현부의 구조를 강제</p>
+<p>이 점에서 로직과 구조가 섞여 있는 클래스를 상속해 오버로딩하는 것보다</p>
+<p>구조만을 가지고 있는 인터페이스를 이용하는 것이 복잡고 낮습니다.</p>
+<h2 id="📝p224-다형성"><a href="#📝p224-다형성" class="headerlink" title="📝p224. 다형성"></a>📝p224. 다형성</h2><h3 id="종류"><a href="#종류" class="headerlink" title="종류"></a>종류</h3><ol>
+<li>클래스의 다형성</li>
+<li>인터페이스의 다형성</li>
+<li>매개변수의 다형성</li>
+</ol>
+<h3 id="클래스의-다형성"><a href="#클래스의-다형성" class="headerlink" title="클래스의 다형성"></a>클래스의 다형성</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Planet &#123;</span><br><span class="line">    stopTransduction(): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`stop - planet`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Earth <span class="keyword">extends</span> Planet &#123;</span><br><span class="line">    <span class="keyword">public</span> features: <span class="built_in">string</span>[] = [<span class="string">`soil`</span>, <span class="string">`water`</span>, <span class="string">`oxyzen`</span>];</span><br><span class="line"></span><br><span class="line">    stopTransduction(): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`stop - earth`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    earthStop(): <span class="built_in">void</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`stop2 - earth`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> earth: Planet = <span class="keyword">new</span> Earth();	<span class="comment">// ★ Earth 인스턴스를 생성했지만, 타입은 상위의 Planet임</span></span><br><span class="line">earth.stopTransduction();	<span class="comment">// stop - earth, 인스턴스의 메소드를 사용</span></span><br><span class="line"><span class="built_in">console</span>.log(earth.features);	<span class="comment">// Error, 접근 불가</span></span><br><span class="line">earth.earthStop();	<span class="comment">// Error, 오버라이딩 되지 않은 메소드는 접근 불가</span></span><br></pre></td></tr></table></figure>
+
+<p>부모 클래스의 타입을 지정받은 인스턴스는 실제 동작은 부모 클래스 기준으로 실행됨</p>
+<p>그래서 자식 클래스 멤버 변수(<code>features</code>)에 접근할 수 없음</p>
+<p>그러나, 메소드 자체는 자식 인스턴스의 것이 실행됨 (런타임 다형성(runtime polymorphism)), ex. <code>duck typing</code></p>
+<h3 id="인터페이스의-다형성"><a href="#인터페이스의-다형성" class="headerlink" title="인터페이스의 다형성"></a>인터페이스의 다형성</h3><blockquote>
+<p>클래스와 다르지 않아 코드만 적고 생략</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> IPerson &#123;</span><br><span class="line">    getAlias: <span class="function">() =&gt;</span> <span class="built_in">string</span>;</span><br><span class="line">    getAge(): <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> PoliceMan <span class="keyword">implements</span> IPerson &#123;</span><br><span class="line">    getAlias = <span class="function">() =&gt;</span> <span class="string">`happy`</span>;</span><br><span class="line">    </span><br><span class="line">    getAge(): <span class="built_in">number</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">10</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    hasClub() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> policeMan: IPerson = <span class="keyword">new</span> PoliceMan();</span><br><span class="line"><span class="built_in">console</span>.log(policeMan.hasClub());	<span class="comment">// Error, 접근 불가</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="매개변수의-다형성-유니언-타입"><a href="#매개변수의-다형성-유니언-타입" class="headerlink" title="매개변수의 다형성 (유니언 타입)"></a>매개변수의 다형성 (유니언 타입)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">display(data: <span class="built_in">string</span> | <span class="built_in">number</span>) &#123;&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="문제점"><a href="#문제점" class="headerlink" title="문제점"></a>문제점</h4><p>타입 가드가 빡셈</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> MonitorDisplay &#123;</span><br><span class="line">    display(monitor: Led | Oled | Uhd) &#123;</span><br><span class="line">        <span class="keyword">if</span> (monitor <span class="keyword">instanceof</span> Led) &#123;&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (monitor <span class="keyword">instanceof</span> Oled) &#123;&#125;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (monitor <span class="keyword">instanceof</span> Uhd) &#123;</span><br><span class="line">            <span class="keyword">let</span> myMonitor: Uhd = &lt;Uhd&gt;monitor;</span><br><span class="line">            <span class="keyword">return</span> myMonitor.getName();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>type</code> 키워드시 축약은 가능하지만 근본적인 해결책은 될 수 없음(클래스 타입 추가시마다, 매번 업데이트 필요)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 여긴 또 신기하게 대문자로 명명했네..</span></span><br><span class="line"><span class="keyword">type</span> MultiTypes = Led | Oled | Uhd;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> MonitorDisplay &#123;</span><br><span class="line">    display(monitor: MultiTypes) &#123; ...(<span class="keyword">if</span>들) &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="★★-매개변수의-다형성-인터페이스"><a href="#★★-매개변수의-다형성-인터페이스" class="headerlink" title="★★ 매개변수의 다형성 (인터페이스)"></a>★★ 매개변수의 다형성 (인터페이스)</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Monitor &#123;</span><br><span class="line">    getName(): <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Led <span class="keyword">implements</span> Monitor &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> name: <span class="built_in">string</span></span>) &#123;&#125;</span><br><span class="line">    getName(): <span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`LED: `</span> + <span class="built_in">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Oled <span class="keyword">implements</span> Monitor &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> name: <span class="built_in">string</span></span>) &#123;&#125;</span><br><span class="line">    getName(): <span class="built_in">string</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`Oled: `</span> + <span class="built_in">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> MonitorDisplay &#123;</span><br><span class="line">    display(monitor: Monitor) &#123;</span><br><span class="line">        <span class="keyword">let</span> myMonitor: Monitor = monitor;</span><br><span class="line">        <span class="keyword">return</span> myMonitor.getName();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>if문 없이 코딩이 가능함</p>
+<h2 id="📝p236-getter-setter-사용-이유"><a href="#📝p236-getter-setter-사용-이유" class="headerlink" title="📝p236. getter/setter 사용 이유"></a>📝p236. getter/setter 사용 이유</h2><p>굳이 <code>this.name = &#39;anything&#39;</code> 처럼 멤버 변수를 사용하지 않고 <code>get/set</code> 키워드를 사용하는 이유</p>
+<p>값을 설정하거나 읽을 때, 로직을 추가 가능(= 조건 추가 가능)</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">get name(): <span class="built_in">string</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">this</span>.studentName;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">set name(name: <span class="built_in">string</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span> (name.includes(<span class="string">`happy`</span>)) &#123;</span><br><span class="line">        <span class="built_in">this</span>.studentName = name;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="ES5-변환시"><a href="#ES5-변환시" class="headerlink" title="ES5 변환시"></a>ES5 변환시</h3><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">Object.defineProperty</a> 참고</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty(Student.prototype, <span class="string">`name`</span>, &#123;</span><br><span class="line">    get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    	<span class="keyword">return</span> <span class="built_in">this</span>.studentName;</span><br><span class="line">	&#125;,</span><br><span class="line">    set: <span class="function"><span class="keyword">function</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (name.includes(<span class="string">`happy`</span>)) <span class="built_in">this</span>.studentName = name;</span><br><span class="line">    &#125;,</span><br><span class="line">    enumerable: <span class="literal">true</span>,	<span class="comment">// true: 객체 키 열거 가능, default: false</span></span><br><span class="line">    configurable: <span class="literal">true</span>	<span class="comment">// true: 이 속성 값 수정/삭제 가능, default: false</span></span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> prop <span class="keyword">in</span> Student.prototype) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(prop);	<span class="comment">// 여기에 enumerable 하지 않으면 표시되지 않음</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p240-static"><a href="#📝p240-static" class="headerlink" title="📝p240. static"></a>📝p240. <code>static</code></h2><p><code>static</code> 키워드는 객체 생성 없이  접근 가능하므로 메모리 절약 효과 존재</p>
+<p>객체 생성 없이 바로 접근 가능</p>
+<p><code>static</code> 멤버 변수는 인스턴스간 값 공유</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Circle &#123;</span><br><span class="line">    <span class="keyword">static</span> circleArea: <span class="built_in">number</span> = <span class="number">0</span>;</span><br><span class="line">    get area(): <span class="built_in">number</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> Circle.circleArea;	<span class="comment">// this가 아닌 Circle을 사용했음</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> set area(pArea: <span class="built_in">number</span>) &#123;</span><br><span class="line">        Circle.circleArea = pArea;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line">Circle.area = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> circle = <span class="keyword">new</span> Circle();</span><br><span class="line"><span class="built_in">console</span>.log(circle.area);	<span class="comment">// 100, 공유되는 것을 확인</span></span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p242-싱글톤-패턴"><a href="#📝p242-싱글톤-패턴" class="headerlink" title="📝p242. 싱글톤 패턴"></a>📝p242. 싱글톤 패턴</h2><p><code>static</code> 키워드를 활용하면 유일한 상태 정보 저장 가능</p>
+<p>이렇게 하기위해서는 객체 생성을 막고, 클래스 변수, 메소드 등 모두를 <code>static</code>으로 선언</p>
+<p>단일 상태 관리에는 좋지만, 인스턴스 생성은 불가능</p>
+<p><strong>생성법</strong></p>
+<ol>
+<li>부지런한 초기화 (eager initalization) - 클래스 선언시 초기화</li>
+<li>게으른 초기화 (lazy initalization) - 메소드 호출시 초기화</li>
+</ol>
+<h3 id="Eager-Initalization"><a href="#Eager-Initalization" class="headerlink" title="Eager Initalization"></a>Eager Initalization</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> EagerLogger &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> uniqueObj: EagerLogger = <span class="keyword">new</span> EagerLogger();	<span class="comment">// 내부에서 자체적 선언</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// private를 붙여 인스턴스 생성 방지</span></span><br><span class="line">    <span class="keyword">private</span> EagerLogger() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// static으로 외부 접근 허용</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> getLogger(): EaggerLogger &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.uniqueObj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Lazy-Initalization"><a href="#Lazy-Initalization" class="headerlink" title="Lazy Initalization"></a>Lazy Initalization</h3><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> LazyLogger &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> uniqueObj: LazyLogger;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> LazyLogger() &#123;&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> getLogger(): LazyLogger &#123;</span><br><span class="line">        <span class="comment">// 생성된 적이 없으면 새로 생성, 타입은 LazyLogger이므로 ==로 타입검사 피함</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="built_in">this</span>.uniqueObj == <span class="literal">null</span>) &#123;</span><br><span class="line">            <span class="built_in">this</span>.uniqueObj = <span class="keyword">new</span> LazyLogger();</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">this</span>.uniqueObj;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="📝p247-readonly-vs-const"><a href="#📝p247-readonly-vs-const" class="headerlink" title="📝p247. readonly vs const"></a>📝p247. readonly vs const</h2><blockquote>
+<p><code>const</code>가 사용되는 곳은 <code>readonly</code>를 사용하지 못한다고 이해하면 편한 것 같다</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>특성</th>
+<th>const</th>
+<th>readonly</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>상수 선언</td>
+<td>가능</td>
+<td>가능</td>
+</tr>
+<tr>
+<td>초기화 강제성</td>
+<td>필수</td>
+<td>선택</td>
+</tr>
+<tr>
+<td>값 재할당</td>
+<td>불가능</td>
+<td>가능(?)</td>
+</tr>
+<tr>
+<td>선언 가능 대상</td>
+<td>변수</td>
+<td>멤버 변수<br />객체 리터럴<br />새타입</td>
+</tr>
+<tr>
+<td>선언 불가능 대상</td>
+<td>멤버 변수<br />객체 리터럴<br />새타입</td>
+<td>변수</td>
+</tr>
+<tr>
+<td>사용 용도</td>
+<td>상수</td>
+<td>읽기 전용 속성</td>
+</tr>
+<tr>
+<td>컴파일 선언 유지</td>
+<td>유지</td>
+<td>사라짐</td>
+</tr>
+<tr>
+<td>지원 표준</td>
+<td>ES6</td>
+<td>TS 2.0</td>
+</tr>
+</tbody></table>
+<h2 id="📝p250-readonly-제거되는-경우"><a href="#📝p250-readonly-제거되는-경우" class="headerlink" title="📝p250. readonly 제거되는 경우"></a>📝p250. readonly 제거되는 경우</h2><p><code>type</code> 에일리어싱시 사라짐</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> emotion: &#123; <span class="keyword">readonly</span> name: <span class="built_in">string</span> &#125; = &#123; name: <span class="string">`sad`</span> &#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">aliasing</span>(<span class="params">pEmotion: &#123; name: <span class="built_in">string</span> &#125;</span>) </span>&#123;</span><br><span class="line">    pEmotion.name = <span class="string">`happy`</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(emotion.name);	<span class="comment">// sad</span></span><br><span class="line">emotion.name = <span class="string">`happy`</span>;	<span class="comment">// Error</span></span><br><span class="line">aliasing(emotion);</span><br><span class="line"><span class="built_in">console</span>.log(emotion.name);	<span class="comment">// happy, 변경됨</span></span><br></pre></td></tr></table></figure>
+
+
+            </div>
+        
+        <footer class="article-footer">
+        </footer>
+    </div>
+</article>
+
+
+    
+<nav id="article-nav">
+    
+        <a href="/wiki/Vue%EC%97%90%EC%84%9C%EC%9D%98%20JSX%20%EC%82%AC%EC%9A%A9%EB%B2%95%20%EC%A0%95%EB%A6%AC/" id="article-nav-newer" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">다음 글</strong>
+            <div class="article-nav-title">
+                
+                    Vue JSX 사용법
+                
+            </div>
+        </a>
+    
+    
+        <a href="/wiki/Typescript%20quick%20start%20-6%EC%9E%A5/" id="article-nav-older" class="article-nav-link-wrap">
+            <strong class="article-nav-caption">이전 글</strong>
+            <div class="article-nav-title">Quick Start Typescript ~ 6장 정리</div>
+        </a>
+    
+</nav>
+
+
+
+
+
+    
+    
+
+    <script src="https://utteranc.es/client.js"
+        repo="taeuk-gang/taeuk-gang.github.io"
+        issue-term="title"
+        label="comment"
+        theme="github-light"
+        crossorigin="anonymous"
+        async>
+    </script>
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>     
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+            Taeuk Kang &copy; 2022 
+            <a rel="license noopener" target="_blank" href="http://creativecommons.org/licenses/by-nc-nd/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-nd/4.0/80x15.png" /></a>
+            <!-- <br> Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>. Theme - <a target="_blank" rel="noopener" href="https://github.com/zthxxx/hexo-theme-Wikitten">wikitten</a> -->
+            
+                <br>
+                <span id="busuanzi_container_site_pv"><i class="fa fa-eye"></i> <span id="busuanzi_value_site_pv"></span></span>
+                &nbsp;|&nbsp;
+                <span id="busuanzi_container_site_pv"><i class="fa fa-user"></i> <span id="busuanzi_value_site_uv"></span></span>
+            
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        
+<script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-share.min.js"></script>
+
+        
+<script src="/libs/lightgallery/js/lg-video.min.js"></script>
+
+    
+    
+        
+<script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+
+<script src="/js/main.js"></script>
+
+
+    </div>
+</body>
+</html>

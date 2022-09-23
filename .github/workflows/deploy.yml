@@ -10,7 +10,7 @@ jobs:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v1
         with:
-          node-version: 12.x
+          node-version: 16.x
       - name: ENV
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -19,7 +19,7 @@ jobs:
           git config --global user.email "taeuk_kang@naver.com"
           sed -i "s/__GITHUB_TOKEN__/${GITHUB_TOKEN}/" _config.yml
       - name: NPM Install
-        run: npm install
+        run: npm i
       - name: Hexo Generate
         run: ./node_modules/.bin/hexo g
       - name: Marp Generate
